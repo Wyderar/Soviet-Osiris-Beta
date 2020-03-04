@@ -1,20 +1,36 @@
 var/list/department_radio_keys = list(
-	"r" = "right ear",
-	"l" = "left ear",
-	"i" = "intercom",
-	"h" = "department",
-	"+" = "special",	 //activate radio-specific special functions
-	"c" = "Command",
-	"n" = "Science",
-	"m" = "Medical",
-	"e" = "Engineering",
-	"s" = "Security",
-	"w" = "whisper",
-	"y" = "Mercenary",
-	"u" = "Supply",
-	"v" = "Service",
-	"p" = "AI Private",
-	"t" = "NT Voice",
+	":r" = "right ear",	".r" = "right ear",
+	":l" = "left ear",	".l" = "left ear",
+	":i" = "intercom",	".i" = "intercom",
+	":h" = "department",	".h" = "department",
+	":+" = "special",		".+" = "special", //activate radio-specific special functions
+	":c" = "Command",		".c" = "Command",
+	":n" = "Science",		".n" = "Science",
+	":m" = "Medical",		".m" = "Medical",
+	":e" = "Engineering", ".e" = "Engineering",
+	":s" = "Security",	".s" = "Security",
+	":w" = "whisper",		".w" = "whisper",
+	":y" = "Mercenary",	".y" = "Mercenary",
+	":u" = "Supply",		".u" = "Supply",
+	":v" = "Service",		".v" = "Service",
+	":p" = "AI Private",	".p" = "AI Private",
+	":t" = "NT Voice",		".t" = "NT Voice",
+
+	//kinda localization -- rastaf0
+	//same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
+	":к" = "right ear",	".к" = "right ear",
+	":д" = "left ear",	".д" = "left ear",
+	":ш" = "intercom",	".ш" = "intercom",
+	":р" = "department",	".р" = "department",
+	":с" = "Command",		".с" = "Command",
+	":т" = "Science",		".т" = "Science",
+	":ь" = "Medical",		".ь" = "Medical",
+	":у" = "Engineering",	".у" = "Engineering",
+	":ы" = "Security",	".ы" = "Security",
+	":ц" = "whisper",		".ц" = "whisper",
+	":н" = "Mercenary",	".н" = "Mercenary",
+	":г" = "Supply",	".г" = "Supply",
+	":е" = "NT Voice",		".е" = "NT Voice"
 )
 
 
@@ -151,7 +167,6 @@ var/list/channel_to_radio_key = new
 	else
 		speaking = get_default_language()
 
-	message = capitalize(message)
 	// This is broadcast to all mobs with the language,
 	// irrespective of distance or anything else.
 	if(speaking && speaking.flags&HIVEMIND)
