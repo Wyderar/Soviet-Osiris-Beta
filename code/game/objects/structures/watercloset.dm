@@ -367,7 +367,6 @@
 	desc = "A sink used for washing one's hands and face."
 	anchored = 1
 	reagent_flags = OPENCONTAINER
-	var/busy = 0 	//Something's being washed at the moment
 
 /obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
 	. = ..()
@@ -398,31 +397,24 @@
 	if(!Adjacent(user))
 		return
 
-	if(busy)
-		to_chat(user, SPAN_WARNING("Someone's already washing here."))
-		return
-
 	to_chat(usr, SPAN_NOTICE("You start washing your hands."))
 
 	playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)
 
-	busy = 1
-	sleep(40)
-	busy = 0
+	if(do_after(user, 60, src))
+		if(!Adjacent(user)) return		//Person has moved away from the sink
 
-	if(!Adjacent(user)) return		//Person has moved away from the sink
-
-	user.clean_blood()
-	if(ishuman(user))
-		user:update_inv_gloves()
-	for(var/mob/V in viewers(src, null))
-		V.show_message(SPAN_NOTICE("[user] washes their hands using \the [src]."))
+		user.clean_blood()
+		if(ishuman(user))
+			user:update_inv_gloves()
+		for(var/mob/V in viewers(src, null))
+			V.show_message(SPAN_NOTICE("[user] washes their hands using \the [src]."))
+		var/mob/living/carbon/human/M = user
+		if(istype(M))
+			M.sanity.onSink()
 
 
 /obj/structure/sink/attackby(obj/item/O as obj, mob/living/user as mob)
-	if(busy)
-		to_chat(user, SPAN_WARNING("Someone's already washing here."))
-		return
 
 	var/obj/item/weapon/reagent_containers/RG = O
 	if (istype(RG) && RG.is_refillable())
@@ -460,18 +452,16 @@
 
 	to_chat(usr, SPAN_NOTICE("You start washing \the [I]."))
 
-	busy = 1
-	sleep(40)
-	busy = 0
+	if(do_after(user, 60, src))
 
-	if(user.loc != location) return				//User has moved
-	if(!I) return 								//Item's been destroyed while washing
-	if(user.get_active_hand() != I) return		//Person has switched hands or the item in their hands
+		if(user.loc != location) return				//User has moved
+		if(!I) return 								//Item's been destroyed while washing
+		if(user.get_active_hand() != I) return		//Person has switched hands or the item in their hands
 
-	O.clean_blood()
-	user.visible_message( \
-		SPAN_NOTICE("[user] washes \a [I] using \the [src]."), \
-		SPAN_NOTICE("You wash \a [I] using \the [src]."))
+		O.clean_blood()
+		user.visible_message( \
+			SPAN_NOTICE("[user] washes \a [I] using \the [src]."), \
+			SPAN_NOTICE("You wash \a [I] using \the [src]."))
 
 /obj/structure/sink/AltClick(var/mob/living/user)
 	var/H = user.get_active_hand()

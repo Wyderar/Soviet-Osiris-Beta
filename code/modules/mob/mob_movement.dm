@@ -1,7 +1,17 @@
 /client/Move(n, direction)
 	if(!mob)
 		return // Moved here to avoid nullrefs below
-	return mob.SelfMove(direction)
+	var/atom/movable/P = mob.pulling
+	var/last_area = mob.loc
+	mob.SelfMove(direction)
+
+// Facing to pulling object
+	if(P)
+		if(last_area != mob.loc && !ismob(P) && P.density)
+			mob.set_dir(turn(direction, 180))
+		mob.stop_pulling(P)
+		if(P.Adjacent(mob))
+			mob.start_pulling(P)
 
 /mob/proc/SelfMove(var/direction)
 	if(DoMove(direction, src) & MOVEMENT_HANDLED)

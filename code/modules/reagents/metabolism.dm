@@ -4,7 +4,7 @@
 
 /datum/reagents/metabolism/New(var/max = 100, mob/living/carbon/parent_mob, var/met_class)
 	..(max, parent_mob)
-	
+
 	metabolism_class = met_class
 	if(istype(parent_mob))
 		parent = parent_mob
@@ -49,7 +49,7 @@
 	for(var/i in nerve_system_accumulations)
 		if(findtext(i, tag, 1, 0) == 1)
 			nerve_system_accumulations.Remove(i)
-		
+
 
 /datum/metabolism_effects/proc/get_nsa_value(tag)
 	if(nerve_system_accumulations[tag])
@@ -111,7 +111,7 @@
 /datum/metabolism_effects/proc/check_reagent(datum/reagent/R, metabolism_class)
 	present_reagent_ids += R.id
 
-	//Nerve System Accumulation 
+	//Nerve System Accumulation
 	parent.metabolism_effects.adjust_nsa(R.nerve_system_accumulations, "[R.id]_[metabolism_class]")
 
 	// Withdrawals
@@ -153,7 +153,7 @@
 /datum/metabolism_effects/proc/process()
 	process_withdrawals()
 	handle_nsa()
-	
+
 	if(addiction_tick == 6)
 		addiction_tick = 1
 		process_addictions()
@@ -202,15 +202,15 @@
 		if(!parent.chem_effects[CE_PURGER])
 
 			switch(addiction_list[R])
-				if(1 to 10)
+				if(1 to 100)
 					R.addiction_act_stage1(parent)
-				if(10 to 20)
+				if(100 to 200)
 					R.addiction_act_stage2(parent)
-				if(20 to 30)
+				if(200 to 300)
 					R.addiction_act_stage3(parent)
-				if(30 to 40)
+				if(300 to 400)
 					R.addiction_act_stage4(parent)
-				if(40 to INFINITY)
+				if(400 to INFINITY)
 					R.addiction_end(parent)
 					addiction_list.Remove(R)
 

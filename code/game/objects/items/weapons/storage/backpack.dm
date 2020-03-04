@@ -225,7 +225,7 @@
 	name = "grey satchel"
 	desc = "A trendy looking satchel."
 	icon_state = "satchel"
-	max_storage_space = DEFAULT_HUGE_STORAGE * 0.7
+	max_storage_space = DEFAULT_HUGE_STORAGE * 0.5
 	worn_access = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/white
@@ -307,3 +307,11 @@
 	name = "cruciformed satchel"
 	desc = "Slightly more accessible means for your holy goods."
 	icon_state = "satchel_neotheology"
+
+//DUFFLE//
+/obj/item/weapon/storage/backpack/dufflebag
+	name = "dufflebag"
+	desc = "A large dufflebag for holding extra things."
+	icon_state = "duffle"
+	max_storage_space = DEFAULT_HUGE_STORAGE * 2
+	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTIC = 2)
