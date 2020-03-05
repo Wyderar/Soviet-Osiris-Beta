@@ -29,14 +29,14 @@
 
 /datum/category_item/player_setup_item/physical/flavor/content(var/mob/user)
 	. = list()
-	. += "<b>Flavor:</b><br>"
-	. += "<a href='?src=\ref[src];flavor_text=open'>Set Flavor Text</a><br/>"
-	. += "<a href='?src=\ref[src];flavour_text_robot=open'>Set Robot Flavor Text</a><br/>"
+	. += "<b>Описание:</b><br>"
+	. += "<a href='?src=\ref[src];flavor_text=open'>Внешность персонажа</a><br/>"
+	. += "<a href='?src=\ref[src];flavour_text_robot=open'>Внешность киборга</a><br/>"
 	return jointext(.,null)
 
 /datum/category_item/player_setup_item/physical/flavor/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["flavor_text"] && href_list["flavor_text"] == "open")
-		var/msg = sanitize(input(usr,"Give a general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text", pref.flavor_text, "message"), extra = 0)
+		var/msg = sanitize(input(usr,"Введите визуальное описание вашего персонажа. Не вписывайте сюда нюансы, скрытые за одеждой и ООС информацию.","Flavor Text", pref.flavor_text, "message"), extra = 0)
 		if(CanUseTopic(user))
 			if(msg)
 				pref.flavor_text = msg
@@ -46,11 +46,11 @@
 		switch(href_list["flavour_text_robot"])
 			if("open")
 			if("Default")
-				var/msg = sanitize(input(usr,"Set the default flavour text for your robot. It will be used for any module without individual setting.","Flavour Text",html_decode(pref.flavour_texts_robot["Default"]), "message"), extra = 0)
+				var/msg = sanitize(input(usr,"Введите визуальное описание вашего киборга.","Flavour Text",html_decode(pref.flavour_texts_robot["Default"]), "message"), extra = 0)
 				if(CanUseTopic(user))
 					pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
 			else
-				var/msg = sanitize(input(usr,"Set the flavour text for your robot with [href_list["flavour_text_robot"]] module. If you leave this empty, default flavour text will be used for this module.","Flavour Text",html_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]]), "message"), extra = 0)
+				var/msg = sanitize(input(usr,"Введите описание для модуля [href_list["flavour_text_robot"]]. Если оставить это поле пустым, то будет использовано стандартное описание.","Flavour Text",html_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]]), "message"), extra = 0)
 				if(CanUseTopic(user))
 					pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
 		SetFlavourTextRobot(user)

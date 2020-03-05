@@ -7,9 +7,6 @@
 	var/url // Remember to include http:// or https:// or BYOND will be sad
 	var/volume = 70
 
-/music_track/New()
-	licence = decls_repository.get_decl(licence)
-
 /music_track/proc/play_to(var/listener)
 	to_chat(listener, "<span class='good'>Now Playing:</span>")
 	to_chat(listener, "<span class='good'>[title][artist ? " by [artist]" : ""][album ? " ([album])" : ""]</span>")

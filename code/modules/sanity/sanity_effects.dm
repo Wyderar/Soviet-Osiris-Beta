@@ -9,7 +9,7 @@
 	if(islist(S))
 		to_chat(owner,SPAN_DANGER(S[2]))
 		S = S[1]
-	owner.playsound_local(owner, S, 50, 0, 8, null, 8)
+	owner.playsound_local(owner, S, 20, 0, 8, null, 8)
 
 /datum/sanity/proc/effect_whisper()
 	var/list/atom/candidates = owner.contents.Copy()

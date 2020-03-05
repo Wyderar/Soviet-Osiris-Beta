@@ -104,18 +104,18 @@
 
 /datum/gear/mirror/
 	display_name = "handheld mirror"
-	sort_category = "Cosmetics"
+	sort_category = "Косметика"
 	path = /obj/item/weapon/mirror
 
 /datum/gear/lipstick
 	display_name = "lipstick selection"
-	sort_category = "Cosmetics"
+	sort_category = "Косметика"
 	path = /obj/item/weapon/lipstick
 	flags = GEAR_HAS_TYPE_SELECTION
 
 /datum/gear/comb
 	display_name = "plastic comb"
-	sort_category = "Cosmetics"
+	sort_category = "Косметика"
 	path = /obj/item/weapon/haircomb
 	flags = GEAR_HAS_COLOR_SELECTION
 

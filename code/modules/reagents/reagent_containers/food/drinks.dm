@@ -36,6 +36,9 @@
 		return ..()
 
 	if(standard_feed_mob(user, M))
+		if(user.a_intent == I_DISARM)
+			if(reagents.total_volume)
+				gulp_whole()
 		return
 
 	return 0

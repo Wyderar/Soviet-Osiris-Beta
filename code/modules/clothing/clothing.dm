@@ -155,9 +155,11 @@
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears
 	name = "ears"
+	icon = 'icons/inventory/ears/icon.dmi'
 	w_class = ITEM_SIZE_TINY
 	throwforce = 2
 	slot_flags = SLOT_EARS
+	var/volume_multiplier
 
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
@@ -222,6 +224,7 @@
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
+	volume_multiplier = 0.1
 
 
 ///////////////////////////////////////////////////////////////////////

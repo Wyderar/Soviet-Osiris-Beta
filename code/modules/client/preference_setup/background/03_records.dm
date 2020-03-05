@@ -22,17 +22,17 @@
 
 /datum/category_item/player_setup_item/background/records/content(var/mob/user)
 	. = list()
-	. += "<br/><b>Records</b>:<br/>"
+	. += "<br/><b>Записи</b>:<br/>"
 	if(jobban_isbanned(user, "Records"))
-		. += "<span class='danger'>You are banned from using character records.</span><br>"
+		. += "<span class='danger'>Вы были ограничены в использовании записей.</span><br>"
 	else
-		. += "Medical Records: "
+		. += "Медицинский отдел: "
 		. += "<a href='?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br>"
-		. += "Employment Records: "
+		. += "Трудовой стаж: "
 		. += "<a href='?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record,40)]</a><br>"
-		. += "Security Records: "
+		. += "Служба безопасности: "
 		. += "<a href='?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br>"
-		. += "Memory: "
+		. += "Память: "
 		. += "<a href='?src=\ref[src];set_memory=1'>[TextPreview(pref.memory,40)]</a><br>"
 	. = jointext(.,null)
 

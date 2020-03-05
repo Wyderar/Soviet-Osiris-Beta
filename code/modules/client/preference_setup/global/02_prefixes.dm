@@ -45,7 +45,7 @@
 	reset_duplicate_keys()
 
 /datum/category_item/player_setup_item/player_global/prefixes/content(var/mob/user)
-	. += "<b>Prefix Keys:</b><br>"
+	. += "<b>Префиксы:</b><br>"
 	. += "<table>"
 	for(var/prefix_name in prefix_by_name)
 		var/decl/prefix/prefix_instance = prefix_by_name[prefix_name]
@@ -54,17 +54,17 @@
 		. += "<tr><td>[prefix_instance.name]</td><td>[pref.prefix_keys_by_type[prefix_instance.type]]</td><td>"
 
 		if(prefix_instance.is_locked)
-			. += "<span class='linkOff'>Change</span>"
+			. += "<span class='linkOff'>Изменить</span>"
 		else
 
-			. += "<a href='?src=\ref[src];change_prefix=\ref[prefix_instance]'>Change</a>"
+			. += "<a href='?src=\ref[src];change_prefix=\ref[prefix_instance]'>Изменить</a>"
 
 		. += "</td><td>"
 
 		if(prefix_instance.is_locked || current_prefix == prefix_instance.default_key)
-			. += "<span class='linkOff'>Reset</span>"
+			. += "<span class='linkOff'>Сбросить</span>"
 		else
-			. += "<a href='?src=\ref[src];reset_prefix=\ref[prefix_instance]'>Reset</a>"
+			. += "<a href='?src=\ref[src];reset_prefix=\ref[prefix_instance]'>Сбросить</a>"
 		. += "</td></tr>"
 	. += "</table>"
 

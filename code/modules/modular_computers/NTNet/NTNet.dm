@@ -266,7 +266,7 @@ var/global/datum/ntnet/ntnet_global = new()
 		if(user.mind)
 			user.mind.initial_email_login["login"] = EA.login
 			user.mind.initial_email_login["password"] = EA.password
-			user.mind.store_memory("Your email account address is [EA.login] and the password is [EA.password].")
+			user.mind.store_memory("Your email account address is [EA.login] and the password is [EA.password]<hr>.")
 		if(ishuman(user))
 			var/obj/item/modular_computer/C = locate(/obj/item/modular_computer) in user.GetAllContents()
 			if(C)

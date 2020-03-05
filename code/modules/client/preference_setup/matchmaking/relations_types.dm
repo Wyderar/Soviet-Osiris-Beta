@@ -1,17 +1,17 @@
 /datum/relation/friend
-	name = "Friend"
-	desc = "You have known the fellow for a while now, and you get along pretty well."
+	name = "Друг"
+	desc = "Вы давно знаете этого человека, и вы хорошо ладите между собой."
 	incompatible = list(/datum/relation/enemy)
 
 /datum/relation/friend/get_desc_string()
-	return "[holder] and [other.holder] seem to be on good terms."
+	return "[holder] и [other.holder] судя по всему в дружеских отношениях."
 
 /datum/relation/kid_friend
-	name = "Childhood Friend"
-	desc = "You have known them since you were both young."
+	name = "Друг детства"
+	desc = "Вы знаете этого человека еще с детства."
 
 /datum/relation/kid_friend/get_desc_string()
-	return "[holder] and [other.holder] knew each other when they were both young."
+	return "[holder] и [other.holder] знают друг друга еще с детства."
 
 /datum/relation/kid_friend/get_candidates()
 	var/list/creche = ..()
@@ -28,35 +28,35 @@
 	return creche
 
 /datum/relation/enemy
-	name = "Enemy"
-	desc = "You have known the fellow for a while now, and you really can't stand each other."
+	name = "Враг"
+	desc = "Вы давно знаете этого человека и вы просто ненавидете его."
 	incompatible = list(/datum/relation/friend)
 
 /datum/relation/enemy/get_desc_string()
-	return "[holder] and [other.holder] do not get along well."
+	return "Видимо, [holder] и [other.holder] ненавидят друг друга."
 
 /datum/relation/had_crossed
-	name = "Crossed"
-	desc = "You have slighted them in the past, and they most likely hold a grudge against you."
+	name = "Обиженный"
+	desc = "В прошлом вы обидели этого человека, и теперь он явно точит на вас зуб."
 	can_connect_to = list(/datum/relation/was_crossed)
 
 /datum/relation/had_crossed/get_desc_string()
-	return "Something has happened between [holder] and [other.holder] in the past, and [other.holder] is upset about it."
+	return "Видимо, между [holder] и [other.holder] что-то произошло, раз [other.holder] очень недоволен этим."
 
 /datum/relation/was_crossed
-	name = "Was Crossed"
-	desc = "You have been slighted by them in the past, and you remember it."
+	name = "Был обижен"
+	desc = "Вы были обижены этим человеком, и вы прекрасно это помните.."
 	can_connect_to = list(/datum/relation/had_crossed)
 
 /datum/relation/was_crossed/get_desc_string()
-	return "Something has happened between [holder] and [other.holder] in the past, and [holder] is upset about it."
+	return "Видимо, между [holder] и [other.holder] что-то произошло, раз [holder] очень недоволен этим."
 
 /datum/relation/rival
-	name = "Rival"
-	desc = "You are engaged in a constant struggle to show who's number one."
+	name = "Соперник"
+	desc = "С этим человеком вы находитесь в вечной борьбе за победу, и уже не особо важно в чем именно."
 
 /datum/relation/rival/get_desc_string()
-	return "[holder] and [other.holder] are fiercely competitive towards one another."
+	return "[holder] и [other.holder] яро решают, кто из них номер один."
 
 /datum/relation/rival/get_candidates()
 	var/list/rest = ..()
@@ -76,8 +76,8 @@
 	return rest
 
 /datum/relation/ex
-	name = "Ex"
-	desc = "You used to be romantically involved, but not anymore."
+	name = "Бывший/бывшая"
+	desc = "Когда-то с этим человеком вы были в романтических отношениях. Когда-то."
 
 /datum/relation/ex/get_desc_string()
-	return "[holder] and [other.holder] used to be an item, but not anymore."
+	return "[holder] и [other.holder], похоже, были вместе раньше... А сейчас то что?"

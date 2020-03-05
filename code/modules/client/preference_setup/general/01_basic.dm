@@ -43,14 +43,14 @@ datum/preferences
 	*/
 /datum/category_item/player_setup_item/physical/basic/content()
 	. = list()
-	. += "<b>Name:</b> "
+	. += "<b>Имя:</b> "
 	. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
-	. += "<a href='?src=\ref[src];random_name=1'>Randomize Name</A><br>"
-	. += "<a href='?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a>"
+	. += "<a href='?src=\ref[src];random_name=1'>Случайное имя</A><br>"
+	. += "<a href='?src=\ref[src];always_random_name=1'>Всегда случайное имя: [pref.be_random_name ? "Да" : "Нет"]</a>"
 	. += "<hr>"
-	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[gender2text(pref.gender)]</b></a><br>"
-	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
-	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
+	. += "<b>Пол:</b> <a href='?src=\ref[src];gender=1'><b>[gender2text(pref.gender)]</b></a><br>"
+	. += "<b>Возраст:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
+	. += "<b>Точка появления</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
 
 	. = jointext(.,null)
 
@@ -58,7 +58,7 @@ datum/preferences
 	var/datum/species/S = all_species[pref.species]
 
 	if(href_list["rename"])
-		var/raw_name = input(user, "Choose your character's name:", "Character Name", pref.real_name)  as text|null
+		var/raw_name = input(user, "Введите имя своего персонажа:", "Character Name", pref.real_name)  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
 			var/new_name = sanitize_name(raw_name, pref.species)
 			if(new_name)
@@ -77,14 +77,14 @@ datum/preferences
 		return TOPIC_REFRESH
 
 	else if(href_list["gender"])
-		var/new_gender = input(user, "Choose your character's gender:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.gender) as null|anything in S.genders
+		var/new_gender = input(user, "Выберите пол персонажа:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.gender) as null|anything in S.genders
 		S = all_species[pref.species]
 		if(new_gender && CanUseTopic(user) && (new_gender in S.genders))
 			pref.gender = new_gender
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["age"])
-		var/new_age = input(user, "Choose your character's age:\n([S.min_age]-[S.max_age])", CHARACTER_PREFERENCE_INPUT_TITLE, pref.age) as num|null
+		var/new_age = input(user, "Введите возраст персонажа:\n([S.min_age]-[S.max_age])", CHARACTER_PREFERENCE_INPUT_TITLE, pref.age) as num|null
 		if(new_age && CanUseTopic(user))
 			pref.age = max(min(round(text2num(new_age)), S.max_age), S.min_age)
 			//pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)		// The age may invalidate skill loadouts

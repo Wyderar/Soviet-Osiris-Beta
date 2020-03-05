@@ -22,7 +22,7 @@
 
 /datum/category_item/player_setup_item/background/languages/content()
 	. = list()
-	. += "<b>Languages</b><br>"
+	. += "<b>Языки</b><br>"
 	var/list/show_langs = get_language_text()
 	if(LAZYLEN(show_langs))
 		for(var/lang in show_langs)
@@ -49,7 +49,7 @@
 		if(!LAZYLEN(available_languages))
 			alert(user, "There are no additional languages available to select.")
 		else
-			var/new_lang = input(user, "Select an additional language", "Character Generation", null) as null|anything in available_languages
+			var/new_lang = input(user, "Выберите дополнительный язык", "Character Generation", null) as null|anything in available_languages
 			if(new_lang)
 				pref.alternate_languages |= new_lang
 				return TOPIC_REFRESH
@@ -116,11 +116,11 @@
 		for(var/i = 1 to pref.alternate_languages.len)
 			var/lang = pref.alternate_languages[i]
 			if(free_languages[lang])
-				LAZYADD(., "- [lang] (required).<br>")
+				LAZYADD(., "- [lang] (необходим).<br>")
 			else
-				LAZYADD(., "- [lang] <a href='?src=\ref[src];remove_language=[i]'>Remove.</a><br>")
+				LAZYADD(., "- [lang] <a href='?src=\ref[src];remove_language=[i]'>Удалить.</a><br>")
 	if(pref.alternate_languages.len < MAX_LANGUAGES)
 		var/remaining_langs = MAX_LANGUAGES - pref.alternate_languages.len
-		LAZYADD(., "- <a href='?src=\ref[src];add_language=1'>add</a> ([remaining_langs] remaining)<br>")
+		LAZYADD(., "- <a href='?src=\ref[src];add_language=1'>добавить</a> ([remaining_langs] remaining)<br>")
 
 #undef MAX_LANGUAGES

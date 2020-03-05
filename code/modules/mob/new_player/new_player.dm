@@ -29,21 +29,21 @@
 
 
 /mob/new_player/proc/new_player_panel_proc()
-	var/output = "<div align='center'><B>New Player Options</B>"
+	var/output = "<div align='center'><B>Добро пожаловать!</B>"
 	output +="<hr>"
-	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Настроить персонажа</A></p>"
 
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
 		if(ready)
-			output += "<p>\[ <span class='linkOn'><b>Ready</b></span> | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
+			output += "<p>\[ <span class='linkOn'><b>Готов</b></span> | <a href='byond://?src=\ref[src];ready=0'>Не готов</a> \]</p>"
 		else
-			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | <span class='linkOn'><b>Not Ready</b></span> \]</p>"
+			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Готов</a> | <span class='linkOn'><b>Не готов</b></span> \]</p>"
 
 	else
-		output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
-		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</A></p>"
+		output += "<a href='byond://?src=\ref[src];manifest=1'>Открыть манифест экипажа</A><br><br>"
+		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Присоединиться к игре</A></p>"
 
-	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];observe=1'>Наблюдать</A></p>"
 
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
@@ -66,8 +66,8 @@
 
 	output += "</div>"
 
-	panel = new(src, "Welcome","Welcome", 210, 280, src)
-	panel.set_window_options("can_close=0")
+	panel = new(src, "Osiris SS13 Hi-RP","Osiris SS13 Hi-RP", 210, 280, src)
+	panel.set_window_options("can_close=0;window=welcome")
 	panel.set_content(output)
 	panel.open()
 	return
@@ -77,9 +77,9 @@
 
 	if(statpanel("Status"))
 		if(SSticker.current_state == GAME_STATE_PREGAME)
-			stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode
-			stat("Time To Start:", "[SSticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
-			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
+			stat("Рассказчик:", "[master_storyteller]") // Old setting for showing the game mode
+			stat("Время до начала игры:", "[SSticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
+			stat("Игроков: [totalPlayers]", "Готово: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
 			for(var/mob/new_player/player in GLOB.player_list)
@@ -286,8 +286,8 @@
 	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
 
 	var/dat = "<html><body><center>"
-	dat += "<b>Welcome, [name].<br></b>"
-	dat += "Round Duration: [roundduration2text()]<br>"
+	dat += "<b>Добро пожаловать, [name].<br></b>"
+	dat += "Раунд длится: [roundduration2text()]<br>"
 
 	if(evacuation_controller.has_evacuated()) //In case Nanotrasen decides reposess CentComm's shuttles.
 		dat += "<font color='red'><b>The vessel has been evacuated.</b></font><br>"
@@ -297,7 +297,7 @@
 		else                                           // Crew transfer initiated
 			dat += "<font color='red'>The vessel is currently undergoing crew transfer procedures.</font><br>"
 
-	dat += "Choose from the following open/valid positions:<br>"
+	dat += "Выберите свою должность из списка доступных:<br>"
 	for(var/datum/job/job in SSjob.occupations)
 		if(job && IsJobAvailable(job.title))
 			if(job.is_restricted(client.prefs))
@@ -309,7 +309,11 @@
 			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
 
 	dat += "</center>"
-	src << browse(dat, "window=latechoices;size=400x640;can_close=1")
+
+	panel = new(src, "Присоединиться к игре","Присоединиться к игре", 400, 640, src)
+	panel.set_window_options("can_close=1;window=latechoices")
+	panel.set_content(dat)
+	panel.open()
 
 
 /mob/new_player/proc/create_character()
@@ -387,6 +391,7 @@
 
 /mob/new_player/proc/close_spawn_windows()
 	src << browse(null, "window=latechoices") //closes late choices window
+	src << browse(null, "window=welcome")
 	panel.close()
 
 /mob/new_player/proc/is_species_whitelisted(datum/species/S)

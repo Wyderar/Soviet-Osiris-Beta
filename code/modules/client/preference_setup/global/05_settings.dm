@@ -63,7 +63,7 @@
 
 /datum/category_item/player_setup_item/player_global/settings/content(var/mob/user)
 	. = list()
-	. += "<b>Preferences</b><br>"
+	. += "<b>Настройки</b><br>"
 	. += "<table>"
 
 	var/mob/pref_mob = preference_mob()

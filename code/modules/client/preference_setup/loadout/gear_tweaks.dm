@@ -28,15 +28,15 @@
 	..()
 
 /datum/gear_tweak/color/get_contents(var/metadata)
-	return "Color: <font color='[metadata]'>&#9899;</font>"
+	return "Цвет: <font color='[metadata]'>&#9899;</font>"
 
 /datum/gear_tweak/color/get_default()
 	return valid_colors ? valid_colors[1] : COLOR_WHITE
 
 /datum/gear_tweak/color/get_metadata(var/user, var/metadata, var/title = CHARACTER_PREFERENCE_INPUT_TITLE)
 	if(valid_colors)
-		return input(user, "Choose a color.", title, metadata) as null|anything in valid_colors
-	return input(user, "Choose a color.", title, metadata) as color|null
+		return input(user, "Выберите цвет.", title, metadata) as null|anything in valid_colors
+	return input(user, "Выберите цвет.", title, metadata) as color|null
 
 /datum/gear_tweak/color/tweak_item(var/obj/item/I, var/metadata)
 	if(valid_colors && !(metadata in valid_colors))
@@ -86,7 +86,7 @@
 	return valid_paths[1]
 
 /datum/gear_tweak/path/get_metadata(var/user, var/metadata)
-	return input(user, "Choose a type.", CHARACTER_PREFERENCE_INPUT_TITLE, metadata) as null|anything in valid_paths
+	return input(user, "Выберите тип.", CHARACTER_PREFERENCE_INPUT_TITLE, metadata) as null|anything in valid_paths
 
 /datum/gear_tweak/path/tweak_gear_data(var/metadata, var/datum/gear_data/gear_data)
 	if(!(metadata in valid_paths))

@@ -1,5 +1,5 @@
 /datum/gear/accessory
-	sort_category = "Accessories"
+	sort_category = "Аксессуары"
 	category = /datum/gear/accessory
 	slot = slot_accessory_buffer
 /*
@@ -37,7 +37,7 @@
 	display_name = "armband, red"
 	path = /obj/item/clothing/accessory/armband
 	slot = slot_accessory_buffer
-	sort_category = "Accessories"
+	sort_category = "Аксессуары"
 
 /datum/gear/accessory/cargo
 	display_name = "armband, cargo"

@@ -58,7 +58,7 @@
 	for(var/organ in pref.r_organs)
 		var/datum/body_modification/mod = pref.get_modification(organ)
 		var/organ_name = capitalize(organ_tag_to_name[organ])
-		var/disp_name = mod ? mod.short_name : "Nothing"
+		var/disp_name = mod ? mod.short_name : "Отсутствует"
 		if(!pref.modifications_allowed())
 			dat += "<a class='linkOff'><b>[organ_name]</b></a>"
 		else if(organ == pref.current_organ)
@@ -76,7 +76,7 @@
 	for(var/organ in pref.l_organs)
 		var/datum/body_modification/mod = pref.get_modification(organ)
 		var/organ_name = capitalize(organ_tag_to_name[organ])
-		var/disp_name = mod ? mod.short_name : "Nothing"
+		var/disp_name = mod ? mod.short_name : "Отсутствует"
 		if(mod.hascolor)
 			dat += "<div><a href='?src=\ref[src];color=[organ]'><span class='color_holder_box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
 		if(!pref.modifications_allowed())

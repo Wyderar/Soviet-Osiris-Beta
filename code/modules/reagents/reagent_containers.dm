@@ -144,6 +144,9 @@
 			to_chat(user, SPAN_WARNING("\The [blocked] is in the way!"))
 			return TRUE
 
+	if(user.a_intent == I_DISARM)
+		return TRUE
+
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
 
 	if(target == user)

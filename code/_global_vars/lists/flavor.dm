@@ -10,8 +10,6 @@ GLOBAL_LIST_INIT(phonetic_alphabet, list("Alpha", "Bravo", "Charlie",
 	"Yankee", "Zulu"))
 
 GLOBAL_LIST_INIT(music_tracks, list(
-	"Comet Halley" = /music_track/comet_haley,
-	"Please Come Back Any Time" = /music_track/elevator,
 	"Marhaba" = /music_track/marhaba,
 	"In Orbit" = /music_track/inorbit,
 	"Martian Cowboy" = /music_track/martiancowboy,
@@ -24,7 +22,13 @@ GLOBAL_LIST_INIT(music_tracks, list(
 	"Exploring" = /music_track/exploring,
 	"The Runner in Motion" = /music_track/runner,
 	"Neotheology" = /music_track/neotheology,
-	"Downtown 2" = /music_track/downtown
+	"Downtown" = /music_track/downtown,
+	"Steel Rain" = /music_track/steel_rain,
+	"Our Legacy" = /music_track/our_legacy,
+	"Negative Waves" = /music_track/negative_waves,
+	"One More Day" = /music_track/one_more_day,
+	"Unknown City" = /music_track/unknown_city,
+	"WCPD" = /music_track/wcpd
 ))
 
 /proc/setup_music_tracks(var/list/tracks)

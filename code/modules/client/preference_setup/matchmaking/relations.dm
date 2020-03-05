@@ -22,22 +22,22 @@
 
 /datum/category_item/player_setup_item/relations/content(mob/user)
 	.=list()
-	. += "Characters with enabled relations are paired up randomly after spawn. You can terminate relations when you first open relations info window, but after that it's final."
+	. += "Персонажи с активированными взаимоотношениями распределяются после появления. Вы можете разорвать их, когда впервые открываете окно отношений, однако уже после отменить выбор будет невозможно."
 	. += "<hr>"
-	. += "<br><b>What do they know about you?</b> This is the general info that all kinds of your connections would know. <a href='?src=\ref[src];relation_info=["general"]'>Edit</a>"
+	. += "<br><b>Что они о вас знают?</b> Это общая информация, о которой будут знать все, с кем вы будете во взаимоотношениях. <a href='?src=\ref[src];relation_info=["general"]'>Редактировать</a>"
 	. += "<br><i>[pref.relations_info["general"] ? pref.relations_info["general"] : "Nothing specific."]</i>"
 	. += "<hr>"
 	for(var/T in subtypesof(/datum/relation))
 		var/datum/relation/R = T
 		. += "<b>[initial(R.name)]</b>\t"
 		if(initial(R.name) in pref.relations)
-			. += "<span class='linkOn'>On</span>"
-			. += "<a href='?src=\ref[src];relation=[initial(R.name)]'>Off</a>"
+			. += "<span class='linkOn'>Вкл.</span>"
+			. += "<a href='?src=\ref[src];relation=[initial(R.name)]'>Выкл.</a>"
 		else
-			. += "<a href='?src=\ref[src];relation=[initial(R.name)]'>On</a>"
-			. += "<span class='linkOn'>Off</span>"
+			. += "<a href='?src=\ref[src];relation=[initial(R.name)]'>Вкл.</a>"
+			. += "<span class='linkOn'>Выкл.</span>"
 		. += "<br><i>[initial(R.desc)]</i>"
-		. += "<br><b>What do they know about you?</b><a href='?src=\ref[src];relation_info=[initial(R.name)]'>Edit</a>"
+		. += "<br><b>Что они о вас знают?</b><a href='?src=\ref[src];relation_info=[initial(R.name)]'>Редактировать</a>"
 		. += "<br><i>[pref.relations_info[initial(R.name)] ? pref.relations_info[initial(R.name)] : "Nothing specific."]</i>"
 		. += "<hr>"
 	. = jointext(.,null)

@@ -27,24 +27,31 @@
 		if(get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH && (speaker in view(src)))
 			message = "<b>[message]</b>"
 
-	if(language)
-		var/nverb = null
-		if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check to see if we can understand what the speaker is saying. If so, add the name of the language after the verb. Don't do this for Galactic Common.
-			on_hear_say("<span class='game say'>[track]<span class='name'>[speaker_name]</span>[alt_name] [language.format_message(message, verb)]</span>")
-		else //Check if the client WANTS to see language names.
-			switch(src.get_preference_value(/datum/client_preference/language_display))
-				if(GLOB.PREF_FULL) // Full language name
-					nverb = "[verb] in [language.name]"
-				if(GLOB.PREF_SHORTHAND) //Shorthand codes
-					nverb = "[verb] ([language.shorthand])"
-				if(GLOB.PREF_OFF)//Regular output
-					nverb = verb
-			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][language.format_message(message, nverb)]</span>")
+	if(get_sound_volume_multiplier() < 0.2)
+		if(!language || !(language.flags & INNATE)) // INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
+			if(speaker == src)
+				to_chat(src, "<span class='warning'>You cannot hear yourself speak!</span>")
+			else if(!is_blind())
+				to_chat(src, "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him.")
 	else
-		on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='body'>\"[message]\"</span></span></span>")
-	if(speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
-		var/turf/source = speaker ? get_turf(speaker) : get_turf(src)
-		src.playsound_local(source, speech_sound, sound_vol, 1)
+		if(language)
+			var/nverb = null
+			if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check to see if we can understand what the speaker is saying. If so, add the name of the language after the verb. Don't do this for Galactic Common.
+				on_hear_say("<span class='game say'>[track]<span class='name'>[speaker_name]</span>[alt_name] [language.format_message(message, verb)]</span>")
+			else //Check if the client WANTS to see language names.
+				switch(src.get_preference_value(/datum/client_preference/language_display))
+					if(GLOB.PREF_FULL) // Full language name
+						nverb = "[verb] in [language.name]"
+					if(GLOB.PREF_SHORTHAND) //Shorthand codes
+						nverb = "[verb] ([language.shorthand])"
+					if(GLOB.PREF_OFF)//Regular output
+						nverb = verb
+				on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][language.format_message(message, nverb)]</span>")
+		else
+			on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='body'>\"[message]\"</span></span></span>")
+		if(speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
+			var/turf/source = speaker ? get_turf(speaker) : get_turf(src)
+			src.playsound_local(source, speech_sound, sound_vol, 1)
 
 /mob/proc/on_hear_say(var/message)
 	to_chat(src, message)

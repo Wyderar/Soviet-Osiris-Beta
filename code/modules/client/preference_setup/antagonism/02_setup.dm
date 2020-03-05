@@ -40,17 +40,17 @@
 			pref.uplink_sources += decls_repository.get_decl(entry)
 
 /datum/category_item/player_setup_item/antagonism/basic/content(var/mob/user)
-	. +="<b>Antag Setup:</b><br>"
-	. +="Uplink Source Priority: <a href='?src=\ref[src];add_source=1'>Add</a><br>"
+	. +="<b>Настройки антагониста:</b><br>"
+	. +="Приоритет источников Аплинка: <a href='?src=\ref[src];add_source=1'>Добавить</a><br>"
 	for(var/entry in pref.uplink_sources)
 		var/decl/uplink_source/US = entry
-		. +="[US.name] <a href='?src=\ref[src];move_source_up=\ref[US]'>Move Up</a> <a href='?src=\ref[src];move_source_down=\ref[US]'>Move Down</a> <a href='?src=\ref[src];remove_source=\ref[US]'>Remove</a><br>"
+		. +="[US.name] <a href='?src=\ref[src];move_source_up=\ref[US]'>Поднять</a> <a href='?src=\ref[src];move_source_down=\ref[US]'>Опустить</a> <a href='?src=\ref[src];remove_source=\ref[US]'>Удалить</a><br>"
 		if(US.desc)
 			. += "<font size=1>[US.desc]</font><br>"
 	if(!pref.uplink_sources.len)
-		. += "<span class='warning'>You will not receive an uplink unless you add an uplink source!</span>"
+		. += "<span class='warning'>Вы не получите Аплинк без источника!</span>"
 	. +="<br>"
-	. +="Exploitable information:<br>"
+	. +="Эксплуатируемая информация:<br>"
 	if(jobban_isbanned(user, "Records"))
 		. += "<b>You are banned from using character records.</b><br>"
 	else

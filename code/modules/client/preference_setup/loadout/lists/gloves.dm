@@ -1,7 +1,7 @@
 // Gloves
 /datum/gear/gloves/
 	slot = slot_gloves
-	sort_category = "Gloves and Handwear"
+	sort_category = "Перчатки"
 	category = /datum/gear/gloves/
 
 /datum/gear/gloves/work

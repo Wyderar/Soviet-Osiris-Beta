@@ -192,6 +192,8 @@
 	if(!tooltips)
 		tooltips = new /datum/tooltip(src)
 
+	src.fit_viewport()
+
 	//////////////
 	//DISCONNECT//
 	//////////////

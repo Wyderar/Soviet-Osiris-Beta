@@ -17,7 +17,7 @@
 	name = "Occupation"
 	sort_order = 1
 	//var/datum/browser/panel
-	var/job_desc = "Press \[?\] button near job name to show description.<br><br><br><br><br><br>"			//text containing job description
+	var/job_desc = "Нажмите на \[?\] чтобы прочитать описание должности.<br><br><br><br><br><br>"			//text containing job description
 	var/desc_set = FALSE
 	var/job_icon_dir = SOUTH
 	var/job_info_selected_rank
@@ -87,7 +87,7 @@
 	if (!desc_set)
 		create_job_description(user)
 	. += "[job_desc]"
-	. += "<b>Choose occupation chances.<br>Unavailable occupations are crossed out.</b>"
+	. += "<b>Расставляйте приоритеты на должности исходя из своих предпочтений.<br>Недоступные должности были вычеркнуты.</b>"
 	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more columns.
 	. += "<table width='100%' cellpadding='1' cellspacing='0'>"
 
@@ -124,16 +124,16 @@
 		. += "<a href='?src=\ref[src];job_info=[rank]'>\[?\]</a>"
 		var/bad_message = ""
 		if(job.total_positions == 0 && job.spawn_positions == 0)
-			bad_message = "<b> \[UNAVAILABLE]</b>"
+			bad_message = "<b> \[НЕДОСТУПНО]</b>"
 		else if(jobban_isbanned(user, rank))
-			bad_message = "<b> \[BANNED]</b>"
+			bad_message = "<b> \[БАН]</b>"
 		/*else if(!job.player_old_enough(user.client))
 			var/available_in_days = job.available_in_days(user.client)
 			bad_message = "\[IN [(available_in_days)] DAYS]"*/
 		else if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))
-			bad_message = "\[MINIMUM CHARACTER AGE: [job.minimum_character_age]]"
+			bad_message = "\[МИНИМАЛЬНЫЙ ВОЗРАСТ: [job.minimum_character_age]]"
 		else if(user.client && job.is_setup_restricted(user.client.prefs.setup_options))
-			bad_message = "\[SETUP RESTRICTED]"
+			bad_message = "\[ОГРАНИЧЕНО]"
 
 		if((ASSISTANT_TITLE in pref.job_low) && (rank != ASSISTANT_TITLE))
 			. += "<a href='?src=\ref[src];set_skills=[rank]'><font color=grey>[rank]</font></a></td><td></td></tr>"
@@ -160,10 +160,10 @@
 			. += "[!(rank in pref.job_low) ? "<font color=black>" : ""]\[No\][!(rank in pref.job_low) ? "</font>" : ""]"
 			. += "</a>"
 		else
-			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_HIGH]'>[current_level == JOB_LEVEL_HIGH ? "<font color=55cc55>" : ""]\[High][current_level == JOB_LEVEL_HIGH ? "</font>" : ""]</a>"
-			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_MEDIUM]'>[current_level == JOB_LEVEL_MEDIUM ? "<font color=eecc22>" : ""]\[Medium][current_level == JOB_LEVEL_MEDIUM ? "</font>" : ""]</a>"
-			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'>[current_level == JOB_LEVEL_LOW ? "<font color=cc5555>" : ""]\[Low][current_level == JOB_LEVEL_LOW ? "</font>" : ""]</a>"
-			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_NEVER]'>[current_level == JOB_LEVEL_NEVER ? "<font color=black>" : ""]\[NEVER][current_level == JOB_LEVEL_NEVER ? "</font>" : ""]</a>"
+			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_HIGH]'>[current_level == JOB_LEVEL_HIGH ? "<font color=55cc55>" : ""]\[Высокий][current_level == JOB_LEVEL_HIGH ? "</font>" : ""]</a>"
+			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_MEDIUM]'>[current_level == JOB_LEVEL_MEDIUM ? "<font color=eecc22>" : ""]\[Средний][current_level == JOB_LEVEL_MEDIUM ? "</font>" : ""]</a>"
+			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'>[current_level == JOB_LEVEL_LOW ? "<font color=cc5555>" : ""]\[Низкий][current_level == JOB_LEVEL_LOW ? "</font>" : ""]</a>"
+			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_NEVER]'>[current_level == JOB_LEVEL_NEVER ? "<font color=black>" : ""]\[НИКОГДА][current_level == JOB_LEVEL_NEVER ? "</font>" : ""]</a>"
 
 		if(job.alt_titles)
 			. += "</td></tr><tr bgcolor='[lastJob.selection_color]'><td width='40%' align='center'>&nbsp</td><td><a href='?src=\ref[src];select_alt_title=\ref[job]'>\[[pref.GetPlayerAltTitle(job)]\]</a></td></tr>"
@@ -173,13 +173,13 @@
 
 	switch(pref.alternate_option)
 		if(GET_RANDOM_JOB)
-			. += "<u><a href='?src=\ref[src];job_alternative=1'>Get random job if preferences unavailable</a></u>"
+			. += "<u><a href='?src=\ref[src];job_alternative=1'>Получить случайную должность если недоступно</a></u>"
 		if(BE_ASSISTANT)
-			. += "<u><a href='?src=\ref[src];job_alternative=1'>Be assistant if preference unavailable</a></u>"
+			. += "<u><a href='?src=\ref[src];job_alternative=1'>Стать ассистентом если недоступно</a></u>"
 		if(RETURN_TO_LOBBY)
-			. += "<u><a href='?src=\ref[src];job_alternative=1'>Return to lobby if preference unavailable</a></u>"
+			. += "<u><a href='?src=\ref[src];job_alternative=1'>Вернуться в лобби если недоступно</a></u>"
 
-	. += "<a href='?src=\ref[src];reset_jobs=1'>\[Reset\]</a></center>"
+	. += "<a href='?src=\ref[src];reset_jobs=1'>\[Сбросить\]</a></center>"
 	. += "</tt><br>"
 	//. += "Jobs that <span class='Points'>look like this</span> have unspent skill points remaining."
 	. = jointext(.,null)
@@ -319,7 +319,7 @@
 	job_desc += "<hr>"
 
 	//Here we have a right-floating textbox that shows user's stats
-	job_desc +="<div style='border: 1px solid grey; float: right; margin-right: 20px; padding: 8px; line-height: 120%;'> <h1 style='padding: 0px;'>Stats:</h1>"
+	job_desc +="<div style='border: 1px solid grey; float: right; margin-right: 20px; padding: 8px; line-height: 120%;'> <h1 style='padding: 0px;'>Навыки:</h1>"
 	if(job.title == ASSISTANT_TITLE)
 		job_desc += "<ul>"
 		for (var/a in ALL_STATS)
@@ -331,8 +331,8 @@
 			job_desc += "<li>[a]: [job.stat_modifiers[a]]</li>"
 		job_desc += "</ul>"
 	else
-		job_desc += "None"
-	job_desc += "<h1 style='padding: 0px;'>Perks:</h1>"
+		job_desc += "Нет"
+	job_desc += "<h1 style='padding: 0px;'>Перки:</h1>"
 	if (job.perks.len)
 		job_desc += "<ul>"
 		for (var/a in job.perks)
@@ -340,24 +340,22 @@
 			job_desc += "<li>[initial(P.name)]</li>"
 		job_desc += "</ul>"
 	else
-		job_desc += "None"
+		job_desc += "Нет"
 	job_desc +="</div>"
 
 	if(job.alt_titles)
 		job_desc += "<i><b>Alternative titles:</b> [english_list(job.alt_titles)].</i>"
 	if(job.department)
-		job_desc += "<b>Department:</b> [job.department]. <br>"
+		job_desc += "<b>Отдел:</b> [job.department]. <br>"
 		if(job.head_position)
-			job_desc += "You are in charge of this department."
+			job_desc += "Вы руководитель данного отдела."
 	job_desc += "<br>"
-	job_desc += "You answer to <b>[job.supervisors]</b> normally."
+	job_desc += "Вы отвечаете перед <b>[job.supervisors]</b>."
 
 
 
 
 
-	if(config.wikiurl)
-		job_desc += "<a href='?src=\ref[src];job_info_selected_rank_wiki=[job_info_selected_rank]'>Open wiki page in browser</a>"
 	var/description = job.get_description_blurb()
 	/*if(job.required_education)
 	description = "[description ? "[description]\n\n" : ""]"*/
