@@ -263,8 +263,8 @@ SUBSYSTEM_DEF(ticker)
 		config.ooc_allowed = 0
 		to_world("<B>OOC channel has been disabled due to round start.</B>")
 
-	if(config.sql_enabled)
-		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
+//	if(config.sql_enabled)
+//		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
 
 	return TRUE
 
