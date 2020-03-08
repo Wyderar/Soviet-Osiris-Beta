@@ -7,11 +7,11 @@
 /datum/category_item/setup_option/background/origin
 
 /datum/category_item/setup_option/background/origin/oberth
-	name = "Oberth"
-	desc = "An independent colony founded by German immigrants from old Earth and consisting of one giant hive city on a barren desert planet. \
-			It was once one of the most promising of colonies, back when the terraforming process had just begun; a group of scientists gathered together to forge a brighter future. \
-			Now, after a stalemated civil war, Oberth has degenerated into an anarcho-capitalist hell ruled by three governments, all unable to establish control over the city or stop ravaging band wars. \
-			Even Hanza and NeoTheology failed to bring order. Though still a place of infinite possibilities, most of them are illegal."
+	name = "Оберт"
+	desc = "Независимая колония, основанная немецкими иммигрантами со старой Земли и состоящая из одного гигантского улья на пустынной планете.. \
+			Когда-то, когда процесс терраформирования только начинался, это была одна из самых многообещающих колоний; тогда собралась группа ученых, чтобы вместе создать светлое будущее. \
+			Теперь же, после зашедшей в тупик гражданской войны, Оберт превратился в анархо-капиталистический ад, управляемый тремя правительствами, которые все еще не в состоянии установить контроль над городом или прекратить разрушительные войны. \
+			Даже Ханза и NeoTheology не смогли навести порядок. Хоть это все еще и является местом с бесконечными просмотрами для реализации, все же большинство из них являются незаконными."
 
 	stat_modifiers = list(
 		STAT_ROB = 6,
@@ -24,12 +24,12 @@
 
 
 /datum/category_item/setup_option/background/origin/predstraza
-	name = "Predstraza"
-	desc = "The product of a widely held idea back on Earth that if one were to bring all of the Balkan populations on one colony ship, they would be forced to put aside their differences and work together to survive. \
-			Unfortunately, that idea failed miserably and is still failing. \
-			A jungle death world, full of hostile fauna and mired in endless armed conflict. \
-			The Serbian government occupied all of Predstraza’s space ports and controls most of the civilized regions. \
-			Located far from Hanza or NT territories, it’s a place favored for business by pirates, smugglers and all manner of outlaw."
+	name = "Предстраза"
+	desc = "Результат широко распространенной на Земле идеи о том, что если бы кто-то перенес все население Балкан на один корабль-колонию, то они были бы вынуждены отложить в сторону все свои разногласия и работать вместе, чтобы выжить.. \
+			К великому сожалению, эта идея с треском провалилась. \
+			Теперь это мир, полный враждебной фауны и погрязший в бесконечных вооруженных конфликтах. \
+			Правительство Сербии оккупировало все космические порты Предстразы и контролирует большинство цивилизованных регионов. \
+			Благодаря тому, что Предстараз расположена далеко от территорий Ханзы или NanoTrasen, это место предпочитают многие пираты, контрабандисты и всевозможные преступники."
 
 	stat_modifiers = list(
 		STAT_ROB = 10,
@@ -42,10 +42,10 @@
 
 
 /datum/category_item/setup_option/background/origin/sich_prime
-	name = "Sich Prime"
-	desc = "A Ukrainian colony that was a major industrial center during the Corporation Wars, during which they made the fatal mistake of siding with Nanotrasen. \
-			Bombed and poisoned, this planet suffered the harshest toll of the war, both from population loss and ecological devastation. \
-			While ostensibly under the direct control of Hanza, its local military is extremely disloyal and known to support the Founders - a revanchist international group that seeks the return of planetary government's national control over space."
+	name = "Сич Прайм"
+	desc = "Украинская колония, что являлась весьма крупным промышленным центром во время Корпорационной войны, во время которой они совершили самую роковую ошибку, перейдя на сторону NanoTrasen. \
+			Планета, подвергшаяся бомбардировке, понесла самые тяжелые потери на войне. Погибло огромное количество людей, а окружающая среда была серьезно разрушена. \
+			Несмотря на то, что находится под прямым контролем Ханзы, ее местные военные крайне нелояльны и, как известно, поддерживают Основателей - реваншистскую международную группу, что стремится вернуть национальный контроль планетарного правительства над космосом."
 
 	stat_modifiers = list(
 		STAT_ROB = 5,
@@ -58,11 +58,11 @@
 
 
 /datum/category_item/setup_option/background/origin/new_rome
-	name = "New Rome"
-	desc = "One of the first colonies founded by American settlers, New Rome was rich with biosphere and natural resources and served as Nanotrasen’s headquarters when it was still an emerging power. As such, it holds the highest human population of any planet in the galaxy. \
-			Although the War ended before it was sieged, New Rome suffered an economic crisis following the fall of Nanotrasen and never recovered. \
-			Formerly a garden world, it is now dotted with hive cities, decaying ecologies, widespread poverty, and NeoTheology desperately trying to revive the ecosphere artificially with biomatter technology. \
-			On New Rome, one must make the choice: to remain free and die impoverished and starving, or join the cult of NeoTheology to survive with a stable job and a place to live."
+	name = "Новый Рим"
+	desc = "Это одна из первых колоний, основанная американскими поселенцами. Новый Рим был богат биосферой и природными ресурсами, поэтому служила штаб-квартирой NanoTrasen, когда она еще развивалась. Содержит самую высокую человеческую популяцию среди планет в галактике.. \
+			Хоть война закончилась еще до осады, Новый Рим пережил серьезный экономический кризис после падения Nanotrasen. Настолько серьезный, что не может оправиться до сих пор.\
+			Ныне колония усеяна городами-ульями, имеет проблемы огромной бедностью населения и экологией. NeoTheology отчаянно пытается искусственно возродить экологию с помощью технологии биоматерии. \
+			Чтобы жить в Новом Риме необходимо сделать выбор - остаться свободным, но умереть нищим, или же присоединиться к культу неотеологии, чтобы выжить и иметь стабильную работу и место для жизни."
 
 	stat_modifiers = list(
 		STAT_ROB = 5,
@@ -75,11 +75,11 @@
 
 
 /datum/category_item/setup_option/background/origin/shimatengoku
-	name = "Shimatengoku"
-	desc = "Founded by a Japanese megacorporation, Shimatengoku was - and still is - a high tech paradise. With 95% of its surface covered in seawater, its residents mostly live on islands, or drift along on gigantic oceanborne colonies. \
-			When the time of the Corporation War came, Shimatengoku made the wise decision to side with the Syndicate, and prospered immensely as a result. \
-			While there is a local government administration, the planet is mostly controlled by Frozen Star, an enormous company that is responsible for producing most of the military products found in Hanza. \
-			Frozen Star itself is owned by a family with ties to the Yakuza, organized crime syndicates originating from old Earth’s Japan. Fittingly, is a cruelly efficient place."
+	name = "Симатенгоку"
+	desc = "Основанная японской мегакорпорацией, Симатенгоку была и остается раем высоких технологий. Поверхность планеты на 95% покрыта морской водой, так что ее жители в основном живут на островах. \
+			Когда пришло время Корпорационной войны, Симатенгоку принял мудрое решение встать на сторону Синдиката и в результате добился огромного процветания. \
+			Несмотря на то, что существует местная государственная администрация, планета в основном контролируется Frozen Star - огромной компанией, что производстит большую часть военной продукции в Ханзе. \
+			Сама Frozen Star принадлежит семье, связанной с Якудза - организованными преступными синдикатами, происходящими из старой Земли в Японии."
 
 	stat_modifiers = list(
 		STAT_ROB = -6,
@@ -92,12 +92,12 @@
 
 
 /datum/category_item/setup_option/background/origin/hmss_destined
-	name = "HMSS \"Destined\""
-	desc = "A British colony ship that was one of those who failed to locate a habitable world before exhausting its fuel supply; however, unlike the others, the crew managed to survive by turning their ship into the largest station in Hanza controlled space. \
-			Plated in rusty metal, with high costs of living, a permanent space roach infestation and no natural ecology to speak of, the \"Destined\" can be aptly described as an industrial hell. \
-			While The Corporation War was rather merciful to it, and the station remained neutral throughout most of the conflict, in the end, it succumbed to Syndicate occupation. \
-			The \"Destined\" is widely known for its anachronistic Monarchical government and system of noble peerage, with most successful nobles controlling smaller stations near it and others bent on quelling the chaos within the Colony proper. \
-			They are also members of Asters Guild, and this whole station is considered major Guild territory."
+	name = "HMSS \"Предназначение\""
+	desc = "Бывший Британский колониальный корабль, что не смог найти пригодную планету до того, как исчерпал запас топлива; однако, в отличие от других, экипажу удалось выжить и превратить свой корабль в крупнейшую станцию в контролируемом Ханзой пространстве. \
+			\"Предназначение\" можно спокойно назвать индустриальным адом - станция вся покрыта ржавым металлом, естесственная экология отсутствует, а жить здесь невероятно дорого. \
+			Во время Корпорационной войны станция оставалась нейтральной в течение большей части конфликта, но под конец она была оккупирована Синдикатом. \
+			\"Предназначение\" широко известно своим анахроничным монархическим правительством и системой пэрства. Большинство успешных дворян контролируют небольшие станции рядом с ней, а другие стремятся подавить хаос внутри самой колонии. \
+			Также они являются членами Гильдии Астерс, а станция считается главной территорией Гильдии."
 
 	stat_modifiers = list(
 		STAT_ROB = 5,
@@ -110,12 +110,12 @@
 
 
 /datum/category_item/setup_option/background/origin/crozet
-	name = "Crozet"
-	desc = "A lifeless, unforgiving ice world, rich with rare minerals, life on Crozet is only possible underground. \
-			Originally founded by a French mining company, it was occupied later by exiled nobility from the HMSS \"Destined\". \
-			The exiles founded the Four Great Houses to defend the colony’s sovereignty, as well as their right to work the local population to death in the mines. \
-			This lasted until Nanotrasen invaded with the help of one of the Houses, and later, Crozet was left under NeoTheology control under the terms of a peace treaty. \
-			The local population are prone to revolt after decades of mistreatment and generally want to be left alone, making them ripe for recruitment by the Founders."
+	name = "Кроз"
+	desc = "Безжизненный ледяной мир, богатый редкими минералами. Жизнь на Крозе возможна только под землей. \
+			Первая колония основана французской горнодобывающей компанией, позднее она была под контролем изгнанной знати из HMSS \"Предназначение\". \
+			Изгнанники основали Четыре Великих Дома, чтобы защитить суверенитет колонии. \
+			Это продолжалось ровно до тех пор, пока NanoTrasen не вторглась при поддержке одного из Домов. Позже Кроз был передан под контроль NeoTheology в соответствии с условиями мирного договора. \
+			Местное население склонно к восстанию после десятилетий жестокого обращения и хочет, чтобы его оставили в покое."
 
 	stat_modifiers = list(
 		STAT_ROB = 5,
@@ -128,13 +128,13 @@
 
 
 /datum/category_item/setup_option/background/origin/first_expeditionary_fleet
-	name = "First Expeditionary Fleet"
-	desc = "A collection of old and modified colony ships, FTL capable shipyards, mobile hydroponics, and an armada of military ships. \
-			The de facto Headquarters of the Ironhammer PMC, the armada can be deployed whenever or wherever is needed for a contract, or even evacuate to deep space if necessary. \
-			It moves from planet to planet in Hanza space, and is often used by larger, being used as a giant power projector over planetary governments. \
-			For the fleet to function, a gigantic amount of manpower is required, and the armada’s ships tend to be as populous as small cities, with both civilians and military personnel. \
-			Life in the Fleet is rather dull and spartan most of the time, with deep traditions of asceticism rooted in the crew of every ship. \
-			Needless to say, every planet it visits experiences a large tourism boom, growth in consumerism, and every bar and whorehouse running out of vacancy in under a day."
+	name = "Первый Экспедиционный Флот"
+	desc = "Коллекция старых модифицированных колониальных кораблей, верфей, мобильных гидропоник и, помимо всего прочего, еще и армада военных кораблей. \
+			Де-факто является штаб-квартирой ЧВК Ironhammer. Армада может быть развернута всякий раз, когда это нужно для выполнения контракта, или даже эвакуироваться в дальний космос, если это необходимо. \
+			Перемещается с планеты на планету по территории Ханзы и используется для устрашения планетарных правительств. \
+			Для функционирования флота требуется гигантское количество рабочей силы, а корабли армады, как правило, столь же многолюдны, как небольшие города, в которых есть как гражданское население, так и военный персонал. \
+			Жизнь во флоте в большинстве случаев довольно скучная, с глубокими традициями аскетизма, коренящимися в экипаже каждого корабля. \
+			Само собой разумеется, что каждая планета, которую она посещает, испытывает огромный туристический бум, рост потребления, и у каждого бара или склада заканчиваются вакансии менее чем за день."
 
 	stat_modifiers = list(
 		STAT_ROB = 5,
@@ -147,7 +147,7 @@
 
 
 /datum/category_item/setup_option/background/origin/end_point
-	name = "End Point"
+	name = "Точка невозврата"
 	desc = "A trinary system with complicated orbits and black hole located in a safe distance from all of the habitable planets in the system. \
 			One of the first colonies, because of how rich the planets are in resources, and their abundance - the system being composed of more than a hundred of large celestial bodies. \
 			It’s also an extremely valuable place for scientists, due to its habitable planets, the black hole and rare materials. \
