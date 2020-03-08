@@ -106,7 +106,7 @@
 	if(H.mind.prefs.bank_balance > 0)
 		M.money = H.mind.prefs.bank_balance
 	else
-		M.money = 6666 // JUST WORK NUMBERS
+		M.money = 0
 
 	if(H.mind)
 		var/remembered_info = ""

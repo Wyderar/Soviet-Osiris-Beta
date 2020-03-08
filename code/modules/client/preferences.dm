@@ -136,6 +136,10 @@
 		return 1
 
 	if(href_list["save"])
+		if(!char_exists)
+			var/response = alert("В случае, если вы сохраните его, у вас больше не будет возможности менять его имя и внешность!","Вы уверены, что хотите сохранить персонажа?","Нет","Да")
+			if(response == "Нет")
+				return
 		save_preferences()
 		save_character()
 		char_exists = 1

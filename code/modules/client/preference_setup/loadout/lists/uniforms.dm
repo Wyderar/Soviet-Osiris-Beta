@@ -4,22 +4,19 @@
 	path = /obj/item/clothing/under/blazer
 	slot = slot_w_uniform
 	sort_category = "Униформа"
-	cost = 29
 
 /datum/gear/uniform/kilt
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
-	cost = 49
 
 /datum/gear/uniform/jumpsuit/rainbow
 	display_name = "jumpsuit, rainbow"
 	path = /obj/item/clothing/under/rainbow
-	cost = 39
 
 /datum/gear/uniform/jumpsuit/color_presets
 	display_name = "jumpsuit, color presets"
 	path = /obj/item/clothing/under/aqua
-	cost = 29
+	cost = 2
 
 /datum/gear/uniform/jumpsuit/color_presets/New()
 	..()
@@ -50,31 +47,26 @@
 	display_name = "jumpsuit, colorable"
 	flags = GEAR_HAS_COLOR_SELECTION
 	path = /obj/item/clothing/under/color/white
-	cost = 29
 
 /datum/gear/uniform/security_skirt
 	display_name = "jumpskirt, operative"
 	path = /obj/item/clothing/under/rank/security/skirt
 	allowed_roles = list("Ironhammer Operative")
-	cost = 49
 
 /datum/gear/uniform/medspec_skirt
 	display_name = "jumpskirt, medical specialist"
 	path = /obj/item/clothing/under/rank/medspec/skirt
 	allowed_roles = list("Ironhammer Medical Specialist")
-	cost = 49
 
 /datum/gear/uniform/warden_skirt
 	display_name = "jumpskirt, warden"
 	path = /obj/item/clothing/under/rank/warden/skirt
 	allowed_roles = list("Ironhammer Gunnery Sergeant")
-	cost = 49
 
 /datum/gear/uniform/hos_skirt
 	display_name = "jumpskirt, commander"
 	path = /obj/item/clothing/under/rank/ih_commander/skirt
 	allowed_roles = list("Ironhammer Commander")
-	cost = 49
 
 /*/datum/gear/uniform/skirt
 	display_name = "plaid skirt, blue"
@@ -97,7 +89,6 @@
 /datum/gear/uniform/scrubs/color_presets
 	display_name = "scrubs, color presets"
 	path = /obj/item/clothing/under/rank/medical/blue
-	cost = 49
 
 /datum/gear/uniform/scrubs/color_presets/New()
 	..()

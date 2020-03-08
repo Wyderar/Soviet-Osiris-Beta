@@ -6,7 +6,6 @@
 /datum/gear/accessory/tie
 	display_name = "tie selection"
 	path = /obj/item/clothing/accessory
-	cost = 9
 
 /datum/gear/accessory/tie/New()
 	..()
@@ -26,7 +25,6 @@
 	display_name = "colored tie"
 	path = /obj/item/clothing/accessory
 	flags = GEAR_HAS_COLOR_SELECTION
-	cost = 9
 
 /datum/gear/accessory/tie_color/New()
 	..()
@@ -40,48 +38,40 @@
 	path = /obj/item/clothing/accessory/armband
 	slot = slot_accessory_buffer
 	sort_category = "Аксессуары"
-	cost = 9
 
 /datum/gear/accessory/cargo
 	display_name = "armband, cargo"
 	path = /obj/item/clothing/accessory/armband/cargo
 	allowed_roles = list(JOBS_CARGO)
-	cost = 9
 
 /datum/gear/accessory/emt
 	display_name = "armband, EMT"
 	path = /obj/item/clothing/accessory/armband/medgreen
 	allowed_roles = list(JOBS_MEDICAL)
-	cost = 9
 
 /datum/gear/accessory/engineering
 	display_name = "armband, engineering"
 	path = /obj/item/clothing/accessory/armband/engine
 	allowed_roles = list(JOBS_ENGINEERING)
-	cost = 9
 
 /datum/gear/accessory/hydroponics
 	display_name = "armband, hydroponics"
 	path = /obj/item/clothing/accessory/armband/hydro
-	cost = 9
 
 /datum/gear/accessory/medical
 	display_name = "armband, medical"
 	path = /obj/item/clothing/accessory/armband/med
 	allowed_roles = list(JOBS_MEDICAL)
-	cost = 9
 
 /datum/gear/accessory/science
 	display_name = "armband, science"
 	path = /obj/item/clothing/accessory/armband/science
 	allowed_roles = list(JOBS_SCIENCE)
-	cost = 9
 
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
 	allowed_roles = list("Captain", "First Officer", JOBS_SECURITY)
-	cost = 19
 
 /datum/gear/accessory/holster/New()
 	..()
@@ -95,34 +85,28 @@
 /datum/gear/accessory/tie/blue
 	display_name = "tie, blue"
 	path = /obj/item/clothing/accessory/blue
-	cost = 9
 
 /datum/gear/accessory/tie/red
 	display_name = "tie, red"
 	path = /obj/item/clothing/accessory/red
-	cost = 9
 
 /datum/gear/accessory/tie/horrible
 	display_name = "tie, socially disgraceful"
 	path = /obj/item/clothing/accessory/horrible
-	cost = 9
 
 /datum/gear/accessory/wallet
 	display_name = "wallet, colour select"
 	path = /obj/item/weapon/storage/wallet
 	flags = GEAR_HAS_COLOR_SELECTION
-	cost = 9
 
 /datum/gear/accessory/scarf
 	display_name = "scarf selection"
 	path = /obj/item/clothing/mask/scarf
 	slot = slot_wear_mask
 	flags = GEAR_HAS_TYPE_SELECTION
-	cost = 19
 
 /datum/gear/accessory/bandana
 	display_name = "bandana selection"
 	path = /obj/item/clothing/mask/bandana
 	slot = slot_wear_mask
 	flags = GEAR_HAS_TYPE_SELECTION
-	cost = 9
