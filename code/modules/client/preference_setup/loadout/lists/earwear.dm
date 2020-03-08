@@ -9,9 +9,10 @@
 	display_name = "headphones"
 	path = /obj/item/clothing/ears/headphones
 	sort_category = "Наушники"
+	cost = 99
 
 /datum/gear/ears/space_pods
 	display_name = "space pods"
 	path = /obj/item/clothing/ears/headphones/space_pods
 	sort_category = "Наушники"
-	cost = 2
+	cost = 499

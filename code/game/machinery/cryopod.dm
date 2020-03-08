@@ -164,7 +164,7 @@
 	var/disallow_occupant_types = list()
 
 	var/mob/occupant = null       // Person waiting to be despawned.
-	var/time_till_despawn = 6000  // 10 minutes-ish safe period before being despawned.
+	var/time_till_despawn = 600   // 1 minute safe period before being despawned.
 	var/time_entered = 0          // Used to keep track of the safe period.
 	var/obj/item/device/radio/intercom/announce //
 
@@ -429,6 +429,10 @@
 			return
 
 		set_occupant(affecting)
+
+		if(ishuman(affecting))
+			var/mob/living/carbon/human/H = affecting
+			(H.save_to_prefs())
 
 		// Book keeping!
 		var/turf/location = get_turf(src)

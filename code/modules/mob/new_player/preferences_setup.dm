@@ -33,14 +33,14 @@
 						//ASSIGN_LIST_TO_COLORS(current_species.get_random_facial_hair_color(), r_facial, g_facial, b_facial)
 						ASSIGN_LIST_TO_COLORS(ReadRGB("#000000"), r_facial, g_facial, b_facial)
 				*/
-		if(current_species.appearance_flags & HAS_UNDERWEAR)
-			all_underwear.Cut()
-			for(var/datum/category_group/underwear/WRC in GLOB.underwear.categories)
-				var/datum/category_item/underwear/WRI = pick(WRC.items)
-				all_underwear[WRC.name] = WRI.name
+//		if(current_species.appearance_flags & HAS_UNDERWEAR)
+//			all_underwear.Cut()
+//			for(var/datum/category_group/underwear/WRC in GLOB.underwear.categories)
+//				var/datum/category_item/underwear/WRI = pick(WRC.items)
+//				all_underwear[WRC.name] = WRI.name
 
 		backpack = decls_repository.get_decl(pick(subtypesof(/decl/backpack_outfit)))
-		age = rand(current_species.min_age, current_species.max_age)
+		age = rand(20, 50)
 		b_type = RANDOM_BLOOD_TYPE
 		if(H)
 			copy_to(H)

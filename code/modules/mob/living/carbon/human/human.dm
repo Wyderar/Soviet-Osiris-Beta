@@ -1550,3 +1550,38 @@ var/list/rank_prefix = list(\
 	. = ..()
 	for(var/obj/item/clothing/ears/C in list(l_ear, r_ear))
 		. = min(., C.volume_multiplier)
+
+/mob/living/carbon/human/proc/save_to_prefs()
+	if(!mind)
+		return 0
+
+	if(stat == DEAD)
+		mind.prefs.bank_balance = 0
+
+	if(stat == 0)
+		save_bank_balance()
+		mind.prefs.nutrition = nutrition
+		mind.prefs.sanity_level = sanity.level
+		mind.prefs.char_exists = 1
+
+	mind.prefs.s_tone = s_tone
+	mind.prefs.h_style = h_style
+	mind.prefs.f_style = f_style
+	mind.prefs.b_type = b_type
+	mind.prefs.disabilities = disabilities
+	mind.prefs.eyes_color = eyes_color
+	mind.prefs.skin_color = skin_color
+	mind.prefs.hair_color = hair_color
+	mind.prefs.facial_color = facial_color
+
+	mind.prefs.save_preferences()
+	mind.prefs.save_character()
+
+	return 1
+
+/mob/living/carbon/human/proc/save_bank_balance()
+	mind.initial_account.money = CLAMP(mind.initial_account.money, -999999, 999999)
+	mind.prefs.bank_balance = mind.initial_account.money
+	mind.prefs.bank_pin = mind.initial_account.remote_access_pin
+
+	return 1

@@ -23,6 +23,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/icon/bgstate = "black"
 	var/list/bgstate_options = list("steel", "dark_steel", "white_tiles", "black_tiles", "wood", "carpet", "white", "black")
 
+	var/nutrition = 400
+	var/sanity_level = 100
+
 /datum/category_item/player_setup_item/physical/body
 	name = "Body"
 	sort_order = 2
@@ -42,6 +45,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	from_file(S["skin_color"], pref.skin_color)
 	from_file(S["hair_color"], pref.hair_color)
 	from_file(S["facial_color"], pref.facial_color)
+	from_file(S["nutrition"], pref.nutrition)
+	from_file(S["sanity_level"], pref.sanity_level)
 
 
 /datum/category_item/player_setup_item/physical/body/save_character(var/savefile/S)
@@ -57,6 +62,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	to_file(S["skin_color"], pref.skin_color)
 	to_file(S["hair_color"], pref.hair_color)
 	to_file(S["facial_color"], pref.facial_color)
+	to_file(S["nutrition"], pref.nutrition)
+	to_file(S["sanity_level"], pref.sanity_level)
+
+/datum/category_item/player_setup_item/physical/body/reset_character(var/savefile/S)
+	pref.nutrition = null
+	pref.sanity_level = null
 
 /datum/category_item/player_setup_item/physical/body/sanitize_character(var/savefile/S)
 	pref.h_style		= sanitize_inlist(pref.h_style, GLOB.hair_styles_list, initial(pref.h_style))
@@ -87,17 +98,20 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/datum/species/mob_species = all_species[pref.species]
 	. += "<style>span.color_holder_box{display: inline-block; width: 20px; height: 8px; border:1px solid #000; padding: 0px;}</style>"
 	. += "<hr>"
-	. += "<table><tr style='vertical-align:top; width: 100%'><td width=65%><b>Body</b> "
-	. += "(<a href='?src=\ref[src];random=1'>&reg;</A>)"
+	. += "<table><tr style='vertical-align:top; width: 100%'><td width=65%><b>Тело</b> "
+	if(!pref.char_exists)
+		. += "(<a href='?src=\ref[src];random=1'>&reg;</A>)"
 	. += "<br>"
+	if(!pref.char_exists)
+		. += "<b>Группа крови:</b> <a href='?src=\ref[src];blood_type=1'>[pref.b_type]</a><br>"
+		. += "<b>Тон кожи:/<b> <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
+		. += "<b>Нужны ли очки:</b> <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'>[pref.disabilities & NEARSIGHTED ? "Да" : "Нет"]</a><br><br>"
+	else
+		. += "<b>Группа крови:</b> [pref.b_type]<br>"
+		. += "<b>Тон кожи:</b> [-pref.s_tone + 35]/220<br>"
+		. += "<b>Нужны ли очки:</b> [pref.disabilities & NEARSIGHTED ? "Да" : "Нет"]<br><br>"
 
-	. += "Группа крови: <a href='?src=\ref[src];blood_type=1'>[pref.b_type]</a><br>"
-
-	. += "Цвет: <a href='?src=\ref[src];base_skin=1'>[pref.s_base]</a><br>"
-
-	. += "Тон кожи: <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
-
-	. += "Нужны ли очки: <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'><b>[pref.disabilities & NEARSIGHTED ? "Да" : "Нет"]</b></a><br><br>"
+//	. += "Цвет: <a href='?src=\ref[src];base_skin=1'>[pref.s_base]</a><br>"
 
 	. += "<b>Волосы:</b><br>"
 	. += " Стиль: <a href='?src=\ref[src];cycle_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a>"
@@ -109,9 +123,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
 		. += "<a href='?src=\ref[src];facial_color=1'><span class='color_holder_box' style='background-color:[pref.facial_color]'></span></a><br>"
 
-	if(has_flag(mob_species, HAS_EYE_COLOR))
-		. += "<br><b>Глаза: </b>"
-		. += "<a href='?src=\ref[src];eye_color=1'><span class='color_holder_box' style='background-color:[pref.eyes_color]'></span></a><br>"
+	if(!pref.char_exists)
+		if(has_flag(mob_species, HAS_EYE_COLOR))
+			. += "<br><b>Глаза: </b>"
+			. += "<a href='?src=\ref[src];eye_color=1'><span class='color_holder_box' style='background-color:[pref.eyes_color]'></span></a><br>"
 
 	if(has_flag(mob_species, HAS_SKIN_COLOR))
 		. += "<br><b>Body Color: </b>"

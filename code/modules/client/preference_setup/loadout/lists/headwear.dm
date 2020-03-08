@@ -3,69 +3,84 @@
 	path = /obj/item/clothing/head/bandana
 	slot = slot_head
 	sort_category = "Головные уборы"
+	cost = 9
 
 /datum/gear/head/bandana_green
 	display_name = "bandana, green"
 	path = /obj/item/clothing/head/greenbandana
+	cost = 9
 
 /datum/gear/head/bandana_orange
 	display_name = "bandana, orange"
 	path = /obj/item/clothing/head/orangebandana
+	cost = 9
 
 /datum/gear/head/beret
 	display_name = "beret, red"
 	path = /obj/item/clothing/head/beret
+	cost = 29
 
 /datum/gear/head/beret/purp
 	display_name = "beret, purple"
 	path = /obj/item/clothing/head/beret/purple
+	cost = 29
 
 /datum/gear/head/beret/bsec
 	display_name = "beret, navy (officer)"
 	path = /obj/item/clothing/head/beret/sec/navy/officer
 	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
+	cost = 29
 
 /datum/gear/head/beret/bsec_warden
 	display_name = "beret, navy (warden)"
 	path = /obj/item/clothing/head/beret/sec/navy/warden
 	allowed_roles = list("Ironhammer Commander","Gunnery Sergeant")
+	cost = 29
 
 /datum/gear/head/beret/bsec_hos
 	display_name = "beret, navy (hos)"
 	path = /obj/item/clothing/head/beret/sec/navy/hos
 	allowed_roles = list("Ironhammer Commander")
+	cost = 29
 
 /datum/gear/head/beret/eng
 	display_name = "beret, engie-orange"
 	path = /obj/item/clothing/head/beret/engineering
 	allowed_roles = list(JOBS_ENGINEERING)
+	cost = 29
 
 /datum/gear/head/beret/sec
 	display_name = "beret, red (security)"
 	path = /obj/item/clothing/head/beret/sec
 	allowed_roles = list(JOBS_SECURITY)
+	cost = 29
 
 /datum/gear/head/cap/flat
 	display_name = "cap, brown-flat"
 	path = /obj/item/clothing/head/flatcap
+	cost = 19
 
 /datum/gear/head/cap/corp
 	display_name = "cap, corporate (Security)"
 	path = /obj/item/clothing/head/soft/sec/corp
 	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant", "Inspector")
+	cost = 19
 
 /datum/gear/head/cap/rainbow
 	display_name = "cap, rainbow"
 	path = /obj/item/clothing/head/soft/rainbow
+	cost = 19
 
 /datum/gear/head/cap/sec
 	display_name = "cap, security (Security)"
 	path = /obj/item/clothing/head/soft/sec
 	allowed_roles = list(JOBS_SECURITY)
+	cost = 19
 
 /datum/gear/head/cap/color_presets
 	display_name = "cap, color presets"
 	path = /obj/item/clothing/head/soft/blue
+	cost = 19
 
 /datum/gear/head/cap/color_presets/New()
 	..()
@@ -86,11 +101,12 @@
 /datum/gear/head/hairflower
 	display_name = "hair flower pin, red"
 	path = /obj/item/clothing/head/hairflower
+	cost = 19
 
 /datum/gear/head/hardhat/color_presets
 	display_name = "hardhat, color presets"
 	path = /obj/item/clothing/head/hardhat/dblue
-	cost = 2
+	cost = 29
 
 /datum/gear/head/hardhat/color_presets/New()
 	..()
@@ -105,38 +121,46 @@
 /datum/gear/head/boater
 	display_name = "hat, boatsman"
 	path = /obj/item/clothing/head/boaterhat
+	cost = 19
 
 /datum/gear/head/bowler
 	display_name = "hat, bowler"
 	path = /obj/item/clothing/head/bowler
+	cost = 19
 
 /datum/gear/head/fez
 	display_name = "hat, fez"
 	path = /obj/item/clothing/head/fez
+	cost = 19
 
 /datum/gear/head/tophat
 	display_name = "hat, tophat"
 	path = /obj/item/clothing/head/that
+	cost = 19
 
 /datum/gear/head/philosopher_wig
 	display_name = "natural philosopher's wig"
 	path = /obj/item/clothing/head/philosopher_wig
+	cost = 19
 
 /datum/gear/head/ushanka
 	display_name = "ushanka"
 	path = /obj/item/clothing/head/ushanka
+	cost = 19
 
 /datum/gear/head/cap/secfield
 	display_name = "cap, IH field"
 	path = /obj/item/clothing/head/soft/sec2soft
 	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Ironhammer Gunnery Sergeant", "Inspector")
+	cost = 19
 
 /datum/gear/head/cap/sarge
 	display_name = "cap, IH sergeant"
 	path = /obj/item/clothing/head/soft/sarge2soft
 	allowed_roles = list("Ironhammer Commander","Ironhammer Gunnery Sergeant")
+	cost = 19
 
 /datum/gear/head/cyberpunkgoggle
 	display_name = "Type-34C Semi-Enclosed Headwear"
 	path = /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
-	cost = 2
+	cost = 49

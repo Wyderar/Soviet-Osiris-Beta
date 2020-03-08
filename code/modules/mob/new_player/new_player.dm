@@ -93,7 +93,7 @@
 		return 0
 
 	if(href_list["show_preferences"])
-		client.prefs.ShowChoices(src)
+		client.prefs.open_load_dialog(src)
 		return 1
 
 	if(href_list["ready"])
@@ -129,8 +129,8 @@
 			observer.icon = client.prefs.update_preview_icon()
 			observer.alpha = 127
 
-			if(client.prefs.be_random_name)
-				client.prefs.real_name = random_name(client.prefs.gender)
+//			if(client.prefs.be_random_name)
+//				client.prefs.real_name = random_name(client.prefs.gender)
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
 			if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
@@ -235,6 +235,10 @@
 	if(!IsJobAvailable(rank))
 		src << alert("[rank] is not available. Please try another.")
 		return 0
+	for(var/mob/living/carbon/human/R in SSmobs.mob_list)
+		if(client.prefs.character_id == R.character_id)
+			to_chat(usr, "This character is already in-game!")
+			return 0
 
 	spawning = 1
 	close_spawn_windows()
@@ -273,7 +277,6 @@
 			data_core.manifest_inject(character)
 			matchmaker.do_matchmaking()
 			SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
-
 			//Grab some data from the character prefs for use in random news procs.
 
 	AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
@@ -283,7 +286,7 @@
 	qdel(src)
 
 /mob/new_player/proc/LateChoices()
-	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
+//	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
 
 	var/dat = "<html><body><center>"
 	dat += "<b>Добро пожаловать, [name].<br></b>"
@@ -370,6 +373,7 @@
 	new_character.dna.ready_dna(new_character)
 	new_character.dna.b_type = client.prefs.b_type
 	new_character.sync_organ_dna()
+	new_character.character_id = client.prefs.character_id
 	if(client.prefs.disabilities)
 		// Set defer to 1 if you add more crap here so it only recalculates struc_enzymes once. - N3X
 		new_character.dna.SetSEState(GLASSESBLOCK,1,0)

@@ -4,12 +4,12 @@
 	path = /obj/item/clothing/suit/apron
 	slot = slot_wear_suit
 	sort_category = "Верхняя одежда"
-	cost = 1
+	cost = 39
 
 /datum/gear/suit/jacket
 	display_name = "jacket"
 	path = /obj/item/clothing/suit/storage/toggle/bomber
-	cost = 2 //higher price because it has some armor value
+	cost = 129 //higher price because it has some armor value
 
 /datum/gear/suit/jacket/New()
 	..()
@@ -22,10 +22,12 @@
 /datum/gear/suit/hazard_vest
 	display_name = "hazard vest"
 	path = /obj/item/clothing/suit/storage/hazardvest
+	cost = 49
 
 /datum/gear/suit/hoodie
 	display_name = "hoodie"
 	path = /obj/item/clothing/suit/storage/toggle/hoodie/black
+	cost = 89
 
 /datum/gear/suit/hoodie/New()
 	..()
@@ -38,13 +40,14 @@
 /datum/gear/suit/labcoat
 	display_name = "labcoat"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat
+	cost = 59
 
 /datum/gear/suit/poncho
 	display_name = "poncho, tan"
 	path = /obj/item/clothing/suit/poncho
-	cost = 1
+	cost = 79
 
 /datum/gear/suit/cyberpunksleek
 	display_name = "sleek modern overcoat"
 	path = /obj/item/clothing/suit/storage/cyberpunksleek
-	cost = 2
+	cost = 149

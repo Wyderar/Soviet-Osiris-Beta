@@ -103,6 +103,11 @@
 	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
 	if(H.mind.prefs.bank_pin)
 		M.remote_access_pin = H.mind.prefs.bank_pin
+	if(H.mind.prefs.bank_balance > 0)
+		M.money = H.mind.prefs.bank_balance
+	else
+		M.money = 6666 // JUST WORK NUMBERS
+
 	if(H.mind)
 		var/remembered_info = ""
 		remembered_info += "<b>Your account number is:</b> #[M.account_number]<br>"

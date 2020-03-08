@@ -8,24 +8,28 @@
 	display_name = "gloves, work"
 	path = /obj/item/clothing/gloves/thick
 	cost = 3
+	cost = 29
 
 /datum/gear/gloves/latex
 	display_name = "gloves, latex"
 	path = /obj/item/clothing/gloves/latex
+	cost = 49
 
 /datum/gear/gloves/rainbow
 	display_name = "gloves, rainbow"
 	path = /obj/item/clothing/gloves/color/rainbow
-	cost = 2
+	cost = 19
 
 /datum/gear/gloves/colored
 	display_name = "gloves, colored"
 	flags = GEAR_HAS_COLOR_SELECTION
 	path = /obj/item/clothing/gloves/color
+	cost = 9
 
 /datum/gear/gloves/color_presets
 	display_name = "gloves, color presets"
 	path = /obj/item/clothing/gloves/color/blue
+	cost = 9
 
 /datum/gear/gloves/color_presets/New()
 	..()
