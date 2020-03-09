@@ -34,6 +34,15 @@
 	l_ear = /obj/item/device/radio/headset/heads/hop
 	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/thick
-	id_type = /obj/item/weapon/card/id/hop
+	id_type = /obj/item/weapon/card/id/black
 	pda_type = /obj/item/modular_computer/pda/heads/hop
 	backpack_contents = list(/obj/item/weapon/storage/box/ids = 1)
+
+/decl/hierarchy/outfit/job/commissar
+	name = OUTFIT_JOB_NAME("Commissar")
+	uniform = /obj/item/clothing/under/suit_jacket
+	l_ear = /obj/item/device/radio/headset/heads/commissar
+	shoes = /obj/item/clothing/shoes/reinforced
+	id_type = /obj/item/weapon/card/id/black
+	pda_type = /obj/item/modular_computer/pda/heads/commissar
+	backpack_contents = list(/obj/item/weapon/storage/secure/briefcase = 1)

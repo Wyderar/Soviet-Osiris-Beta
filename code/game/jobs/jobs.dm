@@ -43,6 +43,7 @@ var/const/GUILDTECH			=(1<<4)
 var/const/MINER				=(1<<5)
 var/const/ACTOR				=(1<<6)
 var/const/ASSISTANT			=(1<<7)
+var/const/COMMISSAR 		=(1<<8)
 
 
 var/const/CHAPLAIN			=(1<<0)
@@ -82,4 +83,4 @@ var/list/nonhuman_positions = list(JOBS_NONHUMAN)
 
 
 /proc/guest_jobbans(var/job)
-	return ((job in command_positions) || (job in nonhuman_positions) || (job in security_positions))
+	return ((job in command_positions) || (job in nonhuman_positions))

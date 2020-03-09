@@ -129,3 +129,65 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 	name = "First Officer"
 	icon_state = "player-gold"
 	join_tag = /datum/job/hop
+
+/datum/job/commissar
+	title = "Commissar"
+	flag = COMMISSAR
+	department = DEPARTMENT_COMMAND
+	head_position = 1
+	department_flag = COMMAND
+	faction = "CEV Eris"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the captain"
+	selection_color = "#ddddff"
+	req_admin_notify = 1
+	wage = WAGE_COMMAND
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 20)
+	ideal_character_age = 50
+
+	description = "You are the captain's right hand. His second in command. Where he goes, you follow. Where he leads, you drag everyone else along. You make sure his will is done, his orders obeyed, and his laws enforced.<br>\
+If he makes mistakes, discreetly inform him. Help to cover up his indiscretions and smooth relations with the crew, especially other command staff. Keep the captain safe, by endangering yourself in his stead if necessary.<br>\
+<br>\
+Do not embarass him or harm relations with faction leaders.<br>\
+<br>\
+But who are you?<br>\
+Perhaps you are the captain's lifelong friend, or a trusted associate to whom he gave a position of power.<br>\
+Perhaps you're a consummate professional who comes highly recommended.<br>\
+A retired general or naval officer?<br>\
+Perhaps you're the captain's brother, firstborn son, or spouse. Nobody can prevent nepotism if he chooses<br>\
+Perhaps you're a foreign diplomat, your position a ceremonial one to ensure a treaty.<br>\
+
+Whatever your origin, you are fiercely loyal to the captain"
+
+	duties = "Oversee everyone else, especially the other command staff, to ensure the captain's orders are being carried out.<br>\
+Handle job reassignments and promotion requests, if an appropriate faction leader isn't available<br>\
+Act as the captain's surrogate in risky situations where a command presence is required<br>\
+Replace the captain if they become incapacitated, need to take a break, or suffer a premature death<br>\
+Act as the captain's sidekick, bodyguard, and last line of defense in a crisis or mutiny situation"
+
+	loyalties = "Your first and only loyalty is to the captain. Unless you're an antagonist and have a good reason for betrayal, you should remain loyal to the death. You are the only one he can trust"
+
+	outfit_type = /decl/hierarchy/outfit/job/commissar
+
+
+	software_on_spawn = list(/datum/computer_file/program/comm,
+							 /datum/computer_file/program/reports)
+
+
+	get_access()
+		return get_all_station_access()
+
+	stat_modifiers = list(
+		STAT_ROB = 10,
+		STAT_TGH = 10,
+		STAT_BIO = 10,
+		STAT_MEC = 10,
+		STAT_VIG = 20,
+		STAT_COG = 20
+	)
+
+/obj/landmark/join/start/commissar
+	name = "Commissar"
+	icon_state = "player-gold"
+	join_tag = /datum/job/hop

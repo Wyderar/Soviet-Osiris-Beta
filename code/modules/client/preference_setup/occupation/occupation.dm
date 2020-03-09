@@ -153,11 +153,11 @@
 
 		if(rank == ASSISTANT_TITLE)//Assistant is special
 			. += "<a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'>"
-			. += "[(rank in pref.job_low) ? "<font color=#55cc55>" : ""]\[Yes\][(rank in pref.job_low) ? "</font>" : ""]"
+			. += "[(rank in pref.job_low) ? "<font color=#55cc55>" : ""]\[Да\][(rank in pref.job_low) ? "</font>" : ""]"
 			//. += "\[Yes\]"
 			. += "</a>"
 			. += "<a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_NEVER]'>"
-			. += "[!(rank in pref.job_low) ? "<font color=black>" : ""]\[No\][!(rank in pref.job_low) ? "</font>" : ""]"
+			. += "[!(rank in pref.job_low) ? "<font color=black>" : ""]\[Нет\][!(rank in pref.job_low) ? "</font>" : ""]"
 			. += "</a>"
 		else
 			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_HIGH]'>[current_level == JOB_LEVEL_HIGH ? "<font color=55cc55>" : ""]\[Выс.][current_level == JOB_LEVEL_HIGH ? "</font>" : ""]</a>"

@@ -1563,6 +1563,12 @@ var/list/rank_prefix = list(\
 		mind.prefs.nutrition = nutrition
 		mind.prefs.sanity_level = sanity.level
 		mind.prefs.char_exists = 1
+		mind.prefs.stat_mec = stats.getStat(STAT_MEC)
+		mind.prefs.stat_cog = stats.getStat(STAT_COG)
+		mind.prefs.stat_bio = stats.getStat(STAT_BIO)
+		mind.prefs.stat_rob = stats.getStat(STAT_ROB)
+		mind.prefs.stat_tgh = stats.getStat(STAT_TGH)
+		mind.prefs.stat_vig = stats.getStat(STAT_VIG)
 
 	mind.prefs.s_tone = s_tone
 	mind.prefs.h_style = h_style

@@ -9,6 +9,13 @@ datum/preferences
 	var/char_exists = 0
 	var/character_id
 
+	var/stat_mec
+	var/stat_cog
+	var/stat_bio
+	var/stat_rob
+	var/stat_tgh
+	var/stat_vig
+
 /datum/category_item/player_setup_item/physical/basic
 	name = "Basic"
 	sort_order = 1
@@ -24,6 +31,13 @@ datum/preferences
 	from_file(S["character_id"],          pref.character_id)
 	from_file(S["char_exists"],           pref.char_exists)
 
+	from_file(S["stat_mec"],              pref.stat_mec)
+	from_file(S["stat_cog"],              pref.stat_cog)
+	from_file(S["stat_bio"],              pref.stat_bio)
+	from_file(S["stat_rob"],              pref.stat_rob)
+	from_file(S["stat_tgh"],              pref.stat_tgh)
+	from_file(S["stat_vig"],              pref.stat_vig)
+
 /datum/category_item/player_setup_item/physical/basic/save_character(var/savefile/S)
 	to_file(S["gender"],                  pref.gender)
 	to_file(S["age"],                     pref.age)
@@ -33,11 +47,23 @@ datum/preferences
 	to_file(S["bank_pin"],                pref.bank_pin)
 	to_file(S["bank_balance"],            pref.bank_balance)
 	to_file(S["char_exists"],             pref.char_exists)
+	to_file(S["stat_mec"],                pref.stat_mec)
+	to_file(S["stat_cog"],                pref.stat_cog)
+	to_file(S["stat_bio"],                pref.stat_bio)
+	to_file(S["stat_rob"],                pref.stat_rob)
+	to_file(S["stat_tgh"],                pref.stat_tgh)
+	to_file(S["stat_vig"],                pref.stat_vig)
 
 /datum/category_item/player_setup_item/physical/basic/reset_character(var/savefile/S)
 	pref.bank_balance = null
 	pref.char_exists = null
 	pref.character_id = null
+	pref.stat_mec = null
+	pref.stat_cog = null
+	pref.stat_bio = null
+	pref.stat_rob = null
+	pref.stat_tgh = null
+	pref.stat_vig = null
 
 /datum/category_item/player_setup_item/physical/basic/sanitize_character()
 	var/datum/species/S = all_species[pref.species ? pref.species : SPECIES_HUMAN]
@@ -87,7 +113,8 @@ datum/preferences
 //	if(pref.char_exists)
 	. += "<b>ID персонажа</b>: [pref.character_id]<br>"
 	. += "<b>Nutrition</b>: [pref.nutrition]<br>"
-	. += "<b>Sanity</b>: [pref.sanity_level]"
+	. += "<b>Sanity</b>: [pref.sanity_level]<br>"
+	. += "MEC: [pref.stat_mec]; COG: [pref.stat_cog]; BIO: [pref.stat_bio]; ROB: [pref.stat_rob]; TGH: [pref.stat_tgh]; VIG: [pref.stat_vig]"
 
 	. = jointext(.,null)
 

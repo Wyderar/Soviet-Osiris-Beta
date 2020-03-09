@@ -319,7 +319,8 @@ SUBSYSTEM_DEF(job)
 			ntnet_global.create_email(H, desired_name, domain)
 		// END EMAIL GENERATION
 		job.equip(H, flavor ? flavor.title : H.mind ? H.mind.role_alt_title : "")
-		job.add_stats(H, flavor)
+		if(!H.mind.prefs.char_exists)
+			job.add_stats(H, flavor)
 		job.add_additiional_language(H)
 
 
