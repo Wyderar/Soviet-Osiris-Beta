@@ -846,3 +846,22 @@ ADMIN_VERB_ADD(/client/proc/toggle_random_events, R_SERVER, FALSE)
 		to_chat(usr, "Random events disabled")
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 
+ADMIN_VERB_ADD(/client/proc/reload_whitelist, R_SERVER, FALSE)
+/client/proc/reload_whitelist()
+	set category = "Server"
+	set name = "Reload Whitelist"
+
+	if(!check_rights(R_SERVER))	return
+	load_whitelist()
+	log_admin("[key_name(usr)] reloaded the whitelist.")
+	message_admins("\blue [key_name_admin(usr)] reloaded the whitelist.", 1)
+
+ADMIN_VERB_ADD(/client/proc/save_all_characters, R_SERVER, FALSE)
+/client/proc/save_all_characters()
+	set category = "Server"
+	set name = "Save Characters"
+
+	if(!check_rights(R_SERVER))	return
+	save_characters()
+	log_admin("[key_name(usr)] saved all characters.")
+	message_admins("\blue [key_name_admin(usr)] saved all characters.", 1)

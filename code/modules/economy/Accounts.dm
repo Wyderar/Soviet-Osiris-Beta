@@ -10,6 +10,7 @@
 	var/security_level = 0	//0 - auto-identify from worn ID, require only account number
 							//1 - require manual login / account number and pin
 							//2 - require card and manual login
+	var/account_id
 
 //One-stop safety checks for accounts
 /datum/money_account/proc/is_valid()

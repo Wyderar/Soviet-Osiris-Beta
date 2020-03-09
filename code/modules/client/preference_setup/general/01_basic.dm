@@ -113,6 +113,7 @@ datum/preferences
 //	if(pref.char_exists)
 	. += "<b>ID персонажа</b>: [pref.character_id]<br>"
 	. += "<b>Nutrition</b>: [pref.nutrition]<br>"
+	. += "<b>Thirst</b>: [pref.thirst]<br>"
 	. += "<b>Sanity</b>: [pref.sanity_level]<br>"
 	. += "MEC: [pref.stat_mec]; COG: [pref.stat_cog]; BIO: [pref.stat_bio]; ROB: [pref.stat_rob]; TGH: [pref.stat_tgh]; VIG: [pref.stat_vig]"
 

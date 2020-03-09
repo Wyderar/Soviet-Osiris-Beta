@@ -30,16 +30,19 @@
 	touching.clear_reagents()
 	metabolism_effects.clear_effects()
 	nutrition = 400
+	thirst = 400
 	shock_stage = 0
 	..()
 
 /mob/living/carbon/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	. = ..()
 	if(.)
-		if (src.nutrition && src.stat != 2)
+		if (src.nutrition && src.thirst && src.stat != 2)
 			src.nutrition -= DEFAULT_HUNGER_FACTOR/10
+			src.thirst -= DEFAULT_THIRST_FACTOR/10
 			if (move_intent.flags & MOVE_INTENT_EXERTIVE)
 				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
+				src.thirst -= DEFAULT_THIRST_FACTOR/10
 
 
 		// Moving around increases germ_level faster
@@ -406,3 +409,7 @@
 
 /mob/living/carbon/proc/need_breathe()
 	return TRUE
+
+/mob/living/carbon/proc/adjustThirst(var/amount)
+	thirst += amount
+	thirst = max(0,min(thirst, max_thirst))	//clamp the value

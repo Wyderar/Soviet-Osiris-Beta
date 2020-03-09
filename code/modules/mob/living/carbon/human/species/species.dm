@@ -34,6 +34,7 @@
 	var/virus_immune
 	var/blood_volume = 560                               // Initial blood volume.
 	var/hunger_factor = DEFAULT_HUNGER_FACTOR            // Multiplier for hunger.
+	var/thirst_factor = DEFAULT_THIRST_FACTOR
 	var/taste_sensitivity = TASTE_NORMAL                 // How sensitive the species is to minute tastes.
 
 	var/min_age = 17

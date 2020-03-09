@@ -99,14 +99,24 @@
 	if(!species_modifier)
 		species_modifier = economic_species_modifier[/datum/species/human]
 
+	var/datum/money_account/M
+
+	for(var/datum/money_account/A in all_money_accounts)
+		if(A.account_id == H.mind.prefs.character_id)
+			M = A
+			break
+
 	var/money_amount = one_time_payment(species_modifier)
-	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
+	if(!M)
+		M = create_account(H.real_name, money_amount, null)
 	if(H.mind.prefs.bank_pin)
 		M.remote_access_pin = H.mind.prefs.bank_pin
 	if(H.mind.prefs.bank_balance > 0)
 		M.money = H.mind.prefs.bank_balance
 	else
 		M.money = 0
+	if(H.mind.prefs.character_id)
+		M.account_id = H.mind.prefs.character_id
 
 	if(H.mind)
 		var/remembered_info = ""

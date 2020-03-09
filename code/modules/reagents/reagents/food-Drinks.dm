@@ -10,6 +10,7 @@
 	reagent_state = SOLID
 	metabolism = REM * 2
 	var/nutriment_factor = 12 // Per metabolism tick
+	var/thirst_factor = 0
 	var/regen_factor = 0.8 //Used for simple animal health regeneration
 	var/injectable = 0
 	color = "#664330"
@@ -44,6 +45,7 @@
 /datum/reagent/organic/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	// Small bodymass, more effect from lower volume.
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier)) // For hunger and fatness
+	M.adjustThirst(thirst_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 	M.add_chemical_effect(CE_BLOODRESTORE, 0.1 * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 
 /datum/reagent/organic/nutriment/glucose
@@ -369,6 +371,7 @@
 	reagent_state = LIQUID
 	color = "#E78108"
 	var/nutrition = 0 // Per metabolism tick
+	var/thirst = 6
 	var/adj_dizzy = 0 // Per metabolism tick
 	var/adj_drowsy = 0
 	var/adj_sleepy = 0
@@ -381,6 +384,7 @@
 
 /datum/reagent/drink/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustNutrition(nutrition * effect_multiplier)
+	M.adjustThirst(thirst * effect_multiplier)
 	M.dizziness = max(0, M.dizziness + adj_dizzy)
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)
 	M.sleeping = max(0, M.sleeping + adj_sleepy)

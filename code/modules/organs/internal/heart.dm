@@ -115,3 +115,7 @@
 			owner.nutrition -= 10
 		else if(owner.nutrition >= 200)
 			owner.nutrition -= 3
+		if(owner.thirst >= 300)
+			owner.thirst -= 10
+		else if(owner.thirst >=200)
+			owner.thirst -= 3

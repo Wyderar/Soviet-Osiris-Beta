@@ -273,13 +273,15 @@
 
 	if(SSjob.ShouldCreateRecords(job.title))
 		if(character.mind.assigned_role != "Robot")
-			CreateModularRecord(character)
-			data_core.manifest_inject(character)
+			if(character.mind.assigned_role != ASSISTANT_TITLE)
+				CreateModularRecord(character)
+				data_core.manifest_inject(character)
 			matchmaker.do_matchmaking()
 			SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 			//Grab some data from the character prefs for use in random news procs.
 
-	AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
+	if(character.mind.assigned_role != ASSISTANT_TITLE)
+		AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
 
 
 
@@ -373,7 +375,12 @@
 	new_character.dna.ready_dna(new_character)
 	new_character.dna.b_type = client.prefs.b_type
 	new_character.sync_organ_dna()
+
 	new_character.character_id = client.prefs.character_id
+	new_character.nutrition = client.prefs.nutrition
+	new_character.thirst = client.prefs.thirst
+	new_character.sanity.level = client.prefs.sanity_level
+
 	if(client.prefs.disabilities)
 		// Set defer to 1 if you add more crap here so it only recalculates struc_enzymes once. - N3X
 		new_character.dna.SetSEState(GLASSESBLOCK,1,0)

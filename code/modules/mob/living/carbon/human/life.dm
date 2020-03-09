@@ -490,6 +490,8 @@
 		bodytemperature += recovery_amt
 	else if(bodytemperature > species.heat_level_1) //360.15 is 310.15 + 50, the temperature where you start to feel effects.
 		//We totally need a sweat system cause it totally makes sense...~
+		if(thirst >=2)
+			thirst -= 2
 		var/recovery_amt = min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM)	//We're dealing with negative numbers
 		//world << "Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]"
 //				log_debug("Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
@@ -584,6 +586,8 @@
 	// nutrition decrease
 	if (nutrition > 0 && stat != 2)
 		nutrition = max (0, nutrition - species.hunger_factor)
+	if (thirst > 0 && stat != 2)
+		thirst = max (0, thirst - species.thirst_factor)
 
 	// TODO: stomach and bloodstream organ.
 	handle_trace_chems()
@@ -748,7 +752,7 @@
 
 	// Puke if toxloss is too high
 	if(!stat)
-		if (getToxLoss() >= 45 && nutrition > 20)
+		if (getToxLoss() >= 45 && nutrition > 20 && thirst > 20)
 			vomit()
 
 	//0.1% chance of playing a scary sound to someone who's in complete darkness

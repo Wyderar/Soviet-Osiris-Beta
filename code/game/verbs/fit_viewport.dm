@@ -49,11 +49,11 @@
 	set category = "OOC"
 
 	if(!prefs.fullscreen)
-		winset(src, "mainwindow", "is-maximized=false;can-resize=false;titlebar=false;menu=menu")
+		winset(src, "mainwindow", "is-maximized=false;can-resize=false;titlebar=false;menu=null;statusbar=false")
 		winset(src, "mainwindow", "is-maximized=true")
 		prefs.fullscreen = TRUE
 	else
-		winset(src, "mainwindow", "is-maximized=false;can-resize=true;titlebar=true;menu=menu")
+		winset(src, "mainwindow", "is-maximized=false;can-resize=true;titlebar=true;menu=menu;statusbar=true")
 		winset(src, "mainwindow", "is-maximized=true")
 		prefs.fullscreen = FALSE
 	src.fit_viewport()

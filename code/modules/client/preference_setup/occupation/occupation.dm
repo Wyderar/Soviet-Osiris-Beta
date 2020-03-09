@@ -87,7 +87,7 @@
 	if (!desc_set)
 		create_job_description(user)
 	. += "[job_desc]"
-	. += "<b>Расставляйте приоритеты на должности исходя из своих предпочтений.<br>Недоступные должности были вычеркнуты.</b>"
+	. += "<b>Расставляйте приоритеты на должности исходя из своих предпочтений.<br>Недоступные должности были скрыты.</b>"
 	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more columns.
 	. += "<table width='100%' cellpadding='1' cellspacing='0'>"
 
@@ -117,11 +117,8 @@
 			. += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
 			index = 0
 
-
-		. += "<tr bgcolor='[job.selection_color]'><td width='40%' align='right'>"
 		var/rank = job.title
 		lastJob = job
-		. += "<a href='?src=\ref[src];job_info=[rank]'>\[?\]</a>"
 		var/bad_message = ""
 		if(job.total_positions == 0 && job.spawn_positions == 0)
 			bad_message = "<b> \[НЕДОСТУПНО]</b>"
@@ -134,12 +131,16 @@
 			bad_message = "\[МИНИМАЛЬНЫЙ ВОЗРАСТ: [job.minimum_character_age]]"
 		else if(user.client && job.is_setup_restricted(user.client.prefs.setup_options))
 			bad_message = "\[ОГРАНИЧЕНО]"
+		if(!bad_message)
+			. += "<tr bgcolor='[job.selection_color]'><td width='40%' align='right'>"
+			. += "<a href='?src=\ref[src];job_info=[rank]'>\[?\]</a>"
 
 		if((ASSISTANT_TITLE in pref.job_low) && (rank != ASSISTANT_TITLE))
-			. += "<a href='?src=\ref[src];set_skills=[rank]'><font color=grey>[rank]</font></a></td><td></td></tr>"
+			if(!bad_message)
+				. += "<a href='?src=\ref[src];set_skills=[rank]'><font color=grey>[rank]</font></a></td><td></td></tr>"
 			continue
 		if(bad_message)
-			. += "<a href='?src=\ref[src];set_skills=[rank]'><del>[rank]</del></a></td><td><font color=black>[bad_message]</font></td></tr>"
+//			. += "<a href='?src=\ref[src];set_skills=[rank]'><del>[rank]</del></a></td><td><font color=black>[bad_message]</font></td></tr>"
 			continue
 
 		//. += (unspent && (current_level != JOB_LEVEL_NEVER) ? "<a class='Points' href='?src=\ref[src];set_skills=[rank]'>" : "<a href='?src=\ref[src];set_skills=[rank]'>")

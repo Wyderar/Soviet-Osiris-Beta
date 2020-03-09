@@ -70,7 +70,6 @@ Your second loyalty is to your command officers. The heads of each faction. List
 	title = "First Officer"
 	flag = FIRSTOFFICER
 	department = DEPARTMENT_COMMAND
-	head_position = 1
 	department_flag = COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
@@ -134,7 +133,6 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 	title = "Commissar"
 	flag = COMMISSAR
 	department = DEPARTMENT_COMMAND
-	head_position = 1
 	department_flag = COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
@@ -144,7 +142,7 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 20)
-	ideal_character_age = 50
+	ideal_character_age = 40
 
 	description = "You are the captain's right hand. His second in command. Where he goes, you follow. Where he leads, you drag everyone else along. You make sure his will is done, his orders obeyed, and his laws enforced.<br>\
 If he makes mistakes, discreetly inform him. Help to cover up his indiscretions and smooth relations with the crew, especially other command staff. Keep the captain safe, by endangering yourself in his stead if necessary.<br>\

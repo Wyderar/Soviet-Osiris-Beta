@@ -760,10 +760,10 @@ default behaviour is:
 		var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
 		HUD.update_icon()
 
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		if(H.pull_damage())
-			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
+//	if(ishuman(AM))
+//		var/mob/living/carbon/human/H = AM
+//		if(H.pull_damage())
+//			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))

@@ -47,7 +47,7 @@
 	if(owner.chem_effects[CE_ALCOHOL_TOXIC])
 		take_internal_damage(owner.chem_effects[CE_ALCOHOL_TOXIC], prob(90)) // Chance to warn them
 
-	
+
 
 	//Blood regeneration if there is some space
 	owner.regenerate_blood(0.1 + owner.chem_effects[CE_BLOODRESTORE])
@@ -59,6 +59,10 @@
 			owner.adjustNutrition(-10)
 		else if(owner.nutrition >= 200)
 			owner.adjustNutrition(-3)
+		if(owner.thirst >= 300)
+			owner.adjustThirst(-10)
+		else if(owner.thirst >= 200)
+			owner.adjustThirst(-3)
 
 //We got it covered in Process with more detailed thing
 /obj/item/organ/internal/liver/handle_regeneration()

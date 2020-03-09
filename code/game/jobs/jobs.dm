@@ -82,5 +82,8 @@ var/list/security_positions = list(JOBS_SECURITY)
 var/list/nonhuman_positions = list(JOBS_NONHUMAN)
 
 
-/proc/guest_jobbans(var/job)
+/proc/third_level_jobbans(var/job)
 	return ((job in command_positions) || (job in nonhuman_positions))
+
+/proc/second_level_jobbans(var/job)
+	return ((job in engineering_positions) || (job in medical_positions) || (job in science_positions) || (job in cargo_positions) || (job in church_positions) || (job in civilian_positions) || (job in security_positions))

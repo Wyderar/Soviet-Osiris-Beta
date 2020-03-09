@@ -25,6 +25,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	var/nutrition = 400
 	var/sanity_level = 100
+	var/thirst = 400
 
 /datum/category_item/player_setup_item/physical/body
 	name = "Body"
@@ -46,6 +47,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	from_file(S["hair_color"], pref.hair_color)
 	from_file(S["facial_color"], pref.facial_color)
 	from_file(S["nutrition"], pref.nutrition)
+	from_file(S["thirst"], pref.thirst)
 	from_file(S["sanity_level"], pref.sanity_level)
 
 
@@ -63,11 +65,13 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	to_file(S["hair_color"], pref.hair_color)
 	to_file(S["facial_color"], pref.facial_color)
 	to_file(S["nutrition"], pref.nutrition)
+	to_file(S["thirst"], pref.thirst)
 	to_file(S["sanity_level"], pref.sanity_level)
 
 /datum/category_item/player_setup_item/physical/body/reset_character(var/savefile/S)
 	pref.nutrition = null
 	pref.sanity_level = null
+	pref.thirst = null
 
 /datum/category_item/player_setup_item/physical/body/sanitize_character(var/savefile/S)
 	pref.h_style		= sanitize_inlist(pref.h_style, GLOB.hair_styles_list, initial(pref.h_style))
