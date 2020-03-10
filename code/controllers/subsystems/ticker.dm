@@ -220,6 +220,13 @@ SUBSYSTEM_DEF(ticker)
 
 	GLOB.storyteller.announce()
 
+	if(GLOB.player_list.len >= 10)
+		config.canonicity = 1
+		to_chat(world, "<H2>Round is now canon, all new character data will be saved in the end of the round!</H2>")
+	else
+		config.canonicity = 0
+		to_chat(world, "<H2>Round is now not canon, so all new character data will not be saved!</H2>")
+
 	setup_economy()
 	newscaster_announcements = pick(newscaster_standard_feeds)
 	current_state = GAME_STATE_PLAYING
@@ -231,7 +238,8 @@ SUBSYSTEM_DEF(ticker)
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(!H.mind || player_is_antag(H.mind, only_offstation_roles = 1) || !SSjob.ShouldCreateRecords(H.mind.assigned_role))
 			continue
-		CreateModularRecord(H)
+		if(H.mind.assigned_role != ASSISTANT_TITLE)
+			CreateModularRecord(H)
 	data_core.manifest()
 
 	callHook("roundstart")
@@ -418,7 +426,11 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/declare_completion()
 	to_chat(world, "<br><br><br><H1>A round has ended!</H1>")
-	save_characters()
+	if(!config.canonicity)
+		to_chat(world, "<H2>Round was not canon, so all new character data will not be saved!</H2>")
+	else
+		save_characters()
+		to_chat(world, "<H2>Round was canon, all character data has been saved!</H2>")
 	for(var/mob/Player in GLOB.player_list)
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)

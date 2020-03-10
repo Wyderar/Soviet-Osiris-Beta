@@ -106,7 +106,7 @@
 			M = A
 			break
 
-	var/money_amount = one_time_payment(species_modifier)
+	var/money_amount = (one_time_payment(species_modifier) / 3)
 	if(!M)
 		M = create_account(H.real_name, money_amount, null)
 	if(H.mind.prefs.bank_pin)
@@ -114,7 +114,7 @@
 	if(H.mind.prefs.bank_balance > 0)
 		M.money = H.mind.prefs.bank_balance
 	else
-		M.money = 0
+		M.money = money_amount
 	if(H.mind.prefs.character_id)
 		M.account_id = H.mind.prefs.character_id
 

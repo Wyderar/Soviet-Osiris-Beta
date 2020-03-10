@@ -92,8 +92,8 @@
 	icon_state = "hos_cypherkey"
 	channels = list("Security" = 1, "Command" = 1)
 
-/obj/item/device/encryptionkey/heads/commissar
-	name = "commissar's encryption key"
+/obj/item/device/encryptionkey/heads/commissioner
+	name = "commissioner's encryption key"
 	icon_state = "cypherkey"
 	channels = list("Security" = 1, "Command" = 1)
 

@@ -43,7 +43,7 @@ var/const/GUILDTECH			=(1<<4)
 var/const/MINER				=(1<<5)
 var/const/ACTOR				=(1<<6)
 var/const/ASSISTANT			=(1<<7)
-var/const/COMMISSAR 		=(1<<8)
+var/const/COMMISSIONER		=(1<<8)
 
 
 var/const/CHAPLAIN			=(1<<0)
@@ -81,9 +81,14 @@ var/list/security_positions = list(JOBS_SECURITY)
 
 var/list/nonhuman_positions = list(JOBS_NONHUMAN)
 
+var/list/no_wage_positions = list(JOBS_NO_WAGE)
+
 
 /proc/third_level_jobbans(var/job)
 	return ((job in command_positions) || (job in nonhuman_positions))
 
 /proc/second_level_jobbans(var/job)
 	return ((job in engineering_positions) || (job in medical_positions) || (job in science_positions) || (job in cargo_positions) || (job in church_positions) || (job in civilian_positions) || (job in security_positions))
+
+/proc/check_no_wage_positions(var/job)
+	return (job in no_wage_positions)

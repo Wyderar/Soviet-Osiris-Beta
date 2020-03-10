@@ -293,6 +293,12 @@
 // /var/const/free_access_id = 51
 // /var/const/free_access_id = 52
 
+/var/const/access_co = 52
+/datum/access/co
+	id = access_co
+	desc = "Commissioner"
+	region = ACCESS_REGION_COMMAND
+
 /var/const/access_heads_vault = 53
 /datum/access/heads_vault
 	id = access_heads_vault

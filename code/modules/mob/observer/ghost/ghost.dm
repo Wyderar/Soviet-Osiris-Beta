@@ -744,10 +744,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 
 //Just a wrapper for abandon mob below, for ease of access.
-/mob/observer/ghost/verb/respawn()
-	set name = "Respawn as character"
-	set category = "Ghost"
-	abandon_mob()
+///mob/observer/ghost/verb/respawn()
+//	set name = "Respawn as character"
+//	set category = "Ghost"
+//	abandon_mob()
 
 /mob/verb/abandon_mob()
 	set name = "Respawn"

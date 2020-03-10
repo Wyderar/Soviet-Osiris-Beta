@@ -2,6 +2,7 @@
 
 var/list/third_whitelist = file2list("config/whitelist/third_level.txt")
 var/list/second_whitelist = file2list("config/whitelist/second_level.txt")
+var/list/commissar_whitelist = file2list("config/whitelist/commissar.txt")
 
 /hook/startup/proc/loadWhitelist()
 	if(config.usewhitelist)
@@ -11,10 +12,13 @@ var/list/second_whitelist = file2list("config/whitelist/second_level.txt")
 /proc/load_whitelist()
 	third_whitelist = file2list("config/whitelist/third_level.txt")
 	second_whitelist = file2list("config/whitelist/second_level.txt")
+	commissar_whitelist = file2list("config/whitelist/commissar.txt")
 	if(!third_whitelist.len)
 		third_whitelist = null
 	if(!second_whitelist.len)
 		second_whitelist = null
+	if(!commissar_whitelist.len)
+		commissar_whitelist = null
 
 /proc/check_third_whitelist(key)
 	if(!third_whitelist)
@@ -26,6 +30,10 @@ var/list/second_whitelist = file2list("config/whitelist/second_level.txt")
 		return 0
 	return (key in second_whitelist)
 
+/proc/check_commissar_whitelist(key)
+	if(!commissar_whitelist)
+		return 0
+	return (key in commissar_whitelist)
 
 /proc/is_alien_whitelisted(mob/M, var/species)
 	// always return true because we don't have xenos and related whitelist

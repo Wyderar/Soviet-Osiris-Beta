@@ -3,7 +3,7 @@
 	role_text = "Changeling"
 	role_text_plural = "Changelings"
 	restricted_jobs = list("AI", "Robot")
-	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND)
+	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND, ASSISTANT_TITLE, COMMISSAR_TITLE)
 	bantype = ROLE_BANTYPE_CHANGELING
 	welcome_text = "Use say \"#g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."
 	antaghud_indicator = "hudchangeling"
@@ -44,5 +44,5 @@
 
 	for(var/name in stat_modifiers)
 		L.stats.changeStat(name, stat_modifiers[name])
-		
+
 	setup_uplink_source(L, 5)

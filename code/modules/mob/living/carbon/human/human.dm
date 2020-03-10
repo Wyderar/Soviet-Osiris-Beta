@@ -1553,6 +1553,9 @@ var/list/rank_prefix = list(\
 		. = min(., C.volume_multiplier)
 
 /mob/living/carbon/human/proc/save_to_prefs()
+	if(!config.canonicity)
+		return 0
+	
 	if(!mind)
 		return 0
 
@@ -1564,8 +1567,9 @@ var/list/rank_prefix = list(\
 		mind.prefs.bank_balance = 0
 
 	if(stat == 0)
-		if(job != "Vagabond")
+		if(!check_no_wage_positions(job))
 			save_bank_balance()
+		if(job != "Vagabond")
 			mind.prefs.stat_mec = stats.getStat(STAT_MEC)
 			mind.prefs.stat_cog = stats.getStat(STAT_COG)
 			mind.prefs.stat_bio = stats.getStat(STAT_BIO)

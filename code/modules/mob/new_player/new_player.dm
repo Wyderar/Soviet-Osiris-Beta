@@ -291,7 +291,7 @@
 //	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
 
 	var/dat = "<html><body><center>"
-	dat += "<b>Добро пожаловать, [name].<br></b>"
+	dat += "<b>Добро пожаловать!.<br></b>"
 	dat += "Раунд длится: [roundduration2text()]<br>"
 
 	if(evacuation_controller.has_evacuated()) //In case Nanotrasen decides reposess CentComm's shuttles.
@@ -302,7 +302,7 @@
 		else                                           // Crew transfer initiated
 			dat += "<font color='red'>The vessel is currently undergoing crew transfer procedures.</font><br>"
 
-	dat += "Выберите свою должность из списка доступных:<br>"
+	dat += "Выберите новую должность из списка доступных:<br>"
 	for(var/datum/job/job in SSjob.occupations)
 		if(job && IsJobAvailable(job.title))
 			if(job.is_restricted(client.prefs))

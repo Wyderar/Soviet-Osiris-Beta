@@ -75,7 +75,7 @@
 	icon_state = "pda-hop"
 	scanner_type = /obj/item/weapon/computer_hardware/scanner/paper
 
-/obj/item/modular_computer/pda/heads/commissar
+/obj/item/modular_computer/pda/heads/commissioner
 	icon_state = "pda-h"
 	scanner_type = /obj/item/weapon/computer_hardware/scanner/paper
 

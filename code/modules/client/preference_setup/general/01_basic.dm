@@ -47,6 +47,7 @@ datum/preferences
 	to_file(S["bank_pin"],                pref.bank_pin)
 	to_file(S["bank_balance"],            pref.bank_balance)
 	to_file(S["char_exists"],             pref.char_exists)
+
 	to_file(S["stat_mec"],                pref.stat_mec)
 	to_file(S["stat_cog"],                pref.stat_cog)
 	to_file(S["stat_bio"],                pref.stat_bio)
@@ -55,6 +56,7 @@ datum/preferences
 	to_file(S["stat_vig"],                pref.stat_vig)
 
 /datum/category_item/player_setup_item/physical/basic/reset_character(var/savefile/S)
+	pref.real_name = random_name(pref.gender, pref.species)
 	pref.bank_balance = null
 	pref.char_exists = null
 	pref.character_id = null
@@ -108,14 +110,18 @@ datum/preferences
 		. += "<b>Пол:</b> <b>[gender2text(pref.gender)]</b><br>"
 		. += "<b>Возраст:</b> [pref.age]<br>"
 	. += "<b>Точка появления</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
-	. += "<b>PIN</b>: <a href='?src=\ref[src];bank_pin=1'>[pref.bank_pin]</a><br>"
-	. += "<b>Баланс</b>: [pref.bank_balance]<br>"
-//	if(pref.char_exists)
-	. += "<b>ID персонажа</b>: [pref.character_id]<br>"
-	. += "<b>Nutrition</b>: [pref.nutrition]<br>"
-	. += "<b>Thirst</b>: [pref.thirst]<br>"
-	. += "<b>Sanity</b>: [pref.sanity_level]<br>"
-	. += "MEC: [pref.stat_mec]; COG: [pref.stat_cog]; BIO: [pref.stat_bio]; ROB: [pref.stat_rob]; TGH: [pref.stat_tgh]; VIG: [pref.stat_vig]"
+	. += "<b>PIN</b>: <a href='?src=\ref[src];bank_pin=1'>[pref.bank_pin]</a>"
+	if(pref.char_exists)
+		var/stat_none = "0"
+		. += "<br><b>Баланс</b>: [pref.bank_balance][CREDS]<br>"
+		. += "<hr>"
+		. += "<b>Навыки</b><br>"
+		. += "Механика: [pref.stat_mec ? pref.stat_mec : stat_none]<br>"
+		. += "Интеллект: [pref.stat_cog ? pref.stat_cog : stat_none]<br>"
+		. += "Биология: [pref.stat_bio ? pref.stat_bio : stat_none]<br>"
+		. += "Сила: [pref.stat_rob ? pref.stat_rob : stat_none]<br>"
+		. += "Стойкость: [pref.stat_tgh ? pref.stat_tgh : stat_none]<br>"
+		. += "Бдительность: [pref.stat_vig ? pref.stat_vig : stat_none]"
 
 	. = jointext(.,null)
 

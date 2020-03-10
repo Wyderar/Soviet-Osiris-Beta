@@ -319,10 +319,9 @@ SUBSYSTEM_DEF(job)
 			ntnet_global.create_email(H, desired_name, domain)
 		// END EMAIL GENERATION
 		job.equip(H, flavor ? flavor.title : H.mind ? H.mind.role_alt_title : "")
-		if(!H.mind.prefs.char_exists)
+		if(!H.mind.prefs.stat_mec || !H.mind.prefs.stat_cog || !H.mind.prefs.stat_bio || !H.mind.prefs.stat_rob || !H.mind.prefs.stat_tgh || !H.mind.prefs.stat_vig)
 			job.add_stats(H, flavor)
 		job.add_additiional_language(H)
-
 
 		job.apply_fingerprints(H)
 		spawn_in_storage = EquipCustomLoadout(H, job)

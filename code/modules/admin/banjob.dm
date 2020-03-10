@@ -19,15 +19,18 @@ var/jobban_keylist[0]		//to store the keys & ranks
 		/*
 		if(_jobban_isbanned(M, rank)) return "Reason Unspecified"	//for old jobban
 		*/
-
 		if (third_level_jobbans(rank))
 			if(config.guest_jobban && IsGuestKey(M.key))
 				return "Guest Job-ban"
 			if(config.usewhitelist && !check_third_whitelist(M.key))
-				return "Whitelisted Job"
+				return "Third Level Whitelist"
 		if (second_level_jobbans(rank))
 			if(config.usewhitelist && !check_second_whitelist(M.key))
-				return "Whitelisted Job"
+				return "Second Level Whitelist"
+		if (rank == COMMISSAR_TITLE)
+			if(config.usewhitelist && !check_commissar_whitelist(M.key))
+				return "Commissar Whitelist"
+
 
 		for (var/s in jobban_keylist)
 			if( findtext(s,"[M.ckey] - [rank]") == 1 )

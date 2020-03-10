@@ -129,9 +129,9 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 	icon_state = "player-gold"
 	join_tag = /datum/job/hop
 
-/datum/job/commissar
-	title = "Commissar"
-	flag = COMMISSAR
+/datum/job/commissioner
+	title = "Commissioner"
+	flag = COMMISSIONER
 	department = DEPARTMENT_COMMAND
 	department_flag = COMMAND
 	faction = "CEV Eris"
@@ -166,15 +166,15 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 
 	loyalties = "Your first and only loyalty is to the captain. Unless you're an antagonist and have a good reason for betrayal, you should remain loyal to the death. You are the only one he can trust"
 
-	outfit_type = /decl/hierarchy/outfit/job/commissar
+	outfit_type = /decl/hierarchy/outfit/job/commissioner
+
+	access = list(
+		access_co, access_heads
+	)
 
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							 /datum/computer_file/program/reports)
-
-
-	get_access()
-		return get_all_station_access()
 
 	stat_modifiers = list(
 		STAT_ROB = 10,
@@ -185,7 +185,7 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 		STAT_COG = 20
 	)
 
-/obj/landmark/join/start/commissar
-	name = "Commissar"
+/obj/landmark/join/start/commissioner
+	name = "Commissioner"
 	icon_state = "player-gold"
-	join_tag = /datum/job/hop
+	join_tag = /datum/job/commissioner
