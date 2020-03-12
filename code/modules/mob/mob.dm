@@ -612,6 +612,7 @@
 	if(.)
 		if(statpanel("Status") && SSticker.current_state != GAME_STATE_PREGAME)
 			stat("Storyteller", "[master_storyteller]")
+			stat("Round Type", "[config.canonicity ? "canon" : "non-canon"]")
 			stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
 

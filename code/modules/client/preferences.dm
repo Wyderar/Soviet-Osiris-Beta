@@ -156,6 +156,10 @@
 		sanitize_preferences()
 		close_load_dialog(usr)
 	else if(href_list["resetslot"])
+		for(var/mob/living/carbon/human/R in SSmobs.mob_list)
+			if(client.prefs.character_id == R.character_id)
+				to_chat(usr, "You can't reset character that is already in-game!")
+				return 0
 		if(real_name != input("Это сбросит текущий слот и разблокирует его редактирование, однако вы потеряете все свои сбережения! Введите имя персонажа чтобы продолжить."))
 			return 0
 		reset_character()

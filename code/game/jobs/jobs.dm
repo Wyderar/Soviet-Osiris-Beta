@@ -81,14 +81,21 @@ var/list/security_positions = list(JOBS_SECURITY)
 
 var/list/nonhuman_positions = list(JOBS_NONHUMAN)
 
+
 var/list/no_wage_positions = list(JOBS_NO_WAGE)
 
 
+var/list/third_level_positions = list(JOBS_THIRD)
+
+
+var/list/second_level_positions = list(JOBS_COMMAND, JOBS_ENGINEERING, JOBS_MEDICAL, JOBS_SCIENCE, JOBS_CARGO, JOBS_CHURCH, JOBS_CIVILIAN, JOBS_SECURITY)
+
+
 /proc/third_level_jobbans(var/job)
-	return ((job in command_positions) || (job in nonhuman_positions))
+	return ((job in third_level_positions) || (job in nonhuman_positions))
 
 /proc/second_level_jobbans(var/job)
-	return ((job in engineering_positions) || (job in medical_positions) || (job in science_positions) || (job in cargo_positions) || (job in church_positions) || (job in civilian_positions) || (job in security_positions))
+	return (job in second_level_positions)
 
 /proc/check_no_wage_positions(var/job)
 	return (job in no_wage_positions)

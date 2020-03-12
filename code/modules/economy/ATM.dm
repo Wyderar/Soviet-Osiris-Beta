@@ -125,7 +125,8 @@ log transactions
 			//create a transaction log entry
 			var/datum/transaction/T = new(cash.worth, authenticated_account.owner_name, "Credit deposit", machine_id)
 			T.apply_to(authenticated_account)
-			if(cash.worth >= 1000)
+			log_game("[user] deposited [cash.worth][CREDS] into the ATM")
+			if(cash.worth >= 500)
 				message_admins("\red [user] deposited [cash.worth][CREDS] into the ATM.", 1)
 
 			to_chat(user, "<span class='info'>You insert [I] into [src].</span>")
@@ -329,7 +330,8 @@ log transactions
 						if(T.apply_to(authenticated_account))
 							//	spawn_money(amount,src.loc)
 							spawn_ewallet(amount,src.loc,usr)
-						if(amount >= 1000)
+						log_game("[usr] withdrew [amount][CREDS] from the ATM.")
+						if(amount >= 500)
 							message_admins("\red [usr] withdrew [amount][CREDS] from the ATM.", 1)
 					else
 						to_chat(usr, SPAN_WARNING("You don't have enough funds to do that!"))
@@ -347,7 +349,8 @@ log transactions
 						if(T.apply_to(authenticated_account))
 							//remove the money
 							spawn_money(amount,src.loc,usr)
-						if(amount >= 1000)
+						log_game("[usr] withdrew [amount][CREDS] from the ATM.")
+						if(amount >= 500)
 							message_admins("\red [usr] withdrew [amount][CREDS] from the ATM.", 1)
 					else
 						to_chat(usr, SPAN_WARNING("You don't have enough funds to do that!"))
