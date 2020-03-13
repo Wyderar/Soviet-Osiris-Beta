@@ -8,5 +8,5 @@
 	can_dual = 1
 	origin_tech = list(TECH_COMBAT = 5, TECH_PLASMA = 4)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASMA = 5)
-	price_tag = 2500
+	price_tag = 5000
 	projectile_type = /obj/item/projectile/energy/plasma

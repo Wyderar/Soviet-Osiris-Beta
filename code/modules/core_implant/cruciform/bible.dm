@@ -2,7 +2,7 @@
 	name = "NeoTheology ritual book"
 	desc = "Contains holy litany and religious prayers."
 	icon_state = "bible"
-	price_tag = 300
+	price_tag = 600
 
 /*
 /obj/item/weapon/book/ritual/cruciform/ritual(var/datum/ritual/R)
@@ -23,4 +23,4 @@
 	name = "clergy ritual book"
 	desc = "Contains holy litany and prayers only for the Clergy."
 	icon_state = "biblep"
-	price_tag = 500
+	price_tag = 1000

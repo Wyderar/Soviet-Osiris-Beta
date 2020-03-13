@@ -7,7 +7,7 @@
 	critical = TRUE
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
-	price_tag = 50
+	price_tag = 100
 	var/max_capacity = 128
 	var/used_capacity = 0
 	var/read_only = FALSE
@@ -26,7 +26,7 @@
 	max_capacity = 256
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1, MATERIAL_SILVER = 2)
 	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
-	price_tag = 100
+	price_tag = 500
 	power_usage = 50 					// Hybrid, medium capacity and medium power storage
 	hardware_size = 2
 
@@ -37,7 +37,7 @@
 	max_capacity = 512
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1, MATERIAL_GOLD = 2)
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
-	price_tag = 200
+	price_tag = 400
 	power_usage = 100					// High-capacity but uses lots of power, shortening battery life. Best used with APC link.
 	hardware_size = 2
 
@@ -47,7 +47,7 @@
 	icon_state = "hdd_cluster"
 	power_usage = 500
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
-	price_tag = 500
+	price_tag = 1000
 	max_capacity = 2048
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4, MATERIAL_GOLD = 8)
 	hardware_size = 3
@@ -60,7 +60,7 @@
 	icon_state = "hdd_small"
 	power_usage = 10
 	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
-	price_tag = 50
+	price_tag = 100
 	max_capacity = 64
 	hardware_size = 1
 
@@ -70,7 +70,7 @@
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1)
 	power_usage = 20
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
-	price_tag = 100
+	price_tag = 200
 	max_capacity = 128
 
 /obj/item/weapon/computer_hardware/hard_drive/micro
@@ -80,7 +80,7 @@
 	power_usage = 2
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
-	price_tag = 25
+	price_tag = 50
 	max_capacity = 32
 	hardware_size = 1
 

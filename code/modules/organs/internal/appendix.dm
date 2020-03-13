@@ -3,7 +3,7 @@
 	icon_state = "appendix"
 	parent_organ = BP_GROIN
 	organ_tag = BP_APPENDIX
-	price_tag = 50
+	price_tag = 100
 	var/inflamed = 0 //Counter, not boolean
 
 /obj/item/organ/internal/appendix/update_icon()

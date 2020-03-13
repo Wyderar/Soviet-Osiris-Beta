@@ -15,7 +15,7 @@
 	)
 	siemens_coefficient = 0.8
 	w_class = ITEM_SIZE_NORMAL
-	price_tag = 30
+	price_tag = 120
 
 /obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"

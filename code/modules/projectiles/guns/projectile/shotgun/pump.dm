@@ -18,7 +18,7 @@
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	var/recentpump = 0 // to prevent spammage
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
-	price_tag = 2200
+	price_tag = 4400
 	recoil_buildup = 20
 	one_hand_penalty = 20
 

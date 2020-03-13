@@ -4,7 +4,7 @@
 	icon_state = "holster"
 	slot = "utility"
 	matter = list(MATERIAL_BIOMATTER = 5)
-	price_tag = 200
+	price_tag = 400
 	var/obj/item/holstered = null
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)

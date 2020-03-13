@@ -4,7 +4,7 @@
 	organ_tag = BP_HEART
 	parent_organ = BP_CHEST
 	dead_icon = "heart-off"
-	price_tag = 1000
+	price_tag = 2000
 	var/pulse = PULSE_NORM
 	var/heartbeat = 0
 	var/efficiency = 1

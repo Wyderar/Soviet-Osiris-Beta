@@ -17,7 +17,7 @@
 	magazine_type = /obj/item/ammo_magazine/smg
 	auto_eject = TRUE
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 6)
-	price_tag = 1800
+	price_tag = 3600
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/sfrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/sfrifle_magin.ogg'

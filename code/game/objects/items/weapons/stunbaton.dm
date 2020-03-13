@@ -12,7 +12,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
-	price_tag = 500
+	price_tag = 1000
 	var/stunforce = 0
 	var/agonyforce = 40
 	var/status = FALSE		//whether the thing is on or not

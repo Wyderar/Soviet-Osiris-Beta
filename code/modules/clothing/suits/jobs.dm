@@ -145,7 +145,7 @@
 		rad = 0
 	)
 	siemens_coefficient = 0.8
-	price_tag = 250
+	price_tag = 1000
 
 /obj/item/clothing/suit/storage/detective/ironhammer
 	name = "Inspector's armored trenchcoat"
@@ -163,7 +163,7 @@
 	blood_overlay_type = "armor"
 	extra_allowed = list(/obj/item/weapon/tool)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	price_tag = 50
+	price_tag = 200
 
 //Roboticist
 /obj/item/clothing/suit/storage/robotech_jacket
@@ -173,7 +173,7 @@
 	item_state = "robotech_jacket"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
-	price_tag = 50
+	price_tag = 200
 	armor = list(
 		melee = 10,
 		bullet = 0,
@@ -200,4 +200,4 @@
 		/obj/item/stack/medical/advanced/bruise_pack
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	price_tag = 50
+	price_tag = 200

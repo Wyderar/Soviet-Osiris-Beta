@@ -9,7 +9,7 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	force = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 8)
-	price_tag = 4500
+	price_tag = 9000
 	fire_sound = 'sound/weapons/Laser.ogg'
 	projectile_type = /obj/item/projectile/beam
 	cell_type = /obj/item/weapon/cell/medium
@@ -58,7 +58,7 @@
 	sel_mode = 1
 	charge_cost = 25 //32 shots per high medium cell
 	fire_delay = 15
-	price_tag = 3000
+	price_tag = 6000
 	zoom_factor = null
 
 	firemodes = list(

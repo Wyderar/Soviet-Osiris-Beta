@@ -21,7 +21,7 @@
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
-	price_tag = 2000
+	price_tag = 4000
 	one_hand_penalty = 10
 	var/bolt_open = 0
 	var/item_suffix = ""

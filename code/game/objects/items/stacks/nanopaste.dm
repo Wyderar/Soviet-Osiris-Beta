@@ -8,7 +8,7 @@
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	amount = 10
 	w_class = ITEM_SIZE_SMALL //just so you can place same places that a brute pack would be
-	price_tag = 15
+	price_tag = 30
 
 
 /obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)

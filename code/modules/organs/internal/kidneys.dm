@@ -4,7 +4,7 @@
 	gender = PLURAL
 	organ_tag = BP_KIDNEYS
 	parent_organ = BP_GROIN
-	price_tag = 600
+	price_tag = 1200
 
 /obj/item/organ/internal/kidneys/Process()
 	..()

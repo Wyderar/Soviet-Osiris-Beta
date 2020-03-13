@@ -4,7 +4,7 @@
 	gender = PLURAL
 	organ_tag = BP_EYES
 	parent_organ = BP_HEAD
-	price_tag = 100
+	price_tag = 200
 	var/eyes_color = "#000000"
 	var/robo_color = "#000000"
 	var/cache_key = BP_EYES

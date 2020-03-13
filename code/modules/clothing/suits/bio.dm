@@ -20,7 +20,7 @@
 	body_parts_covered = HEAD|FACE|EYES|EARS
 	item_flags = COVER_PREVENT_MANIPULATION
 	siemens_coefficient = 0.9
-	price_tag = 50
+	price_tag = 200
 
 /obj/item/clothing/suit/bio_suit
 	name = "bio suit"
@@ -43,7 +43,7 @@
 	)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	siemens_coefficient = 0.9
-	price_tag = 100
+	price_tag = 400
 
 
 //Standard biosuit, orange stripe

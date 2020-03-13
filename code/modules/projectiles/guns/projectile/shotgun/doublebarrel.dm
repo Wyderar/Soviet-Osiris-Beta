@@ -19,7 +19,7 @@
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
-	price_tag = 1500
+	price_tag = 3000
 	one_hand_penalty = 5
 	var/bolt_open = 0
 

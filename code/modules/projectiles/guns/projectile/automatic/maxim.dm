@@ -16,7 +16,7 @@
 	tac_reloads = FALSE
 	magazine_type = /obj/item/ammo_magazine/maxim
 	matter = list(MATERIAL_PLASTEEL = 42, MATERIAL_PLASTIC = 15, MATERIAL_WOOD = 5)
-	price_tag = 5000
+	price_tag = 10000
 	unload_sound 	= 'sound/weapons/guns/interact/lmg_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/lmg_cock.ogg'

@@ -15,7 +15,7 @@
 	magazine_type = /obj/item/ammo_magazine/pistol
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 14, MATERIAL_PLASTIC = 4)
-	price_tag = 1500
+	price_tag = 3000
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	silencer_type = /obj/item/weapon/silencer

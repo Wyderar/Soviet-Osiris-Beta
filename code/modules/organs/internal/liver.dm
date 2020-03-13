@@ -3,7 +3,7 @@
 	icon_state = "liver"
 	organ_tag = BP_LIVER
 	parent_organ = BP_GROIN
-	price_tag = 900
+	price_tag = 1800
 
 /obj/item/organ/internal/liver/Process()
 

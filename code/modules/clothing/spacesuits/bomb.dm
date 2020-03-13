@@ -15,7 +15,7 @@
 	)
 	siemens_coefficient = 0
 	tint = TINT_HEAVY
-	price_tag = 100
+	price_tag = 400
 
 /obj/item/clothing/suit/space/bomb
 	name = "bomb suit"
@@ -37,7 +37,7 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
 	equip_delay = 10 SECONDS
-	price_tag = 300
+	price_tag = 1200
 
 /obj/item/clothing/head/space/bomb/security
 	icon_state = "bombsuitsec"

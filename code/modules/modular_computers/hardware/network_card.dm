@@ -39,7 +39,7 @@ var/global/ntnet_card_uid = 1
 	power_usage = 30 // Better range but higher power usage.
 	icon_state = "netcard_adv"
 	hardware_size = 1
-	price_tag = 100
+	price_tag = 200
 
 /obj/item/weapon/computer_hardware/network_card/wired
 	name = "wired network card"

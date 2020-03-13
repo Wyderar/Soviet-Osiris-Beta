@@ -33,7 +33,7 @@
 	matter_reagents = list("silicon" = 30)
 	power_usage = 100
 	max_idle_programs = 3
-	price_tag = 80
+	price_tag = 160
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3)
 
 /obj/item/weapon/computer_hardware/processor_unit/adv/small
@@ -56,7 +56,7 @@
 	power_usage = 250
 	max_idle_programs = 4
 	origin_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 4)
-	price_tag = 200
+	price_tag = 400
 
 /obj/item/weapon/computer_hardware/processor_unit/super/small
 	name = "photonic microprocessor"

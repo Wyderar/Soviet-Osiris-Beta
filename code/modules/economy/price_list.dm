@@ -19,73 +19,73 @@
 // Juices, soda and similar //
 
 /datum/reagent/water
-	price_tag = 20
+	price_tag = 5
 
 /datum/reagent/drink/juice
-	price_tag = 20
+	price_tag = 5
 
 /datum/reagent/toxin/poisonberryjuice
-	price_tag = 20
+	price_tag = 5
 
 /datum/reagent/drink/milk
-	price_tag = 20
+	price_tag = 5
 
 /datum/reagent/drink/soda
-	price_tag = 20
+	price_tag = 5
 
 /datum/reagent/drink/doctor_delight
-	price_tag = 20
+	price_tag = 5
 
 /datum/reagent/drink/nothing
-	price_tag = 20
+	price_tag = 5
 
 /datum/reagent/drink/milkshake
-	price_tag = 20
+	price_tag = 5
 
 /datum/reagent/drink/roy_rogers
-	price_tag = 20
+	price_tag = 5
 
 /datum/reagent/drink/shirley_temple
-	price_tag = 20
+	price_tag = 5
 
 /datum/reagent/drink/arnold_palmer
-	price_tag = 20
+	price_tag = 5
 
 /datum/reagent/drink/collins_mix
-	price_tag = 20
+	price_tag = 5
 
 
 // Beer //
 
 /datum/reagent/ethanol/ale
-	price_tag = 20
+	price_tag = 5
 
 /datum/reagent/ethanol/beer
-	price_tag = 20
+	price_tag = 5
 
 
 // Hot Drinks //
 
 /datum/reagent/drink/rewriter
-	price_tag = 10
+	price_tag = 2
 
 /datum/reagent/drink/tea
-	price_tag = 10
+	price_tag = 2
 
 /datum/reagent/drink/coffee
-	price_tag = 10
+	price_tag = 2
 
 /datum/reagent/drink/hot_coco
-	price_tag = 10
+	price_tag = 2
 
 /obj/item/weapon/reagent_containers/food/drinks/coffee
-	price_tag = 10
+	price_tag = 2
 
 /obj/item/weapon/reagent_containers/food/drinks/tea
-	price_tag = 10
+	price_tag = 2
 
 /obj/item/weapon/reagent_containers/food/drinks/h_chocolate
-	price_tag = 10
+	price_tag = 2
 
 
 // Spirituous liquors //
@@ -338,28 +338,28 @@
 // From the machine //
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/cola
-	price_tag = 10
+	price_tag = 3
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind
-	price_tag = 10
+	price_tag = 3
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb
-	price_tag = 10
+	price_tag = 3
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/starkist
-	price_tag = 10
+	price_tag = 3
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle
-	price_tag = 15
+	price_tag = 4
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/space_up
-	price_tag = 10
+	price_tag = 3
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea
-	price_tag = 10
+	price_tag = 3
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice
-	price_tag = 10
+	price_tag = 3
 
 
 //***************//
@@ -369,25 +369,25 @@
 // Juices, soda and similar //
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cola
-	price_tag = 60
+	price_tag = 15
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/space_up
-	price_tag = 60
+	price_tag = 15
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind
-	price_tag = 60
+	price_tag = 15
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice
-	price_tag = 60
+	price_tag = 15
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream
-	price_tag = 60
+	price_tag = 15
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice
-	price_tag = 60
+	price_tag = 15
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice
-	price_tag = 60
+	price_tag = 15
 
 
 // Beer //
@@ -464,32 +464,32 @@
 // Snacks //
 
 /obj/item/weapon/reagent_containers/food/snacks/candy
-	price_tag = 10
+	price_tag = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/sosjerky
-	price_tag = 20
+	price_tag = 5
 
 /obj/item/weapon/reagent_containers/food/snacks/unajerky
-	price_tag = 120
+	price_tag = 30
 
 /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers
-	price_tag = 10
+	price_tag = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/tastybread
-	price_tag = 20
+	price_tag = 5
 
 /obj/item/weapon/reagent_containers/food/snacks/no_raisin
-	price_tag = 10
+	price_tag = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie
-	price_tag = 10
+	price_tag = 3
 
 
 /obj/item/weapon/reagent_containers/food/snacks/chips
-	price_tag = 10
+	price_tag = 3
 
 /obj/item/weapon/reagent_containers/food/drinks/dry_ramen
-	price_tag = 50
+	price_tag = 12
 
 
 // Burger //
@@ -940,40 +940,40 @@
 //***************//
 
 /obj/item/weapon/storage/fancy/cigarettes
-	price_tag = 150
+	price_tag = 38
 
 /obj/item/weapon/storage/fancy/cigarettes/luckystars
-	price_tag = 170
+	price_tag = 43
 
 /obj/item/weapon/storage/fancy/cigarettes/jerichos
-	price_tag = 220
+	price_tag = 55
 
 /obj/item/weapon/storage/fancy/cigarettes/menthols
-	price_tag = 180
+	price_tag = 45
 
 /obj/item/weapon/storage/fancy/cigar
-	price_tag = 270
+	price_tag = 68
 
 /obj/item/weapon/storage/fancy/cigarettes/carcinomas
-	price_tag  = 230
+	price_tag  = 58
 
 /obj/item/weapon/storage/fancy/cigarettes/professionals
-	price_tag = 250
+	price_tag = 63
 
 /obj/item/weapon/storage/fancy/cigarettes/dromedaryco
-	price_tag = 120
+	price_tag = 30
 
 /obj/item/weapon/storage/fancy/cigarettes/killthroat
-	price_tag = 100
+	price_tag = 25
 
 /obj/item/weapon/storage/fancy/cigarettes/schizco
-	price_tag = 80
-
-/obj/item/weapon/storage/box/matches
-	price_tag = 10
-
-/obj/item/weapon/flame/lighter
 	price_tag = 20
 
+/obj/item/weapon/storage/box/matches
+	price_tag = 2
+
+/obj/item/weapon/flame/lighter
+	price_tag = 4
+
 /obj/item/weapon/flame/lighter/zippo
-	price_tag = 50
+	price_tag = 100

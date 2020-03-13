@@ -4,7 +4,7 @@
 	icon_state = "greenturtle"
 	item_state = "bl_suit"
 	has_sensor = 0
-	price_tag = 50
+	price_tag = 200
 
 /obj/item/clothing/under/turtleneck/New()
 	if (prob(50))
@@ -17,7 +17,7 @@
 	icon_state = "serbiansuit"
 	item_state = "bl_suit"
 	has_sensor = 0
-	price_tag = 200
+	price_tag = 800
 
 /obj/item/clothing/under/serbiansuit/brown
 	name = "brown Battle Dress Uniform"
