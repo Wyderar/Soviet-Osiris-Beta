@@ -1,8 +1,8 @@
 //Determines starting account balance
 /datum/job/proc/one_time_payment(var/custom_factor = 1)
 	if (initial_balance != -1)
-		return round (initial_balance * RAND_DECIMAL(0.5, 1.1))
-	return round(wage * RAND_DECIMAL(0.5, 1.1))
+		return round (initial_balance * RAND_DECIMAL(0.7, 1.2))
+	return round(wage * RAND_DECIMAL(0.7, 1.2))
 
 
 //How much is this user getting paid?

@@ -106,7 +106,7 @@
 			M = A
 			break
 
-	var/money_amount = (one_time_payment(species_modifier) / 3)
+	var/money_amount = (one_time_payment(species_modifier) / 2)
 	if(!M)
 		M = create_account(H.real_name, money_amount, null)
 	if(H.mind.prefs.bank_pin)

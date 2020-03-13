@@ -23,9 +23,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/icon/bgstate = "black"
 	var/list/bgstate_options = list("steel", "dark_steel", "white_tiles", "black_tiles", "wood", "carpet", "white", "black")
 
-	var/nutrition = 400
-	var/sanity_level = 100
-	var/thirst = 400
+	var/nutrition
+	var/sanity_level
+	var/thirst
 
 /datum/category_item/player_setup_item/physical/body
 	name = "Body"
@@ -69,9 +69,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	to_file(S["sanity_level"], pref.sanity_level)
 
 /datum/category_item/player_setup_item/physical/body/reset_character(var/savefile/S)
-	pref.nutrition = 400
-	pref.sanity_level = 100
-	pref.thirst = 400
+	pref.nutrition = null
+	pref.sanity_level = null
+	pref.thirst = null
 
 /datum/category_item/player_setup_item/physical/body/sanitize_character(var/savefile/S)
 	pref.h_style		= sanitize_inlist(pref.h_style, GLOB.hair_styles_list, initial(pref.h_style))
@@ -108,7 +108,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "<br>"
 	if(!pref.char_exists)
 		. += "<b>Группа крови:</b> <a href='?src=\ref[src];blood_type=1'>[pref.b_type]</a><br>"
-		. += "<b>Тон кожи:/<b> <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
+		. += "<b>Тон кожи:</b> <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
 		. += "<b>Нужны ли очки:</b> <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'>[pref.disabilities & NEARSIGHTED ? "Да" : "Нет"]</a><br><br>"
 	else
 		. += "<b>Группа крови:</b> [pref.b_type]<br>"

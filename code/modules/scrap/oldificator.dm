@@ -21,7 +21,7 @@
 	    "A relic from a bygone age.")
 
 	germ_level = pick(80,110,160)
-	price_tag *= RAND_DECIMAL(0.1, 0.6) //Tank the price of it
+	price_tag *= RAND_DECIMAL(0.1, 0.3) //Tank the price of it
 
 	//Deplete matter and matter_reagents
 	for (var/a in matter)

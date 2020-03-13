@@ -39,6 +39,7 @@
 	return format_output(value["name"], value["rank"])
 
 /datum/report_field/people/from_manifest/set_value(given_value)
+	var/list/manifest = flat_nano_crew_manifest()
 	if(!given_value)
 		value = list()
 	if(!in_as_list(given_value, flat_nano_crew_manifest()))

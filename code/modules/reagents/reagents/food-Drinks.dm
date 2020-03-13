@@ -371,7 +371,7 @@
 	reagent_state = LIQUID
 	color = "#E78108"
 	var/nutrition = 0 // Per metabolism tick
-	var/thirst = 6
+	var/thirst = 12
 	var/adj_dizzy = 0 // Per metabolism tick
 	var/adj_drowsy = 0
 	var/adj_sleepy = 0
