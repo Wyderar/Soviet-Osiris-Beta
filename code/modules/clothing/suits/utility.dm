@@ -32,7 +32,7 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	price_tag = 200
+	price_tag = 50
 
 
 /*
@@ -52,7 +52,7 @@
 		bio = 90,
 		rad = 100
 	)
-	price_tag = 200
+	price_tag = 50
 
 
 /obj/item/clothing/suit/radiation
@@ -75,4 +75,4 @@
 		rad = 100
 	)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL
-	price_tag = 400
+	price_tag = 100

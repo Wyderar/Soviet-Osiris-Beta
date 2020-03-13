@@ -12,7 +12,7 @@
 	silencer_type = /obj/item/weapon/silencer/integrated
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
-	price_tag = 3000
+	price_tag = 1500
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
 	damage_multiplier = 1			//27 with lethal, 32 with hv

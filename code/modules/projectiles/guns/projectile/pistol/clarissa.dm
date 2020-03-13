@@ -10,7 +10,7 @@
 	silenced = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
-	price_tag = 2400
+	price_tag = 1200
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
@@ -50,7 +50,7 @@
 	icon_state = "makarov"
 	damage_multiplier = 1.2
 	recoil_buildup = 21
-	price_tag = 2800
+	price_tag = 1400
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_ILLEGAL = 3)
 	firemodes = list(
 		SEMI_AUTO_NODELAY

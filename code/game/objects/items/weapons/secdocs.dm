@@ -3,7 +3,7 @@
 	desc = "Folder contains some papers with important science data."
 	icon = 'icons/obj/oddities.dmi'
 	icon_state = "folder"
-	price_tag = 10000
+	price_tag = 5000
 
 	oddity_stats = list(
 		STAT_MEC = 8,

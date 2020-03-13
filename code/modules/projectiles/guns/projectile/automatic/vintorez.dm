@@ -14,7 +14,7 @@
 	mag_well = MAG_WELL_RIFLE
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 5)
-	price_tag = 8000
+	price_tag = 4000
 	zoom_factor = 0.8 // double as IH_heavy
 	penetration_multiplier = 1.2
 	damage_multiplier = 1.2

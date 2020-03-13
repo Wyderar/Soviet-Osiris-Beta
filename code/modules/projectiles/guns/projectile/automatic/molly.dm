@@ -17,7 +17,7 @@
 	magazine_type = /obj/item/ammo_magazine/smg
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
-	price_tag = 3400
+	price_tag = 1700
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	silencer_type = /obj/item/weapon/silencer
 	damage_multiplier = 0.7 //good for rubber takedowns or self-defence, not so good to kill someone, you might want to use better smg

@@ -8,7 +8,7 @@
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	flash_protection = FLASH_PROTECTION_REDUCED
-	price_tag = 2000
+	price_tag = 1000
 
 	tick_cost = 0.5
 

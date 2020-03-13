@@ -17,7 +17,7 @@
 	mag_well = MAG_WELL_RIFLE
 	magazine_type = /obj/item/ammo_magazine/lrifle
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
-	price_tag = 7000
+	price_tag = 3500
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
@@ -62,7 +62,7 @@
 		 This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle, therefore it can fire only in bursts instead of auto-fire."
 	icon_state = "AK_wood"
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
-	price_tag = 6000
+	price_tag = 3000
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	firemodes = list(
 	SEMI_AUTO_NODELAY,

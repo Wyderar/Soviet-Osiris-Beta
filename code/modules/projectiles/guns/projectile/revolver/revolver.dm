@@ -17,7 +17,7 @@
 	cocked_sound 	= 'sound/weapons/guns/interact/rev_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/revolver_fire.ogg'
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
-	price_tag = 4000 //avasarala of revolver world
+	price_tag = 2000 //avasarala of revolver world
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 	fire_delay = 3 //all revolvers can fire faster, but have huge recoil
 	damage_multiplier = 1.75

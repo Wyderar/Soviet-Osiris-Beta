@@ -13,7 +13,7 @@
 	matter = list(MATERIAL_STEEL = 1)
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
-	price_tag = 2
+	price_tag = 1
 
 /obj/item/stack/rods/random
 	rand_min = 2

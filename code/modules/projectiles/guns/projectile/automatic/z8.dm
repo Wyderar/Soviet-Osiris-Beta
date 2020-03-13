@@ -9,7 +9,7 @@
 	caliber = CAL_SRIFLE
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 10)
-	price_tag = 6400 //old but gold, decent AP caliber, underbarrel GL, mild recoil and 20-round mags. Better than FS AK.
+	price_tag = 3200 //old but gold, decent AP caliber, underbarrel GL, mild recoil and 20-round mags. Better than FS AK.
 	ammo_type = "/obj/item/ammo_casing/srifle"
 	fire_sound = 'sound/weapons/guns/fire/batrifle_fire.ogg'
 	slot_flags = SLOT_BACK

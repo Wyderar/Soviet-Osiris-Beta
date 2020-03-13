@@ -12,7 +12,7 @@
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 	w_class = ITEM_SIZE_NORMAL
-	price_tag = 400
+	price_tag = 100
 
 /*
  * Helmets
@@ -49,7 +49,7 @@
 		rad = 0
 	)
 	flash_protection = FLASH_PROTECTION_MAJOR
-	price_tag = 2000
+	price_tag = 500
 
 /obj/item/clothing/head/armor/helmet/dermal
 	name = "Dermal Armour Patch"
@@ -75,7 +75,7 @@
 		bio = 0,
 		rad = 0
 	)
-	price_tag = 300
+	price_tag = 75
 
 /obj/item/clothing/head/armor/helmet/thunderdome
 	name = "\improper Thunderdome helmet"
@@ -97,7 +97,7 @@
 		bio = 0,
 		rad = 0
 	)
-	price_tag = 1600
+	price_tag = 400
 	flash_protection = FLASH_PROTECTION_MAJOR
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg //currently junk-only
@@ -108,7 +108,7 @@
 	body_parts_covered = HEAD | EARS
 	action_button_name = "Toggle Night Vision"
 	var/obj/item/clothing/glasses/bullet_proof_ironhammer/hud
-	price_tag = 2400
+	price_tag = 600
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/New()
 	..()
@@ -180,7 +180,7 @@
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
-	price_tag = 2000
+	price_tag = 500
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_full/New()
 	..()
@@ -249,7 +249,7 @@
 		rad = 0
 	)
 	siemens_coefficient = 0
-	price_tag = 1300
+	price_tag = 325
 
 // Riot helmet
 /obj/item/clothing/head/armor/riot
@@ -271,7 +271,7 @@
 	action_button_name = "Flip Face Shield"
 	var/up = FALSE
 	var/base_state
-	price_tag = 600
+	price_tag = 150
 
 /obj/item/clothing/head/armor/riot/attack_self()
 	if(!base_state)
@@ -323,7 +323,7 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
-	price_tag = 1000
+	price_tag = 300
 
 /obj/item/clothing/head/armor/riot_hud/New()
 	..()

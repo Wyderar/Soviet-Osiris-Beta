@@ -7,7 +7,7 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
-	price_tag = 800
+	price_tag = 200
 
 /*
  * Vests
@@ -41,7 +41,7 @@
 	desc = "An armoured jacket with an attached vest holding a badge and livery."
 	icon_state = "warden_jacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	price_tag = 1400
+	price_tag = 350
 
 /obj/item/clothing/suit/armor/vest/ironhammer
 	name = "operator armor"
@@ -60,7 +60,7 @@
 		bio = 0,
 		rad = 0
 	)
-	price_tag = 600
+	price_tag = 150
 
 /obj/item/clothing/suit/armor/greatcoat
 	name = "armored coat"
@@ -76,7 +76,7 @@
 		bio = 0,
 		rad = 0
 	)
-	price_tag = 2400
+	price_tag = 600
 
 /obj/item/clothing/suit/armor/greatcoat/ironhammer
 	icon_state = "greatcoat_ironhammer"
@@ -117,7 +117,7 @@
 		bio = 0,
 		rad = 0
 	)
-	price_tag = 2000
+	price_tag = 500
 
 /obj/item/clothing/suit/armor/bulletproof/ironhammer
 	name = "full bulletproof suit"
@@ -145,7 +145,7 @@
 		bio = 0,
 		rad = 0
 	)
-	price_tag = 1600
+	price_tag = 400
 
 /obj/item/clothing/suit/armor/bulletproof/serbian/green
 	name = "green platecarrier vest"
@@ -171,7 +171,7 @@
 		rad = 0
 	)
 	siemens_coefficient = 0
-	price_tag = 2600
+	price_tag = 650
 
 /obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack") //TODO: Refactor this all into humandefense
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
@@ -221,7 +221,7 @@
 		rad = 0
 	)
 	equip_delay = 2 SECONDS
-	price_tag = 1000
+	price_tag = 250
 
 /obj/item/clothing/suit/armor/heavy/red
 	name = "Thunderdome suit (red)"
@@ -252,7 +252,7 @@
 		bio = 0,
 		rad = 0
 	)
-	price_tag = 2000
+	price_tag = 500
 
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer
 	icon_state = "riot_ironhammer"

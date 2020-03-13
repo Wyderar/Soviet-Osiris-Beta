@@ -16,7 +16,7 @@
 	broken_damage = 100
 	screen_on = FALSE
 	w_class = ITEM_SIZE_NORMAL
-	price_tag = 400
+	price_tag = 200
 
 /obj/item/modular_computer/laptop/AltClick(var/mob/user)
 // Prevents carrying of open laptops inhand.

@@ -13,7 +13,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
-	price_tag = 4600
+	price_tag = 2300
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	recoil_buildup = 13
 	one_hand_penalty = 10
@@ -41,5 +41,5 @@
 /obj/item/weapon/gun/projectile/automatic/sol/rds
 	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses .25 Caseless Rifle rounds. This one comes with red dot sight."
 	icon_state = "sol-eot"
-	price_tag = 4700
+	price_tag = 2350
 	zoom_factor = 0.2

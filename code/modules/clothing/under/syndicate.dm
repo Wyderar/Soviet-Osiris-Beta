@@ -5,4 +5,4 @@
 	item_state = "bl_suit"
 	siemens_coefficient = 0.8
 	has_sensor = 0
-	price_tag = 200
+	price_tag = 50

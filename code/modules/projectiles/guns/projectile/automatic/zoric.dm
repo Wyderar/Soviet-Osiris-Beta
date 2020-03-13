@@ -14,7 +14,7 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_SMG
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
-	price_tag = 4000
+	price_tag = 2000
 	damage_multiplier = 1		 //32 lethal, 35 HV //damage
 	penetration_multiplier = 0.2 //3  lethal, 4  HV //AP
 	recoil_buildup = 8

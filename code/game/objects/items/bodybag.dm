@@ -6,7 +6,7 @@
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "bodybag_folded"
 	w_class = ITEM_SIZE_SMALL
-	price_tag = 20
+	price_tag = 10
 
 	attack_self(mob/user)
 		var/obj/structure/closet/body_bag/R = new /obj/structure/closet/body_bag(user.loc)
@@ -79,7 +79,7 @@
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_folded"
 	origin_tech = list(TECH_BIO = 4)
-	price_tag = 500
+	price_tag = 250
 
 /obj/item/bodybag/cryobag/attack_self(mob/user)
 	var/obj/structure/closet/body_bag/cryobag/R = new /obj/structure/closet/body_bag/cryobag(user.loc)

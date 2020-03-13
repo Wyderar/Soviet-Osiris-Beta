@@ -12,7 +12,7 @@
 	default_files = list()
 	origin_tech = list(TECH_DATA = 2)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 0.25)
-	price_tag = 50
+	price_tag = 25
 	var/disk_name
 	var/license = 0
 
@@ -22,7 +22,7 @@
 	max_capacity = 16
 	origin_tech = list(TECH_DATA = 1)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2)
-	price_tag = 20
+	price_tag = 10
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/advanced
 	name = "advanced data disk"
@@ -31,7 +31,7 @@
 	max_capacity = 256
 	origin_tech = list(TECH_DATA = 4)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 0.5)
-	price_tag = 300
+	price_tag = 150
 
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/advanced/shady

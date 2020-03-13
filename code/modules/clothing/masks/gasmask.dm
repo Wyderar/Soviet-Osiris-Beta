@@ -20,7 +20,7 @@
 		bio = 75,
 		rad = 0
 	)
-	price_tag = 80
+	price_tag = 20
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
 	var/datum/gas_mixture/filtered = new
@@ -49,21 +49,21 @@
 	icon_state = "swat"
 	siemens_coefficient = 0.7
 	body_parts_covered = FACE|EYES
-	price_tag = 200
+	price_tag = 50
 
 /obj/item/clothing/mask/gas/ihs
 	name = "Ironhammer gasmask"
 	icon_state = "IHSgasmask"
 	siemens_coefficient = 0.7
 	body_parts_covered = FACE|EYES
-	price_tag = 160
+	price_tag = 40
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "tactical mask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon_state = "swat"
 	siemens_coefficient = 0.7
-	price_tag = 200
+	price_tag = 50
 
 /obj/item/clothing/mask/gas/clown_hat
 	name = "clown wig and mask"

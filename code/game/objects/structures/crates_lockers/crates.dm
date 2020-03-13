@@ -8,7 +8,7 @@
 	matter = list(MATERIAL_PLASTEEL = 10)
 	open_sound = 'sound/machines/click.ogg'
 	close_sound = 'sound/machines/click.ogg'
-	price_tag = 400
+	price_tag = 200
 
 /obj/structure/closet/crate/close()
 	if(!src.opened)
@@ -79,7 +79,7 @@
 	desc = "A rectangular plastic crate."
 	icon_state = "plasticcrate"
 	matter = list(MATERIAL_PLASIC = 10)
-	price_tag = 100
+	price_tag = 50
 
 /obj/structure/closet/crate/internals
 	name = "internals crate"

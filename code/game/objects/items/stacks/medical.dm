@@ -9,7 +9,7 @@
 	throw_range = 20
 	var/heal_brute = 0
 	var/heal_burn = 0
-	price_tag = 20
+	price_tag = 10
 	matter = list(MATERIAL_BIOMATTER = 5)
 	var/automatic_charge_overlays = FALSE	//Do we handle overlays with base update_icon()? | Stolen from TG egun code
 	var/charge_sections = 5		// How many indicator blips are there?

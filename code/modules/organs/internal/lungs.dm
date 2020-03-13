@@ -4,7 +4,7 @@
 	gender = PLURAL
 	organ_tag = BP_LUNGS
 	parent_organ = BP_CHEST
-	price_tag = 600
+	price_tag = 300
 
 	var/breath_type
 	var/poison_type

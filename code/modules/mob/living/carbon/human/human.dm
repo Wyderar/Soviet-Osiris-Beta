@@ -1569,12 +1569,13 @@ var/list/rank_prefix = list(\
 	if(stat == 0)
 		if(!check_no_wage_positions(job))
 			save_bank_balance()
-		mind.prefs.stat_mec = stats.getStat(STAT_MEC)
-		mind.prefs.stat_cog = stats.getStat(STAT_COG)
-		mind.prefs.stat_bio = stats.getStat(STAT_BIO)
-		mind.prefs.stat_rob = stats.getStat(STAT_ROB)
-		mind.prefs.stat_tgh = stats.getStat(STAT_TGH)
-		mind.prefs.stat_vig = stats.getStat(STAT_VIG)
+		if(job != "Vagabond")
+			mind.prefs.stat_mec = stats.getStat(STAT_MEC)
+			mind.prefs.stat_cog = stats.getStat(STAT_COG)
+			mind.prefs.stat_bio = stats.getStat(STAT_BIO)
+			mind.prefs.stat_rob = stats.getStat(STAT_ROB)
+			mind.prefs.stat_tgh = stats.getStat(STAT_TGH)
+			mind.prefs.stat_vig = stats.getStat(STAT_VIG)
 		mind.prefs.nutrition = nutrition
 		mind.prefs.thirst = thirst
 		mind.prefs.sanity_level = sanity.level

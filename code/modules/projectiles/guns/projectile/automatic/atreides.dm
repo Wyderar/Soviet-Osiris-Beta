@@ -16,7 +16,7 @@
 	mag_well = MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2)
-	price_tag = 2400
+	price_tag = 1200
 	damage_multiplier = 0.8
 	recoil_buildup = 4
 	silencer_type = /obj/item/weapon/silencer

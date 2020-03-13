@@ -10,7 +10,7 @@
 	force = WEAPON_FORCE_NORMAL
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
-	price_tag = 5000
+	price_tag = 2500
 	projectile_type = /obj/item/projectile/beam/midlaser
 	firemodes = list(
 		WEAPON_NORMAL,
@@ -27,7 +27,7 @@
 	name = "NT LG \"Lightfall\" - P"
 	desc = "A modified version of \"NeoTheology\" brand laser carbine, this one fires less concentrated energy bolts, designed for target practice."
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 2)
-	price_tag = 2000
+	price_tag = 1000
 	projectile_type = /obj/item/projectile/beam/practice
 
 obj/item/weapon/gun/energy/retro
@@ -43,7 +43,7 @@ obj/item/weapon/gun/energy/retro
 	matter = list(MATERIAL_STEEL = 12)
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
-	price_tag = 4000
+	price_tag = 2000
 	firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
@@ -64,7 +64,7 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam
 	origin_tech = null
 	self_recharge = TRUE
-	price_tag = 9000
+	price_tag = 4500
 	firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
@@ -85,7 +85,7 @@ obj/item/weapon/gun/energy/retro
 	charge_cost = 250
 	fire_delay = 20
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_SILVER = 4, MATERIAL_URANIUM = 1)
-	price_tag = 6000
+	price_tag = 3000
 	one_hand_penalty = 5
 
 

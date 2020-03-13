@@ -7,7 +7,7 @@
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	off_state = "denight"
 	origin_tech = list(TECH_MAGNET = 2)
-	price_tag = 1000
+	price_tag = 500
 
 	tick_cost = 1
 
