@@ -94,6 +94,9 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency_oxygen(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
+	new /obj/item/device/radio(src)
+	new /obj/item/device/lighting/glowstick/flare(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/mre/can(src)
 
 /obj/item/weapon/storage/box/survival/extended/populate_contents()
 	new /obj/item/clothing/mask/breath(src)

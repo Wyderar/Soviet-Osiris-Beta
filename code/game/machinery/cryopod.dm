@@ -349,6 +349,10 @@
 		if ((G.fields["name"] == occupant.real_name))
 			qdel(G)
 
+	for(var/datum/money_account/A in all_money_accounts)
+		if(A.account_id == occupant.character_id)
+			A.suspended = 1
+
 	icon_state = base_icon_state
 
 	//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?

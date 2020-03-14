@@ -30,7 +30,6 @@
 /decl/hierarchy/outfit/job/hop
 	name = OUTFIT_JOB_NAME("First Officer")
 	uniform = /obj/item/clothing/under/rank/first_officer
-	suit = /obj/item/clothing/suit/armor/vest
 	l_ear = /obj/item/device/radio/headset/heads/hop
 	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/thick

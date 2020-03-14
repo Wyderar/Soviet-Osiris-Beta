@@ -82,7 +82,7 @@ SUBSYSTEM_DEF(ticker)
 				pregame_timeleft = initial(pregame_timeleft)
 				to_chat(world, "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>")
 			else
-				pregame_timeleft = 40
+				pregame_timeleft = 120
 
 			if(!start_immediately)
 				to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
