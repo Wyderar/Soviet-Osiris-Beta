@@ -1,4 +1,4 @@
-  var/list/ckeywhitelist = file2list("config/whitelist.txt")
+var/list/ckeywhitelist = file2list("config/whitelist.txt")
 
 //Check player in whitelist
 /hook/startup/proc/loadCkeyWhitelist()
