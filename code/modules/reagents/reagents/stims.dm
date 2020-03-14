@@ -273,6 +273,7 @@
 	if(prob(25 - (10 * M.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
 	M.adjustNutrition(-5)
+	M.adjustThirst(-5)
 
 /datum/reagent/stim/violence_ultra/overdose(var/mob/living/carbon/M, var/alien)
 	M.adjustCloneLoss(5)
@@ -396,6 +397,7 @@
 	if(prob(25 - (5 * M.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
 	M.adjustNutrition(-7)
+	M.adjustThirst(-7)
 
 /datum/reagent/stim/menace/overdose(var/mob/living/carbon/M, var/alien)
 	M.slurring = max(M.slurring, 50)

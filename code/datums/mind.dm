@@ -37,7 +37,7 @@
 	var/active = FALSE
 
 
-
+	var/datum/preferences/prefs
 	var/memory
 
 	var/assigned_role
@@ -315,6 +315,8 @@
 /mob/living/proc/mind_initialize()
 	if(mind)
 		mind.key = key
+		if(client)
+			mind.prefs = client.prefs
 	else
 		mind = new /datum/mind(key)
 		mind.original = src

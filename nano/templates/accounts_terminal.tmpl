@@ -126,6 +126,7 @@
           <span class='alert'>This account has no financial transactions on record for today.</span>
         {{/if}}
       </div>
+        {{if data.access_level >= 2}}
         <div class='item'>
           <h2>CentCom Administrator</h2>
         </div>
@@ -135,7 +136,6 @@
           </div>
           {{:helper.link('Revoke', 'transferthick-e-w', {'choice' : 'revoke_payroll'}, data.account_number == data.station_account_number ? 'disabled' : null, 'linkDanger')}}
         </div>
-        {{if data.access_level >= 2}}
         <div class='item'>
           <div class='fixedLeft'>
             Silent Fund Adjustment:
@@ -147,7 +147,7 @@
     {{else}}
 
       <div class='item'>
-        <h2>NanoTrasen Accounts</h2>
+        <h2>CEV Eris Accounts</h2>
       </div>
       {{if data.accounts}}
         <table style="width: 100%">

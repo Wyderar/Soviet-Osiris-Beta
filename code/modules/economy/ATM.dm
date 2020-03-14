@@ -125,6 +125,9 @@ log transactions
 			//create a transaction log entry
 			var/datum/transaction/T = new(cash.worth, authenticated_account.owner_name, "Credit deposit", machine_id)
 			T.apply_to(authenticated_account)
+			log_game("[user] deposited [cash.worth][CREDS] into the ATM")
+			if(cash.worth >= 500)
+				message_admins("\red [user] deposited [cash.worth][CREDS] into the ATM.", 1)
 
 			to_chat(user, "<span class='info'>You insert [I] into [src].</span>")
 			src.attack_hand(user)
@@ -237,9 +240,12 @@ log transactions
 				dat += "<input type='submit' value='Submit'><br>"
 				dat += "</form>"
 
-		user << browse(dat,"window=atm;size=600x650")
-	else
-		user << browse(null,"window=atm")
+		var/datum/browser/popup = new(user, "memory","Память", 600, 650)
+		popup.set_content(dat)
+		popup.open()
+//		user << browse(dat,"window=atm;size=600x650")
+//	else
+//		user << browse(null,"window=atm")
 
 /obj/machinery/atm/Topic(var/href, var/href_list)
 	if (..())
@@ -318,13 +324,15 @@ log transactions
 					if(amount <= authenticated_account.money)
 						playsound(src, 'sound/machines/chime.ogg', 50, 1)
 
-
 						//remove the money
 						//create an entry in the account transaction log
 						var/datum/transaction/T = new(-amount, authenticated_account.owner_name, "Credit withdrawal", machine_id)
 						if(T.apply_to(authenticated_account))
 							//	spawn_money(amount,src.loc)
 							spawn_ewallet(amount,src.loc,usr)
+						log_game("[usr] withdrew [amount][CREDS] from the ATM.")
+						if(amount >= 500)
+							message_admins("\red [usr] withdrew [amount][CREDS] from the ATM.", 1)
 					else
 						to_chat(usr, SPAN_WARNING("You don't have enough funds to do that!"))
 			if("withdrawal")
@@ -341,7 +349,9 @@ log transactions
 						if(T.apply_to(authenticated_account))
 							//remove the money
 							spawn_money(amount,src.loc,usr)
-
+						log_game("[usr] withdrew [amount][CREDS] from the ATM.")
+						if(amount >= 500)
+							message_admins("\red [usr] withdrew [amount][CREDS] from the ATM.", 1)
 					else
 						to_chat(usr, SPAN_WARNING("You don't have enough funds to do that!"))
 			if("balance_statement")

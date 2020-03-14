@@ -56,5 +56,3 @@
 	display_name = "high-tech laptop"
 	path = /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/golden
 	cost = 5
-
-

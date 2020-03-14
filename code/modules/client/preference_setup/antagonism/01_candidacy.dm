@@ -46,7 +46,7 @@
 		bantypes += antag.bantype
 		. += "<tr><td>[antag.bantype]: </td><td>"
 		if(jobban_isbanned(preference_mob(), antag.bantype) || (antag.id == ROLE_MALFUNCTION && jobban_isbanned(preference_mob(), "AI")))
-			. += "<span class='danger'>\[БАН\]</span><br>"
+			. += "<span class='danger'>\[НЕДОСТУПНО\]</span><br>"
 		else if(antag.bantype in pref.be_special_role)
 			. += "<span class='linkOn'>Да</span> <a href='?src=\ref[src];add_never=[antag.bantype]'>Никогда</a></br>"
 		else if(antag.bantype in pref.never_be_special_role)
@@ -63,7 +63,7 @@
 
 		. += "<tr><td>[ghost_trap.ghost_trap_role]: </td><td>"
 		if(banned_from_ghost_role(preference_mob(), ghost_trap))
-			. += "<span class='danger'>\[БАН\]</span><br>"
+			. += "<span class='danger'>\[НЕДОСТУПНО\]</span><br>"
 		else if(ghost_trap.pref_check in pref.be_special_role)
 			. += "<span class='linkOn'>Да</span>  <a href='?src=\ref[src];add_never=[ghost_trap.pref_check]'>Никогда</a></br>"
 		else if(ghost_trap.pref_check in pref.never_be_special_role)

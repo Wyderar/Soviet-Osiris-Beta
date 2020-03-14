@@ -93,8 +93,8 @@
 		dat += "Слот - "
 		dat += "<a href='?src=\ref[src];load=1'>Загрузить</a> - "
 		dat += "<a href='?src=\ref[src];save=1'>Сохранить</a> - "
-		dat += "<a href='?src=\ref[src];resetslot=1'>Сбросить</a> - "
-		dat += "<a href='?src=\ref[src];reload=1'>Перезагрузить</a>"
+		dat += "<a href='?src=\ref[src];resetslot=1'>Сбросить</a>"
+//		dat += "<a href='?src=\ref[src];reload=1'>Перезагрузить</a>"
 
 	else
 		dat += "Please create an account to save your preferences."
@@ -136,12 +136,17 @@
 		return 1
 
 	if(href_list["save"])
+		if(!char_exists)
+			var/response = alert("В случае, если вы сохраните его, у вас больше не будет возможности менять его имя и внешность!","Вы уверены, что хотите сохранить персонажа?","Нет","Да")
+			if(response == "Нет")
+				return
 		save_preferences()
 		save_character()
-	else if(href_list["reload"])
-		load_preferences()
-		load_character()
-		sanitize_preferences()
+		char_exists = 1
+//	else if(href_list["reload"])
+//		load_preferences()
+//		load_character()
+//		sanitize_preferences()
 	else if(href_list["load"])
 		if(!IsGuestKey(usr.key))
 			open_load_dialog(usr)
@@ -151,9 +156,13 @@
 		sanitize_preferences()
 		close_load_dialog(usr)
 	else if(href_list["resetslot"])
-		if(real_name != input("Это сбросит текущий слот. Введите имя персонажа чтобы продолжить."))
+		for(var/mob/living/carbon/human/R in SSmobs.mob_list)
+			if(client.prefs.character_id == R.character_id)
+				to_chat(usr, "You can't reset character that is already in-game!")
+				return 0
+		if(real_name != input("Это сбросит текущий слот и разблокирует его редактирование, однако вы потеряете все свои сбережения! Введите имя персонажа чтобы продолжить."))
 			return 0
-		load_character(SAVE_RESET)
+		reset_character()
 		sanitize_preferences()
 	else
 		return 0
@@ -166,8 +175,8 @@
 	player_setup.sanitize_setup()
 	character.set_species(species)
 
-	if(be_random_name)
-		real_name = random_name(gender,species)
+//	if(be_random_name)
+//		real_name = random_name(gender,species)
 
 	if(config.humans_need_surnames)
 		var/firstspace = findtext(real_name, " ")

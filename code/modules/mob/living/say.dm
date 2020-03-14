@@ -79,15 +79,15 @@ var/list/channel_to_radio_key = new
 	var/speech_problem_flag = 0
 
 	if((HULK in mutations) && health >= 25 && length(message))
-		message = "[uppertext(message)]!!!"
+		message = "[message]!!!"
 		verb = pick("yells", "roars", "hollers")
 		speech_problem_flag = 1
 	if(slurring)
-		message = slur(message)
+//		message = slur(message)
 		verb = pick("slobbers", "slurs")
 		speech_problem_flag = 1
 	if(stuttering)
-		message = stutter(message)
+//		message = stutter(message)
 		verb = pick("stammers", "stutters")
 		speech_problem_flag = 1
 

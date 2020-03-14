@@ -25,3 +25,17 @@
 	album = "Ascention"
 	song = 'sound/music/lobby/Duke_Gneiss-The_Runner_in_motion.ogg'
 	url = "https://soundcloud.com/dukegneiss/quantums-escape-plan"
+
+/music_track/owl //Track 20
+	artist = "Duke Gneiss"
+	title = "OWL"
+	album = "Ascention"
+	song = 'sound/music/lobby/Duke_Gneiss-OWL.ogg'
+	url = "https://soundcloud.com/dukegneiss/o-w-l"
+
+/music_track/intruder //Track 20
+	artist = "Duke Gneiss"
+	title = "Intruder"
+	album = "Ascention"
+	song = 'sound/music/lobby/Duke_Gneiss-Intruder.ogg'
+	url = "https://soundcloud.com/dukegneiss/intruder"

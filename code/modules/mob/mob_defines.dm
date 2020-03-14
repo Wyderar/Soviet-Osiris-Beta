@@ -114,7 +114,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	var/in_throw_mode = 0
 
-
+	var/character_id
 
 	var/targeted_organ = BP_CHEST
 

@@ -11,7 +11,7 @@
 	selection_color = "#94a87f"
 	req_admin_notify = 1
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_SERBIAN = 5)
-	wage = WAGE_COMMAND
+	wage = WAGE_NONE
 	outfit_type = /decl/hierarchy/outfit/job/medical/cmo
 
 	access = list(

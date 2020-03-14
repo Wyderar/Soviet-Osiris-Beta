@@ -85,6 +85,21 @@
 	loaded_character = S
 	return S
 
+/datum/preferences/proc/reset_character()
+	if(!path)				return 0
+	if(!check_cooldown())
+		if(istype(client))
+			to_chat(client, SPAN_WARNING("You're attempting to reset your character a little too fast. Wait half a second, then try again."))
+		return 0
+	var/savefile/S = new /savefile(path)
+	if(!S)					return 0
+	S.cd = maps_data.character_reset_path(default_slot)
+
+	S["version"] << savefile_version
+	player_setup.reset_character(S)
+	loaded_character = S
+	return S
+
 /datum/preferences/proc/sanitize_preferences()
 	player_setup.sanitize_setup()
 	return 1

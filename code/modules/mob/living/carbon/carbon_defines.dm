@@ -26,6 +26,9 @@
 	var/cpr_time = 1.0
 	nutrition = 400.0//Carbon
 
+	var/thirst = 400
+	var/max_thirst = 400
+
 
 	var/obj/item/weapon/tank/internal = null//Human/Monkey
 

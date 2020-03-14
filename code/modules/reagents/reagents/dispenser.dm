@@ -96,6 +96,7 @@
 	ingest_met = REM * 4
 	touch_met = 5
 	var/nutriment_factor = 0
+	var/thirst_factor  = 0
 	var/strength = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
 	var/toxicity = 1
 
@@ -120,6 +121,7 @@
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
+	M.adjustThirst(thirst_factor * (issmall(M) ? effect_multiplier *2 : effect_multiplier))
 	var/strength_mod = 1
 
 	M.add_chemical_effect(CE_ALCOHOL, 1)

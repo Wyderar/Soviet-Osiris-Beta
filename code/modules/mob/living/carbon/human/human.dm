@@ -704,6 +704,7 @@ var/list/rank_prefix = list(\
 					location.add_vomit_floor(src, 1)
 
 				nutrition -= 40
+				thirst -= 40
 				adjustToxLoss(-3)
 				spawn(350)	//wait 35 seconds before next volley
 					lastpuke = 0
@@ -1314,9 +1315,9 @@ var/list/rank_prefix = list(\
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(length(msg) <= 40)
-			return "<font color='blue'>[msg]</font>"
+			return "[msg]"
 		else
-			return "<font color='blue'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
+			return "[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
 	return ..()
 
 /mob/living/carbon/human/getDNA()
@@ -1550,3 +1551,53 @@ var/list/rank_prefix = list(\
 	. = ..()
 	for(var/obj/item/clothing/ears/C in list(l_ear, r_ear))
 		. = min(., C.volume_multiplier)
+
+/mob/living/carbon/human/proc/save_to_prefs()
+	if(!config.canonicity)
+		return 0
+	
+	if(!mind)
+		return 0
+
+	if(stat == DEAD)
+		mind.prefs.bank_balance = 0
+		mind.prefs.reset_character()
+
+	if(stat == 1)
+		mind.prefs.bank_balance = 0
+
+	if(stat == 0)
+		if(!check_no_wage_positions(job))
+			save_bank_balance()
+		mind.prefs.stat_mec = stats.getStat(STAT_MEC)
+		mind.prefs.stat_cog = stats.getStat(STAT_COG)
+		mind.prefs.stat_bio = stats.getStat(STAT_BIO)
+		mind.prefs.stat_rob = stats.getStat(STAT_ROB)
+		mind.prefs.stat_tgh = stats.getStat(STAT_TGH)
+		mind.prefs.stat_vig = stats.getStat(STAT_VIG)
+		mind.prefs.nutrition = nutrition
+		mind.prefs.thirst = thirst
+		mind.prefs.sanity_level = sanity.level
+		mind.prefs.char_exists = 1
+
+	mind.prefs.s_tone = s_tone
+	mind.prefs.h_style = h_style
+	mind.prefs.f_style = f_style
+	mind.prefs.b_type = b_type
+	mind.prefs.disabilities = disabilities
+	mind.prefs.eyes_color = eyes_color
+	mind.prefs.skin_color = skin_color
+	mind.prefs.hair_color = hair_color
+	mind.prefs.facial_color = facial_color
+
+	mind.prefs.save_preferences()
+	mind.prefs.save_character()
+
+	return 1
+
+/mob/living/carbon/human/proc/save_bank_balance()
+	mind.initial_account.money = CLAMP(mind.initial_account.money, -999999, 999999)
+	mind.prefs.bank_balance = mind.initial_account.money
+	mind.prefs.bank_pin = mind.initial_account.remote_access_pin
+
+	return 1

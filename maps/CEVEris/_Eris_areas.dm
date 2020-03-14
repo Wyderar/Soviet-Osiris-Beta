@@ -300,6 +300,10 @@
 	sound_env = SMALL_SOFTFLOOR
 	area_light_color = COLOR_LIGHTING_CREW_SOFT
 
+/area/eris/command/co
+	name = "\improper Command - Commissioner's Office"
+	icon_state = "head_quarters"
+
 /area/eris/command/meo
 	name = "\improper Research - MEO's Office"
 	icon_state = "head_quarters"
@@ -363,6 +367,8 @@
 /area/eris/command/courtroom
 	name = "\improper Courtroom"
 	icon_state = "courtroom"
+
+
 
 
 

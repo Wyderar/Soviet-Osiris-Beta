@@ -61,7 +61,7 @@
 	In future, we will implement largescale missions and research contracts to earn money, and then set it
 	to a much lower starting value
 	*/
-	account_initial_balance = 2000000
+	account_initial_balance = 100000
 	funding_type = FUNDING_NONE
 
 

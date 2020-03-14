@@ -151,6 +151,7 @@
 	if(istype(L, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = L
 		H.nutrition -= 100
+		H.thirst -= 100
 		if(H.nutrition <= 0)
 			H.gib()
 		if(H.isMonkey())

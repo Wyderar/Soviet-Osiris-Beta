@@ -32,7 +32,9 @@
 	image_file = 'icons/title_screens/ironhammer.png'
 	possibleMusic = list(
 		'sound/music/lobby/Duke_Gneiss-The_Runner_in_motion.ogg',
-		'sound/music/lobby/Duke_Gneiss-Metropolis.ogg'
+		'sound/music/lobby/Duke_Gneiss-Metropolis.ogg',
+		'sound/music/lobby/Duke_Gneiss-OWL.ogg',
+		'sound/music/lobby/Duke_Gneiss-Intruder.ogg'
 		)
 
 /datum/lobbyscreen/onestar
@@ -50,12 +52,12 @@
 	if(!musicTrack)
 		return
 	if(C.get_preference_value(/datum/client_preference/play_lobby_music) == GLOB.PREF_YES)
-		sound_to(C, sound(musicTrack, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
+		sound_to(C, sound(musicTrack, repeat = 0, wait = 0, volume = 45, channel = GLOB.lobby_sound_channel))
 
 /datum/lobbyscreen/proc/stop_music(client/C)
 	if(!musicTrack)
 		return
-	sound_to(C, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
+	sound_to(C, sound(null, repeat = 0, wait = 0, volume = 45, channel = GLOB.lobby_sound_channel))
 
 
 /datum/lobbyscreen/proc/show_titlescreen(client/C)

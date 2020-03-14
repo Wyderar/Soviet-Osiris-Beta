@@ -20,6 +20,8 @@ GLOBAL_LIST_INIT(music_tracks, list(
 	"Metropolis" = /music_track/metropolis,
 	"Bluespace" = /music_track/bluespace,
 	"Exploring" = /music_track/exploring,
+	"O.W.L." = /music_track/owl,
+	"Intruder" = /music_track/intruder,
 	"The Runner in Motion" = /music_track/runner,
 	"Neotheology" = /music_track/neotheology,
 	"Downtown" = /music_track/downtown,

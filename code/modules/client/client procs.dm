@@ -126,10 +126,10 @@
 		del(src)
 		return
 
-	if(config.useckeywhitelist && !CheckWhitelist(key))
-		to_chat(src,"This server doesn't allow non-whitelisted ckeys to play. Go to https://discord.gg/PuraXWG for more information.","Whitelist","OK")
-		del(src)
-		return
+//	if(config.useckeywhitelist && !CheckWhitelist(key))
+//		to_chat(src,"This server doesn't allow non-whitelisted ckeys to play. Go to https://discord.gg/PuraXWG for more information.","Whitelist","OK")
+//		del(src)
+//		return
 
 	// Change the way they should download resources.
 	if(config.resource_urls)
@@ -382,11 +382,11 @@
 	return FALSE
 
 
-/client/verb/character_setup()
-	set name = "Character Setup"
-	set category = "OOC"
-	if(prefs)
-		prefs.ShowChoices(usr)
+///client/verb/character_setup()
+//	set name = "Character Setup"
+//	set category = "OOC"
+//	if(prefs)
+//		prefs.ShowChoices(usr)
 /*
 /client/proc/apply_fps(var/client_fps)
 	if(world.byond_version >= 511 && byond_version >= 511 && client_fps >= CLIENT_MIN_FPS && client_fps <= CLIENT_MAX_FPS)

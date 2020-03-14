@@ -471,7 +471,10 @@
 				</html>
 			"}
 			usr << browse(dat, "window=[name];size=500x200")
-			onclose(usr, "[name]")
+			var/datum/browser/popup = new(usr, "[name]","[name]", 500, 200, src)
+			popup.set_content(dat)
+			popup.open()
+
 	if(href_list["flavor_change"])
 		update_flavor_text()
 //	..()
@@ -562,10 +565,10 @@
 	/*if(pullin)
 		pullin.icon_state = "pull1"*/
 
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		if(H.pull_damage())
-			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
+//	if(ishuman(AM))
+//		var/mob/living/carbon/human/H = AM
+//		if(H.pull_damage())
+//			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -609,6 +612,7 @@
 	if(.)
 		if(statpanel("Status") && SSticker.current_state != GAME_STATE_PREGAME)
 			stat("Storyteller", "[master_storyteller]")
+			stat("Round Type", "[config.canonicity ? "canon" : "non-canon"]")
 			stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
 

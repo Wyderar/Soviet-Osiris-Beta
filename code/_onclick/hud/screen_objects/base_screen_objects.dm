@@ -499,12 +499,44 @@
 	overlays += ovrls["nsa0"]
 
 //--------------------------------------------------nsa end---------------------------------------------------------
+//--------------------------------------------------thirst---------------------------------------------------------
+/obj/screen/thirst
+	name = "thirst"
+	icon_state = "blank"
+	process_flag = TRUE
+
+/obj/screen/thirst/New()
+	..()
+	ovrls["thirst0"] += new /image (icon = src.icon, icon_state ="thirst0")
+	ovrls["thirst1"] += new /image/no_recolor(icon = src.icon, icon_state ="thirst1")
+	ovrls["thirst2"] += new /image/no_recolor(icon = src.icon, icon_state ="thirst2")
+	ovrls["thirst3"] += new /image/no_recolor(icon = src.icon, icon_state ="thirst3")
+	ovrls["thirst4"] += new /image/no_recolor(icon = src.icon, icon_state ="thirst4")
+	update_icon()
+
+/obj/screen/thirst/Process()
+	update_icon()
+
+/obj/screen/thirst/update_icon()
+	set src in usr.client.screen
+	var/mob/living/carbon/human/H = parentmob
+	overlays.Cut()
+	switch(H.thirst)
+		if(450 to INFINITY)				overlays += ovrls["thirst0"]
+		if(350 to 450)					overlays += ovrls["thirst1"]
+		if(250 to 350)					overlays += ovrls["thirst2"]
+		if(150 to 250)					overlays += ovrls["thirst3"]
+		else							overlays += ovrls["thirst4"]
+
+/obj/screen/thirst/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["thirst4"]
+//--------------------------------------------------thirst end---------------------------------------------------------
 //--------------------------------------------------nutrition---------------------------------------------------------
 /obj/screen/nutrition
 	name = "nutrition"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "blank"
-	screen_loc = "15,6"
 	process_flag = TRUE
 
 /obj/screen/nutrition/New()

@@ -852,4 +852,37 @@ ADMIN_VERB_ADD(/client/proc/reload_whitelist, R_SERVER, FALSE)
 	set name = "Reload Whitelist"
 
 	if(!check_rights(R_SERVER))	return
-	load_ckeywhitelist()
+	load_whitelist()
+	log_admin("[key_name(usr)] reloaded the whitelist.")
+	message_admins("\blue [key_name_admin(usr)] reloaded the whitelist.", 1)
+
+ADMIN_VERB_ADD(/client/proc/save_all_characters, R_SERVER, FALSE)
+/client/proc/save_all_characters()
+	set category = "Server"
+	set name = "Save Characters"
+
+	if(!check_rights(R_SERVER))	return
+	if(alert("Are you sure?", "Save Characters", "No", "Yes") == "Yes")
+		if(!config.canonicity)
+			to_chat(usr, "Sorry, can not save characters due to non canon round!")
+			return
+		save_characters()
+		log_admin("[key_name(usr)] saved all characters.")
+		message_admins("\blue [key_name_admin(usr)] saved all characters.", 1)
+
+ADMIN_VERB_ADD(/client/proc/check_balances, R_SERVER, FALSE)
+/client/proc/check_balances()
+	set category = "Server"
+	set name = "Check Player Balances"
+
+	if(!check_rights(R_SERVER))	return
+	var/output = "<B>Player Balances</B>"
+	output +="<hr>"
+	if(all_money_accounts.len)
+		for(var/datum/money_account/M in all_money_accounts)
+			output +="<b>[M.owner_name]</b> - [M.money][CREDS]<br>"
+		usr << browse(output,"window=checkbalances;size=400x600")
+		log_admin("[key_name(usr)] is now checking player balances.")
+		message_admins("\blue [key_name_admin(usr)] is now checking player balances.", 1)
+	else
+		to_chat(usr, "Sorry, no money accounts!")

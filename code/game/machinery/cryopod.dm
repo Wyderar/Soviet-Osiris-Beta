@@ -164,7 +164,7 @@
 	var/disallow_occupant_types = list()
 
 	var/mob/occupant = null       // Person waiting to be despawned.
-	var/time_till_despawn = 6000  // 10 minutes-ish safe period before being despawned.
+	var/time_till_despawn = 600   // 1 minute safe period before being despawned.
 	var/time_entered = 0          // Used to keep track of the safe period.
 	var/obj/item/device/radio/intercom/announce //
 
@@ -349,6 +349,10 @@
 		if ((G.fields["name"] == occupant.real_name))
 			qdel(G)
 
+	for(var/datum/money_account/A in all_money_accounts)
+		if(A.account_id == occupant.character_id)
+			A.suspended = 1
+
 	icon_state = base_icon_state
 
 	//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
@@ -359,7 +363,8 @@
 	control_computer._admin_logs += "[key_name(occupant)] ([occupant.mind.assigned_role]) at [stationtime2text()]"
 	log_and_message_admins("[key_name(occupant)] ([occupant.mind.assigned_role]) entered cryostorage.")
 
-	announce.autosay("[occupant.real_name], [occupant.mind.assigned_role], [on_store_message]", "[on_store_name]")
+	if(occupant.mind.assigned_role != ASSISTANT_TITLE)
+		announce.autosay("[occupant.real_name], [occupant.mind.assigned_role], [on_store_message]", "[on_store_name]")
 	visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>")
 
 
@@ -429,6 +434,10 @@
 			return
 
 		set_occupant(affecting)
+
+		if(ishuman(affecting))
+			var/mob/living/carbon/human/H = affecting
+			(H.save_to_prefs())
 
 		// Book keeping!
 		var/turf/location = get_turf(src)

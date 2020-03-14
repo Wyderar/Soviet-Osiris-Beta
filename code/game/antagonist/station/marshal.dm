@@ -3,7 +3,7 @@
 	role_text = "Ironhammer Marshal"
 	role_text_plural = "Ironhammer Marshals"
 	bantype = ROLE_BANTYPE_CREW_SIDED
-	protected_jobs = list(JOBS_COMMAND, JOBS_SECURITY)
+	protected_jobs = list(JOBS_COMMAND, JOBS_SECURITY, ASSISTANT_TITLE, COMMISSAR_TITLE)
 	antaghud_indicator = "huddeathsquad"
 
 	possible_objectives = list(

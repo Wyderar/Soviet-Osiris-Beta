@@ -10,7 +10,7 @@
 	supervisors = "the Captain"
 	selection_color = "#97b0be"
 	req_admin_notify = 1
-	wage = WAGE_COMMAND
+	wage = WAGE_NONE
 	also_known_languages = list(LANGUAGE_CYRILLIC = 60, LANGUAGE_SERBIAN = 60)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/ihc
@@ -67,7 +67,7 @@
 	spawn_positions = 1
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
-	department_account_access = TRUE
+	department_account_access = FALSE
 	wage = WAGE_LABOUR_HAZARD
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 

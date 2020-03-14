@@ -11,7 +11,7 @@
 	selection_color = "#c7b97b"
 	req_admin_notify = 1
 	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 25)
-	wage = WAGE_COMMAND
+	wage = WAGE_NONE
 	ideal_character_age = 50
 
 	outfit_type = /decl/hierarchy/outfit/job/engineering/exultant
