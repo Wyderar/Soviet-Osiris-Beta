@@ -90,10 +90,10 @@
 	var/dat = "<html><body><center>"
 
 	if(path)
-		dat += "Слот - "
-		dat += "<a href='?src=\ref[src];load=1'>Загрузить</a> - "
-		dat += "<a href='?src=\ref[src];save=1'>Сохранить</a> - "
-		dat += "<a href='?src=\ref[src];resetslot=1'>Сбросить</a>"
+//		dat += "Слот - "
+//		dat += "<a href='?src=\ref[src];load=1'>Загрузить</a> - "
+		dat += "<a href='?src=\ref[src];save=1'>Сохранить персонажа</a> "
+		dat += "<a href='?src=\ref[src];resetslot=1'>Сбросить персонажа</a>"
 //		dat += "<a href='?src=\ref[src];reload=1'>Перезагрузить</a>"
 
 	else
@@ -105,7 +105,7 @@
 	dat += player_setup.content(user)
 
 	dat += "</html></body>"
-	var/datum/browser/popup = new(user, "Настройка персонажа","Настройка персонажа", 1200, 800, src)
+	var/datum/browser/popup = new(user, "Настройка персонажа","Настройка персонажа", 800, 850, src)
 	popup.set_content(dat)
 	popup.open()
 
@@ -155,6 +155,11 @@
 		load_character(text2num(href_list["changeslot"]))
 		sanitize_preferences()
 		close_load_dialog(usr)
+	else if(href_list["chooseslot"])
+		load_character(text2num(href_list["chooseslot"]))
+		sanitize_preferences()
+		close_load_dialog(usr)
+		return 1
 	else if(href_list["resetslot"])
 		for(var/mob/living/carbon/human/R in SSmobs.mob_list)
 			if(client.prefs.character_id == R.character_id)
@@ -164,6 +169,9 @@
 			return 0
 		reset_character()
 		sanitize_preferences()
+	else if(href_list["close_load_dialog"])
+		close_load_dialog(usr)
+		return 1
 	else
 		return 0
 
@@ -256,19 +264,27 @@
 
 	var/savefile/S = new /savefile(path)
 	if(S)
-		dat += "<b>Выберите слот для загрузки</b><hr>"
+		dat += "<b>Выберите вашего персонажа</b><br>"
+		dat += "Для редактирования нажмите [WRENCH_ICON]<hr>"
 		var/name
 		for(var/i=1, i<= config.character_slots, i++)
 			S.cd = maps_data.character_load_path(S, i)
 			S["real_name"] >> name
-			if(!name)	name = "Персонаж[i]"
-			if(i==default_slot)
-				name = "<b>[name]</b>"
-			dat += "<a href='?src=\ref[src];changeslot=[i]'>[name]</a><br>"
+//			if(!name)	name = "Создать"
+//			if(i==default_slot)
+//				name = "<b>[name]</b>"
+			if(name && i==default_slot)
+				dat += "<b>[name]</b> <a href='?src=\ref[src];changeslot=[i]'>[WRENCH_ICON]</a><br>"
+			else if(name && i!=default_slot)
+				dat += "<a href='?src=\ref[src];chooseslot=[i]'>[name]</a><a href='?src=\ref[src];changeslot=[i]'>[WRENCH_ICON]</a><br>"
+			else if(!name)
+				dat += "<a href='?src=\ref[src];changeslot=[i]'>Создать нового</a><br>"
 
 	dat += "<hr>"
+	dat += "<a href='?src=\ref[src];close_load_dialog=1'>Закрыть</a><br>"
 	dat += "</center></tt>"
-	panel = new(user, "Слоты персонажей", "Слоты персонажей", 300, 390, src)
+	panel = new(user, "Слоты персонажей", "Слоты персонажей", 250, 280, src)
+	panel.set_window_options("can_close=0;can_resize=0;window=saves")
 	panel.set_content(jointext(dat,null))
 	panel.open()
 
