@@ -92,3 +92,5 @@
 	var/language_blackout = 0
 	var/suppress_communication = 0
 
+	var/usefov = 1
+
