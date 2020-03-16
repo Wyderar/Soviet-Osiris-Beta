@@ -6,7 +6,7 @@
 
 /datum/category_item/player_setup_item/physical/records
 	name = "Records"
-	sort_order = 5
+	sort_order = 7
 
 /datum/category_item/player_setup_item/physical/records/load_character(var/savefile/S)
 	from_file(S["med_record"],pref.med_record)
@@ -22,17 +22,17 @@
 
 /datum/category_item/player_setup_item/physical/records/content(var/mob/user)
 	. = list()
-	. += "<br/><b>Records</b>:<br/>"
+	. += "<b>Записи</b>:<br>"
 	if(jobban_isbanned(user, "Records"))
-		. += "<span class='danger'>You are banned from using character records.</span><br>"
+		. += "<span class='danger'>Вы были ограничены в использовании записей.</span><br>"
 	else
-		. += "Medical Records: "
+		. += "Медицинский отдел: "
 		. += "<a href='?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br>"
-		. += "Employment Records: "
+		. += "Трудовой стаж: "
 		. += "<a href='?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record,40)]</a><br>"
-		. += "Security Records: "
+		. += "Служба безопасности: "
 		. += "<a href='?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br>"
-		. += "Memory: "
+		. += "Память: "
 		. += "<a href='?src=\ref[src];set_memory=1'>[TextPreview(pref.memory,40)]</a><br>"
 	. = jointext(.,null)
 

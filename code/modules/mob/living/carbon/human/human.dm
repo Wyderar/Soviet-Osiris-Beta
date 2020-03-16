@@ -249,6 +249,7 @@ var/list/rank_prefix = list(\
 	"Ironhammer Gunnery Sergeant" = "Sergeant",\
 	"Ironhammer Commander" = "Lieutenant",\
 	"Captain" = "Captain",\
+	"Commissioner" = "Commissar",\
 	)
 
 /mob/living/carbon/human/proc/rank_prefix_name(name)

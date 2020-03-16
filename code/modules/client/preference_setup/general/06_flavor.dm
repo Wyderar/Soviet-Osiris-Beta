@@ -4,7 +4,7 @@
 
 /datum/category_item/player_setup_item/physical/flavor
 	name = "Flavor"
-	sort_order = 3
+	sort_order = 6
 
 /datum/category_item/player_setup_item/physical/flavor/load_character(var/savefile/S)
 	from_file(S["flavor_text"], pref.flavor_text)

@@ -1,6 +1,6 @@
 datum/preferences
 	var/gender = MALE					//gender of character (well duh)
-	var/age = 30						//age of character
+	var/age = 20						//age of character
 	var/spawnpoint = "Aft Cryogenic Storage" 			//where this character will spawn
 	var/real_name						//our character's name
 //	var/be_random_name = 0				//whether we are a random name every round
@@ -95,14 +95,15 @@ datum/preferences
 	*/
 /datum/category_item/player_setup_item/physical/basic/content()
 	. = list()
+	. += "<h1>Основная информация</h1><hr>"
 	. += "<b>Имя:</b> "
 	if(!pref.char_exists)
-		. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
+		. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a> "
 		. += "<a href='?src=\ref[src];random_name=1'>Случайное имя</A><br>"
 	else
 		. += "<b>[pref.real_name]</b><br>"
 //	. += "<a href='?src=\ref[src];always_random_name=1'>Всегда случайное имя: [pref.be_random_name ? "Да" : "Нет"]</a>"
-	. += "<hr>"
+//	. += "<hr>"
 	if(!pref.char_exists)
 		. += "<b>Пол:</b> <a href='?src=\ref[src];gender=1'><b>[gender2text(pref.gender)]</b></a><br>"
 		. += "<b>Возраст:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
@@ -115,7 +116,7 @@ datum/preferences
 		var/stat_none = "0"
 		. += "<br><b>Баланс</b>: [pref.bank_balance][CREDS]<br>"
 		. += "<hr>"
-		. += "<b>Навыки</b><br>"
+		. += "<b>Навыки:</b><br>"
 		. += "Механика: [pref.stat_mec ? pref.stat_mec : stat_none]<br>"
 		. += "Интеллект: [pref.stat_cog ? pref.stat_cog : stat_none]<br>"
 		. += "Биология: [pref.stat_bio ? pref.stat_bio : stat_none]<br>"

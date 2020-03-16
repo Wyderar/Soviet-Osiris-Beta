@@ -2,6 +2,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 /datum/job/captain
 	title = "Captain"
+	title_ru = "Капитан"
 	flag = CAPTAIN
 	department = DEPARTMENT_COMMAND
 	head_position = 1
@@ -9,7 +10,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "your heart and wisdom"
+	supervisors = "вашей собственной совестью"
 	selection_color = "#ccccff"
 	req_admin_notify = 1
 	wage = WAGE_NONE //The captain doesn't get paid, he's the one who does the paying
@@ -68,13 +69,14 @@ Your second loyalty is to your command officers. The heads of each faction. List
 
 /datum/job/hop
 	title = "First Officer"
+	title_ru = "Старший Помощник"
 	flag = FIRSTOFFICER
 	department = DEPARTMENT_COMMAND
 	department_flag = COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "капитаном"
 	selection_color = "#ddddff"
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
@@ -131,6 +133,7 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 
 /datum/job/commissioner
 	title = "Commissioner"
+	title_ru = "Комиссар"
 	flag = COMMISSIONER
 	department = DEPARTMENT_COMMAND
 	department_flag = COMMAND

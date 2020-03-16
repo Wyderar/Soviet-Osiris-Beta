@@ -504,3 +504,36 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
 
+/obj/item/ShiftClick(mob/living/user)
+	show_radial(user)
+
+/obj/item/show_radial(mob/living/user)
+	if(!user)
+		return
+	var/list/layer_list
+	if(user.Adjacent(src))
+		layer_list = list(
+			"Pull" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pull"),
+			"Pickup" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pickup"),
+			"Examine" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_examine")
+		)
+	else
+		layer_list = list(
+			"Point" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_point"),
+			"Examine" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_examine")
+		)
+	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = FALSE, tooltips = FALSE)
+	if(!check_menu(user))
+		return
+	switch(layer_result)
+		if("Pull")
+			if(Adjacent(user))
+				user.start_pulling(src)
+		if("Pickup")
+			if(pre_pickup(user))
+				pickup(user)
+		if("Examine")
+			if(user.client && user.client.eye == user)
+				user.examinate(src)
+		if("Point")
+			user.pointed(src)

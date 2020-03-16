@@ -1,5 +1,6 @@
 /datum/job/rd
 	title = "Moebius Expedition Overseer"
+	title_ru = "Заведующий экспедицией"
 	flag = MEO
 	head_position = 1
 	department = DEPARTMENT_SCIENCE
@@ -57,6 +58,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 
 /datum/job/scientist
 	title = "Moebius Scientist"
+	title_ru = "Ученый"
 	flag = SCIENTIST
 	department = DEPARTMENT_SCIENCE
 	department_flag = SCIENCE
@@ -115,6 +117,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 
 /datum/job/roboticist
 	title = "Moebius Roboticist"
+	title_ru = "Роботехник"
 	flag = ROBOTICIST
 	department = DEPARTMENT_SCIENCE
 	department_flag = SCIENCE
