@@ -21,7 +21,7 @@
 
 	var/lip_style = null	//no lipstick by default- arguably misleading, as it could be used for general makeup
 
-	var/age = 30		//Player's age (pure fluff)
+	var/age = 20		//Player's age (pure fluff)
 	var/b_type = "A+"	//Player's bloodtype
 
 	var/list/worn_underwear = list()
@@ -93,4 +93,5 @@
 	var/suppress_communication = 0
 
 	var/usefov = 1
+	var/head_covered = 0
 

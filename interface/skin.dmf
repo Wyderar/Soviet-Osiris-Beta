@@ -669,6 +669,9 @@ macro "hotkeymode"
 	elem 
 		name = "F8"
 		command = "Invisimin"
+	elem
+		name = "F11"
+		command = "set-fullscreen"
 	elem 
 		name = "F12"
 		command = "F12"
@@ -678,6 +681,18 @@ macro "hotkeymode"
 	elem 
 		name = "SOUTHEAST"
 		command = "Move-Downwards"
+	elem 
+		name = "ALT"
+		command = "toggle-walk-run"
+	elem 
+		name = "ALT+UP"
+		command = "toggle-walk-run"
+	elem 
+		name = "SHIFT"
+		command = "toggle-ex-icon"
+	elem 
+		name = "SHIFT+UP"
+		command = "toggle-ex-icon"
 
 macro "borgmacro"
 	elem 

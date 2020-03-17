@@ -535,3 +535,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if("Examine")
 			if(user.client && user.client.eye == user)
 				user.examinate(src)
+
+/obj/item/MouseEntered(params)
+	if(istype(usr, /mob/living))
+		var/mob/living/M = usr
+		if(!M.client.mouse_pointer_icon)
+			if(M.Adjacent(src))
+				M.client.mouse_pointer_icon = initial(M.client.mouse_pointer_icon)
+				M.client.mouse_pointer_icon = file('icons/cursors/pickup.dmi')
+
+/obj/item/MouseExited()
+	usr.client.mouse_pointer_icon = initial(usr.client.mouse_pointer_icon)

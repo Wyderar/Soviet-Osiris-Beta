@@ -50,8 +50,9 @@
 		dat += "<A href='?src=\ref[src];remove=\ref[Ph]'>Remove</A> <A href='?src=\ref[src];rename=\ref[Ph]'>Rename</A> - <A href='?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
 	for(var/obj/item/weapon/paper_bundle/Pb in src)
 		dat += "<A href='?src=\ref[src];remove=\ref[Pb]'>Remove</A> <A href='?src=\ref[src];rename=\ref[Pb]'>Rename</A> - <A href='?src=\ref[src];browse=\ref[Pb]'>[Pb.name]</A><BR>"
-	user << browse(dat, "window=folder")
-	onclose(user, "folder")
+	var/datum/browser/popup = new(usr, "[name]","[name]", 370, 470)
+	popup.set_content(dat)
+	popup.open()
 	add_fingerprint(usr)
 	return
 
@@ -74,11 +75,13 @@
 			playsound(src,'sound/effects/Paper_Shake.ogg',40,1)
 			if(P && (P.loc == src) && istype(P))
 				if(!(ishuman(usr) || isghost(usr) || issilicon(usr)))
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
-					onclose(usr, "[P.name]")
+					var/datum/browser/popup = new(usr, "[P.name]","[P.name]", 370, 470)
+					popup.set_content("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>")
+					popup.open()
 				else
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
-					onclose(usr, "[P.name]")
+					var/datum/browser/popup = new(usr, "[P.name]","[P.name]", 370, 470)
+					popup.set_content("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>")
+					popup.open()
 		else if(href_list["look"])
 			var/obj/item/weapon/photo/P = locate(href_list["look"])
 			if(P && (P.loc == src) && istype(P))

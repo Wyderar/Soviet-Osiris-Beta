@@ -823,3 +823,15 @@ default behaviour is:
 		else
 			in_vision_cones.Remove(C)
 	. = ..()
+
+/client/verb/toggle_ex_icon()
+	set name = "toggle-ex-icon"
+	set hidden = TRUE
+	set instant = TRUE
+	if(mob)
+		var/cursor = file('icons/cursors/examine.dmi')
+		if(mouse_pointer_icon != cursor)
+			mouse_pointer_icon = initial(mouse_pointer_icon)
+			mouse_pointer_icon = cursor
+		else if(mouse_pointer_icon == cursor)
+			mouse_pointer_icon = initial(mouse_pointer_icon)

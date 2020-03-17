@@ -69,3 +69,5 @@
 	var/connection_timeofday //world.timeofday they connected
 
 	var/datum/chatOutput/chatOutput
+
+	var/last_cursor

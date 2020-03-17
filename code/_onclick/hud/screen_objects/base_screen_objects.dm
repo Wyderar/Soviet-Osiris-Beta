@@ -442,6 +442,7 @@
 	var/mob/living/carbon/human/H = parentmob
 	if(!istype(H))
 		return
+	H.sanity.print_sanity()
 	H.sanity.print_desires()
 
 //--------------------------------------------------sanity end---------------------------------------------------------
@@ -1197,6 +1198,10 @@ obj/screen/fire/DEADelize()
 	mouse_opacity = 0
 	layer = UI_DAMAGE_LAYER
 	plane = HUD_PLANE
+	process_flag = TRUE
+
+/obj/screen/visioncone/Process()
+	update_icon()
 
 /obj/screen/visioncone/update_icon()
 	underlays.Cut()
@@ -1215,16 +1220,28 @@ obj/screen/fire/DEADelize()
 		dir = H.dir
 		if(alpha != 0)
 			var/mob/living/M
-			for(M in cone(H, OPPOSITE_DIR(H.dir), view(10, H)))
-				I = image("split", M)
-				I.override = 1
-				H.client.images += I
-				H.client.hidden_atoms += I
-				H.client.hidden_mobs += M
-				if(H.pulling == M)//If we're pulling them we don't want them to be invisible, too hard to play like that.
-					I.override = 0
-				else
-					M.in_vision_cones[H.client] = 1
+			if(!H.head_covered)
+				for(M in cone(H, OPPOSITE_DIR(H.dir), view(10, H)))
+					I = image("split", M)
+					I.override = 1
+					H.client.images += I
+					H.client.hidden_atoms += I
+					H.client.hidden_mobs += M
+					if(H.pulling == M)//If we're pulling them we don't want them to be invisible, too hard to play like that.
+						I.override = 0
+					else
+						M.in_vision_cones[H.client] = 1
+			else
+				for(M in cone_reverse(H, H.dir, oview(10, H)))
+					I = image("split", M)
+					I.override = 1
+					H.client.images += I
+					H.client.hidden_atoms += I
+					H.client.hidden_mobs += M
+					if(H.pulling == M)
+						I.override = 0
+					else
+						M.in_vision_cones[H.client] = 1
 	else
 		return
 

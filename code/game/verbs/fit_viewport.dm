@@ -45,7 +45,8 @@
 		winset(src, "mainwindow.mainvsplit", "splitter=[pct]")
 
 /client/verb/ToggleFullscreen()
-	set name = "Set Fullscreen"
+	set name = "set-fullscreen"
+	set hidden = TRUE
 	set category = "OOC"
 
 	if(!prefs.fullscreen)

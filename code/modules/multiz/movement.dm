@@ -264,3 +264,19 @@
 	set name = "Move Downwards"
 	set category = "Ghost"
 	zMove(DOWN)
+
+/client/verb/toggle_walk_run()
+	set name = "toggle-walk-run"
+	set hidden = TRUE
+	set instant = TRUE
+	if(mob)
+		mob.toggle_move_intent(usr)
+
+/mob/proc/toggle_move_intent(mob/user)
+	var/move_intent_type = next_list_item(move_intent.type, move_intents)
+	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
+	if (newintent.can_enter(user, TRUE))
+		move_intent = newintent
+	if(HUDneed.Find("move intent"))
+		var/obj/screen/mov_intent/I = HUDneed["move intent"]
+		I.update_icon()
