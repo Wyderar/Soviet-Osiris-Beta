@@ -687,12 +687,6 @@ macro "hotkeymode"
 	elem 
 		name = "ALT+UP"
 		command = "toggle-walk-run"
-	elem 
-		name = "SHIFT"
-		command = "toggle-ex-icon"
-	elem 
-		name = "SHIFT+UP"
-		command = "toggle-ex-icon"
 
 macro "borgmacro"
 	elem 

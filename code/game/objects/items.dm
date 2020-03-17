@@ -504,7 +504,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
 
-/obj/item/ShiftClick(mob/living/user)
+/obj/item/AltClick(mob/living/user)
 	show_radial(user)
 
 /obj/item/check_menu(mob/living/user)
