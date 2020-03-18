@@ -216,7 +216,6 @@ var/global/ManifestJSON
 		L.fields["character_id"] = H.mind.prefs.character_id
 		L.fields["rank"] 		= H.mind.assigned_role
 		L.fields["age"]			= H.age
-		L.fields["character_id"] = H.mind.prefs.character_id
 		L.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		L.fields["sex"]			= H.gender
 		///L.fields["id_gender"]	= gender2text(H.identifying_gender)

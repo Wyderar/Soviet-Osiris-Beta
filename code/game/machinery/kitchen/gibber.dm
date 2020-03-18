@@ -153,11 +153,9 @@
 		src.occupant = victim
 		update_icon()
 
-/obj/machinery/gibber/verb/eject()
-	set category = "Object"
-	set name = "Empty Gibber"
-	set src in oview(1)
-
+/obj/machinery/gibber/RightClick(mob/living/user)
+	if(!user.Adjacent(src))
+		return
 	if (usr.stat != 0)
 		return
 	src.go_out()

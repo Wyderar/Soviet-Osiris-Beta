@@ -288,10 +288,13 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	if(!user || !anchor || !length(choices))
 		return
 	if(!uniqueid)
-		uniqueid = "defmenu_\ref[user]_\ref[anchor]"
+//		uniqueid = "defmenu_\ref[user]_\ref[anchor]"
+		uniqueid = "defmenu_\ref[user]"
 
 	if(GLOB.radial_menus[uniqueid])
-		return
+		qdel(GLOB.radial_menus[uniqueid])
+		GLOB.radial_menus -= uniqueid
+//		return
 
 	var/datum/radial_menu/menu = new
 	GLOB.radial_menus[uniqueid] = menu

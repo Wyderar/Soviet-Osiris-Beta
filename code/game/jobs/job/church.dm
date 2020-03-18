@@ -1,5 +1,6 @@
 /datum/job/chaplain
 	title = "NeoTheology Preacher"
+	title_ru = "Проповедник"
 	flag = CHAPLAIN
 	head_position = 1
 	department = DEPARTMENT_CHURCH
@@ -68,6 +69,7 @@
 
 /datum/job/acolyte
 	title = "NeoTheology Acolyte"
+	title_ru = "Послушник"
 	flag = ACOLYTE
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
@@ -111,6 +113,7 @@
 
 /datum/job/hydro
 	title = "NeoTheology Agrolyte"
+	title_ru = "Агролит"
 	flag = BOTANIST
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
@@ -150,6 +153,7 @@
 
 /datum/job/janitor
 	title = "NeoTheology Custodian"
+	title_ru = "Хранитель"
 	flag = JANITOR
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH

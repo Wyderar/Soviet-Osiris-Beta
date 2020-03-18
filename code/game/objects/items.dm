@@ -106,19 +106,19 @@
 				qdel(src)
 				return
 
-/obj/item/verb/move_to_top()
-	set name = "Move To Top"
-	set category = "Object"
-	set src in oview(1)
+///obj/item/verb/move_to_top()
+//	set name = "Move To Top"
+//	set category = "Object"
+//	set src in oview(1)
 
-	if(!istype(loc, /turf) || usr.stat || usr.restrained() )
-		return
+//	if(!istype(loc, /turf) || usr.stat || usr.restrained() )
+//		return
 
-	var/turf/T = loc
+//	var/turf/T = loc
 
-	loc = null
+//	loc = null
 
-	loc = T
+//	loc = T
 
 /obj/item/examine(mob/user, var/distance = -1)
 	var/message
@@ -206,35 +206,35 @@
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder as mob)
 	return
-/obj/item/verb/verb_pickup()
-	set src in oview(1)
-	set category = "Object"
-	set name = "Pick up"
+///obj/item/verb/verb_pickup()
+//	set src in oview(1)
+//	set category = "Object"
+//	set name = "Pick up"
 
-	if(!usr) //BS12 EDIT
-		return
-	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
-		return
-	if(!iscarbon(usr) || isbrain(usr))//Is humanoid, and is not a brain
-		to_chat(usr, SPAN_WARNING("You can't pick things up!"))
-		return
-	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
-		to_chat(usr, SPAN_WARNING("You can't pick things up!"))
-		return
-	if(anchored) //Object isn't anchored
-		to_chat(usr, SPAN_WARNING("You can't pick that up!"))
-		return
-	if(!usr.hand && usr.r_hand) //Right hand is not full
-		to_chat(usr, SPAN_WARNING("Your right hand is full."))
-		return
-	if(usr.hand && usr.l_hand) //Left hand is not full
-		to_chat(usr, SPAN_WARNING("Your left hand is full."))
-		return
-	if(!istype(loc, /turf)) //Object is on a turf
-		to_chat(usr, SPAN_WARNING("You can't pick that up!"))
-		return
+//	if(!usr) //BS12 EDIT
+//		return
+//	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
+//		return
+//	if(!iscarbon(usr) || isbrain(usr))//Is humanoid, and is not a brain
+//		to_chat(usr, SPAN_WARNING("You can't pick things up!"))
+//		return
+//	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
+//		to_chat(usr, SPAN_WARNING("You can't pick things up!"))
+//		return
+//	if(anchored) //Object isn't anchored
+//		to_chat(usr, SPAN_WARNING("You can't pick that up!"))
+//		return
+//	if(!usr.hand && usr.r_hand) //Right hand is not full
+//		to_chat(usr, SPAN_WARNING("Your right hand is full."))
+//		return
+//	if(usr.hand && usr.l_hand) //Left hand is not full
+//		to_chat(usr, SPAN_WARNING("Your left hand is full."))
+//		return
+//	if(!istype(loc, /turf)) //Object is on a turf
+//		to_chat(usr, SPAN_WARNING("You can't pick that up!"))
+//		return
 	//All checks are done, time to pick it up!
-	usr.UnarmedAttack(src)
+//	usr.UnarmedAttack(src)
 
 
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in screen1_action.dmi
@@ -504,3 +504,46 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
 
+/obj/item/RightClick(mob/living/user)
+	if(user.Adjacent(src))
+		show_radial(user)
+
+/obj/item/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
+
+/obj/item/show_radial(mob/living/user)
+	if(!user || anchored || is_equipped()) 
+		return
+	var/list/layer_list = list(
+			"Pull" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pull"),
+			"Pickup" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pickup"),
+			"Examine" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_examine")
+		)
+	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = FALSE)
+	if(!check_menu(user))
+		return
+	switch(layer_result)
+		if("Pull")
+			if(Adjacent(user))
+				user.start_pulling(src)
+		if("Pickup")
+			if(pre_pickup(user))
+				pickup(user)
+		if("Examine")
+			if(user.client && user.client.eye == user)
+				user.examinate(src)
+
+/obj/item/MouseEntered(params)
+	if(istype(usr, /mob/living))
+		var/mob/living/M = usr
+		if(!M.client.mouse_pointer_icon)
+			if(M.Adjacent(src) && !anchored && !M.get_active_hand())
+				M.client.mouse_pointer_icon = initial(M.client.mouse_pointer_icon)
+				M.client.mouse_pointer_icon = file('icons/cursors/pickup.dmi')
+
+/obj/item/MouseExited()
+	usr.client.mouse_pointer_icon = initial(usr.client.mouse_pointer_icon)

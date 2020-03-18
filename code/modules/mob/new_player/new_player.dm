@@ -40,10 +40,11 @@
 			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Готов</a> | <span class='linkOn'><b>Не готов</b></span> \]</p>"
 
 	else
-		output += "<a href='byond://?src=\ref[src];manifest=1'>Открыть манифест экипажа</A><br><br>"
+		output += "<a href='byond://?src=\ref[src];manifest=1'>Открыть манифест экипажа</A><br>"
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Присоединиться к игре</A></p>"
 
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Наблюдать</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];changelog=1'>Список изменений</A></p>"
 
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
@@ -67,7 +68,7 @@
 	output += "</div>"
 
 	panel = new(src, "Osiris SS13 Hi-RP","Osiris SS13 Hi-RP", 210, 280, src)
-	panel.set_window_options("can_close=0;window=welcome")
+	panel.set_window_options("can_close=0;can_resize=0;window=welcome")
 	panel.set_content(output)
 	panel.open()
 	return
@@ -105,6 +106,9 @@
 	if(href_list["refresh"])
 		panel.close()
 		new_player_panel_proc()
+	
+	if(href_list["changelog"])
+		client.changes()
 
 	if(href_list["observe"])
 
@@ -276,7 +280,7 @@
 			if(character.mind.assigned_role != ASSISTANT_TITLE)
 				CreateModularRecord(character)
 				data_core.manifest_inject(character)
-			matchmaker.do_matchmaking()
+//			matchmaker.do_matchmaking()
 			SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 			//Grab some data from the character prefs for use in random news procs.
 
@@ -353,13 +357,13 @@
 	if(mind)
 		mind.active = 0//we wish to transfer the key manually
 		mind.original = new_character
-		if(client.prefs.relations.len)
-			for(var/T in client.prefs.relations)
-				var/TT = matchmaker.relation_types[T]
-				var/datum/relation/R = new TT
-				R.holder = mind
-				R.info = client.prefs.relations_info[T]
-			mind.gen_relations_info = client.prefs.relations_info["general"]
+//		if(client.prefs.relations.len)
+//			for(var/T in client.prefs.relations)
+//				var/TT = matchmaker.relation_types[T]
+//				var/datum/relation/R = new TT
+//				R.holder = mind
+//				R.info = client.prefs.relations_info[T]
+//			mind.gen_relations_info = client.prefs.relations_info["general"]
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
 
 	if(SSticker.random_players)

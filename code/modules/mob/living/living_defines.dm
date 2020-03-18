@@ -71,3 +71,5 @@
 	var/recoil = 0 //What our current recoil level is
 	var/last_recoil_update = 0 //When our last recoil update was
 	var/recoil_timer //Holds the timer ID
+
+	var/list/in_vision_cones = list()

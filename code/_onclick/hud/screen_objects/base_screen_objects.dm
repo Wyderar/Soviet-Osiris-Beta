@@ -442,6 +442,7 @@
 	var/mob/living/carbon/human/H = parentmob
 	if(!istype(H))
 		return
+	H.sanity.print_sanity()
 	H.sanity.print_desires()
 
 //--------------------------------------------------sanity end---------------------------------------------------------
@@ -1021,6 +1022,8 @@ obj/screen/fire/DEADelize()
 
 
 /obj/screen/mov_intent/Click()
+	if(parentmob.pulling && istype(parentmob.pulling, /obj/structure))
+		return
 	var/move_intent_type = next_list_item(usr.move_intent.type, usr.move_intents)
 	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
 	if (newintent.can_enter(parentmob, TRUE))
@@ -1188,7 +1191,74 @@ obj/screen/fire/DEADelize()
 	target_intent = I_DISARM
 	icon_state = "intent_disarm"
 
+#define OPPOSITE_DIR(D) turn(D, 180)
 
+/obj/screen/visioncone
+	icon = 'icons/mob/hide.dmi'
+	icon_state = "combat"
+	screen_loc = "1,1"
+	mouse_opacity = 0
+	layer = UI_DAMAGE_LAYER
+	plane = HUD_PLANE
+	process_flag = TRUE
+
+/obj/screen/visioncone/Process()
+	update_icon()
+
+/obj/screen/visioncone/update_icon()
+	underlays.Cut()
+	var/mob/living/carbon/human/H = parentmob
+	var/delay = 10
+	if(H.client)
+		var/image/I
+		for(I in H.client.hidden_atoms)
+			I.override = 0
+			spawn(delay)
+				qdel(I)
+			delay += 10
+		check_fov(H)
+		H.client.hidden_atoms = list()
+		H.client.hidden_mobs = list()
+		dir = H.dir
+		if(alpha != 0)
+			var/mob/living/M
+			if(!H.head_covered)
+				for(M in cone(H, OPPOSITE_DIR(H.dir), view(10, H)))
+					I = image("split", M)
+					I.override = 1
+					H.client.images += I
+					H.client.hidden_atoms += I
+					H.client.hidden_mobs += M
+					if(H.pulling == M)//If we're pulling them we don't want them to be invisible, too hard to play like that.
+						I.override = 0
+						H.client.hidden_mobs -= M
+					else
+						M.in_vision_cones[H.client] = 1
+			else
+				for(M in cone_reverse(H, H.dir, oview(10, H)))
+					I = image("split", M)
+					I.override = 1
+					H.client.images += I
+					H.client.hidden_atoms += I
+					H.client.hidden_mobs += M
+					if(H.pulling == M || H.loc == M.loc)
+						I.override = 0
+						H.client.hidden_mobs -= M
+					else
+						M.in_vision_cones[H.client] = 1
+	else
+		return
+
+/obj/screen/visioncone/proc/check_fov(var/mob/living/carbon/human/H)
+	if(H.resting || H.lying || H.client.eye != H.client.mob)
+		alpha = 0
+		return
+	else if(H.usefov)
+		alpha = 255
+		H.usefov = 1
+	else
+		alpha = 0
+		H.usefov = 0
 
 /obj/screen/drugoverlay
 	icon_state = "blank"

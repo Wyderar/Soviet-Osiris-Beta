@@ -669,6 +669,9 @@ macro "hotkeymode"
 	elem 
 		name = "F8"
 		command = "Invisimin"
+	elem
+		name = "F11"
+		command = "set-fullscreen"
 	elem 
 		name = "F12"
 		command = "F12"
@@ -678,6 +681,12 @@ macro "hotkeymode"
 	elem 
 		name = "SOUTHEAST"
 		command = "Move-Downwards"
+	elem 
+		name = "ALT"
+		command = "toggle-walk-run"
+	elem 
+		name = "ALT+UP"
+		command = "toggle-walk-run"
 
 macro "borgmacro"
 	elem 
@@ -1137,6 +1146,7 @@ window "mapwindow"
 		font-family = "Arial Rounded MT Bold,Arial Black,Arial,sans-serif"
 		font-size = 7
 		is-default = true
+		right-click = true
 		saved-params = "icon-size"
 		on-show = ".winset\"mainwindow.mainvsplit.left=mapwindow\""
 		on-hide = ".winset\"mainwindow.mainvsplit.left=\""

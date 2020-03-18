@@ -2,6 +2,7 @@
 
 	//The name of the job
 	var/title = "NOPE"
+	var/title_ru = "NOPE"
 	var/list/access = list()				// Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
 	var/list/cruciform_access = list()		// Assign this access into cruciform if target has it
 	var/list/software_on_spawn = list()		// Defines the software files that spawn on tablets and labtops
@@ -208,19 +209,19 @@
 	var/job_desc = ""
 	//Here's the actual content of the description
 	if (description)
-		job_desc += "<h1>Overview:</h1>"
+		job_desc += "<h1>Обзор:</h1>"
 		job_desc += "<hr>"
 		job_desc += description
 		job_desc += "<br>"
 
 	if (duties)
-		job_desc += "<h1>Duties:</h1>"
+		job_desc += "<h1>Обязанности:</h1>"
 		job_desc += "<hr>"
 		job_desc += duties
 		job_desc += "<br>"
 
 	if (loyalties)
-		job_desc += "<h1>Loyalties:</h1>"
+		job_desc += "<h1>Лояльность:</h1>"
 		job_desc += "<hr>"
 		job_desc += loyalties
 		job_desc += "<br>"

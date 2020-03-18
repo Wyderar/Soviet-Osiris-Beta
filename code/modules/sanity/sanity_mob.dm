@@ -185,6 +185,25 @@
 			desire_names += desire
 	to_chat(owner, SPAN_NOTICE("You desire [english_list(desire_names)]."))
 
+/datum/sanity/proc/print_sanity()
+	var/msg
+	switch(level / max_level)
+		if(-INFINITY to 0)
+			msg += "<span class='warning'>О, господи! Я схожу с ума!</span>"
+		if(1 to INFINITY)
+			msg += "<span class='green'>Чувствую себя превосходно!</span>"
+		if(0.8 to 1)
+			msg += "<span class='green'>Чувствую себя хорошо.</span>"
+		if(0.6 to 0.8)
+			msg += "<span class='green'>Чувствую себя довольно средне.</span>"
+		if(0.4 to 0.6)
+			msg += "<span class='warning'>Чувствую себя весьма посредственно...</span>"
+		if(0.2 to 0.4)
+			msg += "<span class='warning'>Чувствую себя крайне паршиво...</span>"
+		if(0 to 0.2)
+			msg += "<span class='warning'>Чувствую себя просто ужасно...</span>"
+	to_chat(usr, msg)
+
 /datum/sanity/proc/add_rest(type, amount)
 	if(!(type in desires))
 		amount /= 4

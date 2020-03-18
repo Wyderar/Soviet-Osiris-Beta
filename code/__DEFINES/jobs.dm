@@ -16,6 +16,7 @@
 
 #define CREDITS "&cent;"
 #define CREDS "&cent;"
+#define WRENCH_ICON "&#128295;"
 
 
 #define DEPARTMENT_COMMAND	"Command"

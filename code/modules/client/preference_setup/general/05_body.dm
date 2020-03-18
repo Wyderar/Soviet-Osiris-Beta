@@ -29,7 +29,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 /datum/category_item/player_setup_item/physical/body
 	name = "Body"
-	sort_order = 2
+	sort_order = 5
 	var/hide_species = TRUE
 
 /datum/category_item/player_setup_item/physical/body/load_character(var/savefile/S)
@@ -97,15 +97,17 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 /datum/category_item/player_setup_item/physical/body/content(var/mob/user)
 	if(!pref.preview_icon)
 		pref.update_preview_icon()
-	user << browse_rsc(pref.preview_icon, "previewicon.png")
+	if(pref.preview_south && pref.preview_west)
+		user << browse_rsc(pref.preview_south, "new_previewicon[SOUTH].png")
+		user << browse_rsc(pref.preview_west, "new_previewicon[WEST].png")
+//	user << browse_rsc(pref.preview_icon, "previewicon.png")
 
 	var/datum/species/mob_species = all_species[pref.species]
 	. += "<style>span.color_holder_box{display: inline-block; width: 20px; height: 8px; border:1px solid #000; padding: 0px;}</style>"
-	. += "<hr>"
-	. += "<table><tr style='vertical-align:top; width: 100%'><td width=65%><b>Тело</b> "
+	. += "<h1>Внешность</h1><hr>"
+	. += "<table><tr style='vertical-align:top; width: 100%'><td width=75%>"
 	if(!pref.char_exists)
-		. += "(<a href='?src=\ref[src];random=1'>&reg;</A>)"
-	. += "<br>"
+		. += "<b>Тело</b>(<a href='?src=\ref[src];random=1'>&reg;</A>)<br>"
 	if(!pref.char_exists)
 		. += "<b>Группа крови:</b> <a href='?src=\ref[src];blood_type=1'>[pref.b_type]</a><br>"
 		. += "<b>Тон кожи:</b> <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
@@ -118,12 +120,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 //	. += "Цвет: <a href='?src=\ref[src];base_skin=1'>[pref.s_base]</a><br>"
 
 	. += "<b>Волосы:</b><br>"
-	. += " Стиль: <a href='?src=\ref[src];cycle_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a>"
+	. += " Стиль:<br><a href='?src=\ref[src];cycle_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
 		. += "<a href='?src=\ref[src];hair_color=1'><span class='color_holder_box' style='background-color:[pref.hair_color]'></span></a><br>"
 
 	. += "<br><b>Лицо:</b><br>"
-	. += " Стиль: <a href='?src=\ref[src];cycle_facial_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_facial_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];facial_style=1'>[pref.f_style]</a>"
+	. += " Стиль:<br><a href='?src=\ref[src];cycle_facial_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_facial_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];facial_style=1'>[pref.f_style]</a>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
 		. += "<a href='?src=\ref[src];facial_color=1'><span class='color_holder_box' style='background-color:[pref.facial_color]'></span></a><br>"
 
@@ -137,8 +139,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += "<a href='?src=\ref[src];skin_color=1'><span class='color_holder_box' style='background-color:[pref.skin_color]'></span></a><br>"
 
 	. += "</td><td style = 'text-align:center;' width = 35%><b>Предпросмотр</b><br>"
-	. += "<div style ='padding-bottom:-2px;' class='statusDisplay'><img src=previewicon.png width=[pref.preview_icon.Width()] height=[pref.preview_icon.Height()]></div>"
-	. += "<br><a href='?src=\ref[src];cycle_bg=1'>Сменить фон</a>"
+//	. += "<div style ='padding-bottom:-2px;' class='statusDisplay'><img src=previewicon.png width=[pref.preview_icon.Width()] height=[pref.preview_icon.Height()]></div>"
+	. += "<div class='statusDisplay' style = 'max-width: 128px; clear:both;'><img src=new_previewicon[WEST].png width=64 height=64><img src=new_previewicon[SOUTH].png width=64 height=64></div>"
+//	. += "<br><a href='?src=\ref[src];cycle_bg=1'>Сменить фон</a>"
 	. += "<br><a href='?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_LOADOUT]'>[pref.equip_preview_mob & EQUIP_PREVIEW_LOADOUT ? "Спрятать снаряжение" : "Показать снаряжение"]</a>"
 	. += "<br><a href='?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_JOB]'>[pref.equip_preview_mob & EQUIP_PREVIEW_JOB ? "Спрятать форму" : "Показать форму"]</a>"
 	. += "</td></tr></table>"
@@ -302,9 +305,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		pref.equip_preview_mob ^= text2num(href_list["toggle_preview_value"])
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
-	else if(href_list["cycle_bg"])
-		pref.bgstate = next_list_item(pref.bgstate, pref.bgstate_options)
-		return TOPIC_REFRESH_UPDATE_PREVIEW
+//	else if(href_list["cycle_bg"])
+//		pref.bgstate = next_list_item(pref.bgstate, pref.bgstate_options)
+//		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["cycle_hair"])
 		var/list/valid_hairstyles = mob_species.get_hair_styles()

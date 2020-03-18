@@ -9,11 +9,9 @@
 	var/obj/item/weapon/circuitboard/circuit = null
 //	weight = 1.0E8
 
-/obj/structure/computerframe/verb/rotate()
-	set name = "Rotate Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
+/obj/structure/computerframe/RightClick(mob/living/user)
+	if(!user.Adjacent(src))
+		return
 	if(usr.stat || !usr.canmove || usr.restrained())
 		return
 	if(anchored)
@@ -29,8 +27,8 @@
 		return
 	if(!in_range(src, user))
 		return
-	else
-		rotate()
+//	else
+//		rotate()
 
 /obj/structure/computerframe/get_matter()
 	. = ..()

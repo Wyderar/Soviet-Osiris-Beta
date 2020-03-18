@@ -139,13 +139,13 @@
 	if (bomb_defense)
 		b_loss = max(b_loss - bomb_defense, 0)
 		f_loss = max(f_loss - bomb_defense, 0)
-		
+
 	var/organ_hit = BP_CHEST //Chest is hit first
 	var/exp_damage
 	while (b_loss > 0)
 		b_loss -= exp_damage = rand(0, b_loss)
 		src.apply_damage(exp_damage, BRUTE, organ_hit)
-		organ_hit = pickweight(list(BP_HEAD = 0.2, BPBP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG=0.1, BP_L_LEG=0.1))  //We determine some other body parts that should be hit 
+		organ_hit = pickweight(list(BP_HEAD = 0.2, BPBP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG=0.1, BP_L_LEG=0.1))  //We determine some other body parts that should be hit
 
 /mob/living/carbon/human/restrained()
 	if (handcuffed)
@@ -249,6 +249,7 @@ var/list/rank_prefix = list(\
 	"Ironhammer Gunnery Sergeant" = "Sergeant",\
 	"Ironhammer Commander" = "Lieutenant",\
 	"Captain" = "Captain",\
+	"Commissioner" = "Commissar",\
 	)
 
 /mob/living/carbon/human/proc/rank_prefix_name(name)
@@ -999,33 +1000,21 @@ var/list/rank_prefix = list(\
 					if(organ.setBleeding())
 						src.adjustToxLoss(rand(1,3))
 
-/mob/living/carbon/human/verb/check_pulse()
-	set category = "Object"
-	set name = "Check pulse"
-	set desc = "Approximately count somebody's pulse. Requires you to stand still at least 6 seconds."
-	set src in view(1)
-	var/self = 0
+/mob/living/carbon/human/proc/check_pulse()
+	if(usr.stat || usr.restrained() || !isliving(usr) || usr == src) return
 
-	if(usr.stat || usr.restrained() || !isliving(usr)) return
-
-	if(usr == src)
-		self = 1
-	if(!self)
-		usr.visible_message(SPAN_NOTICE("[usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse."),\
+	usr.visible_message(SPAN_NOTICE("[usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse."),\
 		"You begin counting [src]'s pulse")
-	else
-		usr.visible_message(SPAN_NOTICE("[usr] begins counting their pulse."),\
-		"You begin counting your pulse.")
 
 	if(pulse())
-		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
+		to_chat(usr, "<span class='notice'>[src] has a pulse! Counting...</span>")
 	else
 		to_chat(usr, SPAN_DANGER("[src] has no pulse!")	) //it is REALLY UNLIKELY that a dead person would check his own pulse
 		return
 
-	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
+	to_chat(usr, "You must both remain still until counting is finished.")
 	if(do_mob(usr, src, 60))
-		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>")
+		to_chat(usr, "<span class='notice'>[src]'s pulse is [src.get_pulse(GETPULSE_HAND)].</span>")
 	else
 		to_chat(usr, SPAN_WARNING("You failed to check the pulse. Try again."))
 
@@ -1539,7 +1528,7 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/proc/save_to_prefs()
 	if(!config.canonicity)
 		return 0
-	
+
 	if(!mind)
 		return 0
 
@@ -1553,6 +1542,11 @@ var/list/rank_prefix = list(\
 	if(stat == 0)
 		if(!check_no_wage_positions(job))
 			save_bank_balance()
+		var/datum/computer_file/report/crew_record/CR = get_record_charid(character_id)
+		if(CR)
+			mind.prefs.med_record = CR.get_medRecord()
+			mind.prefs.sec_record = CR.get_secRecord()
+			mind.prefs.gen_record = CR.get_emplRecord()
 		mind.prefs.stat_mec = stats.getStat(STAT_MEC)
 		mind.prefs.stat_cog = stats.getStat(STAT_COG)
 		mind.prefs.stat_bio = stats.getStat(STAT_BIO)
