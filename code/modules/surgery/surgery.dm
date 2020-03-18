@@ -93,6 +93,10 @@
 	if(!tool)
 		tool = user.get_active_hand()
 
+	if(!limb_is_nude(owner, user)) // Checks, if there is no clothes on the limb. Look proc in _HEPLERS/mobs.dm
+		to_chat(user, SPAN_WARNING("[owner]'s clothes gets in the way"))
+		return FALSE
+
 	var/quality = S.tool_quality(tool)
 	if(!quality)
 		if(!no_tool_message)
