@@ -44,6 +44,7 @@
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Присоединиться к игре</A></p>"
 
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Наблюдать</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];changelog=1'>Список изменений</A></p>"
 
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
@@ -105,6 +106,9 @@
 	if(href_list["refresh"])
 		panel.close()
 		new_player_panel_proc()
+	
+	if(href_list["changelog"])
+		client.changes()
 
 	if(href_list["observe"])
 

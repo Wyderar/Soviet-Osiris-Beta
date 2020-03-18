@@ -66,14 +66,14 @@
 	for(var/atom/A in contents)
 		sleep(50)
 		wash(A)
-		if(istype(A, /obj/item))
-			var/obj/item/I = A
+//		if(istype(A, /obj/item))
+//			var/obj/item/I = A
 
-			if(istype(crayon,/obj/item/weapon/pen/crayon) && istype(I, /obj/item/clothing/gloves/color) || istype(I, /obj/item/clothing/head/soft) || istype(I, /obj/item/clothing/shoes/color) || istype(I, /obj/item/clothing/under/color))
-				var/obj/item/clothing/C = I
-				var/obj/item/weapon/pen/crayon/CR = crayon
-				C.color = CR.colour
-				C.name = "[CR.colourName] dyed [C.initial_name]"
+//			if(istype(crayon,/obj/item/weapon/pen/crayon) && istype(I, /obj/item/clothing/gloves/color) || istype(I, /obj/item/clothing/head/soft) || istype(I, /obj/item/clothing/shoes/color) || istype(I, /obj/item/clothing/under/color))
+//				var/obj/item/clothing/C = I
+//				var/obj/item/weapon/pen/crayon/CR = crayon
+//				C.color = CR.colour
+//				C.name = "[CR.colourName] dyed [C.initial_name]"
 
 	//Tanning!
 	for(var/obj/item/stack/material/hairlesshide/HH in contents)

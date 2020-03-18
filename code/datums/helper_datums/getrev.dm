@@ -29,16 +29,16 @@ var/global/datum/getrev/revdata = new()
 	log_world(date)
 	log_world(revision)
 
-client/verb/showrevinfo()
-	set category = "OOC"
-	set name = "Show Server Revision"
-	set desc = "Check the current server code revision"
+//client/verb/showrevinfo()
+//	set category = "OOC"
+//	set name = "Show Server Revision"
+//	set desc = "Check the current server code revision"
 
-	if(revdata.revision)
-		to_chat(src, "<b>Server revision:</b> [revdata.branch] - [revdata.date]")
-		if(config.githuburl)
-			to_chat(src, "<a href='[config.githuburl]/commit/[revdata.revision]'>[revdata.revision]</a>")
-		else
-			to_chat(src, revdata.revision)
-	else
-		to_chat(src, "Revision unknown")
+//	if(revdata.revision)
+//		to_chat(src, "<b>Server revision:</b> [revdata.branch] - [revdata.date]")
+//		if(config.githuburl)
+//			to_chat(src, "<a href='[config.githuburl]/commit/[revdata.revision]'>[revdata.revision]</a>")
+//		else
+//			to_chat(src, revdata.revision)
+//	else
+//		to_chat(src, "Revision unknown")
