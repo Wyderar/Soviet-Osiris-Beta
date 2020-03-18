@@ -25,11 +25,9 @@
 /obj/machinery/shieldwallgen/excelsior/emag_act()
 	return
 
-/obj/machinery/shieldwallgen/excelsior/verb/toggle_stun()
-	set category = "Object"
-	set name = "Toggle stun mode"
-	set src in view(1)
-
+/obj/machinery/shieldwallgen/excelsior/RightClick(mob/living/user)
+	if(!user.Adjacent(src))
+		return
 	if(usr.incapacitated())
 		return
 

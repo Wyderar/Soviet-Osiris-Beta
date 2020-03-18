@@ -1433,11 +1433,34 @@
 	locked = TRUE
 	can_stock = list(/obj/item)
 
-/obj/machinery/vending/custom/verb/remodel()
-	set name = "Remodel Vendomat"
-	set category = "Object"
-	set src in oview(1)
+/obj/machinery/vending/custom/RightClick(mob/living/user)
+	if(user.Adjacent(src))
+		show_radial(user)
 
+/obj/machinery/vending/custom/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
+
+/obj/machinery/vending/custom/show_radial(mob/living/user)
+	if(!user)
+		return
+	var/list/layer_list = list(
+		"Remodel Vendomat" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_remodel"),
+		"Rename Vendomat" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_rename")
+		)
+	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE)
+	if(!check_menu(user))
+		return
+	switch(layer_result)
+		if("Remodel Vendomat")
+			remodel()
+		if("Rename Vendomat")
+			rename()
+
+/obj/machinery/vending/custom/proc/remodel()
 	if(locked)
 		to_chat(usr, SPAN_WARNING("[src] needs to be unlocked to remodel it."))
 		return
@@ -1447,11 +1470,7 @@
 	icon_type = CUSTOM_VENDOMAT_MODELS[choice]
 	power_change()
 
-/obj/machinery/vending/custom/verb/rename()
-	set name = "Rename Vendomat"
-	set category = "Object"
-	set src in oview(1)
-
+/obj/machinery/vending/custom/proc/rename()
 	if(locked)
 		to_chat(usr, SPAN_WARNING("[src] needs to be unlocked to rename it."))
 		return

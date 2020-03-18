@@ -9,8 +9,8 @@
 	if(stores_pen && istype(stored_pen))
 		verbs |= /obj/item/modular_computer/verb/remove_pen
 
-	verbs |= /obj/item/verb/verb_pickup
-	verbs |= /obj/item/verb/move_to_top
+//	verbs |= /obj/item/verb/verb_pickup
+//	verbs |= /obj/item/verb/move_to_top
 
 	verbs |= /obj/item/modular_computer/verb/emergency_shutdown
 

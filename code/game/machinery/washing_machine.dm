@@ -46,10 +46,9 @@
 	A.make_young()
 
 
-/obj/machinery/washing_machine/verb/start()
-	set name = "Start Washing"
-	set category = "Object"
-	set src in oview(1)
+/obj/machinery/washing_machine/RightClick(mob/living/user)
+	if(!user.Adjacent(src))
+		return
 
 	if(!isliving(usr)) //ew ew ew usr, but it's the only way to check.
 		return

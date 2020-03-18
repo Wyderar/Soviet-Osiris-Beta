@@ -1209,11 +1209,7 @@ assassination method if you time it right*/
 	return
 
 
-/obj/mecha/verb/move_inside()
-	set category = "Object"
-	set name = "Enter Exosuit"
-	set src in oview(1)
-
+/obj/mecha/MouseDrop_T(var/mob/target, var/mob/user)
 	if (usr.stat || !ishuman(usr))
 		return
 

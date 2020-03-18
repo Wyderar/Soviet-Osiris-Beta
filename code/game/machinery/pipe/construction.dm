@@ -324,11 +324,43 @@ Buildable meters
 
 // rotate the pipe item clockwise
 
-/obj/item/pipe/verb/rotate()
-	set category = "Object"
-	set name = "Rotate Pipe"
-	set src in view(1)
+/obj/item/pipe/RightClick(mob/living/user)
+	if(user.Adjacent(src))
+		show_radial(user)
 
+/obj/item/pipe/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
+
+/obj/item/pipe/show_radial(mob/living/user)
+	if(!user || anchored || is_equipped())
+		return
+	var/list/layer_list = list(
+			"Pull" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pull"),
+			"Pickup" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pickup"),
+			"Examine" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_examine"),
+			"Rotate" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_rotate")
+		)
+	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = FALSE)
+	if(!check_menu(user))
+		return
+	switch(layer_result)
+		if("Pull")
+			if(Adjacent(user))
+				user.start_pulling(src)
+		if("Pickup")
+			if(pre_pickup(user))
+				pickup(user)
+		if("Examine")
+			if(user.client && user.client.eye == user)
+				user.examinate(src)
+		if("Rotate")
+			rotate()
+
+/obj/item/pipe/proc/rotate()
 	if ( usr.stat || usr.restrained() )
 		return
 
