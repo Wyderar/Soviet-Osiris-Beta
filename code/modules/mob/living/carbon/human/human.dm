@@ -139,13 +139,13 @@
 	if (bomb_defense)
 		b_loss = max(b_loss - bomb_defense, 0)
 		f_loss = max(f_loss - bomb_defense, 0)
-		
+
 	var/organ_hit = BP_CHEST //Chest is hit first
 	var/exp_damage
 	while (b_loss > 0)
 		b_loss -= exp_damage = rand(0, b_loss)
 		src.apply_damage(exp_damage, BRUTE, organ_hit)
-		organ_hit = pickweight(list(BP_HEAD = 0.2, BPBP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG=0.1, BP_L_LEG=0.1))  //We determine some other body parts that should be hit 
+		organ_hit = pickweight(list(BP_HEAD = 0.2, BPBP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG=0.1, BP_L_LEG=0.1))  //We determine some other body parts that should be hit
 
 /mob/living/carbon/human/restrained()
 	if (handcuffed)
@@ -1540,7 +1540,7 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/proc/save_to_prefs()
 	if(!config.canonicity)
 		return 0
-	
+
 	if(!mind)
 		return 0
 
@@ -1554,6 +1554,11 @@ var/list/rank_prefix = list(\
 	if(stat == 0)
 		if(!check_no_wage_positions(job))
 			save_bank_balance()
+		var/datum/computer_file/report/crew_record/CR = get_record_charid(character_id)
+		if(CR)
+			mind.prefs.med_record = CR.get_medRecord()
+			mind.prefs.sec_record = CR.get_secRecord()
+			mind.prefs.gen_record = CR.get_emplRecord()
 		mind.prefs.stat_mec = stats.getStat(STAT_MEC)
 		mind.prefs.stat_cog = stats.getStat(STAT_COG)
 		mind.prefs.stat_bio = stats.getStat(STAT_BIO)

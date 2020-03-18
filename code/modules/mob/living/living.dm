@@ -704,6 +704,14 @@ default behaviour is:
 	if(pulling)
 		pulling.pulledby = null
 		pulling = null
+		if(last_intent_was_run)
+			var/decl/move_intent/newintent = decls_repository.get_decl(/decl/move_intent/run)
+			if(newintent.can_enter(src, TRUE))
+				move_intent = newintent
+				last_intent_was_run = 0
+			if(HUDneed.Find("move intent"))
+				var/obj/screen/mov_intent/I = HUDneed["move intent"]
+				I.update_icon()
 /*		if(pullin)
 			pullin.icon_state = "pull0"*/
 		if (HUDneed.Find("pull"))
@@ -758,6 +766,15 @@ default behaviour is:
 
 	src.pulling = AM
 	AM.pulledby = src
+
+	if(istype(AM, /obj/structure) && (move_intent.type == /decl/move_intent/run))
+		var/decl/move_intent/newintent = decls_repository.get_decl(/decl/move_intent/walk)
+		if(newintent.can_enter(src, TRUE))
+			move_intent = newintent
+			last_intent_was_run = 1
+		if(HUDneed.Find("move intent"))
+			var/obj/screen/mov_intent/I = HUDneed["move intent"]
+			I.update_icon()
 
 	if (HUDneed.Find("pull"))
 		var/obj/screen/HUDthrow/HUD = HUDneed["pull"]

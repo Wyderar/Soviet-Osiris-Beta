@@ -1022,6 +1022,8 @@ obj/screen/fire/DEADelize()
 
 
 /obj/screen/mov_intent/Click()
+	if(parentmob.pulling && istype(parentmob.pulling, /obj/structure))
+		return
 	var/move_intent_type = next_list_item(usr.move_intent.type, usr.move_intents)
 	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
 	if (newintent.can_enter(parentmob, TRUE))
@@ -1229,6 +1231,7 @@ obj/screen/fire/DEADelize()
 					H.client.hidden_mobs += M
 					if(H.pulling == M)//If we're pulling them we don't want them to be invisible, too hard to play like that.
 						I.override = 0
+						H.client.hidden_mobs -= M
 					else
 						M.in_vision_cones[H.client] = 1
 			else
@@ -1240,6 +1243,7 @@ obj/screen/fire/DEADelize()
 					H.client.hidden_mobs += M
 					if(H.pulling == M)
 						I.override = 0
+						H.client.hidden_mobs -= M
 					else
 						M.in_vision_cones[H.client] = 1
 	else

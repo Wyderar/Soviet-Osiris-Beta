@@ -387,6 +387,10 @@
 	//This should guarantee that ghosts don't spawn.
 	occupant.ckey = null
 
+	var/datum/computer_file/report/crew_record/CR = get_record_charid(occupant.character_id)
+	if(CR)
+		GLOB.all_crew_records.Remove(CR)
+
 	// Delete the mob.
 	qdel(occupant)
 	set_occupant(null)

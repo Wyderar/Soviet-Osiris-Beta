@@ -515,7 +515,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return TRUE
 
 /obj/item/show_radial(mob/living/user)
-	if(!user)
+	if(!user || anchored)
 		return
 	var/list/layer_list = list(
 			"Pull" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pull"),
@@ -540,7 +540,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(istype(usr, /mob/living))
 		var/mob/living/M = usr
 		if(!M.client.mouse_pointer_icon)
-			if(M.Adjacent(src))
+			if(M.Adjacent(src) && !anchored && !M.get_active_hand())
 				M.client.mouse_pointer_icon = initial(M.client.mouse_pointer_icon)
 				M.client.mouse_pointer_icon = file('icons/cursors/pickup.dmi')
 

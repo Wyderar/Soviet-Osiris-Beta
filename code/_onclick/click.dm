@@ -292,15 +292,36 @@
 	A.AltClick(src)
 	return
 
-/atom/proc/AltClick(var/mob/user)
+/atom/proc/AltClick(var/mob/living/user)
+	if(!user)
+		return
 	var/turf/T = get_turf(src)
 	if(T && user.TurfAdjacent(T))
-		if(user.listed_turf == T)
-			user.listed_turf = null
-		else
-			user.listed_turf = T
-			user.client.statpanel = "Turf"
-	return 1
+		var/list/layer_list = list()
+		var/list/obj_list = list()
+		for(var/obj/item/A in T)
+			layer_list += list(
+				"[A.name]" = image(icon = A.icon, icon_state = A.icon_state)
+				)
+			obj_list += list(
+				"[A.name]" = A
+			)
+//			log_world("[A.name]") // ОПРЕДЕЛЯЕТ
+		var/layer_result = show_radial_menu(user, src, layer_list, require_near = TRUE)
+		if(layer_result)
+			var/obj/item/B = obj_list[layer_result]
+			if(B.pre_pickup(user))
+				B.pickup(user)
+//	log_world("[layer_result]")
+
+
+//	if(T && user.TurfAdjacent(T))
+//		if(user.listed_turf == T)
+//			user.listed_turf = null
+//		else
+//			user.listed_turf = T
+//			user.client.statpanel = "Turf"
+//	return 1
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)

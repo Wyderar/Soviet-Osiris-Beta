@@ -140,9 +140,9 @@
 			var/response = alert("В случае, если вы сохраните его, у вас больше не будет возможности менять его имя и внешность!","Вы уверены, что хотите сохранить персонажа?","Нет","Да")
 			if(response == "Нет")
 				return
+		char_exists = 1
 		save_preferences()
 		save_character()
-		char_exists = 1
 //	else if(href_list["reload"])
 //		load_preferences()
 //		load_character()

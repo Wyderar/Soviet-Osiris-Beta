@@ -273,6 +273,8 @@
 		mob.toggle_move_intent(usr)
 
 /mob/proc/toggle_move_intent(mob/user)
+	if(pulling && istype(pulling, /obj/structure))
+		return
 	var/move_intent_type = next_list_item(move_intent.type, move_intents)
 	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
 	if (newintent.can_enter(user, TRUE))

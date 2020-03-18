@@ -97,6 +97,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/a_intent = I_HELP//Living
 
 	var/decl/move_intent/move_intent = /decl/move_intent/run
+	var/last_intent_was_run = 0
 	var/move_intents = list(/decl/move_intent/run, /decl/move_intent/walk)
 
 	var/obj/buckled = null//Living
