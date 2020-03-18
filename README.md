@@ -1,8 +1,18 @@
-![](https://cdn.discordapp.com/attachments/265411250341543936/269612274765791242/eris_128.png)
-# Endless Horizon: CEV-Eris [![Build Status](https://travis-ci.org/discordia-space/CEV-Eris.svg?branch=master)](https://travis-ci.org/Endless-Horizon/CEV-Eris)[![Krihelimeter](http://www.krihelinator.xyz/badge/discordia-space/CEV-Eris/)](http://www.krihelinator.xyz)
-[![discord](https://discordapp.com/api/guilds/255035529085583360/widget.png)](https://discord.gg/QfEg7K7)
+![](https://i.imgur.com/flRQCK2.png)
+# Osiris SS13 Hi-RP: CEV-Eris
+[![discord](https://discordapp.com/api/guilds/682614234122813455/widget.png)](https://discord.gg/PuraXWG)
 
-Корабль, который должен умирать.
+**Добро пожаловать на репозиторий проекта Osiris SS13 Hi-RP!**
+
+*Мы используем сборку CEV Eris как основу для своих дальнейших наработок.*
+
+**Репозиторий CEV Eris "Discordia"**: https://github.com/discordia-space/CEV-Eris
+
+## Основные ссылки
+
+**Discord канал проекта Osiris:** https://discord.gg/PuraXWG/
+
+**Wiki:** http://osiris13.ru/
 
 ## CONTRIBUTING
 
