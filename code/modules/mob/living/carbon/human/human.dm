@@ -1000,33 +1000,21 @@ var/list/rank_prefix = list(\
 					if(organ.setBleeding())
 						src.adjustToxLoss(rand(1,3))
 
-/mob/living/carbon/human/verb/check_pulse()
-	set category = "Object"
-	set name = "Check pulse"
-	set desc = "Approximately count somebody's pulse. Requires you to stand still at least 6 seconds."
-	set src in view(1)
-	var/self = 0
+/mob/living/carbon/human/proc/check_pulse()
+	if(usr.stat || usr.restrained() || !isliving(usr) || usr == src) return
 
-	if(usr.stat || usr.restrained() || !isliving(usr)) return
-
-	if(usr == src)
-		self = 1
-	if(!self)
-		usr.visible_message(SPAN_NOTICE("[usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse."),\
+	usr.visible_message(SPAN_NOTICE("[usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse."),\
 		"You begin counting [src]'s pulse")
-	else
-		usr.visible_message(SPAN_NOTICE("[usr] begins counting their pulse."),\
-		"You begin counting your pulse.")
 
 	if(pulse())
-		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
+		to_chat(usr, "<span class='notice'>[src] has a pulse! Counting...</span>")
 	else
 		to_chat(usr, SPAN_DANGER("[src] has no pulse!")	) //it is REALLY UNLIKELY that a dead person would check his own pulse
 		return
 
-	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
+	to_chat(usr, "You must both remain still until counting is finished.")
 	if(do_mob(usr, src, 60))
-		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>")
+		to_chat(usr, "<span class='notice'>[src]'s pulse is [src.get_pulse(GETPULSE_HAND)].</span>")
 	else
 		to_chat(usr, SPAN_WARNING("You failed to check the pulse. Try again."))
 

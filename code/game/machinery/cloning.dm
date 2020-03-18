@@ -237,12 +237,8 @@
 	else
 		notoxin = 0
 
-/obj/machinery/clonepod/verb/eject()
-	set name = "Eject Cloner"
-	set category = "Object"
-	set src in oview(1)
-
-	if(usr.stat)
+/obj/machinery/clonepod/RightClick(mob/living/user)
+	if(usr.stat || !user.Adjacent(src))
 		return
 	go_out()
 	add_fingerprint(usr)

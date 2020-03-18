@@ -840,3 +840,45 @@ default behaviour is:
 		else
 			in_vision_cones.Remove(C)
 	. = ..()
+
+/mob/living/RightClick(mob/living/giver)
+	if(!giver || giver.incapacitated() || client == null || giver.a_intent != I_HELP || giver == src)
+		return
+
+	var/obj/item/I = giver.get_active_hand()
+//	if(!I)
+//		I = giver.get_inactive_hand()
+	if(!I)
+		if(incapacitated() && istype(src, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = src
+			H.check_pulse()
+		return
+
+	if(I.item_flags & ABSTRACT)//No giving people offhands.
+		return
+
+	if(alert(src,"[giver] wants to give you \a [I]. Will you accept it?",,"Yes","No") == "No")
+		src.visible_message(SPAN_NOTICE("\The [giver] tried to hand \the [I] to \the [src], \
+		but \the [src] didn't want it."))
+		return
+
+	if(!I) return
+
+	if(!Adjacent(giver))
+		to_chat(giver, SPAN_WARNING("You need to stay in reaching distance while giving an object."))
+		to_chat(src, SPAN_WARNING("\The [src] moved too far away."))
+		return
+
+	if(I.loc != giver || (giver.l_hand != I && giver.r_hand != I))
+		to_chat(giver, SPAN_WARNING("You need to keep the item in your hands."))
+		to_chat(src, SPAN_WARNING("\The [giver] seems to have given up on passing \the [I] to you."))
+		return
+
+	if(src.r_hand != null && src.l_hand != null)
+		to_chat(src, SPAN_WARNING("Your hands are full."))
+		to_chat(giver, SPAN_WARNING("Their hands are full."))
+		return
+
+	if(giver.unEquip(I))
+		src.put_in_hands(I) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
+		src.visible_message(SPAN_NOTICE("\The [giver] handed \the [I] to \the [src]."))

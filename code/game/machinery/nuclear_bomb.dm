@@ -194,12 +194,8 @@ var/bomb_set
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/nuclearbomb/verb/toggle_deployable()
-	set category = "Object"
-	set name = "Toggle Deployable"
-	set src in oview(1)
-
-	if(usr.incapacitated())
+/obj/machinery/nuclearbomb/RightClick()
+	if(usr.incapacitated() || !usr.Adjacent(src))
 		return
 
 	if (src.deployable)

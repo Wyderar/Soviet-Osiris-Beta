@@ -401,7 +401,7 @@
 	return TRUE
 
 /obj/machinery/cryopod/MouseDrop_T(var/mob/living/L, mob/living/user)
-	if(istype(L) && istype(user))
+	if(istype(L) && istype(user) && L != user)
 		try_put_inside(L, user)
 
 /obj/machinery/cryopod/proc/try_put_inside(var/mob/living/affecting, var/mob/living/user)
@@ -453,12 +453,35 @@
 		//Despawning occurs when process() is called with an occupant without a client.
 		src.add_fingerprint(user)
 
+/obj/machinery/cryopod/RightClick(mob/living/user)
+	if(user.Adjacent(src))
+		show_radial(user)
 
+/obj/machinery/cryopod/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
 
-/obj/machinery/cryopod/verb/eject()
-	set name = "Eject Pod"
-	set category = "Object"
-	set src in oview(1)
+/obj/machinery/cryopod/show_radial(mob/living/user)
+	if(!user || occupant == user) 
+		return
+	var/list/layer_list = list()
+	if(!occupant)
+		layer_list += list("Enter" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_enter"))
+	else
+		layer_list += list("Eject" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_eject"))
+	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE)
+	if(!check_menu(user))
+		return
+	switch(layer_result)
+		if("Enter")
+			move_inside()
+		if("Eject")
+			eject()
+
+/obj/machinery/cryopod/proc/eject()
 	if(usr.stat != 0)
 		return
 
@@ -481,11 +504,7 @@
 	name = initial(name)
 	return
 
-/obj/machinery/cryopod/verb/move_inside()
-	set name = "Enter Pod"
-	set category = "Object"
-	set src in oview(1)
-
+/obj/machinery/cryopod/proc/move_inside()
 	if(usr.stat != 0 || !check_occupant_allowed(usr))
 		return
 

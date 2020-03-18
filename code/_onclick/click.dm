@@ -86,10 +86,13 @@
 		CtrlAltClickOn(A)
 		return 1
 	if(modifiers["middle"])
-		if(modifiers["shift"])
-			ShiftMiddleClickOn(A)
+		MiddleClickOn(A)
+		return 1
+	if(modifiers["right"])
+		if(modifiers["ctrl"])
+			CtrlRightClickOn(A)
 		else
-			MiddleClickOn(A)
+			RightClickOn(A)
 		return 1
 	if(modifiers["shift"])
 		ShiftClickOn(A)
@@ -237,7 +240,19 @@
 	swap_hand()
 	return
 
-/mob/proc/ShiftMiddleClickOn(var/atom/A)
+
+/*
+	Right click
+	Used for radial menu and giving item to other mobs
+*/
+/mob/proc/RightClickOn(var/atom/A)
+	A.RightClick(src)
+	return
+
+/atom/proc/RightClick(var/atom/A)
+	return
+
+/mob/proc/CtrlRightClickOn(var/atom/A)
 	pointed(A)
 
 // In case of use break glass

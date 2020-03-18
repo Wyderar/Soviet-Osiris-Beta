@@ -1241,7 +1241,7 @@ obj/screen/fire/DEADelize()
 					H.client.images += I
 					H.client.hidden_atoms += I
 					H.client.hidden_mobs += M
-					if(H.pulling == M)
+					if(H.pulling == M || H.loc == M.loc)
 						I.override = 0
 						H.client.hidden_mobs -= M
 					else

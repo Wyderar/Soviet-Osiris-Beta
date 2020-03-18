@@ -319,7 +319,7 @@
 	return 1
 
 /obj/machinery/atmospherics/unary/cryo_cell/MouseDrop_T(var/mob/target, var/mob/user)
-	if(!ismob(target))
+	if(!ismob(target) || target == user)
 		return
 	if (target.buckled)
 		to_chat(usr, SPAN_WARNING("Unbuckle the subject before attempting to move them."))
@@ -334,10 +334,35 @@
 	return
 
 
-/obj/machinery/atmospherics/unary/cryo_cell/verb/move_eject()
-	set name = "Eject occupant"
-	set category = "Object"
-	set src in oview(1)
+/obj/machinery/atmospherics/unary/cryo_cell/RightClick(mob/living/user)
+	if(user.Adjacent(src))
+		show_radial(user)
+
+/obj/machinery/atmospherics/unary/cryo_cell/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
+
+/obj/machinery/atmospherics/unary/cryo_cell/show_radial(mob/living/user)
+	if(!user || occupant == user) 
+		return
+	var/list/layer_list = list()
+	if(!occupant)
+		layer_list += list("Enter" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_enter"))
+	else
+		layer_list += list("Eject" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_eject"))
+	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE)
+	if(!check_menu(user))
+		return
+	switch(layer_result)
+		if("Enter")
+			move_inside()
+		if("Eject")
+			move_eject()
+
+/obj/machinery/atmospherics/unary/cryo_cell/proc/move_eject()
 	if(usr == occupant)//If the user is inside the tube...
 		if(usr.stat == DEAD)//and he's not dead....
 			return
@@ -353,10 +378,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/machinery/atmospherics/unary/cryo_cell/verb/move_inside()
-	set name = "Move Inside"
-	set category = "Object"
-	set src in oview(1)
+/obj/machinery/atmospherics/unary/cryo_cell/proc/move_inside()
 	for(var/mob/living/carbon/slime/M in range(1,usr))
 		if(M.Victim == usr)
 			to_chat(usr, "You're too busy getting your life sucked out of you.")

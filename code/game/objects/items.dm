@@ -504,8 +504,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
 
-/obj/item/AltClick(mob/living/user)
-	show_radial(user)
+/obj/item/RightClick(mob/living/user)
+	if(user.Adjacent(src))
+		show_radial(user)
 
 /obj/item/check_menu(mob/living/user)
 	if(!istype(user))
@@ -515,7 +516,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return TRUE
 
 /obj/item/show_radial(mob/living/user)
-	if(!user || anchored)
+	if(!user || anchored || is_equipped()) 
 		return
 	var/list/layer_list = list(
 			"Pull" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pull"),
