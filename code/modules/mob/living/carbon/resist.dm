@@ -1,6 +1,7 @@
 /mob/living/verb/resist()
 	set name = "Resist"
 	set category = "IC"
+	set hidden = TRUE
 
 	if(!stat && can_click())
 		setClickCooldown(1)//only 1/10th of a second so no macros spamming

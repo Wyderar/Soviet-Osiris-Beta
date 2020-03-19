@@ -12,6 +12,7 @@
 	set name = "Change UI format"
 	set category = "OOC"
 	set desc = "Minimize or maximaze you UI"
+	set hidden = TRUE
 
 	if(!ishuman(usr))
 		to_chat(usr, SPAN_WARNING("You must be human to use this verb."))
@@ -27,6 +28,7 @@
 	set name = "Change UI"
 	set category = "OOC"
 	set desc = "Configure your user interface"
+	set hidden = TRUE
 
 	if(!ishuman(usr))
 		to_chat(usr, SPAN_WARNING("You must be human to use this verb."))

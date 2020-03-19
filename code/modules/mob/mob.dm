@@ -222,6 +222,7 @@
 /mob/verb/examinate(atom/A as mob|obj|turf in view())
 	set name = "Examine"
 	set category = "IC"
+	set hidden = TRUE
 
 	if((is_blind(src) || usr.stat) && !isobserver(src))
 		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
@@ -313,6 +314,7 @@
 /mob/verb/memory()
 	set name = "Notes"
 	set category = "IC"
+	set hidden = TRUE
 	if(mind)
 		mind.show_memory(src)
 	else
@@ -321,6 +323,7 @@
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
 	set category = "IC"
+	set hidden = TRUE
 
 	msg = sanitize(msg)
 
@@ -640,10 +643,10 @@
 
 	if(.)
 		if(statpanel("Status") && SSticker.current_state != GAME_STATE_PREGAME)
-			stat("Storyteller", "[master_storyteller]")
-			stat("Round Type", "[config.canonicity ? "canon" : "non-canon"]")
-			stat("Station Time", stationtime2text())
-			stat("Round Duration", roundduration2text())
+			stat("Рассказчик", "[master_storyteller]")
+			stat("Каноничность", "[config.canonicity ? "да" : "нет"]")
+//			stat("Время", stationtime2text())
+			stat("Длительность раунда", roundduration2text())
 
 		if(client.holder)
 			if(statpanel("Status"))
@@ -669,20 +672,20 @@
 					for(var/datum/controller/subsystem/SS in Master.subsystems)
 						SS.stat_entry()
 
-		if(listed_turf && client)
-			if(!TurfAdjacent(listed_turf))
-				listed_turf = null
-			else
-				if(statpanel("Turf"))
-					stat(listed_turf)
-					for(var/atom/A in listed_turf)
-						if(!A.mouse_opacity)
-							continue
-						if(A.invisibility > see_invisible)
-							continue
-						if(is_type_in_list(A, shouldnt_see))
-							continue
-						stat(A)
+//		if(listed_turf && client)
+//			if(!TurfAdjacent(listed_turf))
+//				listed_turf = null
+//			else
+//				if(statpanel("Turf"))
+//					stat(listed_turf)
+//					for(var/atom/A in listed_turf)
+//						if(!A.mouse_opacity)
+//							continue
+//						if(A.invisibility > see_invisible)
+//							continue
+//						if(is_type_in_list(A, shouldnt_see))
+//							continue
+//						stat(A)
 
 
 // facing verbs
@@ -1066,6 +1069,7 @@ mob/proc/yank_out_object()
 	set name		= "Show Stats Values"
 	set desc		= "Browse your character stats."
 	set category	= "IC"
+	set hidden = TRUE
 	set src			= usr
 
 	browse_src_stats(src)

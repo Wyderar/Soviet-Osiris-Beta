@@ -567,6 +567,7 @@ default behaviour is:
 /mob/living/verb/lay_down()
 	set name = "Rest"
 	set category = "IC"
+	set hidden = TRUE
 
 	var/state_changed = FALSE
 	if(resting && can_stand_up())
@@ -700,6 +701,7 @@ default behaviour is:
 
 	set name = "Stop Pulling"
 	set category = "IC"
+	set hidden = TRUE
 
 	if(pulling)
 		pulling.pulledby = null
@@ -842,7 +844,14 @@ default behaviour is:
 	. = ..()
 
 /mob/living/RightClick(mob/living/giver)
-	if(!giver || giver.incapacitated() || client == null || giver.a_intent != I_HELP || giver == src)
+	if(!giver || giver.incapacitated() || client == null)
+		return
+	
+	if(giver == src)
+		show_selfmob_menu(src)
+		return
+	
+	if(giver.a_intent != I_HELP)
 		return
 
 	var/obj/item/I = giver.get_active_hand()
@@ -882,3 +891,29 @@ default behaviour is:
 	if(giver.unEquip(I))
 		src.put_in_hands(I) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
 		src.visible_message(SPAN_NOTICE("\The [giver] handed \the [I] to \the [src]."))
+
+/mob/living/proc/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
+
+/mob/living/proc/show_selfmob_menu(mob/living/user)
+	if(!user) 
+		return
+	var/list/layer_list = list(
+			"Show Stats" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_stats"),
+			"Languages" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_lang"),
+			"Show Notes" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_notes")
+		)
+	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = FALSE)
+	if(!check_menu(user))
+		return
+	switch(layer_result)
+		if("Show Stats")
+			user.browse_mine_stats()
+		if("Languages")
+			user.check_languages()
+		if("Show Notes")
+			user.memory()

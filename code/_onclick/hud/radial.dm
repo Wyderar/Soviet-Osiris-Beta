@@ -307,7 +307,12 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	menu.set_choices(choices, tooltips)
 	menu.show_to(user)
 	menu.wait(user, anchor, require_near)
-	var/answer = menu.selected_choice
-	GLOB.radial_menus -= uniqueid
-	qdel(menu)
-	return answer
+	if(menu.selected_choice)
+		var/answer = menu.selected_choice
+		GLOB.radial_menus -= uniqueid
+		qdel(menu)
+		return answer
+	else
+		GLOB.radial_menus -= uniqueid
+		qdel(menu)
+		return

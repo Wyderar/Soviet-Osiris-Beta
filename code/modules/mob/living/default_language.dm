@@ -4,6 +4,7 @@
 /mob/living/verb/set_default_lang_verb(language as null|anything in languages)
 	set name = "Set Default Language"
 	set category = "IC"
+	set hidden = TRUE
 
 	if(language)
 		to_chat(src, SPAN_NOTICE("You will now speak [language] if you do not specify a language when speaking."))
@@ -18,6 +19,7 @@
 /mob/living/verb/check_default_language()
 	set name = "Check Default Language"
 	set category = "IC"
+	set hidden = TRUE
 
 	if(default_language)
 		to_chat(src, SPAN_NOTICE("You are currently speaking [default_language] by default."))

@@ -125,6 +125,8 @@
 		else
 			output += "<br><b>Your [A.role_text] objectives:</b>"
 		output += "[A.print_objectives(FALSE)]"
+	
+	output += "<A href='?src=\ref[src];write=1'>write</A>"
 
 	var/datum/browser/popup = new(recipient, "memory","Память", 370, 470)
 	popup.set_content(output)
@@ -156,6 +158,12 @@
 	usr << browse(out, "window=edit_memory[src]")
 
 /datum/mind/Topic(href, href_list)
+	if(href_list["write"])
+		var/new_memo = sanitize(input("Write new memory", "Memory") as null|message)
+		if (isnull(new_memo)) return
+		memory += new_memo
+		return
+
 	if(!check_rights(R_ADMIN))
 		return
 

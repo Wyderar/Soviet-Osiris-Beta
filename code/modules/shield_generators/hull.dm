@@ -114,7 +114,7 @@
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "conduit_0"
 	desc = "A combined conduit and capacitor that transfers and stores massive amounts of energy."
-	description_info = "This is purely visual. They are created and removed when you wrench/unwrench the shield generator"
+//	description_info = "This is purely visual. They are created and removed when you wrench/unwrench the shield generator"
 	density = TRUE
 	anchored = FALSE //Will be set true just after deploying
 

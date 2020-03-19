@@ -120,8 +120,7 @@
 		M.account_id = H.mind.prefs.character_id
 
 	if(H.mind)
-		var/remembered_info = ""
-		remembered_info += "<b>Your account number is:</b> #[M.account_number]<br>"
+		var/remembered_info = "<b>Your account number is:</b> #[M.account_number]<br>"
 		remembered_info += "<b>Your account pin is:</b> [M.remote_access_pin]<br>"
 		remembered_info += "<b>Your account funds are:</b> [M.money][CREDS]<br>"
 

@@ -5,6 +5,7 @@
 /mob/living/verb/craft_menu()
 	set name = "Craft Menu"
 	set category = "IC"
+	set hidden = TRUE
 	src.open_craft_menu()
 
 //this is called when you use any proc and not verb, like atack_self and want to give tab name to be opened

@@ -19,6 +19,7 @@ var/list/client_preference_stats_
 	set name = "Toggle Preference"
 	set desc = "Toggles the selected preference."
 	set category = "OOC"
+	set hidden = TRUE
 
 	var/list/client_stats = client_preference_stats_for_usr()
 	var/stat_client_preference/scp = client_stats[client_pref_name]

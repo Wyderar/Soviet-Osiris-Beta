@@ -184,6 +184,9 @@ var/global/ManifestJSON
 		G.fields["real_rank"]	= H.mind.assigned_role
 		G.fields["rank"]		= assignment
 		G.fields["age"]			= H.age
+		G.fields["birth_day"]	= H.mind.prefs.birth_day
+		G.fields["birth_month"]	= H.mind.prefs.birth_month
+		G.fields["birth_year"]	= H.mind.prefs.birth_year
 		G.fields["character_id"] = H.mind.prefs.character_id
 		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		G.fields["pay_account"]	= H.mind.initial_account.account_number
@@ -216,6 +219,9 @@ var/global/ManifestJSON
 		L.fields["character_id"] = H.mind.prefs.character_id
 		L.fields["rank"] 		= H.mind.assigned_role
 		L.fields["age"]			= H.age
+		L.fields["birth_day"]	= H.mind.prefs.birth_day
+		L.fields["birth_month"]	= H.mind.prefs.birth_month
+		L.fields["birth_year"]	= H.mind.prefs.birth_year
 		L.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		L.fields["sex"]			= H.gender
 		///L.fields["id_gender"]	= gender2text(H.identifying_gender)
