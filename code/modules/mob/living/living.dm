@@ -2,6 +2,7 @@
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
 	set name = "Pull"
 	set category = "Object"
+	set hidden = TRUE
 
 	if(AM.Adjacent(src))
 		src.start_pulling(AM)

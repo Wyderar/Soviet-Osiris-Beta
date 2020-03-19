@@ -237,6 +237,7 @@
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
 	set name = "Point To"
 	set category = "Object"
+	set hidden = TRUE
 
 	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
 		return 0
@@ -294,6 +295,7 @@
 /mob/verb/mode()
 	set name = "Activate Held Object"
 	set category = "Object"
+	set hidden = TRUE
 	set src = usr
 
 	var/obj/item/W = get_active_hand()
@@ -394,15 +396,12 @@
 		'html/changelog.js',
 		'html/changelog.html'
 		)
-	src << browse('html/changelog.html', "window=changes;size=675x650")
-	if(prefs.lastchangelog != changelog_hash)
-		prefs.lastchangelog = changelog_hash
-		prefs.save_preferences()
-		winset(src, "rpane.changelog", "background-color=none;font-style=;")
+	src << browse('html/changelog.html', "window=changes;size=800x700")
 
 /mob/verb/observe()
 	set name = "Observe"
 	set category = "OOC"
+	set hidden = TRUE
 	var/is_admin = 0
 
 	if(client.holder && (client.holder.rights & R_ADMIN))
@@ -1053,17 +1052,22 @@ mob/proc/yank_out_object()
 	return
 
 /mob/verb/face_direction()
-
-	set name = "Face Direction"
-	set category = "IC"
+	set name = "face-direction"
+	set hidden = TRUE
+	set instant = TRUE
 	set src = usr
 
+	if(istype(usr, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = usr
+		if(!H.inzoom)
+			set_face_dir()
+		return
 	set_face_dir()
 
-	if(!facing_dir)
-		to_chat(usr, "You are now not facing anything.")
-	else
-		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
+//	if(!facing_dir)
+//		to_chat(usr, "You are now not facing anything.")
+//	else
+//		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
 
 /mob/verb/browse_mine_stats()
 	set name		= "Show Stats Values"

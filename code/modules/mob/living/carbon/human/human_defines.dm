@@ -94,4 +94,5 @@
 
 	var/usefov = 1
 	var/head_covered = 0
+	var/inzoom = 0
 

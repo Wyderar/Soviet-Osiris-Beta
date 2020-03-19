@@ -54,7 +54,7 @@
 /decl/hierarchy/outfit/job/security/ihoper
 	name = OUTFIT_JOB_NAME("Ironhammer Operative")
 	r_pocket = /obj/item/weapon/handcuffs
-	l_pocket = /obj/item/device/flash
+//	l_pocket = /obj/item/device/flash
 	uniform = /obj/item/clothing/under/rank/security
 	belt = /obj/item/weapon/gun/energy/gun/martin
-	backpack_contents = list(/obj/item/weapon/cell/small/high = 2)
+	backpack_contents = list(/obj/item/weapon/cell/small/high = 1)

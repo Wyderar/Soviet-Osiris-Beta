@@ -286,3 +286,5 @@
 
 //Misc text define. Does 4 spaces. Used as a makeshift tabulator.
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
+
+#define CURSOR_PICKUP 'icons/cursors/pickup.dmi'

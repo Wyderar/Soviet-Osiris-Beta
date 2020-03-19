@@ -1201,6 +1201,7 @@ obj/screen/fire/DEADelize()
 	layer = UI_DAMAGE_LAYER
 	plane = HUD_PLANE
 	process_flag = TRUE
+	var/last_state
 
 /obj/screen/visioncone/Process()
 	update_icon()
@@ -1222,7 +1223,7 @@ obj/screen/fire/DEADelize()
 		dir = H.dir
 		if(alpha != 0)
 			var/mob/living/M
-			if(!H.head_covered)
+			if(!H.head_covered && !H.inzoom)
 				for(M in cone(H, OPPOSITE_DIR(H.dir), view(10, H)))
 					I = image("split", M)
 					I.override = 1

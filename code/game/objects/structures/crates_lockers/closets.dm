@@ -545,33 +545,33 @@
 	update_icon()
 	..()
 
-/obj/structure/closet/verb/verb_toggleopen()
-	set src in oview(1)
-	set category = "Object"
-	set name = "Toggle Open"
+///obj/structure/closet/verb/verb_toggleopen()
+//	set src in oview(1)
+//	set category = "Object"
+//	set name = "Toggle Open"
 
-	if(!usr.canmove || usr.stat || usr.restrained())
-		return
+//	if(!usr.canmove || usr.stat || usr.restrained())
+//		return
 
-	if(ishuman(usr) || isrobot(usr))
-		src.add_fingerprint(usr)
-		src.toggle(usr)
-	else
-		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
+//	if(ishuman(usr) || isrobot(usr))
+//		src.add_fingerprint(usr)
+//		src.toggle(usr)
+//	else
+//		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
 
-/obj/structure/closet/verb/verb_togglelock()
-	set src in oview(1) // One square distance
-	set category = "Object"
-	set name = "Toggle Lock"
+///obj/structure/closet/verb/verb_togglelock()
+//	set src in oview(1) // One square distance
+//	set category = "Object"
+//	set name = "Toggle Lock"
 
-	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
-		return
+//	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
+//		return
 
-	if(ishuman(usr) || isrobot(usr))
-		src.add_fingerprint(usr)
-		src.togglelock(usr)
-	else
-		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
+//	if(ishuman(usr) || isrobot(usr))
+//		src.add_fingerprint(usr)
+//		src.togglelock(usr)
+//	else
+//		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
 
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()

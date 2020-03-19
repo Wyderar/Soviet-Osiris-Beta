@@ -135,12 +135,6 @@ macro "borghotkeymode"
 		name = "CTRL+G"
 		command = "a-intent right"
 	elem 
-		name = "J"
-		command = "toggle-gun-mode"
-	elem 
-		name = "CTRL+J"
-		command = "toggle-gun-mode"
-	elem 
 		name = "Q"
 		command = "unequip-module"
 	elem 
@@ -475,7 +469,7 @@ macro "hotkeymode"
 		name = "S+UP"
 		command = "MoveKey 2 0"
 	elem
-		name = "SHIFT+X"
+		name = "SPACE"
 		command = ".wield"
 	elem 
 		name = "TAB"
@@ -496,26 +490,26 @@ macro "hotkeymode"
 		name = "NORTHWEST"
 		command = ".northwest"
 	elem 
-		name = "ALT+WEST"
-		command = "westfaceperm"
+		name = "CTRL+A"
+		command = "westface"
+	elem 
+		name = "CTRL+W"
+		command = "northface"
+	elem 
+		name = "CTRL+D"
+		command = "eastface"
+	elem 
+		name = "CTRL+S"
+		command = "southface"
 	elem 
 		name = "CTRL+WEST"
 		command = "westface"
 	elem 
-		name = "ALT+NORTH"
-		command = "northfaceperm"
-	elem 
 		name = "CTRL+NORTH"
 		command = "northface"
 	elem 
-		name = "ALT+EAST"
-		command = "eastfaceperm"
-	elem 
 		name = "CTRL+EAST"
 		command = "eastface"
-	elem 
-		name = "ALT+SOUTH"
-		command = "southfaceperm"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
@@ -529,25 +523,13 @@ macro "hotkeymode"
 		name = "1"
 		command = "a-intent help"
 	elem 
-		name = "CTRL+1"
-		command = "a-intent help"
-	elem 
 		name = "2"
-		command = "a-intent disarm"
-	elem 
-		name = "CTRL+2"
 		command = "a-intent disarm"
 	elem 
 		name = "3"
 		command = "a-intent grab"
 	elem 
-		name = "CTRL+3"
-		command = "a-intent grab"
-	elem 
 		name = "4"
-		command = "a-intent harm"
-	elem 
-		name = "CTRL+4"
 		command = "a-intent harm"
 	elem 
 		name = "5"
@@ -556,43 +538,16 @@ macro "hotkeymode"
 		name = "E"
 		command = "quick-equip"
 	elem 
-		name = "CTRL+E"
-		command = "quick-equip"
-	elem 
 		name = "F"
-		command = "a-intent left"
-	elem 
-		name = "CTRL+F"
-		command = "a-intent left"
-	elem 
-		name = "G"
-		command = "a-intent right"
-	elem 
-		name = "CTRL+G"
-		command = "a-intent right"
+		command = "toggle-gun-safety"
 	elem 
 		name = "H"
 		command = "holster"
 	elem 
-		name = "CTRL+H"
-		command = "holster"
-	elem 
-		name = "J"
-		command = "toggle-gun-mode"
-	elem 
-		name = "CTRL+J"
-		command = "toggle-gun-mode"
-	elem 
 		name = "Q"
 		command = ".northwest"
 	elem 
-		name = "CTRL+Q"
-		command = ".northwest"
-	elem 
 		name = "R"
-		command = ".southwest"
-	elem 
-		name = "CTRL+R"
 		command = ".southwest"
 	elem 
 		name = "T"
@@ -601,19 +556,10 @@ macro "hotkeymode"
 		name = "X"
 		command = ".northeast"
 	elem 
-		name = "CTRL+X"
-		command = ".northeast"
-	elem 
 		name = "Y"
 		command = "Activate-Held-Object"
 	elem 
-		name = "CTRL+Y"
-		command = "Activate-Held-Object"
-	elem 
 		name = "Z"
-		command = "Activate-Held-Object"
-	elem 
-		name = "CTRL+Z"
 		command = "Activate-Held-Object"
 	elem 
 		name = "NUMPAD1"
@@ -687,6 +633,15 @@ macro "hotkeymode"
 	elem 
 		name = "ALT+UP"
 		command = "toggle-walk-run"
+	elem 
+		name = "C"
+		command = "face-direction"
+	elem 
+		name = "C+UP"
+		command = "face-direction"
+	elem 
+		name = "V"
+		command = "Rest"
 
 macro "borgmacro"
 	elem 
@@ -756,26 +711,14 @@ macro "borgmacro"
 		name = "NORTHWEST"
 		command = ".northwest"
 	elem 
-		name = "ALT+WEST"
-		command = "westfaceperm"
-	elem 
 		name = "CTRL+WEST"
 		command = "westface"
-	elem 
-		name = "ALT+NORTH"
-		command = "northfaceperm"
 	elem 
 		name = "CTRL+NORTH"
 		command = "northface"
 	elem 
-		name = "ALT+EAST"
-		command = "eastfaceperm"
-	elem 
 		name = "CTRL+EAST"
 		command = "eastface"
-	elem 
-		name = "ALT+SOUTH"
-		command = "southfaceperm"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
