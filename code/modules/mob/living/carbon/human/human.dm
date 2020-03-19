@@ -61,8 +61,8 @@
 /mob/living/carbon/human/Stat()
 	. = ..()
 	if(statpanel("Status"))
-		stat("Intent:", "[a_intent]")
-		stat("Move Mode:", "[move_intent.name]")
+//		stat("Intent:", "[a_intent]")
+//		stat("Move Mode:", "[move_intent.name]")
 		if(evacuation_controller)
 			var/eta_status = evacuation_controller.get_status_panel_eta()
 			if(eta_status)
@@ -1435,6 +1435,7 @@ var/list/rank_prefix = list(\
 	set name = "Look up"
 	set desc = "If you want to know what's above."
 	set category = "IC"
+	set hidden = TRUE
 
 	if(!is_physically_disabled())
 		var/turf/above = GetAbove(src)

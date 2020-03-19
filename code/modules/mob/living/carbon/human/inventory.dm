@@ -108,8 +108,11 @@ This saves us from having to call add_fingerprint() any time something is put in
 				head_covered = 0
 				if(HUDtech.Find("visioncone"))
 					var/obj/screen/visioncone/B = HUDtech["visioncone"]
-					B.icon_state = "combat"
-					B.update_icon()
+					if(!inzoom)
+						B.icon_state = "combat"
+						B.update_icon()
+					else
+						B.last_state = "combat"
 		update_inv_head()
 	else if (W == l_ear)
 		l_ear = null
@@ -278,8 +281,11 @@ This saves us from having to call add_fingerprint() any time something is put in
 				head_covered = 1
 				if(HUDtech.Find("visioncone"))
 					var/obj/screen/visioncone/I = HUDtech["visioncone"]
-					I.icon_state = "helmet"
-					I.update_icon()
+					if(!inzoom)
+						I.icon_state = "helmet"
+						I.update_icon()
+					else
+						I.last_state = "helmet"
 		if(slot_shoes)
 			src.shoes = W
 		if(slot_wear_suit)

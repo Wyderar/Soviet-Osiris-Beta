@@ -580,9 +580,8 @@
 	update_firemode()
 
 /obj/item/weapon/gun/proc/toggle_safety_verb()
-	set name = "Toggle gun's safety"
-	set category = "Object"
-	set src in view(1)
+	set name = "toggle-gun-safety"
+	set hidden = TRUE
 
 	toggle_safety(usr)
 

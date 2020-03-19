@@ -465,11 +465,13 @@
 	return TRUE
 
 /obj/machinery/cryopod/show_radial(mob/living/user)
-	if(!user || occupant == user) 
+	if(!user) 
 		return
 	var/list/layer_list = list()
 	if(!occupant)
 		layer_list += list("Enter" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_enter"))
+	else if(occupant == user)
+		layer_list += list("Ghost" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_ghost"))
 	else
 		layer_list += list("Eject" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_eject"))
 	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE)
@@ -480,6 +482,8 @@
 			move_inside()
 		if("Eject")
 			eject()
+		if("Ghost")
+			user.ghost()
 
 /obj/machinery/cryopod/proc/eject()
 	if(usr.stat != 0)

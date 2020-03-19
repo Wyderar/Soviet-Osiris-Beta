@@ -63,8 +63,11 @@
 				H.head_covered = 1
 				if(H.HUDtech.Find("visioncone"))
 					var/obj/screen/visioncone/I = H.HUDtech["visioncone"]
-					I.icon_state = "helmet"
-					I.update_icon()
+					if(!H.inzoom)
+						I.icon_state = "helmet"
+						I.update_icon()
+					else
+						I.last_state = "helmet"
 		else
 			src.up = !src.up
 			body_parts_covered &= ~(EYES|FACE)
@@ -78,8 +81,11 @@
 				H.head_covered = 0
 				if(H.HUDtech.Find("visioncone"))
 					var/obj/screen/visioncone/B = H.HUDtech["visioncone"]
-					B.icon_state = "combat"
-					B.update_icon()
+					if(!H.inzoom)
+						B.icon_state = "combat"
+						B.update_icon()
+					else
+						B.last_state = "combat"
 		update_wear_icon()	//so our mob-overlays
 		usr.update_action_buttons()
 

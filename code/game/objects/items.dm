@@ -444,6 +444,17 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if (WEST)
 				usr.client.pixel_x = -viewoffset
 				usr.client.pixel_y = 0
+		
+		if(istype(usr, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = usr
+			H.set_dir(H.dir)
+			H.facing_dir = H.dir
+			H.inzoom = 1
+			if(H.HUDtech.Find("visioncone"))
+				var/obj/screen/visioncone/I = H.HUDtech["visioncone"]
+				I.last_state = I.icon_state
+				I.icon_state = "helmet"
+				I.update_icon()
 
 		usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
 
@@ -455,6 +466,15 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		usr.client.pixel_x = 0
 		usr.client.pixel_y = 0
+
+		if(istype(usr, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = usr
+			H.facing_dir = null
+			H.inzoom = 0
+			if(H.HUDtech.Find("visioncone"))
+				var/obj/screen/visioncone/I = H.HUDtech["visioncone"]
+				I.icon_state = I.last_state
+				I.update_icon()
 
 		if(!cannotzoom)
 			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [name]" : "[usr] lowers the [name]"].")
@@ -543,7 +563,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(!M.client.mouse_pointer_icon)
 			if(M.Adjacent(src) && !anchored && !M.get_active_hand())
 				M.client.mouse_pointer_icon = initial(M.client.mouse_pointer_icon)
-				M.client.mouse_pointer_icon = file('icons/cursors/pickup.dmi')
+				M.client.mouse_pointer_icon = file(CURSOR_PICKUP)
 
 /obj/item/MouseExited()
-	usr.client.mouse_pointer_icon = initial(usr.client.mouse_pointer_icon)
+	if(usr.client.mouse_pointer_icon == CURSOR_PICKUP)
+		usr.client.mouse_pointer_icon = initial(usr.client.mouse_pointer_icon)

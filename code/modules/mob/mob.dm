@@ -222,6 +222,7 @@
 /mob/verb/examinate(atom/A as mob|obj|turf in view())
 	set name = "Examine"
 	set category = "IC"
+	set hidden = TRUE
 
 	if((is_blind(src) || usr.stat) && !isobserver(src))
 		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
@@ -236,6 +237,7 @@
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
 	set name = "Point To"
 	set category = "Object"
+	set hidden = TRUE
 
 	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
 		return 0
@@ -293,6 +295,7 @@
 /mob/verb/mode()
 	set name = "Activate Held Object"
 	set category = "Object"
+	set hidden = TRUE
 	set src = usr
 
 	var/obj/item/W = get_active_hand()
@@ -313,6 +316,7 @@
 /mob/verb/memory()
 	set name = "Notes"
 	set category = "IC"
+	set hidden = TRUE
 	if(mind)
 		mind.show_memory(src)
 	else
@@ -321,6 +325,7 @@
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
 	set category = "IC"
+	set hidden = TRUE
 
 	msg = sanitize(msg)
 
@@ -391,15 +396,12 @@
 		'html/changelog.js',
 		'html/changelog.html'
 		)
-	src << browse('html/changelog.html', "window=changes;size=675x650")
-	if(prefs.lastchangelog != changelog_hash)
-		prefs.lastchangelog = changelog_hash
-		prefs.save_preferences()
-		winset(src, "rpane.changelog", "background-color=none;font-style=;")
+	src << browse('html/changelog.html', "window=changes;size=800x700")
 
 /mob/verb/observe()
 	set name = "Observe"
 	set category = "OOC"
+	set hidden = TRUE
 	var/is_admin = 0
 
 	if(client.holder && (client.holder.rights & R_ADMIN))
@@ -640,10 +642,10 @@
 
 	if(.)
 		if(statpanel("Status") && SSticker.current_state != GAME_STATE_PREGAME)
-			stat("Storyteller", "[master_storyteller]")
-			stat("Round Type", "[config.canonicity ? "canon" : "non-canon"]")
-			stat("Station Time", stationtime2text())
-			stat("Round Duration", roundduration2text())
+			stat("Рассказчик", "[master_storyteller]")
+			stat("Каноничность", "[config.canonicity ? "да" : "нет"]")
+//			stat("Время", stationtime2text())
+			stat("Длительность раунда", roundduration2text())
 
 		if(client.holder)
 			if(statpanel("Status"))
@@ -669,20 +671,20 @@
 					for(var/datum/controller/subsystem/SS in Master.subsystems)
 						SS.stat_entry()
 
-		if(listed_turf && client)
-			if(!TurfAdjacent(listed_turf))
-				listed_turf = null
-			else
-				if(statpanel("Turf"))
-					stat(listed_turf)
-					for(var/atom/A in listed_turf)
-						if(!A.mouse_opacity)
-							continue
-						if(A.invisibility > see_invisible)
-							continue
-						if(is_type_in_list(A, shouldnt_see))
-							continue
-						stat(A)
+//		if(listed_turf && client)
+//			if(!TurfAdjacent(listed_turf))
+//				listed_turf = null
+//			else
+//				if(statpanel("Turf"))
+//					stat(listed_turf)
+//					for(var/atom/A in listed_turf)
+//						if(!A.mouse_opacity)
+//							continue
+//						if(A.invisibility > see_invisible)
+//							continue
+//						if(is_type_in_list(A, shouldnt_see))
+//							continue
+//						stat(A)
 
 
 // facing verbs
@@ -1050,22 +1052,28 @@ mob/proc/yank_out_object()
 	return
 
 /mob/verb/face_direction()
-
-	set name = "Face Direction"
-	set category = "IC"
+	set name = "face-direction"
+	set hidden = TRUE
+	set instant = TRUE
 	set src = usr
 
+	if(istype(usr, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = usr
+		if(!H.inzoom)
+			set_face_dir()
+		return
 	set_face_dir()
 
-	if(!facing_dir)
-		to_chat(usr, "You are now not facing anything.")
-	else
-		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
+//	if(!facing_dir)
+//		to_chat(usr, "You are now not facing anything.")
+//	else
+//		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
 
 /mob/verb/browse_mine_stats()
 	set name		= "Show Stats Values"
 	set desc		= "Browse your character stats."
 	set category	= "IC"
+	set hidden = TRUE
 	set src			= usr
 
 	browse_src_stats(src)

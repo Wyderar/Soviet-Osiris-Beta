@@ -85,6 +85,7 @@
 /obj/item/clothing/accessory/holster/verb/holster_verb()
 	set name = "Holster"
 	set category = "Object"
+	set hidden = TRUE
 	set src in usr
 	if(!isliving(usr))
 		return
