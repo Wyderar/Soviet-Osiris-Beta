@@ -54,8 +54,12 @@
 
 /mob/living/carbon/human/Destroy()
 	GLOB.human_mob_list -= src
+
+	// Prevent death from organ removal
+	status_flags |= REBUILDING_ORGANS
 	for(var/organ in organs)
 		qdel(organ)
+	organs.Cut()
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -145,7 +149,7 @@
 	while (b_loss > 0)
 		b_loss -= exp_damage = rand(0, b_loss)
 		src.apply_damage(exp_damage, BRUTE, organ_hit)
-		organ_hit = pickweight(list(BP_HEAD = 0.2, BPBP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG=0.1, BP_L_LEG=0.1))  //We determine some other body parts that should be hit
+		organ_hit = pickweight(list(BP_HEAD = 0.2, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit 
 
 /mob/living/carbon/human/restrained()
 	if (handcuffed)
@@ -1100,6 +1104,8 @@ var/list/rank_prefix = list(\
 	if(!species)
 		return 0
 
+	status_flags |= REBUILDING_ORGANS
+
 	for(var/obj/item/organ/organ in (organs|internal_organs))
 		qdel(organ)
 
@@ -1178,6 +1184,7 @@ var/list/rank_prefix = list(\
 				C.install_default_modules_by_job(mind.assigned_job)
 				C.access.Add(mind.assigned_job.cruciform_access)
 
+	status_flags &= ~REBUILDING_ORGANS
 	species.organs_spawned(src)
 
 	update_body()
