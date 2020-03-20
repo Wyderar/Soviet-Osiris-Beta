@@ -21,22 +21,42 @@
 	src.go_out()
 	return
 
-/obj/machinery/bodyscanner/verb/eject()
-	set src in oview(1)
-	set category = "Object"
-	set name = "Eject Body Scanner"
+/obj/machinery/bodyscanner/RightClick(mob/living/user)
+	if(user.Adjacent(src))
+		show_radial(user)
 
+/obj/machinery/bodyscanner/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
+
+/obj/machinery/bodyscanner/show_radial(mob/living/user)
+	if(!user || occupant == user) 
+		return
+	var/list/layer_list = list()
+	if(!occupant)
+		layer_list += list("Enter" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_enter"))
+	else
+		layer_list += list("Eject" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_eject"))
+	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE)
+	if(!check_menu(user))
+		return
+	switch(layer_result)
+		if("Enter")
+			move_inside()
+		if("Eject")
+			go_out()
+
+/obj/machinery/bodyscanner/proc/eject()
 	if (usr.stat != 0)
 		return
 	src.go_out()
 	add_fingerprint(usr)
 	return
 
-/obj/machinery/bodyscanner/verb/move_inside()
-	set src in oview(1)
-	set category = "Object"
-	set name = "Enter Body Scanner"
-
+/obj/machinery/bodyscanner/proc/move_inside()
 	if(usr.stat)
 		return
 	if(src.occupant)
@@ -83,7 +103,7 @@
 	return TRUE
 
 /obj/machinery/bodyscanner/MouseDrop_T(var/mob/target, var/mob/user)
-	if(!ismob(target))
+	if(!ismob(target) || target == user)
 		return
 	if (src.occupant)
 		to_chat(user, SPAN_WARNING("The scanner is already occupied!"))

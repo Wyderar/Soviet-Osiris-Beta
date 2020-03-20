@@ -128,9 +128,9 @@ var/list/gear_datums = list()
 	. += "<a href='?src=\ref[src];prev_slot=1'>\<\<</a><b><font color = '[fcolor]'>\[[pref.gear_slot]\]</font> </b><a href='?src=\ref[src];next_slot=1'>\>\></a>"
 
 	if(config.max_gear_cost < INFINITY)
-		. += "<b><font color = '[fcolor]'>[total_cost]/[config.max_gear_cost]</font> loadout points spent.</b>"
+		. += " <b><font color = '[fcolor]'>[total_cost]/[config.max_gear_cost]</font> loadout points spent. </b>"
 
-	. += "<a href='?src=\ref[src];clear_loadout=1'>Очистить</a>"
+	. += "<a href='?src=\ref[src];clear_loadout=1'>Сбросить</a> "
 	. += "<a href='?src=\ref[src];toggle_hiding=1'>[hide_unavailable_gear ? "Показать все" : "Скрыть недоступное"]</a></center></td></tr>"
 
 	. += "<tr><td colspan=3><center><b>"

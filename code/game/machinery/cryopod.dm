@@ -164,7 +164,7 @@
 	var/disallow_occupant_types = list()
 
 	var/mob/occupant = null       // Person waiting to be despawned.
-	var/time_till_despawn = 6000  // 10 minutes-ish safe period before being despawned.
+	var/time_till_despawn = 600   // 1 minute safe period before being despawned.
 	var/time_entered = 0          // Used to keep track of the safe period.
 	var/obj/item/device/radio/intercom/announce //
 
@@ -349,6 +349,10 @@
 		if ((G.fields["name"] == occupant.real_name))
 			qdel(G)
 
+	for(var/datum/money_account/A in all_money_accounts)
+		if(A.account_id == occupant.character_id)
+			A.suspended = 1
+
 	icon_state = base_icon_state
 
 	//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
@@ -359,7 +363,8 @@
 	control_computer._admin_logs += "[key_name(occupant)] ([occupant.mind.assigned_role]) at [stationtime2text()]"
 	log_and_message_admins("[key_name(occupant)] ([occupant.mind.assigned_role]) entered cryostorage.")
 
-	announce.autosay("[occupant.real_name], [occupant.mind.assigned_role], [on_store_message]", "[on_store_name]")
+	if(occupant.mind.assigned_role != ASSISTANT_TITLE)
+		announce.autosay("[occupant.real_name], [occupant.mind.assigned_role], [on_store_message]", "[on_store_name]")
 	visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>")
 
 
@@ -382,6 +387,10 @@
 	//This should guarantee that ghosts don't spawn.
 	occupant.ckey = null
 
+	var/datum/computer_file/report/crew_record/CR = get_record_charid(occupant.character_id)
+	if(CR)
+		GLOB.all_crew_records.Remove(CR)
+
 	// Delete the mob.
 	qdel(occupant)
 	set_occupant(null)
@@ -392,7 +401,7 @@
 	return TRUE
 
 /obj/machinery/cryopod/MouseDrop_T(var/mob/living/L, mob/living/user)
-	if(istype(L) && istype(user))
+	if(istype(L) && istype(user) && L != user)
 		try_put_inside(L, user)
 
 /obj/machinery/cryopod/proc/try_put_inside(var/mob/living/affecting, var/mob/living/user)
@@ -430,6 +439,10 @@
 
 		set_occupant(affecting)
 
+		if(ishuman(affecting))
+			var/mob/living/carbon/human/H = affecting
+			(H.save_to_prefs())
+
 		// Book keeping!
 		var/turf/location = get_turf(src)
 		log_admin("[key_name_admin(affecting)] has entered a stasis pod. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
@@ -440,12 +453,39 @@
 		//Despawning occurs when process() is called with an occupant without a client.
 		src.add_fingerprint(user)
 
+/obj/machinery/cryopod/RightClick(mob/living/user)
+	if(user.Adjacent(src))
+		show_radial(user)
 
+/obj/machinery/cryopod/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
 
-/obj/machinery/cryopod/verb/eject()
-	set name = "Eject Pod"
-	set category = "Object"
-	set src in oview(1)
+/obj/machinery/cryopod/show_radial(mob/living/user)
+	if(!user) 
+		return
+	var/list/layer_list = list()
+	if(!occupant)
+		layer_list += list("Enter" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_enter"))
+	else if(occupant == user)
+		layer_list += list("Ghost" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_ghost"))
+	else
+		layer_list += list("Eject" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_eject"))
+	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE)
+	if(!check_menu(user))
+		return
+	switch(layer_result)
+		if("Enter")
+			move_inside()
+		if("Eject")
+			eject()
+		if("Ghost")
+			user.ghost()
+
+/obj/machinery/cryopod/proc/eject()
 	if(usr.stat != 0)
 		return
 
@@ -468,11 +508,7 @@
 	name = initial(name)
 	return
 
-/obj/machinery/cryopod/verb/move_inside()
-	set name = "Enter Pod"
-	set category = "Object"
-	set src in oview(1)
-
+/obj/machinery/cryopod/proc/move_inside()
 	if(usr.stat != 0 || !check_occupant_allowed(usr))
 		return
 

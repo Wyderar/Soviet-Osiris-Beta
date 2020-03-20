@@ -87,7 +87,7 @@
 	if (!desc_set)
 		create_job_description(user)
 	. += "[job_desc]"
-	. += "<b>Расставляйте приоритеты на должности исходя из своих предпочтений.<br>Недоступные должности были вычеркнуты.</b>"
+	. += "<b>Расставляйте приоритеты на должности исходя из своих предпочтений.<br>Недоступные должности были скрыты.</b>"
 	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more columns.
 	. += "<table width='100%' cellpadding='1' cellspacing='0'>"
 
@@ -117,11 +117,8 @@
 			. += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
 			index = 0
 
-
-		. += "<tr bgcolor='[job.selection_color]'><td width='40%' align='right'>"
 		var/rank = job.title
 		lastJob = job
-		. += "<a href='?src=\ref[src];job_info=[rank]'>\[?\]</a>"
 		var/bad_message = ""
 		if(job.total_positions == 0 && job.spawn_positions == 0)
 			bad_message = "<b> \[НЕДОСТУПНО]</b>"
@@ -134,36 +131,49 @@
 			bad_message = "\[МИНИМАЛЬНЫЙ ВОЗРАСТ: [job.minimum_character_age]]"
 		else if(user.client && job.is_setup_restricted(user.client.prefs.setup_options))
 			bad_message = "\[ОГРАНИЧЕНО]"
+		if(!bad_message)
+			. += "<tr bgcolor='[job.selection_color]'><td width='40%' align='right'>"
+//			. += "<a href='?src=\ref[src];job_info=[rank]'>\[?\]</a>"
 
 		if((ASSISTANT_TITLE in pref.job_low) && (rank != ASSISTANT_TITLE))
-			. += "<a href='?src=\ref[src];set_skills=[rank]'><font color=grey>[rank]</font></a></td><td></td></tr>"
+			if(!bad_message)
+				. += "<a href='?src=\ref[src];job_info=[rank]'><font color=grey>[job.title_ru]</font></a></td><td></td></tr>"
 			continue
 		if(bad_message)
-			. += "<a href='?src=\ref[src];set_skills=[rank]'><del>[rank]</del></a></td><td><font color=black>[bad_message]</font></td></tr>"
+//			. += "<a href='?src=\ref[src];set_skills=[rank]'><del>[rank]</del></a></td><td><font color=black>[bad_message]</font></td></tr>"
 			continue
 
 		//. += (unspent && (current_level != JOB_LEVEL_NEVER) ? "<a class='Points' href='?src=\ref[src];set_skills=[rank]'>" : "<a href='?src=\ref[src];set_skills=[rank]'>")
-		. += (current_level != JOB_LEVEL_NEVER ? "<a class='Points' href='?src=\ref[src];set_skills=[rank]'>" : "<a href='?src=\ref[src];set_skills=[rank]'>")
+		. += (current_level != JOB_LEVEL_NEVER ? "<a class='Points' href='?src=\ref[src];job_info=[rank]'>" : "<a href='?src=\ref[src];job_info=[rank]'>")
 		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
-			. += "<b>[rank]</b>"
+			. += "<b>[job.title_ru]</b>"
 		else
-			. += "[rank]"
+			. += "[job.title_ru]"
 
 		. += "</a></td><td width='40%'>"
 
 		if(rank == ASSISTANT_TITLE)//Assistant is special
 			. += "<a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'>"
-			. += "[(rank in pref.job_low) ? "<font color=#55cc55>" : ""]\[Yes\][(rank in pref.job_low) ? "</font>" : ""]"
+			. += "[(rank in pref.job_low) ? "<font color=#55cc55>" : ""]\[Да\][(rank in pref.job_low) ? "</font>" : ""]"
 			//. += "\[Yes\]"
 			. += "</a>"
 			. += "<a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_NEVER]'>"
-			. += "[!(rank in pref.job_low) ? "<font color=black>" : ""]\[No\][!(rank in pref.job_low) ? "</font>" : ""]"
+			. += "[!(rank in pref.job_low) ? "<font color=black>" : ""]\[Нет\][!(rank in pref.job_low) ? "</font>" : ""]"
 			. += "</a>"
 		else
-			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_HIGH]'>[current_level == JOB_LEVEL_HIGH ? "<font color=55cc55>" : ""]\[Выс.][current_level == JOB_LEVEL_HIGH ? "</font>" : ""]</a>"
-			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_MEDIUM]'>[current_level == JOB_LEVEL_MEDIUM ? "<font color=eecc22>" : ""]\[Сред.][current_level == JOB_LEVEL_MEDIUM ? "</font>" : ""]</a>"
-			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'>[current_level == JOB_LEVEL_LOW ? "<font color=cc5555>" : ""]\[Низ.][current_level == JOB_LEVEL_LOW ? "</font>" : ""]</a>"
-			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_NEVER]'>[current_level == JOB_LEVEL_NEVER ? "<font color=black>" : ""]\[НИКОГДА][current_level == JOB_LEVEL_NEVER ? "</font>" : ""]</a>"
+//			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_HIGH]'>[current_level == JOB_LEVEL_HIGH ? "<font color=55cc55>" : ""]\[Выс.][current_level == JOB_LEVEL_HIGH ? "</font>" : ""]</a>"
+//			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_MEDIUM]'>[current_level == JOB_LEVEL_MEDIUM ? "<font color=eecc22>" : ""]\[Сред.][current_level == JOB_LEVEL_MEDIUM ? "</font>" : ""]</a>"
+//			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'>[current_level == JOB_LEVEL_LOW ? "<font color=cc5555>" : ""]\[Низ.][current_level == JOB_LEVEL_LOW ? "</font>" : ""]</a>"
+//			. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_NEVER]'>[current_level == JOB_LEVEL_NEVER ? "<font color=black>" : ""]\[НИКОГДА][current_level == JOB_LEVEL_NEVER ? "</font>" : ""]</a>"
+
+			if(current_level == JOB_LEVEL_HIGH)
+				. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_MEDIUM]'><font color=55cc55>\[Высокий]</font></a>"
+			else if(current_level == JOB_LEVEL_MEDIUM)
+				. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'><font color=eecc22>\[Средник]</font></a>"
+			else if(current_level == JOB_LEVEL_LOW)
+				. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_NEVER]'><font color=cc5555>\[Низкий]</font></a>"
+			else
+				. += " <a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_HIGH]'><font color=black>\[НИКОГДА]</font></a>"
 
 		if(job.alt_titles)
 			. += "</td></tr><tr bgcolor='[lastJob.selection_color]'><td width='40%' align='center'>&nbsp</td><td><a href='?src=\ref[src];select_alt_title=\ref[job]'>\[[pref.GetPlayerAltTitle(job)]\]</a></td></tr>"
@@ -346,11 +356,11 @@
 	if(job.alt_titles)
 		job_desc += "<i><b>Alternative titles:</b> [english_list(job.alt_titles)].</i>"
 	if(job.department)
-		job_desc += "<b>Отдел:</b> [job.department]. <br>"
+		job_desc += "<b>Отдел:</b> [job.department] <br>"
 		if(job.head_position)
-			job_desc += "Вы руководитель данного отдела."
+			job_desc += "Вы руководитель данного отдела"
 	job_desc += "<br>"
-	job_desc += "Вы отвечаете перед <b>[job.supervisors]</b>."
+	job_desc += "Вы отвечаете перед <b>[job.supervisors]</b>"
 
 
 

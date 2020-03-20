@@ -51,7 +51,11 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	set_department(H ? GetDepartment(H) : "Unset")
 	set_job(H ? GetAssignment(H) : "Unset")
 	set_sex(H ? gender2text(H.get_sex()) : "Unset")
-	set_age(H ? H.age : 30)
+	set_age(H ? H.age : 20)
+	set_birth_day(H ? H.mind.prefs.birth_day : 1)
+	set_birth_month(H ? H.mind.prefs.birth_month : 1)
+	set_birth_year(H ? H.mind.prefs.birth_year : 2324)
+	set_charid(H ? H.character_id : "Unset")
 	set_status(GLOB.default_physical_status)
 
 	set_email((H && H.mind) ? H.mind.initial_email_login["login"] : "none")
@@ -162,6 +166,12 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 			return CR
 	return null
 
+/proc/get_record_charid(var/charid)
+	for(var/datum/computer_file/report/crew_record/CR in GLOB.all_crew_records)
+		if(CR.get_charid() == charid)
+			return CR
+	return null
+
 /proc/GetDepartment(var/mob/living/carbon/human/H)
 	if(H && H.mind && H.mind.assigned_job)
 		return H.mind.assigned_job.department
@@ -202,6 +212,10 @@ FIELD_SHORT("Department", department, null, access_change_ids)
 FIELD_SHORT("Job", job, null, access_change_ids)
 FIELD_LIST("Sex", sex, record_genders(), null, access_change_ids)
 FIELD_NUM("Age", age, null, access_change_ids)
+FIELD_NUM("Birth Day", birth_day, null, access_change_ids)
+FIELD_NUM("Birth Month", birth_month, null, access_change_ids)
+FIELD_NUM("Birth Year", birth_year, null, access_change_ids)
+FIELD_SHORT("Personal ID", charid, access_change_ids, null)
 FIELD_LIST_EDIT("Status", status, GLOB.physical_statuses, null, access_moebius)
 
 FIELD_SHORT("Species",species, null, access_change_ids)

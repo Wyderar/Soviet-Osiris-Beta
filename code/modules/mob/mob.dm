@@ -222,6 +222,7 @@
 /mob/verb/examinate(atom/A as mob|obj|turf in view())
 	set name = "Examine"
 	set category = "IC"
+	set hidden = TRUE
 
 	if((is_blind(src) || usr.stat) && !isobserver(src))
 		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
@@ -236,6 +237,7 @@
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
 	set name = "Point To"
 	set category = "Object"
+	set hidden = TRUE
 
 	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
 		return 0
@@ -293,6 +295,7 @@
 /mob/verb/mode()
 	set name = "Activate Held Object"
 	set category = "Object"
+	set hidden = TRUE
 	set src = usr
 
 	var/obj/item/W = get_active_hand()
@@ -313,6 +316,7 @@
 /mob/verb/memory()
 	set name = "Notes"
 	set category = "IC"
+	set hidden = TRUE
 	if(mind)
 		mind.show_memory(src)
 	else
@@ -321,6 +325,7 @@
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
 	set category = "IC"
+	set hidden = TRUE
 
 	msg = sanitize(msg)
 
@@ -368,9 +373,35 @@
 	return
 */
 
+/client/verb/changes()
+	set name = "Changelog"
+	set hidden = TRUE
+	getFiles(
+		'html/88x31.png',
+		'html/bug-minus.png',
+		'html/cross-circle.png',
+		'html/hard-hat-exclamation.png',
+		'html/image-minus.png',
+		'html/image-plus.png',
+		'html/map-pencil.png',
+		'html/music-minus.png',
+		'html/music-plus.png',
+		'html/tick-circle.png',
+		'html/wrench-screwdriver.png',
+		'html/spell-check.png',
+		'html/burn-exclamation.png',
+		'html/chevron.png',
+		'html/chevron-expand.png',
+		'html/changelog.css',
+		'html/changelog.js',
+		'html/changelog.html'
+		)
+	src << browse('html/changelog.html', "window=changes;size=800x700")
+
 /mob/verb/observe()
 	set name = "Observe"
 	set category = "OOC"
+	set hidden = TRUE
 	var/is_admin = 0
 
 	if(client.holder && (client.holder.rights & R_ADMIN))
@@ -471,7 +502,10 @@
 				</html>
 			"}
 			usr << browse(dat, "window=[name];size=500x200")
-			onclose(usr, "[name]")
+			var/datum/browser/popup = new(usr, "[name]","[name]", 500, 200, src)
+			popup.set_content(dat)
+			popup.open()
+
 	if(href_list["flavor_change"])
 		update_flavor_text()
 //	..()
@@ -562,10 +596,10 @@
 	/*if(pullin)
 		pullin.icon_state = "pull1"*/
 
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		if(H.pull_damage())
-			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
+//	if(ishuman(AM))
+//		var/mob/living/carbon/human/H = AM
+//		if(H.pull_damage())
+//			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -608,9 +642,10 @@
 
 	if(.)
 		if(statpanel("Status") && SSticker.current_state != GAME_STATE_PREGAME)
-			stat("Storyteller", "[master_storyteller]")
-			stat("Station Time", stationtime2text())
-			stat("Round Duration", roundduration2text())
+			stat("Рассказчик", "[master_storyteller]")
+			stat("Каноничность", "[config.canonicity ? "да" : "нет"]")
+//			stat("Время", stationtime2text())
+			stat("Длительность раунда", roundduration2text())
 
 		if(client.holder)
 			if(statpanel("Status"))
@@ -636,20 +671,20 @@
 					for(var/datum/controller/subsystem/SS in Master.subsystems)
 						SS.stat_entry()
 
-		if(listed_turf && client)
-			if(!TurfAdjacent(listed_turf))
-				listed_turf = null
-			else
-				if(statpanel("Turf"))
-					stat(listed_turf)
-					for(var/atom/A in listed_turf)
-						if(!A.mouse_opacity)
-							continue
-						if(A.invisibility > see_invisible)
-							continue
-						if(is_type_in_list(A, shouldnt_see))
-							continue
-						stat(A)
+//		if(listed_turf && client)
+//			if(!TurfAdjacent(listed_turf))
+//				listed_turf = null
+//			else
+//				if(statpanel("Turf"))
+//					stat(listed_turf)
+//					for(var/atom/A in listed_turf)
+//						if(!A.mouse_opacity)
+//							continue
+//						if(A.invisibility > see_invisible)
+//							continue
+//						if(is_type_in_list(A, shouldnt_see))
+//							continue
+//						stat(A)
 
 
 // facing verbs
@@ -1017,22 +1052,36 @@ mob/proc/yank_out_object()
 	return
 
 /mob/verb/face_direction()
-
-	set name = "Face Direction"
-	set category = "IC"
+	set name = "face-direction"
+	set hidden = TRUE
+	set instant = TRUE
 	set src = usr
 
+	if(istype(usr, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = usr
+		if(!H.inzoom)
+			set_face_dir()
+		return
 	set_face_dir()
 
-	if(!facing_dir)
-		to_chat(usr, "You are now not facing anything.")
-	else
-		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
+//	if(!facing_dir)
+//		to_chat(usr, "You are now not facing anything.")
+//	else
+//		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
+
+/mob/living/carbon/human/verb/close_eyes()
+	set name = "close-eyes"
+	set hidden = TRUE
+
+	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[BP_EYES]
+	if(eyes)
+		eyes.close_eyes()
 
 /mob/verb/browse_mine_stats()
 	set name		= "Show Stats Values"
 	set desc		= "Browse your character stats."
 	set category	= "IC"
+	set hidden = TRUE
 	set src			= usr
 
 	browse_src_stats(src)

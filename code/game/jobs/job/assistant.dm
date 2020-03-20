@@ -1,5 +1,6 @@
 /datum/job/assistant
 	title = ASSISTANT_TITLE
+	title_ru = "Ассистент"
 	flag = ASSISTANT
 	department = DEPARTMENT_CIVILIAN
 	department_flag = CIVILIAN

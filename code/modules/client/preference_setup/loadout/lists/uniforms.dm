@@ -71,10 +71,12 @@
 /*/datum/gear/uniform/skirt
 	display_name = "plaid skirt, blue"
 	path = /obj/item/clothing/under/dress/plaid_blue
+	cost = 49
 
 /datum/gear/uniform/skirt/purple
 	display_name = "plaid skirt, purple"
 	path = /obj/item/clothing/under/dress/plaid_purple
+	cost = 49
 
 /datum/gear/uniform/skirt/red
 	display_name = "plaid skirt, red"

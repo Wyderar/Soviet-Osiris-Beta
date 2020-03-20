@@ -191,6 +191,7 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/verb/read()
 	set name = "Read ID Card"
 	set category = "Object"
+	set hidden = TRUE
 	set src in usr
 
 	to_chat(usr, text("\icon[] []: The current assignment on the card is [].", src, src.name, src.assignment))

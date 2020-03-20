@@ -1,5 +1,6 @@
 /datum/job/ihc
 	title = "Ironhammer Commander"
+	title_ru = "Командор"
 	flag = IHC
 	head_position = 1
 	department = DEPARTMENT_SECURITY
@@ -10,7 +11,7 @@
 	supervisors = "the Captain"
 	selection_color = "#97b0be"
 	req_admin_notify = 1
-	wage = WAGE_COMMAND
+	wage = WAGE_NONE
 	also_known_languages = list(LANGUAGE_CYRILLIC = 60, LANGUAGE_SERBIAN = 60)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/ihc
@@ -59,6 +60,7 @@
 
 /datum/job/gunserg
 	title = "Ironhammer Gunnery Sergeant"
+	title_ru = "Командор-сержант"
 	flag = GUNSERG
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
@@ -67,7 +69,7 @@
 	spawn_positions = 1
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
-	department_account_access = TRUE
+	department_account_access = FALSE
 	wage = WAGE_LABOUR_HAZARD
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 
@@ -110,6 +112,7 @@
 
 /datum/job/inspector
 	title = "Ironhammer Inspector"
+	title_ru = "Инспектор"
 	flag = INSPECTOR
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
@@ -164,6 +167,7 @@
 
 /datum/job/medspec
 	title = "Ironhammer Medical Specialist"
+	title_ru = "Медицинский специалист"
 	flag = MEDSPEC
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
@@ -214,6 +218,7 @@
 
 /datum/job/ihoper
 	title = "Ironhammer Operative"
+	title_ru = "Оперативник"
 	flag = IHOPER
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER

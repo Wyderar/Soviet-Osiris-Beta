@@ -2,6 +2,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 /datum/job/captain
 	title = "Captain"
+	title_ru = "Капитан"
 	flag = CAPTAIN
 	department = DEPARTMENT_COMMAND
 	head_position = 1
@@ -9,7 +10,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "your heart and wisdom"
+	supervisors = "вашей собственной совестью"
 	selection_color = "#ccccff"
 	req_admin_notify = 1
 	wage = WAGE_NONE //The captain doesn't get paid, he's the one who does the paying
@@ -68,14 +69,14 @@ Your second loyalty is to your command officers. The heads of each faction. List
 
 /datum/job/hop
 	title = "First Officer"
+	title_ru = "Старший Помощник"
 	flag = FIRSTOFFICER
 	department = DEPARTMENT_COMMAND
-	head_position = 1
 	department_flag = COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "капитаном"
 	selection_color = "#ddddff"
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
@@ -129,3 +130,55 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 	name = "First Officer"
 	icon_state = "player-gold"
 	join_tag = /datum/job/hop
+
+/datum/job/commissioner
+	title = "Commissioner"
+	title_ru = "Комиссар"
+	flag = COMMISSIONER
+	department = DEPARTMENT_COMMAND
+	department_flag = COMMAND
+	faction = "CEV Eris"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the captain"
+	selection_color = "#ddddff"
+	req_admin_notify = 1
+	wage = WAGE_COMMAND
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 20)
+	ideal_character_age = 40
+
+	description = "Незаметный человек в черном костюме выглядит посреди видавшего виды корабля капельку неуместно.<br>\
+Впрочем, не вам судить. Данный индивид является оком Капитана, которое облечено полномочиями посетить любой отсек на корабле и запросить любую информацию.<br>\
+<br>\
+Кто вы есть на самом деле?<br>\
+Вы - ожившая функция, бюрократический механизм, который занимается беспристрастным фиксированием всего происходящего, для дальнейшего протоколирования и занесения это в электронный журнал, дабы по окончании миссии Капитан и инвесторы могли разобраться с тем, что происходило с командой."
+
+	duties = "Задачи просты - вы обязаны посещать все отсеки корабля, имеете доступ к любому помещению или информации, а также облечены властью запрашивать любые отчеты у персонала, и более того - их получить.<br>\
+На основании собранных данных, вы обязаны составить отчет о происходящем, особенно вас интересует компетентность персонала, в том числе и подверженность к заболеваниям ПТС и неадекватного буйства.<br>\
+Если сотрудник не может выполнять свои обязанности - по психологическим или умственным отклонениям, вы имеете право составить об этом исчерпывающий отчет согласно имеющейся формы и запросить отзыв лицензии данного сотрудника для данной должности, на определенный срок."
+
+	loyalties = "Вы преданы Кораблю, поскольку именно для этого вас наняли. Капитан может сойти с ума, нанятый наемник устроить революцию - но вы остаетесь вне этого, и продолжаете беспристрастно следить."
+
+	outfit_type = /decl/hierarchy/outfit/job/commissioner
+
+	access = list(
+		access_co, access_heads
+	)
+
+
+	software_on_spawn = list(/datum/computer_file/program/comm,
+							 /datum/computer_file/program/reports)
+
+	stat_modifiers = list(
+		STAT_ROB = 10,
+		STAT_TGH = 10,
+		STAT_BIO = 10,
+		STAT_MEC = 10,
+		STAT_VIG = 20,
+		STAT_COG = 20
+	)
+
+/obj/landmark/join/start/commissioner
+	name = "Commissioner"
+	icon_state = "player-gold"
+	join_tag = /datum/job/commissioner

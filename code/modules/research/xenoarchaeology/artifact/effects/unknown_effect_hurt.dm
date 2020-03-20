@@ -16,6 +16,7 @@
 			C.adjustBrainLoss(rand(1,5) * weakness)
 			C.apply_effect(25 * weakness, IRRADIATE)
 			C.nutrition -= min(50 * weakness, C.nutrition)
+			C.thirst -= min(50 * weakness, C.thirst)
 			C.make_dizzy(6 * weakness)
 			C.weakened += 6 * weakness
 

@@ -86,10 +86,13 @@
 		CtrlAltClickOn(A)
 		return 1
 	if(modifiers["middle"])
-		if(modifiers["shift"])
-			ShiftMiddleClickOn(A)
+		MiddleClickOn(A)
+		return 1
+	if(modifiers["right"])
+		if(modifiers["ctrl"])
+			CtrlRightClickOn(A)
 		else
-			MiddleClickOn(A)
+			RightClickOn(A)
 		return 1
 	if(modifiers["shift"])
 		ShiftClickOn(A)
@@ -237,7 +240,19 @@
 	swap_hand()
 	return
 
-/mob/proc/ShiftMiddleClickOn(var/atom/A)
+
+/*
+	Right click
+	Used for radial menu and giving item to other mobs
+*/
+/mob/proc/RightClickOn(var/atom/A)
+	A.RightClick(src)
+	return
+
+/atom/proc/RightClick(var/atom/A)
+	return
+
+/mob/proc/CtrlRightClickOn(var/atom/A)
 	pointed(A)
 
 // In case of use break glass
@@ -292,15 +307,25 @@
 	A.AltClick(src)
 	return
 
-/atom/proc/AltClick(var/mob/user)
+/atom/proc/AltClick(var/mob/living/user)
+	if(!user)
+		return
 	var/turf/T = get_turf(src)
 	if(T && user.TurfAdjacent(T))
-		if(user.listed_turf == T)
-			user.listed_turf = null
-		else
-			user.listed_turf = T
-			user.client.statpanel = "Turf"
-	return 1
+		var/list/layer_list = list()
+		var/list/obj_list = list()
+		for(var/obj/item/A in T)
+			layer_list += list(
+				"[A.name]" = image(icon = A.icon, icon_state = A.icon_state)
+				)
+			obj_list += list(
+				"[A.name]" = A
+			)
+		var/layer_result = show_radial_menu(user, src, layer_list, require_near = TRUE)
+		if(layer_result)
+			var/obj/item/B = obj_list[layer_result]
+			if(B.pre_pickup(user))
+				B.pickup(user)
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)

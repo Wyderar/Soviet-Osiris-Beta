@@ -84,7 +84,7 @@
 
 /datum/category_item/player_setup_item/physical/equipment/content()
 	. = list()
-	. += "<div style='clear: both;'"
+	. += "<div style='clear: both;'>"
 	. += "<b>Белье:</b><br>"
 	for(var/datum/category_group/underwear/UWC in GLOB.underwear.categories)
 		var/item_name = (pref.all_underwear && pref.all_underwear[UWC.name]) ? pref.all_underwear[UWC.name] : "Нету"

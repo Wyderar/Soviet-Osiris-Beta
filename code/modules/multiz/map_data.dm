@@ -137,6 +137,9 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 /datum/maps_data/proc/character_save_path(var/slot)
 	return "/[path]/character[slot]"
 
+/datum/maps_data/proc/character_reset_path(var/slot)
+	return "/[path]/character[slot]"
+
 /datum/maps_data/proc/character_load_path(var/savefile/S, var/slot)
 	var/original_cd = S.cd
 	S.cd = "/"

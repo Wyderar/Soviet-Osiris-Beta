@@ -17,7 +17,7 @@
 	if(data && data["blood_colour"])
 		color = data["blood_colour"]
 	return
-	
+
 /datum/reagent/organic/blood/get_data() // Just in case you have a reagent that handles data differently.
 	var/t = data.Copy()
 	if(t["virus2"])
@@ -96,7 +96,20 @@
 	glass_desc = "The father of all refreshments."
 	nerve_system_accumulations = 0
 	reagent_type = "Water"
-	
+
+/datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(!istype(M, /mob/living/carbon/slime) && alien != IS_XENOS)
+		return
+	M.adjustToxLoss(2 * removed)
+
+/datum/reagent/water/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(!istype(M, /mob/living/carbon/slime) && alien != IS_XENOS)
+		return
+	M.adjustToxLoss(2 * removed)
+
+/datum/reagent/water/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjustThirst(removed * 10)
+
 /datum/reagent/water/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
 		return TRUE

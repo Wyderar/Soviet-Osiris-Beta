@@ -102,6 +102,7 @@
 		"pain"       = list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH-1 to EAST+1,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
 		"drugeffect" = list("type" = /obj/screen/drugoverlay,         "loc" = "WEST,SOUTH-1 to EAST+1,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
 
+		"visioncone"     = list("type" = /obj/screen/visioncone,      "loc" = "1,1", "icon" =  'icons/mob/hide.dmi'),
 		"damageoverlay"  = list("type" = /obj/screen/damageoverlay,   "loc" = "1,1:-32", "icon" =  'icons/mob/screen1_full.dmi'),
 		"glassesoverlay" = list("type" = /obj/screen/glasses_overlay, "loc" = "1,1:-32", "icon_state" = "blank"),
 	)
@@ -109,6 +110,7 @@
 	HUDneed = list(
 //status
 	"nutrition"          = list("type" = /obj/screen/nutrition,         "loc" = "EAST+1:1,BOTTOM+3:25",   "minloc" = "RIGHT:1,5:26",  "background" = "back17"),
+	"thirst"             = list("type" = /obj/screen/thirst,            "loc" = "EAST+1:1,BOTTOM+3:12",   "minloc" = "RIGHT:1,5:13",  "background" = "back17"),
 	"neural system accumulation" = list("type" = /obj/screen/nsa,       "loc" = "EAST+1:1,BOTTOM+4:6",    "minloc" = "RIGHT:1,6:7",   "background" = "back17"),
 	"body temperature"   = list("type" = /obj/screen/bodytemp,          "loc" = "EAST+1:1,BOTTOM+4:19",   "minloc" = "RIGHT:1,6:20",  "background" = "back17"),
 	"health"             = list("type" = /obj/screen/health,            "loc" = "EAST+1,BOTTOM+5",        "minloc" = "RIGHT,7",       "background" = "back1"),
@@ -179,9 +181,9 @@
 		list("loc" = "12,0", "icon_state" = "frame3-2"),
 		list("loc" = "12,0", "icon_state" = "frame0-2"),
 		list("loc" = "12,0", "icon_state" = "frame0-3"),
-		list("loc" = "EAST+1,BOTTOM+2:25", "icon_state" = "frame1-1"),
-		list("loc" = "EAST+1,BOTTOM+2:25", "icon_state" = "frame3-3"),
-		list("loc" = "EAST+1,BOTTOM+2:25", "icon_state" = "frame0-4"),
+		list("loc" = "EAST+1,BOTTOM+2:12", "icon_state" = "frame1-1"),
+		list("loc" = "EAST+1,BOTTOM+2:12", "icon_state" = "frame3-3"),
+		list("loc" = "EAST+1,BOTTOM+2:12", "icon_state" = "frame0-4"),
 		list("loc" = "EAST+1,BOTTOM+8:14", "icon_state" = "frame0-1"),
 		list("loc" = "EAST+1,BOTTOM+8:14", "icon_state" = "frame3-1")
 		)

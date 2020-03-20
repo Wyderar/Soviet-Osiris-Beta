@@ -47,6 +47,7 @@
 /client/verb/hotkeys_help()
 	set name = "hotkeys-help"
 	set category = "OOC"
+	set hidden = TRUE
 
 	var/admin = {"<font color='purple'>
 Admin:

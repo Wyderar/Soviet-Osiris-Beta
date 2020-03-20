@@ -10,11 +10,10 @@
 	var/opened = 0
 
 
-	verb/AccessInternals()
-		set category = "Object"
-		set name = "Access Computer's Internals"
-		set src in oview(1)
-		if(get_dist(src, usr) > 1 || usr.restrained() || usr.lying || usr.stat || issilicon(usr))
+	RightClick(mob/living/user)
+		if(!user.Adjacent(src))
+			return
+		if(usr.restrained() || usr.lying || usr.stat || issilicon(usr))
 			return
 
 		opened = !opened

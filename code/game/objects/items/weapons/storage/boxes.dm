@@ -94,6 +94,9 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency_oxygen(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
+	new /obj/item/device/radio(src)
+	new /obj/item/device/lighting/glowstick/flare(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/mre/can(src)
 
 /obj/item/weapon/storage/box/survival/extended/populate_contents()
 	new /obj/item/clothing/mask/breath(src)
@@ -273,7 +276,7 @@
 
 /obj/item/weapon/storage/box/explosive/populate_contents()
 	for(var/i in 1 to 4)
-		new /obj/item/weapon/grenade/frag/explosive(src)
+		new /obj/item/weapon/grenade/explosive(src)
 
 
 /obj/item/weapon/storage/box/smokes

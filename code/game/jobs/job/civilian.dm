@@ -4,6 +4,7 @@
 
 /datum/job/clubmanager
 	title = "Club Manager"
+	title_ru = "Менеджер клуба"
 	flag = CLUBMANAGER
 	department = DEPARTMENT_CIVILIAN
 	department_flag = SERVICE
@@ -39,6 +40,7 @@
 
 /datum/job/clubworker
 	title = "Club Worker"
+	title_ru = "Работник клуба"
 	flag = CLUBWORKER
 	department = DEPARTMENT_CIVILIAN
 	department_flag = SERVICE
@@ -77,6 +79,7 @@
 
 /datum/job/actor
 	title = "Actor"
+	title_ru = "Актер"
 	flag = ACTOR
 	department = DEPARTMENT_CIVILIAN
 	department_flag = SERVICE

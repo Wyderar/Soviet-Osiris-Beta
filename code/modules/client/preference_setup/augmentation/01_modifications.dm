@@ -46,13 +46,13 @@
 	dat += "a.Organs_active {background: #cc5555;}</style>"
 
 	dat +=  "<script language='javascript'> [js_byjax] function set(param, value) {window.location='?src=\ref[src];'+param+'='+value;}</script>"
-	dat += "<table style='max-height:400px;height:410px; margin-left:250px; margin-right:250px'>"
+	dat += "<table style='max-height:400px;height:410px; margin-left:30px; margin-right:120px'>"
 	dat += "<tr style='vertical-align:top'>"
 	if(pref.modifications_allowed())
 		dat += "<td><div style='max-width:230px;width:230px;height:100%;overflow-y:auto;border-right:1px solid;padding:3px'>"
 		dat += modifications_types[pref.current_organ]
 		dat += "</div></td>"
-	dat += "<td style='margin-left:10px;width-max:310px;width:310px;'>"
+	dat += "<td style='margin-left:10px;width-max:200px;width:200px;'>"
 	dat += "<table><tr><td style='width:115px; text-align:right; margin-right:10px;'>"
 
 	for(var/organ in pref.r_organs)

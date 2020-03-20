@@ -17,9 +17,12 @@
 
 /datum/category_item/player_setup_item/background/origin/content(mob/user)
 	. = list()
-	. += "<b>История</b><br>"
+	. += "<b>Происхождение</b><br>"
 	for(var/datum/category_group/setup_option_category/background/BG in SScharacter_setup.setup_options.categories)
-		. += "[BG]: <a href='?src=\ref[src];options_popup=[BG]'>[pref.setup_options[BG.name]]</a><br>"
+		if(!pref.char_exists)
+			. += "<a href='?src=\ref[src];options_popup=[BG]'>[pref.setup_options[BG.name]]</a><br>"
+		else
+			. += "[pref.setup_options[BG.name]]<br>"
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/background/origin/get_title()

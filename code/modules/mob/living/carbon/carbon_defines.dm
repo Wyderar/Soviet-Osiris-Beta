@@ -19,12 +19,16 @@
 	var/datum/reagents/metabolism/touching = null
 	var/datum/metabolism_effects/metabolism_effects = null
 	var/losebreath = 0 //if we failed to breathe last tick
+	var/is_holding_breath = 0
 
 	var/coughedtime = null
 	var/lastpuke = 0
 
 	var/cpr_time = 1.0
 	nutrition = 400.0//Carbon
+
+	var/thirst = 400
+	var/max_thirst = 400
 
 
 	var/obj/item/weapon/tank/internal = null//Human/Monkey

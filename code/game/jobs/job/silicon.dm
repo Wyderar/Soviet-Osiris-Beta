@@ -1,5 +1,6 @@
 /datum/job/ai
 	title = "AI"
+	title_ru = "Искусственный интеллект"
 	flag = AI
 	department_flag = COMMAND
 	faction = "CEV Eris"
@@ -31,12 +32,12 @@
 
 /datum/job/cyborg
 	title = "Robot"
+	title_ru = "Киборг"
 	flag = CYBORG
 	department_flag = MISC
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	alt_titles = list("Drone", "Cyborg")
 	supervisors = "your laws and the AI"
 	selection_color = "#cdcfe0"
 	account_allowed = 0

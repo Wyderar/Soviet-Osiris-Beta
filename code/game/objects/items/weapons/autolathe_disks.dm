@@ -266,6 +266,7 @@
 		/datum/design/research/item/computer_part/portabledrive/normal,
 		/datum/design/research/item/computer_part/printer,
 		/datum/design/research/item/computer_part/led,
+		/datum/design/research/item/computer_part/led/adv,
 		/datum/design/autolathe/computer_part/gps,
 		/datum/design/autolathe/computer_part/scanner/paper,
 		/datum/design/autolathe/computer_part/scanner/atmos,
@@ -872,8 +873,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/smg_sol, // "FS CAR .25 caseless \"Sol\""
-		/datum/design/autolathe/gun/smg_sol_rds, // "FS CAR .25 caseless \"Sol\"" - reddot sight
+		/datum/design/autolathe/gun/sol, // "FS CAR .25 caseless \"Sol\""
 		/datum/design/autolathe/ammo/ihclrifle/practice,
 		/datum/design/autolathe/ammo/ihclrifle/rubber,
 	)

@@ -40,10 +40,11 @@
 			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Готов</a> | <span class='linkOn'><b>Не готов</b></span> \]</p>"
 
 	else
-		output += "<a href='byond://?src=\ref[src];manifest=1'>Открыть манифест экипажа</A><br><br>"
+		output += "<a href='byond://?src=\ref[src];manifest=1'>Открыть манифест экипажа</A><br>"
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Присоединиться к игре</A></p>"
 
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Наблюдать</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];changelog=1'>Список изменений</A></p>"
 
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
@@ -67,7 +68,7 @@
 	output += "</div>"
 
 	panel = new(src, "Osiris SS13 Hi-RP","Osiris SS13 Hi-RP", 210, 280, src)
-	panel.set_window_options("can_close=0;window=welcome")
+	panel.set_window_options("can_close=0;can_resize=0;window=welcome")
 	panel.set_content(output)
 	panel.open()
 	return
@@ -93,7 +94,7 @@
 		return 0
 
 	if(href_list["show_preferences"])
-		client.prefs.ShowChoices(src)
+		client.prefs.open_load_dialog(src)
 		return 1
 
 	if(href_list["ready"])
@@ -105,6 +106,9 @@
 	if(href_list["refresh"])
 		panel.close()
 		new_player_panel_proc()
+	
+	if(href_list["changelog"])
+		client.changes()
 
 	if(href_list["observe"])
 
@@ -129,8 +133,8 @@
 			observer.icon = client.prefs.update_preview_icon()
 			observer.alpha = 127
 
-			if(client.prefs.be_random_name)
-				client.prefs.real_name = random_name(client.prefs.gender)
+//			if(client.prefs.be_random_name)
+//				client.prefs.real_name = random_name(client.prefs.gender)
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
 			if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
@@ -235,6 +239,10 @@
 	if(!IsJobAvailable(rank))
 		src << alert("[rank] is not available. Please try another.")
 		return 0
+	for(var/mob/living/carbon/human/R in SSmobs.mob_list)
+		if(client.prefs.character_id == R.character_id)
+			to_chat(usr, "This character is already in-game!")
+			return 0
 
 	spawning = 1
 	close_spawn_windows()
@@ -269,24 +277,25 @@
 
 	if(SSjob.ShouldCreateRecords(job.title))
 		if(character.mind.assigned_role != "Robot")
-			CreateModularRecord(character)
-			data_core.manifest_inject(character)
-			matchmaker.do_matchmaking()
+			if(character.mind.assigned_role != ASSISTANT_TITLE)
+				CreateModularRecord(character)
+				data_core.manifest_inject(character)
+//			matchmaker.do_matchmaking()
 			SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
-
 			//Grab some data from the character prefs for use in random news procs.
 
-	AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
+	if(character.mind.assigned_role != ASSISTANT_TITLE)
+		AnnounceArrival(character, character.mind.assigned_role, spawnpoint.message)	//will not broadcast if there is no message
 
 
 
 	qdel(src)
 
 /mob/new_player/proc/LateChoices()
-	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
+//	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
 
 	var/dat = "<html><body><center>"
-	dat += "<b>Добро пожаловать, [name].<br></b>"
+	dat += "<b>Добро пожаловать!.<br></b>"
 	dat += "Раунд длится: [roundduration2text()]<br>"
 
 	if(evacuation_controller.has_evacuated()) //In case Nanotrasen decides reposess CentComm's shuttles.
@@ -297,7 +306,7 @@
 		else                                           // Crew transfer initiated
 			dat += "<font color='red'>The vessel is currently undergoing crew transfer procedures.</font><br>"
 
-	dat += "Выберите свою должность из списка доступных:<br>"
+	dat += "Выберите новую должность из списка доступных:<br>"
 	for(var/datum/job/job in SSjob.occupations)
 		if(job && IsJobAvailable(job.title))
 			if(job.is_restricted(client.prefs))
@@ -348,13 +357,13 @@
 	if(mind)
 		mind.active = 0//we wish to transfer the key manually
 		mind.original = new_character
-		if(client.prefs.relations.len)
-			for(var/T in client.prefs.relations)
-				var/TT = matchmaker.relation_types[T]
-				var/datum/relation/R = new TT
-				R.holder = mind
-				R.info = client.prefs.relations_info[T]
-			mind.gen_relations_info = client.prefs.relations_info["general"]
+//		if(client.prefs.relations.len)
+//			for(var/T in client.prefs.relations)
+//				var/TT = matchmaker.relation_types[T]
+//				var/datum/relation/R = new TT
+//				R.holder = mind
+//				R.info = client.prefs.relations_info[T]
+//			mind.gen_relations_info = client.prefs.relations_info["general"]
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
 
 	if(SSticker.random_players)
@@ -370,6 +379,17 @@
 	new_character.dna.ready_dna(new_character)
 	new_character.dna.b_type = client.prefs.b_type
 	new_character.sync_organ_dna()
+
+	new_character.character_id = client.prefs.character_id
+	if(!client.prefs.nutrition || !client.prefs.thirst || !client.prefs.sanity_level)
+		new_character.nutrition = 400
+		new_character.thirst = 400
+		new_character.sanity.level = 100
+	else
+		new_character.nutrition = client.prefs.nutrition
+		new_character.thirst = client.prefs.thirst
+		new_character.sanity.level = client.prefs.sanity_level
+
 	if(client.prefs.disabilities)
 		// Set defer to 1 if you add more crap here so it only recalculates struc_enzymes once. - N3X
 		new_character.dna.SetSEState(GLASSESBLOCK,1,0)

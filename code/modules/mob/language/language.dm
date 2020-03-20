@@ -81,18 +81,18 @@
 
 	var/input_size = length_char(input)
 	var/scrambled_text = ""
-	var/capitalize = 1
+//	var/capitalize = 1
 
 	while(length_char(scrambled_text) < input_size)
 		var/next = pick(syllables)
-		if(capitalize)
-			next = capitalize(next)
-			capitalize = 0
+//		if(capitalize)
+//			next = capitalize(next)
+//			capitalize = 0
 		scrambled_text += next
 		var/chance = rand(100)
 		if(chance <= 5)
 			scrambled_text += ". "
-			capitalize = 1
+//			capitalize = 1
 		else if(chance > 5 && chance <= space_chance)
 			scrambled_text += " "
 
@@ -197,6 +197,7 @@
 /mob/verb/check_languages()
 	set name = "Check Known Languages"
 	set category = "IC"
+	set hidden = TRUE
 	set src = usr
 
 	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"

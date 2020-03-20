@@ -1,6 +1,6 @@
 
 /client/verb/adminhelp(msg as text)
-	set category = "Admin"
+	set category = "OOC"
 	set name = "Adminhelp"
 
 	if(say_disabled)	//This is here to try to identify lag problems
