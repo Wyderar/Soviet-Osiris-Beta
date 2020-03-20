@@ -381,7 +381,8 @@ Proc for attack log creation, because really why not
 			if(target.head != null)
 				return FALSE
 			if(target.wear_mask != null)
-				return FALSE
+				if(!istype(target.wear_mask, /obj/item/clothing/mask/breath/medical))
+					return FALSE
 			if(target.glasses != null)
 				return FALSE
 		if("chest")
