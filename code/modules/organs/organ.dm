@@ -402,3 +402,8 @@
 
 /obj/item/organ/proc/is_usable()
 	return !(status & (ORGAN_CUT_AWAY|ORGAN_MUTATED|ORGAN_DEAD))
+
+
+// To be overriden in daughter classes
+/obj/item/organ/proc/is_exposed()
+	return TRUE

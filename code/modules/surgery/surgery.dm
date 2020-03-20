@@ -232,6 +232,10 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			if(open == 1)
 				possible_steps += QUALITY_RETRACTING
 
+			if(open == 2)
+				to_chat(user, SPAN_WARNING("OPEN == 2 and QUALITY_SAWING added to possible_steps list"))
+				possible_steps += QUALITY_SAWING
+
 			if(status & ORGAN_BLEEDING)
 				possible_steps += QUALITY_CLAMPING
 
@@ -263,6 +267,10 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				try_surgery_step(/datum/surgery_step/cauterize, user, tool)
 				return TRUE
 
+			if(QUALITY_SAWING)
+				try_surgery_step(/datum/surgery_step/cut_bone, user, tool)
+				return TRUE
+
 			if(ABORT_CHECK)
 				return TRUE
 
@@ -285,3 +293,11 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return chair && chair.buckled_mob == M
 
 	return M.lying && (locate(/obj/machinery/optable, M.loc) || (locate(/obj/structure/bed, M.loc)) || locate(/obj/structure/table, M.loc))
+
+
+/proc/organ_exposed(mob/living/user, obj/item/organ/organ)
+	if(organ.is_exposed())
+		return TRUE
+	else
+		to_chat(user, SPAN_NOTICE("Bones get in the way!"))
+		return FALSE
