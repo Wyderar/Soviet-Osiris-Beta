@@ -233,7 +233,6 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				possible_steps += QUALITY_RETRACTING
 
 			if(open == 2)
-				to_chat(user, SPAN_WARNING("OPEN == 2 and QUALITY_SAWING added to possible_steps list"))
 				possible_steps += QUALITY_SAWING
 
 			if(status & ORGAN_BLEEDING)
