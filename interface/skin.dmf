@@ -541,6 +541,12 @@ macro "hotkeymode"
 		name = "F"
 		command = "toggle-gun-safety"
 	elem 
+		name = "G"
+		command = "close-eyes"
+	elem 
+		name = "B"
+		command = "hold-breath"
+	elem 
 		name = "H"
 		command = "holster"
 	elem 

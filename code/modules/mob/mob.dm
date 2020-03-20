@@ -1069,6 +1069,14 @@ mob/proc/yank_out_object()
 //	else
 //		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
 
+/mob/living/carbon/human/verb/close_eyes()
+	set name = "close-eyes"
+	set hidden = TRUE
+
+	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[BP_EYES]
+	if(eyes)
+		eyes.close_eyes()
+
 /mob/verb/browse_mine_stats()
 	set name		= "Show Stats Values"
 	set desc		= "Browse your character stats."

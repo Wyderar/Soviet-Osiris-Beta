@@ -15,9 +15,15 @@
 	if(health < HEALTH_THRESHOLD_CRIT && !(CE_STABLE in chem_effects)) //crit aka circulatory shock
 		losebreath++
 
+	if(is_holding_breath)
+		if(oxyloss > 40)
+			hold_breath()
+		else
+			losebreath++
+
 	if(losebreath>0) //Suffocating so do not take a breath
 		losebreath--
-		if (prob(10)) //Gasp per 10 ticks? Sounds about right.
+		if (prob(4)) //Gasp per 10 ticks? Sounds about right.
 			spawn emote("gasp")
 	else
 		//Okay, we can breathe, now check if we can get air
@@ -27,6 +33,16 @@
 
 	handle_breath(breath)
 	handle_post_breath(breath)
+
+/mob/living/carbon/verb/hold_breath()
+	set name = "hold-breath"
+	set hidden = TRUE
+
+	if(!stat && !paralysis && !sleeping && !stunned)
+		is_holding_breath = !is_holding_breath
+		to_chat(usr, "<span class='notice'>You are [is_holding_breath ? "now holding" : "no more holding"] your breath.</span>")
+	else
+		is_holding_breath = 0
 
 /mob/living/carbon/proc/get_breath_from_internal(var/volume_needed=BREATH_VOLUME) //hopefully this will allow overrides to specify a different default volume without breaking any cases where volume is passed in.
 	if(internal)
