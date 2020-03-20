@@ -247,6 +247,7 @@
 */
 /mob/proc/RightClickOn(var/atom/A)
 	A.RightClick(src)
+	face_atom(A)
 	return
 
 /atom/proc/RightClick(var/atom/A)
@@ -315,12 +316,13 @@
 		var/list/layer_list = list()
 		var/list/obj_list = list()
 		for(var/obj/item/A in T)
-			layer_list += list(
-				"[A.name]" = image(icon = A.icon, icon_state = A.icon_state)
+			if(!A.anchored)
+				layer_list += list(
+					"[A.name]" = image(icon = A.icon, icon_state = A.icon_state)
+					)
+				obj_list += list(
+					"[A.name]" = A
 				)
-			obj_list += list(
-				"[A.name]" = A
-			)
 		var/layer_result = show_radial_menu(user, src, layer_list, require_near = TRUE)
 		if(layer_result)
 			var/obj/item/B = obj_list[layer_result]

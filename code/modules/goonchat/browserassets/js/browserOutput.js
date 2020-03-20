@@ -72,7 +72,7 @@ var opts = {
 	'defaultMusicVolume': 25,
 
 	'messageCombining': true,
-	'messageCombiningCount': 20,
+	'messageCombiningCount': 3,
 
 };
 var replaceRegexes = {};

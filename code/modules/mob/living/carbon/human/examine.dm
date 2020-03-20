@@ -198,6 +198,10 @@
 //			else
 //				to_chat(usr, "<span class='deadsay'>[T.He] [T.has] a pulse!</span>")
 
+	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[BP_EYES]
+	if(eyes && eyes.are_closed)
+		msg += "<span class='warning'>[T.His] eyes seems to be are closed!</span>\n"
+
 	if(fire_stacks)
 		msg += "[T.He] [T.is] covered in some liquid.\n"
 	if(on_fire)

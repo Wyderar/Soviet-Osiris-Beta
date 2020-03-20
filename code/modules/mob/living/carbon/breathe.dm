@@ -23,7 +23,7 @@
 
 	if(losebreath>0) //Suffocating so do not take a breath
 		losebreath--
-		if (prob(4)) //Gasp per 10 ticks? Sounds about right.
+		if (prob(4) && !is_holding_breath) //Gasp per 10 ticks? Sounds about right.
 			spawn emote("gasp")
 	else
 		//Okay, we can breathe, now check if we can get air

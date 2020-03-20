@@ -17,9 +17,9 @@
 // Damage received from seeing someone die
 #define SANITY_DAMAGE_DEATH(vig) (10 * SANITY_DAMAGE_MOD * (1 - (vig) / STAT_LEVEL_MAX))
 
-#define SANITY_GAIN_SMOKE 0.05 // A full cig restores 300 times that
+#define SANITY_GAIN_SMOKE 0.35 // A full cig restores 300 times that
 #define SANITY_GAIN_SAY 1
-#define SANITY_GAIN_SINK 5
+#define SANITY_GAIN_SINK 4
 
 #define SANITY_COOLDOWN_SAY rand(30 SECONDS, 45 SECONDS)
 #define SANITY_COOLDOWN_BREAKDOWN rand(7 MINUTES, 10 MINUTES)

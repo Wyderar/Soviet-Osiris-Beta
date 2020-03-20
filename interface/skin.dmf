@@ -563,7 +563,7 @@ macro "hotkeymode"
 		command = ".northeast"
 	elem 
 		name = "Y"
-		command = "Activate-Held-Object"
+		command = "whisper"
 	elem 
 		name = "Z"
 		command = "Activate-Held-Object"
