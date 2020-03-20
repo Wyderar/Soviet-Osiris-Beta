@@ -81,9 +81,14 @@
 	if(buckled_mob)
 		buckled_mob.set_dir(dir)
 
+/obj/structure/bed/chair/RightClick(mob/living/user)
+	if(user.Adjacent(src))
+		rotate()
+
 /obj/structure/bed/chair/verb/rotate()
 	set name = "Rotate Chair"
 	set category = "Object"
+	set hidden = TRUE
 	set src in oview(1)
 
 	if(config.ghost_interaction)

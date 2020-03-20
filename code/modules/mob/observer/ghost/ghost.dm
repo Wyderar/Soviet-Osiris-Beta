@@ -176,6 +176,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "OOC"
 	set name = "Ghost"
 	set desc = "Relinquish your life and enter the land of the dead."
+	set hidden = TRUE
 
 	if(stat == DEAD)
 		announce_ghost_joinleave(ghostize(1))
