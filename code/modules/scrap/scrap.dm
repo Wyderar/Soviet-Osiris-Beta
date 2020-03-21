@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/obj/big_item
 	var/list/ways = list("pokes around in", "searches", "scours", "digs through", "rummages through", "goes through","picks through")
 	var/beacon = FALSE // If this junk pile is getting pulled by the junk beacon or not.
-	sanity_damage = 0.1
+	sanity_damage = 0.2
 
 /obj/structure/scrap/proc/make_cube()
 	var/obj/container = new /obj/structure/scrap_cube(loc, loot_max)

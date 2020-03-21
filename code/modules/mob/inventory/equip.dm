@@ -23,7 +23,7 @@
 	else if(istype(Item.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = Item.loc
 		S.remove_from_storage(Item, null)
-	if(istype(Item, /obj/item/weapon/gun) && istype(usr, /mob/living))
+	if(istype(Item, /obj/item/weapon/gun) && istype(usr, /mob/living) && slot != slot_l_hand && slot != slot_r_hand)
 		var/obj/item/weapon/gun/G = Item
 		if(G.safety == 0 && prob(40))
 			var/mob/living/L = usr
