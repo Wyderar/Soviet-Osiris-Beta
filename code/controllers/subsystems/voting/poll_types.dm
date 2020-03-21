@@ -84,7 +84,7 @@
 /datum/poll/storyteller/Process()
 	if(pregame && SSticker.current_state != GAME_STATE_PREGAME)
 		SSvote.stop_vote()
-		to_chat(world, "<b>Voting aborted due to game start.</b>")
+		to_chat(world, "<b>Голосование было отменено из-за старта игры.</b>")
 	return
 
 
@@ -93,7 +93,7 @@
 	if (SSticker.current_state == GAME_STATE_PREGAME)
 		pregame = TRUE
 		round_progressing = FALSE
-		to_chat(world, "<b>Game start has been delayed due to voting.</b>")
+		to_chat(world, "<b>Старт игры был приостановлен из-за голосования.</b>")
 
 //If one wins, on_end is called after on_win, so the new storyteller will be set in master_storyteller
 /datum/poll/storyteller/on_end()
@@ -109,7 +109,7 @@
 	set_storyteller(config.pick_storyteller(master_storyteller), announce = !(pregame)) //This does the actual work //Even if master storyteller is null, this will pick the default
 	if (pregame)
 		round_progressing = TRUE
-		to_chat(world, "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>")
+		to_chat(world, "<b>Игра начнется через [SSticker.pregame_timeleft] секунд.</b>")
 		spawn(10 SECONDS)
 			var/tipsAndTricks/T = SStips.getRandomTip()
 			if(T)

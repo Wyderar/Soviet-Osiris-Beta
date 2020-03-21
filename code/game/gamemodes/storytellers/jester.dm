@@ -1,12 +1,13 @@
 /datum/storyteller/jester
 	config_tag = "jester"
 	name = "The Jester"
-	welcome = "Welcome to the house of fun. We're all mad here!"
-	description = "Aggressive and chaotic storyteller who generates a larger quantity of random events."
+	welcome = "А вы знаете, что такое безумие?"
+	description = "Агрессивный и хаотичный рассказчик, генерирующий большое количество случайных событий."
 
-	gain_mult_mundane = 1.85
-	gain_mult_moderate = 1.65
-	gain_mult_major = 1.65
+	gain_mult_mundane = 0.92
+	gain_mult_moderate = 0.82
+	gain_mult_major = 0.82
+	gain_mult_roleset = 0.5
 
 	variance = 0.25
 	repetition_multiplier = 0.65
