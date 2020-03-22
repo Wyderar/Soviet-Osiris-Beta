@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(ticker)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME
 	wait = 1 SECONDS //Tick every second
 
-	var/const/restart_timeout = 1200
+	var/const/restart_timeout = 300
 	var/current_state = GAME_STATE_STARTUP
 	// If true, there is no lobby phase, the game starts immediately.
 	var/start_immediately = FALSE
@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_STARTUP)
 			if(first_start_trying)
 				pregame_timeleft = initial(pregame_timeleft)
-				to_chat(world, "<B><FONT color='blue'>Добро пожаловать в лобби!</FONT></B>")
+				to_chat(world, "<B>Добро пожаловать в лобби!</B>")
 			else
 				pregame_timeleft = 120
 

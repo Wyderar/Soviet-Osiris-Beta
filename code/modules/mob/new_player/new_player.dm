@@ -315,7 +315,7 @@
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
 			for(var/mob/M in GLOB.player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 				active++
-			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title_ru] [active ? "(Активно: [active])" : ""]</a><br>"
+			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title_ru][active ? " (Активно: [active])" : ""]</a><br>"
 
 	dat += "</center>"
 
