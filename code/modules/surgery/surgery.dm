@@ -232,6 +232,9 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			if(open == 1)
 				possible_steps += QUALITY_RETRACTING
 
+			if(open == 2)
+				possible_steps += QUALITY_SAWING
+
 			if(status & ORGAN_BLEEDING)
 				possible_steps += QUALITY_CLAMPING
 
@@ -261,6 +264,10 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 			if(QUALITY_CAUTERIZING)
 				try_surgery_step(/datum/surgery_step/cauterize, user, tool)
+				return TRUE
+
+			if(QUALITY_SAWING)
+				try_surgery_step(/datum/surgery_step/cut_bone, user, tool)
 				return TRUE
 
 			if(ABORT_CHECK)

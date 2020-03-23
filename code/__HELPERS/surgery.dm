@@ -32,7 +32,7 @@
 		if(BP_HEAD)
 			if( (target.glasses != null) || (target.head != null) )
 				return FALSE
-			if(target.wear_mask != null && !istype(target.wear_mask, /obj/item/clothing/mask/breath/medical))
+			if(target.wear_mask != null && !istype(target.wear_mask, /obj/item/clothing/mask/breath/medical)) // Surgeon must be able to operate through med. mask and anestethic
 				return FALSE
 
 		if(BP_CHEST)
@@ -54,3 +54,11 @@
 				return FALSE
 
 	return TRUE
+
+
+/proc/organ_exposed(mob/living/user, obj/item/organ/organ)
+	if(organ.is_exposed())
+		return TRUE
+	else
+		to_chat(user, SPAN_NOTICE("Bones get in the way!"))
+		return FALSE
