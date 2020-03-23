@@ -100,6 +100,7 @@
 	HUDoverlays = list(
 		"flash"      = list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH to EAST,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
 		"pain"       = list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH to EAST,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+		"shock_noise" = list("type" = /obj/screen/shock_noise,        "loc" = "WEST,SOUTH to EAST,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
 		"drugeffect" = list("type" = /obj/screen/drugoverlay,         "loc" = "WEST,SOUTH to EAST,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
 
 		"visioncone"     = list("type" = /obj/screen/visioncone,      "loc" = "1,1", "icon" =  'icons/mob/hide.dmi'),

@@ -1261,6 +1261,29 @@ obj/screen/fire/DEADelize()
 		alpha = 0
 		H.usefov = 0
 
+/obj/screen/shock_noise
+	name = "shock_noise"
+	icon = 'icons/mob/noise.dmi'
+	icon_state = "blank"
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
+	mouse_opacity = 0
+	process_flag = TRUE
+	layer = 20
+	plane = HUD_PLANE
+
+/obj/screen/shock_noise/Process()
+	update_icon()
+
+/obj/screen/shock_noise/update_icon()
+	underlays.Cut()
+	var/mob/living/carbon/human/H = parentmob
+	if(H.health > 50)
+		icon_state = "blank"
+	else if(H.health < 50 && H.health > 0)
+		icon_state = "[rand(1,9)]"
+	else if(H.health < 0)
+		icon_state = "[rand(1,9)]j"
+
 /obj/screen/drugoverlay
 	icon_state = "blank"
 	name = "drugs"

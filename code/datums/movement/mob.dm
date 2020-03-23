@@ -46,9 +46,9 @@
 	if(mob.stat != DEAD)
 		return
 	. = MOVEMENT_HANDLED
-	if(!mob.client)
-		return
-	mob.ghostize()
+//	if(!mob.client)
+//		return
+//	mob.ghostize()
 
 // Incorporeal/Ghost movement
 /datum/movement_handler/mob/incorporeal
