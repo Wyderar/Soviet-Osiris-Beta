@@ -366,7 +366,11 @@ Proc for attack log creation, because really why not
 
 // govnocode generation active
 // Used only in surgery. Checks if person has clothes covering the target's limb.
+/*
 /proc/limb_is_nude(mob/living/carbon/human/target, mob/living/user)
+
+	if(istype(target, /obj/item/organ/external)) // Checks if we are operating severed limb
+		return TRUE
 
 	if(!target)
 		return
@@ -416,3 +420,4 @@ Proc for attack log creation, because really why not
 			if(target.shoes != null)
 				return FALSE
 	return TRUE
+*/
