@@ -27,11 +27,11 @@
 	restore_sanity_post = 100
 
 	start_messages = list(
-		"You endure your pain well, and emerge in bliss.",
-		"You feel like you could take on the world!",
-		"Your pain no longer bothers you.",
-		"You feel like the pain has cleared your head.",
-		"You feel the pain, and you feel the gain!"
+		"Вы стойко перенесли боль и чувствуете блаженство.",
+		"Вам кажется, что вы можете бросить вызов всему миру!",
+		"Ваша боль больше вас не беспокоит.",
+		"Вы чувствуете, как боль очищает ваш разум.",
+		"Вы чувствуете боль, и в то же время чувствуете усиление!"
 	)
 
 /datum/breakdown/positive/stalwart/can_occur()
@@ -54,11 +54,11 @@
 	restore_sanity_post = 100
 
 	start_messages = list(
-		"You feel like your mind has been sharpened by your experiences.",
-		"You feel like you're starting to get used to this.",
-		"You feel mentally prepared.",
-		"You feel like you're one step ahead.",
-		"You feel like you have the upper hand."
+		"Вы чувствуете, что трудности отточили ваш разум.",
+		"Вам кажется, что вы начинаете привыкать.",
+		"Вы чувствуете себя ментально подготовленным.",
+		"Вы чувствуете себя на шаг впереди.",
+		"Вы чувствуете, что у вас все под контролем."
 	)
 
 /datum/breakdown/positive/adaptation/conclude()
@@ -74,11 +74,11 @@
 	duration = 20 MINUTES
 
 	start_messages = list(
-		"You focus and feel your mind turning inward.",
-		"You have taken the first step toward enlightenment.",
-		"You are disconnected from the world around you.",
-		"You have become iron willed.",
-		"Nothing phases you anymore."
+		"Вы фокусируетесь и чувствуете, как внутри вашего разума что-то меняется.",
+		"Вы сделали первый шаг в просветлению.",
+		"Вы оторваны от мира вокруг вас.",
+		"Вы чувствуете железную волю.",
+		"Вам больше ничего не мешает."
 	)
 
 /datum/breakdown/positive/concentration/New()
@@ -101,14 +101,14 @@
 	restore_sanity_pre = 100
 
 	start_messages = list(
-		"You feel invincible!",
-		"You are unstoppable, you are unbreakable!",
-		"You feel like a GOD!",
-		"You feel a rush of adrenaline in your veins. Nothing can hurt you now!",
-		"You've learned to brush off wounds that would kill lesser beings!"
+		"Вы непобедимы!",
+		"Вы неостановимы, вы неразрушимы!",
+		"Вы - БОГ!",
+		"Вы чувствуете поток адреналина, текущий в ваших венах. Ничто не может вам навредить!",
+		"Вы научились устранять раны, которые убивают низших существ!"
 	)
 	end_messages = list(
-		"The last drop of adrenaline leaves your veins. You feel like a normal human now."
+		"Последняя капля адреналина покидает ваши вены. Вы чувствуете себя как нормальный человек."
 	)
 
 /datum/breakdown/positive/determination/occur()
@@ -127,11 +127,11 @@
 	restore_sanity_post = 100
 
 	start_messages = list(
-		"You feel like you've learned from your experience.",
-		"Something in your mind clicks. You feel more competent!",
-		"You manage to learn from past mistakes.",
+		"Вы многому научились благодаря этому опыту.",
+		"Вы вашем разуме что-то щелкнуло. Вы чувствуете себя более компетентным!",
+		"Вам удалось извлечь урок из ошибкок прошлого.",
 		"You take in the knowledge of your past experiences.",
-		"Everything makes more sense now!"
+		"Теперь все становится понятней!"
 	)
 
 /datum/breakdown/positive/lesson/conclude()
@@ -147,14 +147,14 @@
 	restore_sanity_post = 70
 
 	start_messages = list(
-		"You can't take it anymore! You completely lose control!",
-		"Make it stop, make it stop! You'd do anything to make it stop!",
-		"Your mind cracks under the weight of the things you've seen and felt!",
-		"Your brain screams for mercy! It's time to end it all!",
-		"You can't handle the pressure anymore! Your head runs wild with thoughts of suicide!"
+		"Вы больше не можете! Вы полностью потеряли контроль!",
+		"Остановить, остановить! Вы сделаете что угодно, чтобы это остановить!",
+		"Ваш разум ломается под весом того, что вы видели и прочувствовали!",
+		"Ваш мозг молит о пощаде! Время закончить все это!",
+		"Вы больше не можете выдержать давление! Вашу голову заполняют мысли о суициде!"
 	)
 	end_messages = list(
-		"You feel the panic subside. Perhaps it's alright to live, after all?"
+		"Вы чувствуете, как паника отступает. Может, жизнь не так уж плоха, в конце концов?"
 	)
 
 /datum/breakdown/negative/selfharm/update()
@@ -164,12 +164,12 @@
 	var/datum/gender/G = gender_datums[holder.owner.gender]
 	if(prob(50))
 		var/emote = pick(list(
-			"screams incoherently!",
-			"bites [G.his] tongue and mutters under [G.his] breath.",
-			"utters muffled curses.",
-			"grumbles.",
-			"screams with soulful agony!",
-			"stares at the floor."
+			"бессвязно кричит!",
+			"кусет свой язык и бормочет.",
+			"приглушенно выкрикивает проклятья.",
+			"ворчит.",
+			"кричит в агонии!",
+			"таращит глаза на пол."
 		))
 		holder.owner.custom_emote(message=emote)
 	else if(!holder.owner.incapacitated())
@@ -213,14 +213,14 @@
 	restore_sanity_post = 50
 
 	start_messages = list(
-		"You get overwhelmed and start to panic!",
-		"You're inconsolably terrified!",
-		"You can't choke back the tears anymore!",
-		"The hair on your nape stands on end! The fear sends you into a frenzy!",
-		"It's too much! You freak out and lose control!"
+		"Вы взволнованы и начинаете паниковать!",
+		"Вы безысходно напуганы!",
+		"Вы не можете больше сдерживать слезы!",
+		"Волосы на затылке встают дыбом! Страх заставляет вас паниковать!",
+		"Это слишком! Вы переволновались и потеряли контроль!"
 	)
 	end_messages = list(
-		"You calm down as your feelings subside. You feel horribly embarassed!"
+		"Ваши чувства утихают, вы успокаиваетесь. Вам ужасно стыдно!"
 	)
 
 /datum/breakdown/negative/hysteric/update()
@@ -255,14 +255,14 @@
 	restore_sanity_post = 50
 
 	start_messages = list(
-		"You feel like something is speaking to you from within!",
-		"You feel a voice starting to scream in your head!",
-		"You feel like your brain decided to scream at you!",
-		"You feel like voices are marching in your mind!",
-		"You feel sounds warp into cacophony!"
+		"Вы чувствуете, как что-то говорит с вами изнутри!",
+		"Вы слышите голос, кричащий у вас в голове!",
+		"Вам кажется, что ваш мозг решил на вас накричать!",
+		"Вы слышите, как разные голоса маршируют по вашему разуму!",
+		"Вы чувствуете, как звуки превращаются в какофонию!"
 	)
 	end_messages = list(
-		"You feel silence, again."
+		"Вы чувствуете тишину, снова."
 	)
 
 /datum/breakdown/negative/delusion/update()
@@ -285,14 +285,14 @@
 	var/list/image/images = list()
 
 	start_messages = list(
-		"You feel like you understand something that you shouldn't!",
-		"You feel the thoughts crawling in your head!",
-		"You feel like your mind is trying to comprehend the secrets of the universe itself!",
-		"You feel it. Secrets. They are all around you.",
-		"You feel your tower of knowledge on course to reach the stars, with only a single brick missing!"
+		"Вы чувствуете, что вы поняли то, чего не должны были понять!",
+		"Вы чувствуете, как мысли ползают во вашему сознанию!",
+		"Вы чувствуете, будто ваш разум пытается постичь тайны самой Вселенной!",
+		"Вы чувствуете их. Секреты. Они повсюду",
+		"Вы чувствуете, как ваша башня знаний вот-вот достигнет звезд, не хватает лишь одного кирпича!"
 	)
 	end_messages = list(
-		"You feel like it is gone. But will it return?"
+		"Вам стало легче. Но надолго ли?"
 	)
 
 /datum/breakdown/negative/fabric/occur()
@@ -328,11 +328,11 @@
 	restore_sanity_post = 50
 
 	start_messages = list(
-		"You feel like there is no point in any of this!",
-		"You brain refuses to comprehend any of this!",
-		"You feel like you don't want to continue whatever you're doing!",
-		"You feel like your best days are gone forever!",
-		"You feel it. You know it. There is no turning back!"
+		"Вам кажется, что в этом всем нет никакого смысла!",
+		"Ваш мозг отказывается все это осмысливать!",
+		"Что бы вы ни делали, вам не хочется это продолжать!",
+		"Вам кажется, что ваши лучшие дни далеко в прошлом!",
+		"Вы это чувствуете. Вы это знаете. Назад пути нет!"
 	)
 
 /datum/breakdown/negative/spiral/conclude()
