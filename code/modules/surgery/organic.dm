@@ -52,38 +52,6 @@
 
 
 
-/datum/surgery_step/cut_bone
-	required_tool_quality = QUALITY_SAWING
-	duration = 160
-	blood_level = 1
-	can_infect = TRUE
-
-/datum/surgery_step/cut_bone/can_use(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	return BP_IS_ORGANIC(organ) && organ.open == 2 && !organ.is_broken()
-
-/datum/surgery_step/cut_bone/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	user.visible_message(
-		SPAN_NOTICE("[user] starts to cut through [organ.get_surgery_name()]'s bones with \the [tool]"),
-		SPAN_NOTICE("You start to cut through [organ.get_surgery_name()]'s bones with \the [tool]")
-	)
-	organ.owner_custom_pain("It feels like someone cuts your [organ.get_surgery_name()]'s bones")
-
-/datum/surgery_step/cut_bone/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	user.visible_message(
-		SPAN_NOTICE("[user] has sawed [organ.get_surgery_name()]'s bones with \the [tool]"),
-		SPAN_NOTICE("You have sawed [organ.get_surgery_name()]'s bones with \the [tool]")
-	)
-	organ.fracture()
-
-/datum/surgery_step/cut_bone/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, damaging  [organ.get_surgery_name()] with \the [tool]!")
-	)
-	organ.take_damage(50, 0, sharp=TRUE)
-
-
-
 /datum/surgery_step/retract_skin
 	required_tool_quality = QUALITY_RETRACTING
 	duration = 80
@@ -156,7 +124,7 @@
 	blood_level = 1
 
 /datum/surgery_step/attach_organ/can_use(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
-	return BP_IS_ORGANIC(organ) && organ.is_open() && (organ.status & ORGAN_CUT_AWAY)  && organ_exposed(user, organ)
+	return BP_IS_ORGANIC(organ) && organ.is_open() && (organ.status & ORGAN_CUT_AWAY)
 
 /datum/surgery_step/attach_organ/begin_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
@@ -191,7 +159,7 @@
 	blood_level = 1
 
 /datum/surgery_step/detach_organ/can_use(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
-	return BP_IS_ORGANIC(organ) && organ.is_open() && !(organ.status & ORGAN_CUT_AWAY) && organ_exposed(user, organ)
+	return BP_IS_ORGANIC(organ) && organ.is_open() && !(organ.status & ORGAN_CUT_AWAY)
 
 /datum/surgery_step/detach_organ/begin_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
@@ -224,7 +192,7 @@
 	duration = 90
 
 /datum/surgery_step/remove_item/can_use(mob/living/user, obj/item/organ/external/organ, obj/item/tool, atom/movable/target)
-	return BP_IS_ORGANIC(organ) && organ.is_open() && organ.can_remove_item(target) && organ_exposed(user, organ)
+	return BP_IS_ORGANIC(organ) && organ.is_open() && organ.can_remove_item(target)
 
 /datum/surgery_step/remove_item/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool, atom/movable/target)
 	user.visible_message(
