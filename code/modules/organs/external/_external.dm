@@ -997,3 +997,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 			conditions_list.Add(list(condition))
 
 	return conditions_list
+
+
+/obj/item/organ/external/is_exposed()
+	var/obj/item/organ/external/limb = src
+
+	if(!(limb.organ_tag == BP_HEAD) && !(limb.organ_tag == BP_CHEST))
+		return TRUE
+
+	if(limb.is_broken())
+		return TRUE
+	return FALSE
