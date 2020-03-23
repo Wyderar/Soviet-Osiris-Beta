@@ -133,7 +133,7 @@
 	name = "actionA"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "actionA"
-	screen_loc = "8,1:13"
+	screen_loc = "7,2:13"
 	var/minloc = "7,2:13"
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE

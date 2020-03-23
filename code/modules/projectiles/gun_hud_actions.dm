@@ -1,6 +1,6 @@
 /obj/screen/item_action/top_bar/gun
 	icon = 'icons/mob/screen/gun_actions.dmi'
-	screen_loc = "8,1:13"
+	screen_loc = "7,2:13"
 	minloc = "7,2:13"
 
 /obj/screen/item_action/top_bar/gun/safety
@@ -28,7 +28,7 @@
 /obj/screen/item_action/top_bar/gun/scope
 	name = "scope"
 	icon_state = "scope0"
-	screen_loc = "9,1:13"
+	screen_loc = "8,2:13"
 	minloc = "8,2:13"
 
 /obj/screen/item_action/top_bar/gun/scope/update_icon()
@@ -39,7 +39,7 @@
 
 /obj/screen/item_action/top_bar/weapon_info
 	icon = 'icons/mob/screen/gun_actions.dmi'
-	screen_loc = "9:16,1:13"
+	screen_loc = null
 	minloc = null
 	name = "Weapon Info"
 	icon_state = "info"

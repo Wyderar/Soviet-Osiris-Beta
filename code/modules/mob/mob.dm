@@ -887,14 +887,14 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 /mob/proc/get_species()
 	return ""
 
+/mob/proc/flash_weakest_pain()
+	return
+
 /mob/proc/flash_weak_pain()
 	return
 
-/mob/living/flash_weak_pain()
-//	flick("weak_pain", flash["pain"])
-	if(HUDtech.Find("pain"))
-		flick("weak_pain", HUDtech["pain"])
-
+/mob/proc/flash_pain()
+	return
 
 /mob/proc/get_visible_implants()
 	var/list/visible_implants = list()
@@ -1051,12 +1051,24 @@ mob/proc/yank_out_object()
 /mob/proc/updateicon()
 	return
 
-/mob/verb/face_direction()
-	set name = "face-direction"
+/mob/verb/face_direction_down()
+	set name = "face-direction-down"
 	set hidden = TRUE
 	set instant = TRUE
 	set src = usr
+	face_direction()
 
+/mob/verb/face_direction_up()
+	set name = "face-direction-up"
+	set hidden = TRUE
+	set instant = TRUE
+	set src = usr
+	if(get_preference_value(/datum/client_preference/toggle_facing) != GLOB.PREF_YES)
+		return
+	face_direction()
+
+
+/mob/proc/face_direction()
 	if(istype(usr, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = usr
 		if(!H.inzoom)
