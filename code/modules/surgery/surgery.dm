@@ -93,10 +93,6 @@
 	if(!tool)
 		tool = user.get_active_hand()
 
-	if(!limb_is_nude(owner, user)) // Checks, if there is no clothes on the limb. Look proc in _HEPLERS/mobs.dm
-		to_chat(user, SPAN_WARNING("[owner]'s clothes gets in the way"))
-		return FALSE
-
 	var/quality = S.tool_quality(tool)
 	if(!quality)
 		if(!no_tool_message)
@@ -105,6 +101,10 @@
 
 	if(!S.can_use(user, src, tool, target) || !S.prepare_step(user, src, tool, target))
 		SSnano.update_uis(src)
+		return FALSE
+
+	if(!no_clothes_over_body(src, user)) // Checks, if there is no clothes on the limb. Look proc in _HEPLERS/mobs.dm
+		to_chat(user, SPAN_WARNING("[owner]'s clothes gets in the way"))
 		return FALSE
 
 	S.begin_step(user, src, tool, target)	//start on it
@@ -232,6 +232,9 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			if(open == 1)
 				possible_steps += QUALITY_RETRACTING
 
+			if(open == 2)
+				possible_steps += QUALITY_SAWING
+
 			if(status & ORGAN_BLEEDING)
 				possible_steps += QUALITY_CLAMPING
 
@@ -261,6 +264,10 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 			if(QUALITY_CAUTERIZING)
 				try_surgery_step(/datum/surgery_step/cauterize, user, tool)
+				return TRUE
+
+			if(QUALITY_SAWING)
+				try_surgery_step(/datum/surgery_step/cut_bone, user, tool)
 				return TRUE
 
 			if(ABORT_CHECK)
