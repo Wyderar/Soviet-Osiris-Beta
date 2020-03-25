@@ -352,14 +352,14 @@
 	var/message_time = 0
 
 	start_messages = list(
-		"You hear a sickening, raspy voice in your head. It requires one small task of you...",
-		"Your mind is impaled with the sickening need to hold something.",
-		"Your mind whispers one of its secrets to you - but you need a token to access its true treasures...",
-		"You feel like the old saying is true - the key to true power is real...",
-		"You feel under constant pressure, but there is a way to ease the pain..."
+		"Вы слышите отвратительный, хриплый голос в своей голове. Он требует выполнить его просьбу...",
+		"Ваш разум пронзает тошнотворная потребность держаться за что-то.",
+		"Ваш разум шепчет вам один из своих секретов - но вам нужен знак, чтобы получить доступ к его истинным сокровищам..."
+		"Вы чувствуете, что старая поговорка верна - ключ к истинной силе реален...",
+		"Вы чувствуете постоянное давление, но есть способ облегчить боль..."
 	)
 	end_messages = list(
-		"You feel at ease again, suddenly."
+		"Вы внезапно почувствовали себя лучше."
 	)
 
 /datum/breakdown/common/obsession/New()
@@ -398,9 +398,9 @@
 		found = target.loc == holder.owner
 	if(found)
 		var/message = pick(list(
-			"Your mind convulses in the ecstasy. The sacred [objectname] is now yours!",
-			"You feel the warmth of the [objectname] in your head.",
-			"You suffered so long to achieve greatness! The sacred [objectname] is now yours. Only yours."
+			"Ваш разум дрожит в экстазе. Наконец-то [objectname] ваш!",
+			"Вы чувствуете тепло [objectname] в своей голове.",
+			"Вы много страдали на пути к величию! Наконец-то [objectname] ваш. Только ваш."
 		))
 		to_chat(holder.owner, SPAN_NOTICE(message))
 		holder.restoreLevel(70)
@@ -409,16 +409,16 @@
 	if(world.time >= message_time)
 		message_time = world.time + OBSESSION_COOLDOWN
 		var/message = pick(list(
-			"You knew it. The [objectname] will ease your journey to the stars.",
-			"You look all around, but the only thing you can see is the [objectname].",
-			"Your thoughts are all about the [objectname].",
-			"You imagine how you will pour your hands into the still warm [objectname].",
-			"Vivid imagery of the [objectname] fills your brain.",
-			"You know it. It is the key to your salvation. [capitalize(objectname)]. [capitalize(objectname)]. [capitalize(objectname)]!",
-			"The voice within you demands only one thing: the [objectname].",
-			"It hurts you to keep pretending that your life without the [objectname] has meaning.",
-			"Your mind whispers to you with the only words in its silent throat: [objectname].",
-			"You know that only salvation from your sins is [objectname]."
+			"Вы поняли. [capitalize(objectname)] облегчит ваше путешествие к звездам.",
+			"Вы смотрите по сторонам, но единственная вещь, которую вы видете - [objectname].",
+			"Все ваши мысли лишь о [objectname].",
+			"Вы представляете, как [objectname] будет согревать ваши руки.",
+			"Яркий образ [objectname] заполняет ваш разум.",
+			"Вы поняли. Это ключ к вашему спасению. [capitalize(objectname)]. [capitalize(objectname)]. [capitalize(objectname)]!",
+			"Голос внутри вас требует лишь одного: [objectname].",
+			"Вам больно продолжать притворяться, что жизнь без [objectname] имеет смысл.",
+			"Ваш разум тихо шепчет вам: [objectname].",
+			"Вы знаете, что единственная возможность искупить грези это [objectname]."
 		))
 		to_chat(holder.owner, SPAN_NOTICE(message))
 
@@ -441,11 +441,11 @@
 	var/pickup_time = 0
 
 	start_messages = list(
-		"You feel the need to hold something that you perhaps shouldn't...",
-		"You feel like others don't value what they have - but you on the other hand...",
-		"You feel like everything should be in your possession...",
-		"You feel like everything can be yours, with just the smallest effort...",
-		"You feel like some things have a strong aura around them. It won't hurt to take them for a while..."
+		"Вы чувствуете необходимость держать что-то, что вы, возможно, не должны...",
+		"Вы чувствуете, что другие не ценят то, что имеют, но вы - наоборот,...",
+		"Вы чувствуете, что все должно быть в вашем владении...",
+		"Вы чувствуете, что все может быть вашим, нужно лишь приложить немного усилий...",
+		"Вы чувствуете, что некоторые вещи имеют сильную ауру вокруг них. Ничего не будет, если взять их себе..."
 	)
 	end_messages = list(
 		"You feel easier about not stealing things now."
@@ -476,14 +476,14 @@
 	var/message
 
 	start_messages = list(
-		"You feel like the fabric of reality is visible to you...",
-		"You feel that the truth is hidden somewhere, within your mind...",
-		"You feel like your mind has spoken to you, after centuries of silence...",
-		"You feel like you were blind, but now you see...",
-		"You feel like the universe itself is speaking to you..."
+		"Вы чувствуете, что ткань реальности видна вам...",
+		"Вы чувствуете, что истина спрятана где-то в вашем уме...",
+		"Вы чувствуете, что ваш разум говорил с вами после многих веков молчания...",
+		"Вы чувствуете, что были слепы, но теперь вы прозрели...",
+		"Вы чувствуете, что сама Вселенная говорит с вами..."
 	)
 	end_messages = list(
-		"The truth have spoken. You feel it again. The melody of sound returns to you."
+		"Правда рассказана. Вы снова это чувствуете. Мелодия звука возвращается к вам."
 	)
 
 /datum/breakdown/common/signs/New()
