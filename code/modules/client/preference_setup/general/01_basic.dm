@@ -116,11 +116,8 @@ datum/preferences
 	. = list()
 	. += "<h1>Основная информация</h1><hr>"
 	. += "<b>Имя:</b> "
-	if(!pref.char_exists)
-		. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a> "
-		. += "<a href='?src=\ref[src];random_name=1'>Случайное имя</A><br>"
-	else
-		. += "<b>[pref.real_name]</b><br>"
+	. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a> "
+	. += "<a href='?src=\ref[src];random_name=1'>Случайное имя</A><br>"
 //	. += "<a href='?src=\ref[src];always_random_name=1'>Всегда случайное имя: [pref.be_random_name ? "Да" : "Нет"]</a>"
 //	. += "<hr>"
 	if(!pref.char_exists)

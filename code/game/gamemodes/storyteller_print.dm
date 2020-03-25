@@ -1,25 +1,26 @@
 /datum/storyteller/proc/declare_completion()
 	var/text = ""
-	if(current_antags.len)
-		var/list/antags_by_ids = list()
-		text += "<br><font size=3><b>Round antagonists were:</b></font>"
-		for(var/datum/antagonist/A in current_antags)
-			if(!A.faction)
-				if(!islist(antags_by_ids[A.id]))
-					antags_by_ids[A.id] = list()
-				antags_by_ids[A.id] += A
+	if(config.canonicity)
+		if(current_antags.len)
+			var/list/antags_by_ids = list()
+			text += "<br><font size=3><b>Round antagonists were:</b></font>"
+			for(var/datum/antagonist/A in current_antags)
+				if(!A.faction)
+					if(!islist(antags_by_ids[A.id]))
+						antags_by_ids[A.id] = list()
+					antags_by_ids[A.id] += A
 
-		for(var/a_id in antags_by_ids)
-			var/list/L = antags_by_ids[a_id]
-			var/datum/antagonist/fA = L[1]
-			text += "<br>"
-			if(L.len > 1)
-				text += "<br><b>The [fA.role_text_plural]:</b>"
-				for(var/datum/antagonist/A in antags_by_ids[a_id])
-					text += A.print_success()
-			else
-				text += "<br><b>The [fA.role_text]:</b>"
-				text += fA.print_success()
+			for(var/a_id in antags_by_ids)
+				var/list/L = antags_by_ids[a_id]
+				var/datum/antagonist/fA = L[1]
+				text += "<br>"
+				if(L.len > 1)
+					text += "<br><b>The [fA.role_text_plural]:</b>"
+					for(var/datum/antagonist/A in antags_by_ids[a_id])
+						text += A.print_success()
+				else
+					text += "<br><b>The [fA.role_text]:</b>"
+					text += fA.print_success()
 
 	if(current_factions.len)
 		text += "<br><font size=3><b>Round factions were:</b></font>"
@@ -40,10 +41,10 @@
 					escaped_total++
 			if(isghost(M))
 				ghosts++
-	text += "<br>"
+//	text += "<br>"
 	if(surviving_total > 0)
 		text += "<br>There [surviving_total>1 ? "were <b>[surviving_total] survivors</b>" : "was <b>one survivor</b>"]"
-		text += " (<b>[escaped_total>0 ? escaped_total : "none"] escaped</b>) and <b>[ghosts] ghosts</b>.<br>"
+		text += " (<b>[escaped_total>0 ? escaped_total : "none"] escaped</b>).<br>"
 	else
 		text += "There were <b>no survivors</b> (<b>[ghosts] ghosts</b>)."
 	to_chat(world, text)

@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(ticker)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME
 	wait = 1 SECONDS //Tick every second
 
-	var/const/restart_timeout = 600
+	var/const/restart_timeout = 300
 	var/current_state = GAME_STATE_STARTUP
 	// If true, there is no lobby phase, the game starts immediately.
 	var/start_immediately = FALSE
@@ -80,12 +80,12 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_STARTUP)
 			if(first_start_trying)
 				pregame_timeleft = initial(pregame_timeleft)
-				to_chat(world, "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>")
+				to_chat(world, "<B>Добро пожаловать в лобби!</B>")
 			else
 				pregame_timeleft = 120
 
 			if(!start_immediately)
-				to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
+				to_chat(world, "Игра начнется через [pregame_timeleft] секунд.")
 			current_state = GAME_STATE_PREGAME
 			send_assets()
 
@@ -134,7 +134,7 @@ SUBSYSTEM_DEF(ticker)
 				//enable OOC back after round end
 				if(!config.ooc_allowed && !config.ooc_during_round)
 					config.ooc_allowed = 1
-					to_world("<B>OOC channel has been enabled due to round end.</B>")
+					to_world("<B>Канал OOC был отключен.</B>")
 
 				spawn
 					declare_completion()
@@ -222,10 +222,10 @@ SUBSYSTEM_DEF(ticker)
 
 	if(GLOB.player_list.len >= 10)
 		config.canonicity = 1
-		to_chat(world, "<H2>Round is now canon, all new character data will be saved in the end of the round!</H2>")
+		to_chat(world, "<H2>Нынешний раунд является каноничным, все данные персонажей будут сохранены в конце раунда.</H2>")
 	else
 		config.canonicity = 0
-		to_chat(world, "<H2>Round is now not canon, so all new character data will not be saved!</H2>")
+		to_chat(world, "<H2>Нынешний раунд не является каноничным, данные персонажей не будут сохранены в конце раунда.</H2>")
 
 	setup_economy()
 	newscaster_announcements = pick(newscaster_standard_feeds)
@@ -246,7 +246,7 @@ SUBSYSTEM_DEF(ticker)
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		GLOB.storyteller.set_up()
-		to_chat(world, "<FONT color='blue'><B>Enjoy the game!</B></FONT>")
+		to_chat(world, "<B>Приятной вам игры на нашем проекте!</B>")
 		world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
@@ -269,7 +269,7 @@ SUBSYSTEM_DEF(ticker)
 	//disables ooc due to round start
 	if(config.ooc_allowed && !config.ooc_during_round)
 		config.ooc_allowed = 0
-		to_world("<B>OOC channel has been disabled due to round start.</B>")
+		to_world("<B>Канал OOC был отключен.</B>")
 
 //	if(config.sql_enabled)
 //		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
@@ -425,68 +425,68 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/declare_completion()
-	to_chat(world, "<br><br><br><H1>A round has ended!</H1>")
+	to_chat(world, "<br><br><H1>A round has ended!</H1>")
 	if(!config.canonicity)
 		to_chat(world, "<H2>Round was not canon, so all new character data will not be saved!</H2>")
 	else
 		save_characters()
 		to_chat(world, "<H2>Round was canon, all character data has been saved!</H2>")
-	for(var/mob/Player in GLOB.player_list)
-		if(Player.mind && !isnewplayer(Player))
-			if(Player.stat != DEAD)
-				var/turf/playerTurf = get_turf(Player)
-				if(evacuation_controller.round_over() && evacuation_controller.emergency_evacuation)
-					if(isNotAdminLevel(playerTurf.z))
-						to_chat(Player, "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>")
-					else
-						to_chat(Player, "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>")
-				else if(isAdminLevel(playerTurf.z))
-					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>")
-				else if(issilicon(Player))
-					to_chat(Player, "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>")
-				else
-					to_chat(Player, "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>")
-			else
-				if(isghost(Player))
-					var/mob/observer/ghost/O = Player
-					if(!O.started_as_observer)
-						to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
-				else
-					to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
-	to_chat(world, "<br>")
+//	for(var/mob/Player in GLOB.player_list)
+//		if(Player.mind && !isnewplayer(Player))
+//			if(Player.stat != DEAD)
+//				var/turf/playerTurf = get_turf(Player)
+//				if(evacuation_controller.round_over() && evacuation_controller.emergency_evacuation)
+//					if(isNotAdminLevel(playerTurf.z))
+//						to_chat(Player, "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>")
+//					else
+//						to_chat(Player, "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>")
+//				else if(isAdminLevel(playerTurf.z))
+//					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>")
+//				else if(issilicon(Player))
+//					to_chat(Player, "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>")
+//				else
+//					to_chat(Player, "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>")
+//			else
+//				if(isghost(Player))
+//					var/mob/observer/ghost/O = Player
+//					if(!O.started_as_observer)
+//						to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
+//				else
+//					to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
+//	to_chat(world, "<br>")
 
-	for(var/mob/living/silicon/ai/aiPlayer in SSmobs.mob_list)
-		if(aiPlayer.stat != DEAD)
-			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>")
-		else
-			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>")
-		aiPlayer.show_laws(TRUE)
+//	for(var/mob/living/silicon/ai/aiPlayer in SSmobs.mob_list)
+//		if(aiPlayer.stat != DEAD)
+//			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>")
+//		else
+//			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>")
+//		aiPlayer.show_laws(TRUE)
 
-		if(aiPlayer.connected_robots.len)
-			var/robolist = "<b>The AI's loyal minions were:</b> "
-			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
-				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
-			to_chat(world, "[robolist]")
+//		if(aiPlayer.connected_robots.len)
+//			var/robolist = "<b>The AI's loyal minions were:</b> "
+//			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
+//				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
+//			to_chat(world, "[robolist]")
 
-	var/dronecount = 0
+//	var/dronecount = 0
 
-	for(var/mob/living/silicon/robot/robo in SSmobs.mob_list)
+//	for(var/mob/living/silicon/robot/robo in SSmobs.mob_list)
 
-		if(isdrone(robo))
-			dronecount++
-			continue
+//		if(isdrone(robo))
+//			dronecount++
+//			continue
 
-		if(!robo.connected_ai)
-			if(robo.stat != 2)
-				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less synthetic! Its laws were:</b>")
-			else
-				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a synthetic without an AI. Its laws were:</b>")
+//		if(!robo.connected_ai)
+//			if(robo.stat != 2)
+//				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less synthetic! Its laws were:</b>")
+//			else
+//				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a synthetic without an AI. Its laws were:</b>")
 
-			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
-				robo.laws.show_laws(world)
+//			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
+//				robo.laws.show_laws(world)
 
-	if(dronecount)
-		to_chat(world, "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>")
+//	if(dronecount)
+//		to_chat(world, "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>")
 
 	GLOB.storyteller.declare_completion()//To declare normal completion.
 

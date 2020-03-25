@@ -241,7 +241,7 @@
 		return 0
 	for(var/mob/living/carbon/human/R in SSmobs.mob_list)
 		if(client.prefs.character_id == R.character_id)
-			to_chat(usr, "This character is already in-game!")
+			to_chat(usr, "Этот персонаж уже находится в игре!")
 			return 0
 
 	spawning = 1
@@ -295,8 +295,8 @@
 //	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
 
 	var/dat = "<html><body><center>"
-	dat += "<b>Добро пожаловать!.<br></b>"
-	dat += "Раунд длится: [roundduration2text()]<br>"
+	dat += "<b>Добро пожаловать!<br></b>"
+	dat += "Длительность раунда: [roundduration2text()]<br>"
 
 	if(evacuation_controller.has_evacuated()) //In case Nanotrasen decides reposess CentComm's shuttles.
 		dat += "<font color='red'><b>The vessel has been evacuated.</b></font><br>"
@@ -315,7 +315,7 @@
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
 			for(var/mob/M in GLOB.player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 				active++
-			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title_ru][active ? " (Активно: [active])" : ""]</a><br>"
 
 	dat += "</center>"
 
