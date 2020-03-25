@@ -231,7 +231,8 @@
 			real_damage = max(1, real_damage)
 
 			// Apply additional unarmed effects.
-			attack.apply_effects(H, src, getarmor(affecting, ARMOR_MELEE), stat_damage, hit_zone)
+//			attack.apply_effects(H, src, getarmor(affecting, ARMOR_MELEE), stat_damage, hit_zone)
+			attack.apply_effects(H, src, stat_damage, hit_zone)
 
 			// Finally, apply damage to target
 			damage_through_armor(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, ARMOR_MELEE, sharp = attack.sharp, edge = attack.edge)

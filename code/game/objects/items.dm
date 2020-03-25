@@ -388,8 +388,9 @@ var/global/list/items_blood_overlay_by_type = list()
 		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>",1)
 
 /mob/living/carbon/verb/showoff()
-	set name = "Show Held Item"
+	set name = "show-held-item"
 	set category = "Object"
+	set hidden = TRUE
 
 	var/obj/item/I = get_active_hand()
 	if(I && !I.abstract)

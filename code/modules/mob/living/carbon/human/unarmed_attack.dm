@@ -46,7 +46,7 @@ var/global/list/sparring_attack_cache = list()
 	if(target.stat == DEAD)
 		return
 
-	var/stun_chance = rand(0, 100) + (100 - max(user.health, 0))
+	var/stun_chance = rand(0, 100) + (max(target.health, 0) - 100)
 
 	if(attack_damage >= 5 && !(target == user) && stun_chance <= attack_damage * 5) // 25% standard chance
 		switch(zone) // strong punches can have effects depending on where they hit

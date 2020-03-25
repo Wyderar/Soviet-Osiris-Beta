@@ -318,7 +318,7 @@
 	return
 
 /atom/proc/AltClick(var/mob/living/user)
-	if(!user)
+	if(!user || user.incapacitated())
 		return
 	var/turf/T = get_turf(src)
 	if(T && user.TurfAdjacent(T))

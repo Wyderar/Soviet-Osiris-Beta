@@ -29,6 +29,6 @@
 	if(!CanPhysicallyInteract(user))
 		return
 	if(card_slot && istype(card_slot.stored_card))
-		eject_id()
+		proc_eject_id()
 	else
 		..()

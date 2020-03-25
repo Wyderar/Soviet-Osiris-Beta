@@ -15,6 +15,7 @@
 	var/mob/pulledby = null
 	var/item_state = null // Used to specify the item state for the on-mob overlays.
 	var/inertia_dir = 0
+	var/has_wheels = 0
 
 /atom/movable/Del()
 	if(isnull(gc_destroyed) && loc)

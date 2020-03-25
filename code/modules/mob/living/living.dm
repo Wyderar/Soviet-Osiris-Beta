@@ -770,7 +770,7 @@ default behaviour is:
 	src.pulling = AM
 	AM.pulledby = src
 
-	if(istype(AM, /obj/structure) && (move_intent.type == /decl/move_intent/run))
+	if(istype(AM, /obj/structure) && !AM.has_wheels && (move_intent.type == /decl/move_intent/run))
 		var/decl/move_intent/newintent = decls_repository.get_decl(/decl/move_intent/walk)
 		if(newintent.can_enter(src, TRUE))
 			move_intent = newintent

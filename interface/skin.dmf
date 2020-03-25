@@ -648,6 +648,9 @@ macro "hotkeymode"
 	elem 
 		name = "V"
 		command = "Rest"
+	elem 
+		name = "`"
+		command = "show-held-item"
 
 macro "borgmacro"
 	elem 

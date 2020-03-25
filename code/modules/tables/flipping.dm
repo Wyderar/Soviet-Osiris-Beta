@@ -12,26 +12,24 @@
 		return 1
 	return T.straight_table_check(direction)
 
-/obj/structure/table/verb/do_flip()
-	set name = "Flip table"
-	set desc = "Flips a non-reinforced table"
-	set category = "Object"
-	set src in oview(1)
-
-	if (!can_touch(usr) || ismouse(usr))
+/obj/structure/table/RightClick(mob/living/user)
+	if (!can_touch(user))
 		return
 
-	if(flipped < 0 || !flip(get_cardinal_dir(usr,src)))
-		to_chat(usr, SPAN_NOTICE("It won't budge."))
-		return
-
-	usr.visible_message(SPAN_WARNING("[usr] flips \the [src]!"))
-
-	if(climbable)
-		structure_shaken()
-
-	playsound(src,'sound/machines/Table_Fall.ogg',100,1)
-	return
+	switch(flipped)
+		if(0)
+			if(!flip(get_cardinal_dir(user,src)))
+				to_chat(user, SPAN_NOTICE("It won't budge."))
+				return
+			usr.visible_message(SPAN_WARNING("[usr] flips \the [src]!"))
+			if(climbable)
+				structure_shaken()
+			playsound(src,'sound/machines/Table_Fall.ogg',100,1)
+		if(1)
+			if(!unflipping_check())
+				to_chat(usr, SPAN_NOTICE("It won't budge."))
+				return
+			unflip()
 
 /obj/structure/table/proc/unflipping_check(var/direction)
 
@@ -56,26 +54,9 @@
 				return 0
 	return 1
 
-/obj/structure/table/proc/do_put()
-	set name = "Put table back"
-	set desc = "Puts flipped table back"
-	set category = "Object"
-	set src in oview(1)
-
-	if (!can_touch(usr))
-		return
-
-	if (!unflipping_check())
-		to_chat(usr, SPAN_NOTICE("It won't budge."))
-		return
-	unflip()
-
 /obj/structure/table/proc/flip(var/direction)
 	if( !straight_table_check(turn(direction,90)) || !straight_table_check(turn(direction,-90)) )
 		return 0
-
-	verbs -=/obj/structure/table/verb/do_flip
-	verbs +=/obj/structure/table/proc/do_put
 
 	var/list/targets = list(get_step(src,dir),get_step(src,turn(dir, 45)),get_step(src,turn(dir, -45)))
 	for (var/atom/movable/A in get_turf(src))
@@ -108,9 +89,6 @@
 	return 1
 
 /obj/structure/table/proc/unflip()
-	verbs -=/obj/structure/table/proc/do_put
-	verbs +=/obj/structure/table/verb/do_flip
-
 	layer = initial(layer)
 	flipped = 0
 	climbable = initial(climbable)
