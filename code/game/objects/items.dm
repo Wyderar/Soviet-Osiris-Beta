@@ -73,6 +73,11 @@
 	var/list/item_upgrades = list()
 	var/max_upgrades = 3
 
+	//Tooltip vars
+	var/force_string //string form of an item's force. Edit this var only to set a custom force string
+	var/last_force_string_check = 0
+	var/tip_timer
+
 /obj/item/Destroy()
 	QDEL_NULL(hidden_uplink)
 	QDEL_NULL(blood_overlay)
@@ -444,7 +449,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if (WEST)
 				usr.client.pixel_x = -viewoffset
 				usr.client.pixel_y = 0
-		
+
 		if(istype(usr, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = usr
 			H.set_dir(H.dir)
@@ -536,14 +541,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return TRUE
 
 /obj/item/show_radial(mob/living/user)
-	if(!user || anchored || is_equipped()) 
+	if(!user || anchored || is_equipped())
 		return
 	var/list/layer_list = list(
 			"Pull" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pull"),
 			"Pickup" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pickup"),
 			"Examine" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_examine")
 		)
-	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = FALSE)
+	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(layer_result)
@@ -557,7 +562,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(user.client && user.client.eye == user)
 				user.examinate(src)
 
-/obj/item/MouseEntered(params)
+/obj/item/proc/openTip(location, control, params, user)
+	openToolTip(user, src, params, title = name, content = "[desc]<br>[force ? "<b>Force:</b> [force_string]" : ""]", theme = "")
+
+
+/obj/item/MouseEntered(location, control, params)
 	if(istype(usr, /mob/living))
 		var/mob/living/M = usr
 		if(!M.client.mouse_pointer_icon)
@@ -565,6 +574,17 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				M.client.mouse_pointer_icon = initial(M.client.mouse_pointer_icon)
 				M.client.mouse_pointer_icon = file(CURSOR_PICKUP)
 
+//	var/list/modifiers = params2list(params)
+//	if(modifiers["shift"])
+
+	var/timedelay = 1
+	var/user = usr
+	tip_timer = addtimer(CALLBACK(src, .proc/openTip, location, control, params, user), timedelay, TIMER_STOPPABLE)
+
+
+
 /obj/item/MouseExited()
 	if(usr.client.mouse_pointer_icon == CURSOR_PICKUP)
 		usr.client.mouse_pointer_icon = initial(usr.client.mouse_pointer_icon)
+	deltimer(tip_timer)
+	closeToolTip(usr)
