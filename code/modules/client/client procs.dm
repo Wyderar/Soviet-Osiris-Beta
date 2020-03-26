@@ -196,7 +196,7 @@
 			src.changes()
 
 	if(!tooltips)
-		src.tooltips = new /datum/tooltip(src)
+		tooltips = new /datum/tooltip(src)
 
 	src.fit_viewport()
 
