@@ -190,7 +190,7 @@ Proc for attack log creation, because really why not
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
+/proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_STUNNED|INCAPACITATION_RESTRAINED|INCAPACITATION_UNCONSCIOUS)
 	if(!user)
 		return 0
 	var/atom/target_loc = null

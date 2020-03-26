@@ -572,9 +572,9 @@ default behaviour is:
 
 	var/state_changed = FALSE
 	if(resting && can_stand_up())
-		resting = FALSE
-		state_changed = TRUE
-
+		if(do_after(src, 20))
+			resting = FALSE
+			state_changed = TRUE
 
 	else if (!resting)
 		if(ishuman(src))

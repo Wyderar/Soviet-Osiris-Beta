@@ -749,6 +749,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		regenerate_icons()
 	else if( lying != lying_prev )
 		update_icons()
+	update_vision_cone()
 
 /mob/proc/reset_layer()
 	if(lying)

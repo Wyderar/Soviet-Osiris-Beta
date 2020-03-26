@@ -43,8 +43,7 @@
 		output += "<a href='byond://?src=\ref[src];manifest=1'>Открыть манифест экипажа</A><br>"
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Присоединиться к игре</A></p>"
 
-	if(check_rights())
-		output += "<p><a href='byond://?src=\ref[src];observe=1'>Наблюдать</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];observe=1'>Наблюдать</A></p>"
 	output += "<p><a href='byond://?src=\ref[src];changelog=1'>Список изменений</A></p>"
 
 	if(!IsGuestKey(src.key))
@@ -111,7 +110,7 @@
 	if(href_list["changelog"])
 		client.changes()
 
-	if(href_list["observe"] && check_rights())
+	if(href_list["observe"])
 
 		if(alert(src,"Are you sure you wish to observe? You will have to wait 30 minutes before being able join the crew! But you can play as a mouse or drone immediately.","Player Setup","Yes","No") == "Yes")
 			if(!client)	return 1
