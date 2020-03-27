@@ -78,7 +78,7 @@
 	if(owner.stat)
 		changeLevel(affect)
 		return
-	if(!(owner.sdisabilities & BLIND) && !owner.blinded)
+	if(!(owner.sdisabilities & BLIND) && !owner.blinded && !owner.eye_blind)
 		affect += handle_area()
 		affect -= handle_view()
 	if(owner.sleeping)

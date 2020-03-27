@@ -189,6 +189,7 @@
 					else
 						to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
 				use(used)
+				H.update_bandages(1)
 		else
 			if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
@@ -351,6 +352,7 @@
 					to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
 			use(used)
 			update_icon()
+			H.update_bandages(1)
 	else
 		if (can_operate(H, user))        //Checks if mob is lying down on table for surgery
 			if (do_surgery(H,user,src))

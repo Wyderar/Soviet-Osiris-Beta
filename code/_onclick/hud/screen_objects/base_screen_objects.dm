@@ -1279,9 +1279,9 @@ obj/screen/fire/DEADelize()
 	var/mob/living/carbon/human/H = parentmob
 	if(H.health > 50)
 		icon_state = "blank"
-	else if(H.health < 50 && H.health > 0)
+	else if((H.health < 50 && H.health > 0) || (H.sanity.level < 60 && H.sanity.level > 20))
 		icon_state = "[rand(1,9)]"
-	else if(H.health < 0)
+	else if(H.health < 0 || H.sanity.level < 20)
 		icon_state = "[rand(1,9)]j"
 
 /obj/screen/drugoverlay
