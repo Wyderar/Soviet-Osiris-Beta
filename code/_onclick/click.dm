@@ -247,8 +247,17 @@
 */
 /mob/proc/RightClickOn(var/atom/A)
 	A.RightClick(src)
-	face_atom(A)
+	RightFace(A)
 	return
+
+/mob/proc/RightFace(var/atom/A)
+	if(facing_dir)
+		facing_dir = null
+		face_atom(A)
+		set_dir(dir)
+		facing_dir = dir
+	else
+		face_atom(A)
 
 /atom/proc/RightClick(var/atom/A)
 	return
@@ -309,7 +318,7 @@
 	return
 
 /atom/proc/AltClick(var/mob/living/user)
-	if(!user)
+	if(!user || user.incapacitated())
 		return
 	var/turf/T = get_turf(src)
 	if(T && user.TurfAdjacent(T))

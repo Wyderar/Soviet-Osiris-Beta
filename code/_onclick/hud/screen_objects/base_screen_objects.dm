@@ -133,7 +133,7 @@
 	name = "actionA"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "actionA"
-	screen_loc = "8,1:13"
+	screen_loc = "7,2:13"
 	var/minloc = "7,2:13"
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
@@ -1260,6 +1260,29 @@ obj/screen/fire/DEADelize()
 	else
 		alpha = 0
 		H.usefov = 0
+
+/obj/screen/shock_noise
+	name = "shock_noise"
+	icon = 'icons/mob/noise.dmi'
+	icon_state = "blank"
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
+	mouse_opacity = 0
+	process_flag = TRUE
+	layer = 20
+	plane = HUD_PLANE
+
+/obj/screen/shock_noise/Process()
+	update_icon()
+
+/obj/screen/shock_noise/update_icon()
+	underlays.Cut()
+	var/mob/living/carbon/human/H = parentmob
+	if(H.health > 50)
+		icon_state = "blank"
+	else if((H.health < 50 && H.health > 0) || (H.sanity.level < 60 && H.sanity.level > 20))
+		icon_state = "[rand(1,9)]"
+	else if(H.health < 0 || H.sanity.level < 20)
+		icon_state = "[rand(1,9)]j"
 
 /obj/screen/drugoverlay
 	icon_state = "blank"

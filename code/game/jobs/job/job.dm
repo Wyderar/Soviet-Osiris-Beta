@@ -120,18 +120,18 @@
 		M.account_id = H.mind.prefs.character_id
 
 	if(H.mind)
-		var/remembered_info = "<b>Your account number is:</b> #[M.account_number]<br>"
-		remembered_info += "<b>Your account pin is:</b> [M.remote_access_pin]<br>"
-		remembered_info += "<b>Your account funds are:</b> [M.money][CREDS]<br>"
+		var/remembered_info = "<b>Номер:</b> #[M.account_number]<br>"
+		remembered_info += "<b>PIN:</b> [M.remote_access_pin]<br>"
+		remembered_info += "<b>Кредиты:</b> [M.money][CREDS]<br>"
 
 		if(M.transaction_log.len)
 			var/datum/transaction/T = M.transaction_log[1]
-			remembered_info += "<b>Your account was created:</b> [T.time], [T.date] at [T.source_terminal]<br>"
+			remembered_info += "<b>Аккаунт был создан:</b> [T.time], [T.date] на [T.source_terminal]<br>"
 		H.mind.store_memory(remembered_info)
 
 		H.mind.initial_account = M
 
-	to_chat(H, SPAN_NOTICE("<b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b>"))
+	to_chat(H, SPAN_NOTICE("<b>Номер вашего аккаунта: [M.account_number], ваш PIN: [M.remote_access_pin]</b>"))
 
 
 

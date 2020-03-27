@@ -22,6 +22,7 @@
 	var/list/mob_hit_sound = list('sound/effects/gore/bullethit2.ogg', 'sound/effects/gore/bullethit3.ogg') //Sound it makes when it hits a mob. It's a list so you can put multiple hit sounds there.
 	var/def_zone = ""	//Aiming at
 	var/mob/firer = null//Who shot it
+	var/firer_original_dir = null
 	var/silenced = FALSE	//Attack message
 	var/yo = null
 	var/xo = null
@@ -156,6 +157,7 @@
 	loc = get_turf(user) //move the projectile out into the world
 
 	firer = user
+	firer_original_dir = firer.dir
 	shot_from = launcher.name
 	silenced = launcher.item_flags & SILENT
 
@@ -168,6 +170,7 @@
 	original = new_target
 	if(new_firer)
 		firer = src
+		firer_original_dir = firer.dir
 
 	setup_trajectory(starting_loc, new_target)
 

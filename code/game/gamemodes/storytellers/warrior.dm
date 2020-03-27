@@ -1,12 +1,13 @@
 /datum/storyteller/warrior
 	config_tag = "warrior"
 	name = "The Warrior"
-	welcome = "Ready your weapons, and prepare for battle..."
-	description = "Aggressive storyteller with a focus on generating monsters and antagonists that will do battle with the crew"
+	welcome = "Готовимся к жесткой мясорубке..."
+	description = "Агрессивный рассказчик с упором на создание новых монстров и антагонистов."
 
-	gain_mult_moderate = 1.25
-	gain_mult_major = 1.25
-	gain_mult_roleset = 1.25
+	gain_mult_mundane = 0.5
+	gain_mult_moderate = 0.62
+	gain_mult_major = 0.62
+	gain_mult_roleset = 0.62
 
 	tag_weight_mults = list(TAG_COMBAT = 1.75)
 

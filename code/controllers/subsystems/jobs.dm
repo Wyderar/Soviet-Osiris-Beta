@@ -347,7 +347,7 @@ SUBSYSTEM_DEF(job)
 
 		H.mind.store_memory(remembered_info)
 
-	var/alt_title = null
+//	var/alt_title = null
 	if(H.mind)
 		H.mind.assigned_role = rank
 	//	alt_title = H.mind.role_alt_title
@@ -372,13 +372,13 @@ SUBSYSTEM_DEF(job)
 			W.buckled_mob = H
 			W.add_fingerprint(H)
 
-	to_chat(H, "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>")
+	to_chat(H, "<B>Теперь вы [job.title_ru].</B>")
 
 	if(job.supervisors)
-		to_chat(H, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
+		to_chat(H, "<b>Как [job.title_ru] вы отвечаете перед [job.supervisors].</b>")
 
 	if(job.req_admin_notify)
-		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
+		to_chat(H, "<b>Вы выбрали крайне важную должность для развития игры. Если вам необходимо отключиться, пожалуйста, предупредите об этом администрацию.</b>")
 
 	//Gives glasses to the vision impaired
 	if(H.disabilities & NEARSIGHTED)

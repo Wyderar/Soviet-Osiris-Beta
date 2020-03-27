@@ -70,6 +70,19 @@
 	else
 		return TRUE
 
+// Checks if organ is in chest or head. If it is, checks bone integrety in parent organ,
+// returns TRUE if bones are broken or not in chest/head.
+// Used in surgery.
+/obj/item/organ/internal/is_exposed()
+	var/obj/item/organ/external/limb = get_limb()
+
+	if(!(limb.organ_tag == BP_HEAD) && !(limb.organ_tag == BP_CHEST))
+		return TRUE
+
+	if(limb.is_broken())
+		return TRUE
+	return FALSE
+
 
 // Gets a list of surgically treatable conditions
 /obj/item/organ/internal/get_conditions()

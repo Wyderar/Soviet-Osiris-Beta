@@ -108,6 +108,7 @@
 	name = "trash cart"
 	desc = "A heavy, metal trashcart with wheels."
 	icon_state = "trashcart"
+	has_wheels = 1
 
 /*these aren't needed anymore
 /obj/structure/closet/crate/hat

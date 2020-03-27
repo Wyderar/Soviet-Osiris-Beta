@@ -641,13 +641,16 @@ macro "hotkeymode"
 		command = "toggle-walk-run"
 	elem 
 		name = "C"
-		command = "face-direction"
+		command = "face-direction-down"
 	elem 
 		name = "C+UP"
-		command = "face-direction"
+		command = "face-direction-up"
 	elem 
 		name = "V"
 		command = "Rest"
+	elem 
+		name = "`"
+		command = "show-held-item"
 
 macro "borgmacro"
 	elem 

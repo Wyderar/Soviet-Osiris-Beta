@@ -98,7 +98,6 @@
 				CH.enabled()
 			if(istype(CH, /obj/item/weapon/computer_hardware/hard_drive) && enabled)
 				autorun_program(portable_drive) // Autorun malware: now in SS13!
-		update_verbs()
 
 // Uninstalls component.
 /obj/item/modular_computer/proc/uninstall_component(obj/item/H, mob/living/user)
@@ -149,9 +148,6 @@
 	if(critical)
 		to_chat(user, SPAN_DANGER("\The [src]'s screen freezes for a split second and flickers to black."))
 		shutdown_computer()
-	update_verbs()
-	update_icon()
-
 
 // Returns list of all components
 /obj/item/modular_computer/proc/get_all_components()

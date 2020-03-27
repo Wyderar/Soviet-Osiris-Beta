@@ -4,7 +4,7 @@
 	blood_level = 1
 
 /datum/surgery_step/insert_item/can_use(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	return organ.is_open() && organ.can_add_item(tool, user)
+	return organ.is_open() && organ.can_add_item(tool, user) && organ_exposed(user, organ)
 
 /datum/surgery_step/insert_item/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	if(istype(tool, /obj/item/organ/external))

@@ -359,19 +359,19 @@ This function completely restores a damaged organ to perfect condition.
 			if(compatible_wounds.len)
 				var/datum/wound/W = pick(compatible_wounds)
 				W.open_wound(damage)
-				if(owner && prob(25))
-					if(BP_IS_ROBOTIC(src))
-						owner.visible_message(
-							SPAN_DANGER("The damage to [owner.name]'s [name] worsens."),
-							SPAN_DANGER("The damage to your [name] worsens."),
-							SPAN_DANGER("You hear the screech of abused metal.")
-						)
-					else
-						owner.visible_message(
-							SPAN_DANGER("The wound on [owner.name]'s [name] widens with a nasty ripping noise."),
-							SPAN_DANGER("The wound on your [name] widens with a nasty ripping noise."),
-							SPAN_DANGER("You hear a nasty ripping noise, as if flesh is being torn apart.")
-						)
+//				if(owner && prob(25))
+//					if(BP_IS_ROBOTIC(src))
+//						owner.visible_message(
+//							SPAN_DANGER("The damage to [owner.name]'s [name] worsens."),
+//							SPAN_DANGER("The damage to your [name] worsens."),
+//							SPAN_DANGER("You hear the screech of abused metal.")
+//						)
+//					else
+//						owner.visible_message(
+//							SPAN_DANGER("The wound on [owner.name]'s [name] widens with a nasty ripping noise."),
+//							SPAN_DANGER("The wound on your [name] widens with a nasty ripping noise."),
+//							SPAN_DANGER("You hear a nasty ripping noise, as if flesh is being torn apart.")
+//						)
 				return
 
 	//Creating wound
@@ -997,3 +997,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 			conditions_list.Add(list(condition))
 
 	return conditions_list
+
+
+/obj/item/organ/external/is_exposed()
+	var/obj/item/organ/external/limb = src
+
+	if(!(limb.organ_tag == BP_HEAD) && !(limb.organ_tag == BP_CHEST))
+		return TRUE
+
+	if(limb.is_broken())
+		return TRUE
+	return FALSE

@@ -205,6 +205,10 @@ var/list/_client_preferences_by_type
 	description = "Enable gun crosshair"
 	key = "GUN_CURSOR"
 
+/datum/client_preference/toggle_facing
+	description = "Toggle facing"
+	key = "TOGGLE_FACING"
+
 /********************
 * General Staff Preferences *
 ********************/

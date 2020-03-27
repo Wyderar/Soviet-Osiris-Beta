@@ -69,7 +69,6 @@
 	if(scanner)
 		scanner.do_after_install(null, src)
 	update_icon()
-	update_verbs()
 	update_name()
 	. = ..()
 
