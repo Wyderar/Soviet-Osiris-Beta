@@ -4,8 +4,8 @@
 //////////////////////////////////////////////
 
 /datum/poll/restart
-	name = "Restart"
-	question = "Restart Round"
+	name = "Рестарт"
+	question = "Рестарт раунда"
 	time = 60
 	choice_types = list(/datum/vote_choice/restart, /datum/vote_choice/countinue_round)
 
@@ -18,16 +18,16 @@
 	see_votes = TRUE
 
 /datum/vote_choice/restart
-	text = "Restart Round"
+	text = "Рестарт раунда"
 
 /datum/vote_choice/restart/on_win()
-	to_chat(world, "<b>World restarting due to vote...<b>")
+	to_chat(world, "<b>Рестарт мира исходя из результатов голосования...<b>")
 	sleep(50)
 	log_game("Rebooting due to restart vote")
 	world.Reboot()
 
 /datum/vote_choice/countinue_round
-	text = "Continue Round"
+	text = "Продолжить раунд"
 
 
 
@@ -40,8 +40,8 @@
 	Storyteller
 **********************/
 /datum/poll/storyteller
-	name = "Storyteller"
-	question = "Choose storyteller"
+	name = "Рассказчик"
+	question = "Выберите нового рассказчика"
 	time = 120
 	choice_types = list()
 	minimum_voters = 0
@@ -155,14 +155,14 @@
 	Evacuate Ship
 **********************/
 /datum/poll/evac
-	name = "Evacuate Ship"
-	question = "Do you want to call evacuation and restart the round?"
+	name = "Эвакуация"
+	question = "Вызвать эвакуацию и перезапустить раунд?"
 	time = 120
 	minimum_win_percentage = 0.6
 	cooldown = 20 MINUTES
 	next_vote = 90 MINUTES //Minimum round length before it can be called for the first time
 	choice_types = list()
-	description = "You will have more voting power if you are head of staff or antag, less if you are observing or dead."
+	description = "Сила вашего голоса выше, если вы антагонист или руководитель отдела, и меньше, если вы наблюдатель."
 
 /*To prevent abuse and rule-by-salt, the evac vote weights each player's vote based on a few parameters
 	If you are alive and have been for a while, then you have the normal 1 vote
@@ -223,13 +223,13 @@
 #undef MINIMUM_VOTE_LIFETIME
 
 /datum/vote_choice/evac
-	text = "Abandon ship!"
+	text = "Покинуть корабль!"
 
 /datum/vote_choice/evac/on_win()
 	evacuation_controller.call_evacuation(null, TRUE, TRUE, FALSE, TRUE)
 
 /datum/vote_choice/noevac
-	text = "Stay aboard"
+	text = "Остаться на борту"
 
 
 

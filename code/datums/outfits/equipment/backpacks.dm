@@ -8,7 +8,6 @@
 /* Setup new backpacks here */
 /decl/backpack_outfit/nothing
 	name = "Nothing"
-	is_default = TRUE
 
 /decl/backpack_outfit/nothing/spawn_backpack(var/location, var/metadata, var/desired_type)
 	return
@@ -16,6 +15,7 @@
 /decl/backpack_outfit/backpack
 	name = "Backpack"
 	path = /obj/item/weapon/storage/backpack
+	is_default = TRUE
 
 /decl/backpack_outfit/backsport
 	name = "Sport Backpack"

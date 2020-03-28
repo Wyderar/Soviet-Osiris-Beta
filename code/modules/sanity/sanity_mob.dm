@@ -1,6 +1,6 @@
 #define SANITY_PASSIVE_GAIN 0.2
 
-#define SANITY_DAMAGE_MOD 0.6
+#define SANITY_DAMAGE_MOD 0.8
 
 // Damage received from unpleasant stuff in view
 #define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
@@ -97,6 +97,11 @@
 	for(var/atom/A in view(owner.client ? owner.client : owner))
 		if(A.sanity_damage)
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
+		if(A.blood_DNA && A.blood_color == "#A10808")
+			. += SANITY_DAMAGE_VIEW(1, vig, get_dist(owner, A))
+	for(var/obj/item/clothing/I in owner.contents)
+		if(I.loc == owner && I.blood_DNA && I.blood_color == "#A10808")
+			. += SANITY_DAMAGE_VIEW(1, vig, 1)
 
 /datum/sanity/proc/handle_area()
 	var/area/my_area = get_area(owner)
