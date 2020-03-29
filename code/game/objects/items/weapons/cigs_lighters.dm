@@ -3,7 +3,10 @@
 /*
 CONTAINS:
 MATCHES
-CIGARETTES
+CIGARETTES:
+ * Standart
+ * Menthol
+ * Alex "One Shot"
 CIGARS
 SMOKING PIPES
 CHEAP LIGHTERS
@@ -270,6 +273,26 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		user.visible_message(SPAN_NOTICE("[user] calmly drops and treads on the lit [src], putting it out instantly."))
 		die(1)
 	return ..()
+
+/obj/item/clothing/mask/smokable/cigarette/menthol
+	name = "green cigarette"
+	desc = "A roll of tobacco and nicotine. This one smells with menthol."
+	preloaded_reagents = list("menthol" = 6)
+	item_state = "ment_cigoff"
+	icon_state = "ment_cigoff"
+	icon_on = "ment_cigon"
+	icon_off = "ment_cigoff"
+
+
+/obj/item/clothing/mask/smokable/cigarette/alex_one_bullet
+	name = "blue cigarette"
+	desc = "A roll of tobacco and nicotine. This one a smell of strong tobacco."
+	preloaded_reagents = list("defective_nicotine" = 6)
+	icon_state = "alex_cigoff"
+	item_state = "alex_cigoff"
+	icon_on = "alex_cigon"
+	icon_off = "alex_cigoff"
+
 
 ////////////
 // CIGARS //
