@@ -153,7 +153,7 @@
 	name = "Nicotine"
 	id = "nicotine"
 	description = "A highly addictive stimulant extracted from the tobacco plant."
-	taste_description = "pepper"
+	taste_description = "nicotine"
 	reagent_state = LIQUID
 	color = "#181818"
 	overdose = REAGENTS_OVERDOSE/2
@@ -173,6 +173,19 @@
 	if(prob(5))
 		M.vomit()
 	M.adjustToxLoss(0.5)
+
+
+// Reagents for another cigarettes:
+/datum/reagent/drug/nicotine/menthol
+	id = "menthol_nicotine"
+	taste_description = "smooth nicotine"
+
+// In the name if Great Inspector Alex
+/datum/reagent/drug/nicotine/defective_alex
+	id = "defective_nicotine"
+	taste_description = "very strong nicotine"
+	overdose = REAGENTS_OVERDOSE / 3
+
 
 /datum/reagent/drug/hyperzine
 	name = "Hyperzine"

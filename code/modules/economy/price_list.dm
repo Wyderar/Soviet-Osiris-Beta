@@ -949,7 +949,10 @@
 	price_tag = 220
 
 /obj/item/weapon/storage/fancy/cigarettes/menthols
-	price_tag = 180
+	price_tag = 100
+
+/obj/item/weapon/storage/fancy/alex_one_shot
+	price_tag = 150
 
 /obj/item/weapon/storage/fancy/cigar
 	price_tag = 270
