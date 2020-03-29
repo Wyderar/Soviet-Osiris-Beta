@@ -1,6 +1,6 @@
 #define SANITY_PASSIVE_GAIN 0.2
 
-#define SANITY_DAMAGE_MOD 0.6
+#define SANITY_DAMAGE_MOD 0.8
 
 // Damage received from unpleasant stuff in view
 #define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
@@ -17,9 +17,9 @@
 // Damage received from seeing someone die
 #define SANITY_DAMAGE_DEATH(vig) (10 * SANITY_DAMAGE_MOD * (1 - (vig) / STAT_LEVEL_MAX))
 
-#define SANITY_GAIN_SMOKE 0.05 // A full cig restores 300 times that
+#define SANITY_GAIN_SMOKE 0.35 // A full cig restores 300 times that
 #define SANITY_GAIN_SAY 1
-#define SANITY_GAIN_SINK 5
+#define SANITY_GAIN_SINK 4
 
 #define SANITY_COOLDOWN_SAY rand(30 SECONDS, 45 SECONDS)
 #define SANITY_COOLDOWN_BREAKDOWN rand(7 MINUTES, 10 MINUTES)
@@ -78,9 +78,12 @@
 	if(owner.stat)
 		changeLevel(affect)
 		return
-	if(!(owner.sdisabilities & BLIND) && !owner.blinded)
+	if(!(owner.sdisabilities & BLIND) && !owner.blinded && !owner.eye_blind)
 		affect += handle_area()
 		affect -= handle_view()
+	if(owner.sleeping)
+		affect *= 3
+	
 	changeLevel(max(affect, min(view_damage_threshold - level, 0)))
 	handle_breakdowns()
 	handle_insight()
@@ -94,6 +97,11 @@
 	for(var/atom/A in view(owner.client ? owner.client : owner))
 		if(A.sanity_damage)
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
+		if(A.blood_DNA && A.blood_color == "#A10808")
+			. += SANITY_DAMAGE_VIEW(1, vig, get_dist(owner, A))
+	for(var/obj/item/clothing/I in owner.contents)
+		if(I.loc == owner && I.blood_DNA && I.blood_color == "#A10808")
+			. += SANITY_DAMAGE_VIEW(1, vig, 1)
 
 /datum/sanity/proc/handle_area()
 	var/area/my_area = get_area(owner)
@@ -184,6 +192,25 @@
 		else
 			desire_names += desire
 	to_chat(owner, SPAN_NOTICE("You desire [english_list(desire_names)]."))
+
+/datum/sanity/proc/print_sanity()
+	var/msg
+	switch(level / max_level)
+		if(-INFINITY to 0)
+			msg += "<span class='warning'>О, господи! Я схожу с ума!</span>"
+		if(1 to INFINITY)
+			msg += "<span class='green'>Чувствую себя превосходно!</span>"
+		if(0.8 to 1)
+			msg += "<span class='green'>Чувствую себя хорошо.</span>"
+		if(0.6 to 0.8)
+			msg += "<span class='green'>Чувствую себя довольно средне.</span>"
+		if(0.4 to 0.6)
+			msg += "<span class='warning'>Чувствую себя весьма посредственно...</span>"
+		if(0.2 to 0.4)
+			msg += "<span class='warning'>Чувствую себя крайне паршиво...</span>"
+		if(0 to 0.2)
+			msg += "<span class='warning'>Чувствую себя просто ужасно...</span>"
+	to_chat(usr, msg)
 
 /datum/sanity/proc/add_rest(type, amount)
 	if(!(type in desires))

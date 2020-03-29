@@ -176,6 +176,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "OOC"
 	set name = "Ghost"
 	set desc = "Relinquish your life and enter the land of the dead."
+	set hidden = TRUE
 
 	if(stat == DEAD)
 		announce_ghost_joinleave(ghostize(1))
@@ -426,42 +427,42 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, "\blue Heat Capacity: [round(environment.heat_capacity(),0.1)]")
 
 
-/mob/observer/verb/become_mouse()
-	set name = "Respawn as mouse"
-	set category = "Ghost"
+///mob/observer/verb/become_mouse()
+//	set name = "Respawn as mouse"
+//	set category = "Ghost"
 
 
-	if(!MayRespawn(1, ANIMAL))
-		return
+//	if(!MayRespawn(1, ANIMAL))
+//		return
 
-	var/turf/T = get_turf(src)
-	if(!T || !(T.z in maps_data.station_levels))
-		to_chat(src, "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>")
-		return
+//	var/turf/T = get_turf(src)
+//	if(!T || !(T.z in maps_data.station_levels))
+//		to_chat(src, "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>")
+//		return
 
-	var/response = alert(src, "Are you -sure- you want to become a mouse? This will not affect your crew or drone respawn time. You can choose to spawn near your ghost or at a random vent on this deck.","Are you sure you want to squeek?","Near Ghost", "Random","Cancel")
-	if(response == "Cancel") return  //Hit the wrong key...again.
+//	var/response = alert(src, "Are you -sure- you want to become a mouse? This will not affect your crew or drone respawn time. You can choose to spawn near your ghost or at a random vent on this deck.","Are you sure you want to squeek?","Near Ghost", "Random","Cancel")
+//	if(response == "Cancel") return  //Hit the wrong key...again.
 
 
 	//find a viable mouse candidate
-	var/mob/living/simple_animal/mouse/host
-	var/obj/machinery/atmospherics/unary/vent_pump/spawnpoint
-	if (response == "Random")
-		spawnpoint = find_mouse_random_spawnpoint(T.z)
-	else if (response == "Near Ghost")
-		spawnpoint = find_mouse_near_spawnpoint(T)
+//	var/mob/living/simple_animal/mouse/host
+//	var/obj/machinery/atmospherics/unary/vent_pump/spawnpoint
+//	if (response == "Random")
+//		spawnpoint = find_mouse_random_spawnpoint(T.z)
+//	else if (response == "Near Ghost")
+//		spawnpoint = find_mouse_near_spawnpoint(T)
 
-	if (spawnpoint)
-		host = new /mob/living/simple_animal/mouse(spawnpoint.loc)
-	else
-		to_chat(src, "<span class='warning'>Unable to find any safe, unwelded vents to spawn mice at. The station must be quite a mess!  Trying again might work, if you think there's still a safe place. </span>")
+//	if (spawnpoint)
+//		host = new /mob/living/simple_animal/mouse(spawnpoint.loc)
+//	else
+//		to_chat(src, "<span class='warning'>Unable to find any safe, unwelded vents to spawn mice at. The station must be quite a mess!  Trying again might work, if you think there's still a safe place. </span>")
 
-	if(host)
-		if(config.uneducated_mice)
-			host.universal_understand = 0
-		announce_ghost_joinleave(src, 0, "They are now a mouse.")
-		host.ckey = src.ckey
-		to_chat(host, "<span class='info'>You are now a mouse. Interact with players, cause mischief, avoid cats, find food, and try to survive!</span>")
+//	if(host)
+//		if(config.uneducated_mice)
+//			host.universal_understand = 0
+//		announce_ghost_joinleave(src, 0, "They are now a mouse.")
+//		host.ckey = src.ckey
+//		to_chat(host, "<span class='info'>You are now a mouse. Interact with players, cause mischief, avoid cats, find food, and try to survive!</span>")
 
 
 //Given an origin point to search around, attempts to find a safe vent as close as possible to that point
@@ -744,10 +745,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 
 //Just a wrapper for abandon mob below, for ease of access.
-/mob/observer/ghost/verb/respawn()
-	set name = "Respawn as character"
-	set category = "Ghost"
-	abandon_mob()
+///mob/observer/ghost/verb/respawn()
+//	set name = "Respawn as character"
+//	set category = "Ghost"
+//	abandon_mob()
 
 /mob/verb/abandon_mob()
 	set name = "Respawn"

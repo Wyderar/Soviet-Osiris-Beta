@@ -166,18 +166,18 @@
 
 
 
-	text += "<b>Votes:</b><br>"
+	text += "<b>Результаты голосования:</b><br>"
 	for(var/datum/vote_choice/ch in choice_votes)
 		if(ch == winner)
 			text += "<b>"
-		text += "\t[ch.text] - [choice_votes[ch]] vote[(ch.voters.len>1)?"s":""].<br>"
+		text += "\t[ch.text] - [choice_votes[ch]]<br>"
 		if(ch == winner)
 			text += "</b>"
 
 	if(!winner)
-		text += "\t<b>Did not vote - [non_voters]</b><br>"
+		text += "\t<b>Не голосовало - [non_voters]</b><br>"
 	else
-		text += "\tDid not vote - [non_voters]<br>"
+		text += "\tНе голосовало - [non_voters]<br>"
 		winner.on_win()
 
 

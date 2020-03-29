@@ -1,6 +1,7 @@
 //Cargo
 /datum/job/merchant
 	title = "Guild Merchant"
+	title_ru = "Торговец"
 	flag = MERCHANT
 	department = DEPARTMENT_GUILD
 	head_position = 1
@@ -64,6 +65,7 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 
 /datum/job/cargo_tech
 	title = "Guild Technician"
+	title_ru = "Техник"
 	flag = GUILDTECH
 	department = DEPARTMENT_GUILD
 	department_flag = GUILD
@@ -74,6 +76,7 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 	selection_color = "#c3b9a6"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
 	wage = WAGE_LABOUR_DUMB
+	department_account_access = TRUE
 	outfit_type = /decl/hierarchy/outfit/job/cargo/cargo_tech
 
 	access = list(
@@ -114,6 +117,7 @@ Your main duties are to keep the local guild branch operational and profitable. 
 
 /datum/job/mining
 	title = "Guild Miner"
+	title_ru = "Шахтер"
 	flag = MINER
 	department = DEPARTMENT_GUILD
 	department_flag = GUILD

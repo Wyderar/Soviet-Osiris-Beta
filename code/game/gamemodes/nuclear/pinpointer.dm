@@ -172,10 +172,9 @@
 			icon_state = "pinonfar"
 	spawn(5) .()
 
-/obj/item/weapon/pinpointer/advpinpointer/verb/toggle_mode()
-	set category = "Object"
-	set name = "Toggle Pinpointer Mode"
-	set src in view(1)
+/obj/item/weapon/pinpointer/advpinpointer/RightClick(mob/living/user)
+	if(!user.Adjacent(src))
+		return
 
 	active = FALSE
 	icon_state = "pinoff"

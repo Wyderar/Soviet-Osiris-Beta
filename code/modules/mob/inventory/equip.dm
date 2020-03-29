@@ -23,6 +23,16 @@
 	else if(istype(Item.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = Item.loc
 		S.remove_from_storage(Item, null)
+	if(istype(Item, /obj/item/weapon/gun) && istype(usr, /mob/living) && slot != slot_l_hand && slot != slot_r_hand)
+		var/obj/item/weapon/gun/G = Item
+		if(G.safety == 0 && prob(40))
+			var/mob/living/L = usr
+			var/organ_holder = L.targeted_organ
+			L.targeted_organ = pick(BP_L_LEG,BP_R_LEG)
+			G.Fire(L, L, pointblank=1)
+			L.targeted_organ = organ_holder
+			L.remove_cursor()
+
 
 	equip_to_slot(Item, slot, redraw_mob) //This proc should not ever fail.
 

@@ -126,17 +126,17 @@
 		del(src)
 		return
 
-	if(config.useckeywhitelist && !CheckWhitelist(key))
-		to_chat(src,"This server doesn't allow non-whitelisted ckeys to play. Go to https://discord.gg/PuraXWG for more information.","Whitelist","OK")
-		del(src)
-		return
+//	if(config.useckeywhitelist && !CheckWhitelist(key))
+//		to_chat(src,"This server doesn't allow non-whitelisted ckeys to play. Go to https://discord.gg/PuraXWG for more information.","Whitelist","OK")
+//		del(src)
+//		return
 
 	// Change the way they should download resources.
 	if(config.resource_urls)
 		src.preload_rsc = pick(config.resource_urls)
 	else src.preload_rsc = 1 // If config.resource_urls is not set, preload like normal.
 
-	to_chat(src, "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears.")
+	to_chat(src, "\red Если у вас длительное время показывается черный экран, то это значит, что у вас загружаются необходимые ресурсы.")
 
 
 	clients += src
@@ -188,6 +188,12 @@
 	log_client_to_db()
 
 	send_resources()
+
+//	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
+//		to_chat(src, "<span class='info'>You have unread updates in the changelog.</span>")
+//		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
+//		if(config.aggressive_changelog)
+//			src.changes()
 
 	if(!tooltips)
 		tooltips = new /datum/tooltip(src)
@@ -382,11 +388,11 @@
 	return FALSE
 
 
-/client/verb/character_setup()
-	set name = "Character Setup"
-	set category = "OOC"
-	if(prefs)
-		prefs.ShowChoices(usr)
+///client/verb/character_setup()
+//	set name = "Character Setup"
+//	set category = "OOC"
+//	if(prefs)
+//		prefs.ShowChoices(usr)
 /*
 /client/proc/apply_fps(var/client_fps)
 	if(world.byond_version >= 511 && byond_version >= 511 && client_fps >= CLIENT_MIN_FPS && client_fps <= CLIENT_MAX_FPS)

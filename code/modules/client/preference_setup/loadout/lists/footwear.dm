@@ -13,7 +13,6 @@
 	display_name = "sandals"
 	path = /obj/item/clothing/shoes/sandal
 
-
 /datum/gear/shoes/lacey
 	display_name = "shoes, classy"
 	path = /obj/item/clothing/shoes/reinforced

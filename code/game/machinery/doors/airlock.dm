@@ -582,57 +582,57 @@ There are 9 wires.
 	else
 		return 0
 
-/obj/machinery/door/airlock/proc/force_wedge_item(obj/item/weapon/tool/T)
-	T.forceMove(src)
-	wedged_item = T
-	update_icon()
-	verbs -= /obj/machinery/door/airlock/proc/try_wedge_item
-	verbs += /obj/machinery/door/airlock/proc/take_out_wedged_item
+///obj/machinery/door/airlock/proc/force_wedge_item(obj/item/weapon/tool/T)
+//	T.forceMove(src)
+//	wedged_item = T
+//	update_icon()
+//	verbs -= /obj/machinery/door/airlock/proc/try_wedge_item
+//	verbs += /obj/machinery/door/airlock/proc/take_out_wedged_item
 
-/obj/machinery/door/airlock/proc/try_wedge_item()
-	set name = "Wedge item"
-	set category = "Object"
-	set src in view(1)
+///obj/machinery/door/airlock/proc/try_wedge_item()
+//	set name = "Wedge item"
+//	set category = "Object"
+//	set src in view(1)
 
-	if(!isliving(usr))
-		to_chat(usr, SPAN_WARNING("You can't do this."))
-		return
-	var/obj/item/weapon/tool/T = usr.get_active_hand()
-	if(istype(T) && T.w_class >= ITEM_SIZE_NORMAL) // We do the checks before proc call, because see "proc overhead".
-		if(!density)
-			usr.drop_item()
-			force_wedge_item(T)
-			to_chat(usr, SPAN_NOTICE("You wedge [T] into [src]."))
-		else
-			to_chat(usr, SPAN_NOTICE("[T] can't be wedged into [src], while [src] is open."))
+//	if(!isliving(usr))
+//		to_chat(usr, SPAN_WARNING("You can't do this."))
+//		return
+//	var/obj/item/weapon/tool/T = usr.get_active_hand()
+//	if(istype(T) && T.w_class >= ITEM_SIZE_NORMAL) // We do the checks before proc call, because see "proc overhead".
+//		if(!density)
+//			usr.drop_item()
+//			force_wedge_item(T)
+//			to_chat(usr, SPAN_NOTICE("You wedge [T] into [src]."))
+//		else
+//			to_chat(usr, SPAN_NOTICE("[T] can't be wedged into [src], while [src] is open."))
 
-/obj/machinery/door/airlock/proc/take_out_wedged_item()
-	set name = "Remove Blockage"
-	set category = "Object"
-	set src in view(1)
+///obj/machinery/door/airlock/proc/take_out_wedged_item()
+//	set name = "Remove Blockage"
+//	set category = "Object"
+//	set src in view(1)
 
-	if(!isliving(usr) || !CanUseTopic(usr))
-		return
+//	if(!isliving(usr) || !CanUseTopic(usr))
+//		return
 
-	if(wedged_item)
-		wedged_item.forceMove(drop_location())
-		if(usr)
-			usr.put_in_hands(wedged_item)
-			to_chat(usr, SPAN_NOTICE("You took [wedged_item] out of [src]."))
-		wedged_item = null
-		verbs -= /obj/machinery/door/airlock/proc/take_out_wedged_item
-		verbs += /obj/machinery/door/airlock/proc/try_wedge_item
-		update_icon()
+//	if(wedged_item)
+//		wedged_item.forceMove(drop_location())
+//		if(usr)
+//			usr.put_in_hands(wedged_item)
+//			to_chat(usr, SPAN_NOTICE("You took [wedged_item] out of [src]."))
+//		wedged_item = null
+//		verbs -= /obj/machinery/door/airlock/proc/take_out_wedged_item
+//		verbs += /obj/machinery/door/airlock/proc/try_wedge_item
+//		update_icon()
 
-/obj/machinery/door/airlock/AltClick(mob/user)
-	if(Adjacent(user))
-		wedged_item ? take_out_wedged_item() : try_wedge_item()
+///obj/machinery/door/airlock/AltClick(mob/user)
+//	if(Adjacent(user))
+//		wedged_item ? take_out_wedged_item() : try_wedge_item()
 
-/obj/machinery/door/airlock/MouseDrop(obj/over_object)
-	if(ishuman(usr) && usr == over_object && !usr.incapacitated() && Adjacent(usr))
-		take_out_wedged_item(usr)
-		return
-	return ..()
+///obj/machinery/door/airlock/MouseDrop(obj/over_object)
+//	if(ishuman(usr) && usr == over_object && !usr.incapacitated() && Adjacent(usr))
+//		take_out_wedged_item(usr)
+//		return
+//	return ..()
 
 /obj/machinery/door/airlock/examine(mob/user)
 	..()
@@ -874,9 +874,9 @@ There are 9 wires.
 			return
 	**/
 
-	if(user.a_intent == I_GRAB && wedged_item && !user.get_active_hand())
-		take_out_wedged_item(user)
-		return
+//	if(user.a_intent == I_GRAB && wedged_item && !user.get_active_hand())
+//		take_out_wedged_item(user)
+//		return
 
 	if(src.p_open)
 		user.set_machine(src)
@@ -1215,7 +1215,7 @@ There are 9 wires.
 						density = TRUE
 						do_animate("closing")
 						sleep(7)
-						force_wedge_item(AM)
+//						force_wedge_item(AM)
 						playsound(loc, 'sound/machines/airlock_creaking.ogg', 75, 1)
 						shake_animation(12)
 						sleep(7)
@@ -1316,7 +1316,7 @@ There are 9 wires.
 			if(A.closeOtherId == src.closeOtherId && A != src)
 				src.closeOther = A
 				break
-	verbs += /obj/machinery/door/airlock/proc/try_wedge_item
+//	verbs += /obj/machinery/door/airlock/proc/try_wedge_item
 	. = ..()
 
 /obj/machinery/door/airlock/Destroy()

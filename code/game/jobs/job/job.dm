@@ -2,6 +2,7 @@
 
 	//The name of the job
 	var/title = "NOPE"
+	var/title_ru = "NOPE"
 	var/list/access = list()				// Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
 	var/list/cruciform_access = list()		// Assign this access into cruciform if target has it
 	var/list/software_on_spawn = list()		// Defines the software files that spawn on tablets and labtops
@@ -99,22 +100,38 @@
 	if(!species_modifier)
 		species_modifier = economic_species_modifier[/datum/species/human]
 
-	var/money_amount = one_time_payment(species_modifier)
-	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
+	var/datum/money_account/M
+
+	for(var/datum/money_account/A in all_money_accounts)
+		if(A.account_id == H.mind.prefs.character_id)
+			M = A
+			break
+
+	var/money_amount = (one_time_payment(species_modifier) / 2)
+	if(!M)
+		M = create_account(H.real_name, money_amount, null)
+	if(H.mind.prefs.bank_pin)
+		M.remote_access_pin = H.mind.prefs.bank_pin
+	if(H.mind.prefs.bank_balance > 0)
+		M.money = H.mind.prefs.bank_balance
+	else
+		M.money = money_amount
+	if(H.mind.prefs.character_id)
+		M.account_id = H.mind.prefs.character_id
+
 	if(H.mind)
-		var/remembered_info = ""
-		remembered_info += "<b>Your account number is:</b> #[M.account_number]<br>"
-		remembered_info += "<b>Your account pin is:</b> [M.remote_access_pin]<br>"
-		remembered_info += "<b>Your account funds are:</b> [M.money][CREDS]<br>"
+		var/remembered_info = "<b>Номер:</b> #[M.account_number]<br>"
+		remembered_info += "<b>PIN:</b> [M.remote_access_pin]<br>"
+		remembered_info += "<b>Кредиты:</b> [M.money][CREDS]<br>"
 
 		if(M.transaction_log.len)
 			var/datum/transaction/T = M.transaction_log[1]
-			remembered_info += "<b>Your account was created:</b> [T.time], [T.date] at [T.source_terminal]<br>"
+			remembered_info += "<b>Аккаунт был создан:</b> [T.time], [T.date] на [T.source_terminal]<br>"
 		H.mind.store_memory(remembered_info)
 
 		H.mind.initial_account = M
 
-	to_chat(H, SPAN_NOTICE("<b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b>"))
+	to_chat(H, SPAN_NOTICE("<b>Номер вашего аккаунта: [M.account_number], ваш PIN: [M.remote_access_pin]</b>"))
 
 
 
@@ -191,19 +208,19 @@
 	var/job_desc = ""
 	//Here's the actual content of the description
 	if (description)
-		job_desc += "<h1>Overview:</h1>"
+		job_desc += "<h1>Обзор:</h1>"
 		job_desc += "<hr>"
 		job_desc += description
 		job_desc += "<br>"
 
 	if (duties)
-		job_desc += "<h1>Duties:</h1>"
+		job_desc += "<h1>Обязанности:</h1>"
 		job_desc += "<hr>"
 		job_desc += duties
 		job_desc += "<br>"
 
 	if (loyalties)
-		job_desc += "<h1>Loyalties:</h1>"
+		job_desc += "<h1>Лояльность:</h1>"
 		job_desc += "<hr>"
 		job_desc += loyalties
 		job_desc += "<br>"

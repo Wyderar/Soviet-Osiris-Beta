@@ -276,7 +276,6 @@ obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 			if(fabricated_device)
 				fabricated_device.forceMove(src.loc)
 				fabricated_device.update_icon()
-				fabricated_device.update_verbs()
 
 				if(devtype == 1)
 					fabricated_device.screen_on = 0

@@ -209,8 +209,25 @@ var/global/list/damage_icon_parts = list()
 		standing_image.overlays += DI
 
 	overlays_standing[DAMAGE_LAYER] = standing_image
+	update_bandages(update_icons)
+	if(update_icons)
+		update_icons()
 
-	if(update_icons)   update_icons()
+/mob/living/carbon/human/proc/update_bandages(var/update_icons=1)
+	var/bandage_icon = species.bandages_icon
+	if(!bandage_icon)
+		return
+	var/image/standing_image = overlays_standing[DAMAGE_LAYER]
+	if(standing_image)
+		for(var/obj/item/organ/external/O in organs)
+			if(O.is_stump())
+				continue
+			var/bandage_level = O.bandage_level()
+			if(bandage_level)
+				standing_image.overlays += image(bandage_icon, "[O.organ_tag][bandage_level]")
+		overlays_standing[DAMAGE_LAYER]	= standing_image
+	if(update_icons)
+		update_icons()
 
 //BASE MOB SPRITE
 /mob/living/carbon/human/proc/update_body(var/update_icons=1)
@@ -263,6 +280,9 @@ var/global/list/damage_icon_parts = list()
 
 			for(var/obj/item/organ/external/part in organs)
 				var/icon/temp = part.get_icon(skeleton)
+				if(!temp)
+					continue
+
 				//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 				//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
 				if(part.icon_position&(LEFT|RIGHT))
@@ -919,7 +939,6 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/proc/get_back_icon(var/obj/item/test = null)
 	if(!test && back)
 		test = back
-
 	if (test)
 		//determine the icon to use
 		var/icon/overlay_icon
@@ -935,15 +954,13 @@ var/global/list/damage_icon_parts = list()
 		else if(test.icon_override)
 			overlay_icon = test.icon_override
 		else if(istype(test, /obj/item/weapon/rig))
-			//If this is a rig and a mob_icon is set, it will take species into account in the rig update_icon() proc.
 			var/obj/item/weapon/rig/rig = test
-			overlay_icon = rig.mob_icon
+			overlay_icon = rig.get_species_icon()
 
 		else if(test.item_icons && (slot_back_str in test.item_icons))
 			overlay_icon = test.item_icons[slot_back_str]
 		else
 			overlay_icon = get_gender_icon(gender, "backpack")
-
 		return overlay_icon
 
 	else return get_gender_icon(gender, "backpack")
@@ -956,8 +973,9 @@ var/global/list/damage_icon_parts = list()
 	var/icon/overlay_icon = get_back_icon()
 	var/overlay_state = ""
 	if(back && overlay_icon)
+		overlay_state = back.item_state
 		if(back.contained_sprite)
-			overlay_state += "[back.item_state][WORN_BACK]"
+			overlay_state = "[back.item_state][WORN_BACK]"
 
 			if(back.icon_override)
 				overlay_icon = back.icon_override
@@ -969,7 +987,6 @@ var/global/list/damage_icon_parts = list()
 		//determine state to use
 		if(back.item_state_slots && back.item_state_slots[slot_back_str])
 			overlay_state = back.item_state_slots[slot_back_str]
-
 		//apply color
 		var/image/standing = image(icon = overlay_icon, icon_state = overlay_state)
 		standing.color = back.color

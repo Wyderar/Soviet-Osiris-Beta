@@ -1,7 +1,7 @@
 /mob/living/carbon/slime/say(var/message)
 
 	message = sanitize(message)
-	message = capitalize(trim_left(message))
+	message = trim_left(message)
 	var/verb = say_quote(message)
 
 	if(copytext(message,1,2) == get_prefix_key(/decl/prefix/custom_emote))

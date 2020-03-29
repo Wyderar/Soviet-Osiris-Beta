@@ -1,5 +1,6 @@
 /datum/job/chief_engineer
 	title = "Technomancer Exultant"
+	title_ru = "Экзультант"
 	flag = EXULTANT
 	head_position = 1
 	department = DEPARTMENT_ENGINEERING
@@ -11,7 +12,7 @@
 	selection_color = "#c7b97b"
 	req_admin_notify = 1
 	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 25)
-	wage = WAGE_COMMAND
+	wage = WAGE_NONE
 	ideal_character_age = 50
 
 	outfit_type = /decl/hierarchy/outfit/job/engineering/exultant
@@ -58,6 +59,7 @@ Your second loyalty is to your clan. Ensure they are paid, fed and safe. Don't r
 
 /datum/job/technomancer
 	title = "Technomancer"
+	title_ru = "Техномант"
 	flag = TECHNOMANCER
 	department = DEPARTMENT_ENGINEERING
 	department_flag = ENGINEERING

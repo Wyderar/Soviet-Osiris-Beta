@@ -72,7 +72,7 @@ var/global/list/limb_icon_cache = list()
 	var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[BP_EYES]
 	if(eyes) eyes.update_colour()
 
-/obj/item/organ/external/head/removed()
+/obj/item/organ/external/head/removed_mob()
 	update_icon(1)
 	..()
 
@@ -164,3 +164,17 @@ var/global/list/limb_icon_cache = list()
 /obj/item/organ/external/proc/get_icon()
 	update_icon()
 	return mob_icon
+
+/obj/item/organ/external/proc/bandage_level()
+	if(damage_state_text() == "00") 
+		return 0
+	if(!is_bandaged())
+		return 0
+	if(burn_dam + brute_dam == 0)
+		. = 0
+	else if (burn_dam + brute_dam < (max_damage * 0.25 / 2))
+		. = 1
+	else if (burn_dam + brute_dam < (max_damage * 0.75 / 2))
+		. = 2
+	else
+		. = 3

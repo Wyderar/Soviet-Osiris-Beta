@@ -266,6 +266,7 @@
 		/datum/design/research/item/computer_part/portabledrive/normal,
 		/datum/design/research/item/computer_part/printer,
 		/datum/design/research/item/computer_part/led,
+		/datum/design/research/item/computer_part/led/adv,
 		/datum/design/autolathe/computer_part/gps,
 		/datum/design/autolathe/computer_part/scanner/paper,
 		/datum/design/autolathe/computer_part/scanner/atmos,
@@ -310,6 +311,8 @@
 		/datum/design/bioprinter/medical/ointment,
 		/datum/design/bioprinter/medical/advanced/bruise,
 		/datum/design/bioprinter/medical/advanced/ointment,
+
+		/datum/design/autolathe/gun/nt_sprayer
 	)
 
 // Same as the other NT disk, minus the medical designs. Spawns in public access bioprinters.
@@ -343,8 +346,6 @@
 		/datum/design/bioprinter/leather/holster/armpit,
 		/datum/design/bioprinter/leather/holster/waist,
 		/datum/design/bioprinter/leather/holster/hip,
-
-		/datum/design/autolathe/gun/nt_sprayer
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_boards
@@ -872,8 +873,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/smg_sol, // "FS CAR .25 caseless \"Sol\""
-		/datum/design/autolathe/gun/smg_sol_rds, // "FS CAR .25 caseless \"Sol\"" - reddot sight
+		/datum/design/autolathe/gun/sol, // "FS CAR .25 caseless \"Sol\""
 		/datum/design/autolathe/ammo/ihclrifle/practice,
 		/datum/design/autolathe/ammo/ihclrifle/rubber,
 	)

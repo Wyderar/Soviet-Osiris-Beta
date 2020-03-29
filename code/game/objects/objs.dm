@@ -254,3 +254,9 @@
 //Same for AP
 /obj/proc/multiply_projectile_penetration(var/newmult)
 	armor_penetration = initial(armor_penetration) * newmult
+
+/obj/proc/check_menu(mob/living/user)
+	return
+
+/obj/proc/show_radial(mob/living/user)
+	return

@@ -228,6 +228,7 @@
 	icon_state = "down"
 	anchored = 0
 	buckle_pixel_shift = "x=0;y=6"
+	has_wheels = 1
 	var/item_form_type = /obj/item/roller	//The folded-up object path.
 
 /obj/structure/bed/roller/update_icon()

@@ -97,6 +97,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/a_intent = I_HELP//Living
 
 	var/decl/move_intent/move_intent = /decl/move_intent/run
+	var/last_intent_was_run = 0
 	var/move_intents = list(/decl/move_intent/run, /decl/move_intent/walk)
 
 	var/obj/buckled = null//Living
@@ -114,7 +115,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	var/in_throw_mode = 0
 
-
+	var/character_id
 
 	var/targeted_organ = BP_CHEST
 
@@ -164,7 +165,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	//so don't treat them as being SSD even though their client var is null.
 	var/mob/teleop = null
 
-	var/turf/listed_turf = null  	//the current turf being examined in the stat panel
+//	var/turf/listed_turf = null  	//the current turf being examined in the stat panel
 	var/list/shouldnt_see = list()	//list of objects that this mob shouldn't see in the stat panel. this silliness is needed because of AI alt+click and cult blood runes
 
 	var/mob_size = MOB_MEDIUM

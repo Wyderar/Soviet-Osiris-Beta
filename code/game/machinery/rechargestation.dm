@@ -233,26 +233,26 @@
 	occupant = null
 	update_icon()
 
-/obj/machinery/recharge_station/verb/move_eject()
-	set category = "Object"
-	set name = "Eject Recharger"
-	set src in oview(1)
+///obj/machinery/recharge_station/verb/move_eject()
+//	set category = "Object"
+//	set name = "Eject Recharger"
+//	set src in oview(1)
 
-	if(usr.incapacitated())
-		return
+//	if(usr.incapacitated())
+//		return
 
-	go_out()
-	add_fingerprint(usr)
-	return
+//	go_out()
+//	add_fingerprint(usr)
+//	return
 
-/obj/machinery/recharge_station/verb/move_inside()
-	set category = "Object"
-	set name = "Enter Recharger"
-	set src in oview(1)
+///obj/machinery/recharge_station/verb/move_inside()
+//	set category = "Object"
+//	set name = "Enter Recharger"
+//	set src in oview(1)
 
-	if(!usr.incapacitated())
-		return
-	go_in(usr)
+//	if(!usr.incapacitated())
+//		return
+//	go_in(usr)
 
 /obj/machinery/recharge_station/MouseDrop_T(var/mob/target, var/mob/user)
 	if(!CanMouseDrop(target, user))

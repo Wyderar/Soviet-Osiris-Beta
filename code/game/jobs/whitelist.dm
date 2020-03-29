@@ -1,6 +1,8 @@
 #define WHITELISTFILE "data/whitelist.txt"
 
-var/list/whitelist = list()
+var/list/third_whitelist = file2list("config/whitelist/third_level.txt")
+var/list/second_whitelist = file2list("config/whitelist/second_level.txt")
+var/list/commissar_whitelist = file2list("config/whitelist/commissar.txt")
 
 /hook/startup/proc/loadWhitelist()
 	if(config.usewhitelist)
@@ -8,17 +10,52 @@ var/list/whitelist = list()
 	return 1
 
 /proc/load_whitelist()
-	whitelist = file2list(WHITELISTFILE)
-	if(!whitelist.len)	whitelist = null
+	third_whitelist = file2list("config/whitelist/third_level.txt")
+	second_whitelist = file2list("config/whitelist/second_level.txt")
+	commissar_whitelist = file2list("config/whitelist/commissar.txt")
+	if(!third_whitelist.len)
+		third_whitelist = null
+	if(!second_whitelist.len)
+		second_whitelist = null
+	if(!commissar_whitelist.len)
+		commissar_whitelist = null
 
-/proc/check_whitelist(mob/M /*, var/rank*/)
-	if(!whitelist)
+/proc/check_third_whitelist(key)
+	if(!third_whitelist)
 		return 0
-	return ("[M.ckey]" in whitelist)
+	return (key in third_whitelist)
 
+/proc/check_second_whitelist(key)
+	if(!second_whitelist)
+		return 0
+	return (key in second_whitelist)
+
+/proc/check_commissar_whitelist(key)
+	if(!commissar_whitelist)
+		return 0
+	return (key in commissar_whitelist)
 
 /proc/is_alien_whitelisted(mob/M, var/species)
 	// always return true because we don't have xenos and related whitelist
 	return 1
+/*
+ var/list/ckeywhitelist = file2list("config/whitelist.txt")
+
+//Check player in whitelist
+/hook/startup/proc/loadCkeyWhitelist()
+	if(config.useckeywhitelist)
+		load_ckeywhitelist()
+	return 1
+
+/proc/CheckWhitelist(key)
+	if (!ckeywhitelist)
+		return 0
+	key = ckey(key)
+	return (key in ckeywhitelist)
+
+/proc/load_ckeywhitelist()
+	ckeywhitelist = file2list("config/whitelist.txt")
+	if(!ckeywhitelist.len)	ckeywhitelist = null
 
 #undef WHITELISTFILE
+*/

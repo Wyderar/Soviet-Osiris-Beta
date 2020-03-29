@@ -1,6 +1,6 @@
 var/list/obj/machinery/photocopier/faxmachine/allfaxes = list()
-var/list/admin_departments = list("[boss_name]", "Sol Government", "Supply")
-var/list/alldepartments = list()
+var/list/admin_departments = list("Elizarov and Co.")
+//var/list/alldepartments = list()
 
 var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
@@ -25,9 +25,9 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 /obj/machinery/photocopier/faxmachine/New()
 	..()
 	allfaxes += src
-	if(!destination) destination = "[boss_name]"
-	if( !(("[department]" in alldepartments) || ("[department]" in admin_departments)) )
-		alldepartments |= department
+	if(!destination) destination = "Elizarov and Co."
+//	if( !(("[department]" in alldepartments) || ("[department]" in admin_departments)) )
+//		alldepartments |= department
 
 /obj/machinery/photocopier/faxmachine/attack_hand(mob/user as mob)
 	user.set_machine(src)
@@ -50,7 +50,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	dat += "<hr>"
 
 	if(authenticated)
-		dat += "<b>Logged in to:</b> [boss_name] Quantum Entanglement Network<br><br>"
+		dat += "<b>Logged in to:</b> Quantum Entanglement Network<br><br>"
 
 		if(copyitem)
 			dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Item</a><br><br>"
@@ -120,7 +120,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	if(href_list["dept"])
 		var/lastdestination = destination
-		destination = input(usr, "Which department?", "Choose a department", "") as null|anything in (alldepartments + admin_departments)
+		destination = input(usr, "Which department?", "Choose a department", "") as null|anything in (admin_departments)
 		if(!destination) destination = lastdestination
 
 	if(href_list["auth"])
@@ -197,13 +197,13 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	//message badmins that a fax has arrived
 	switch(destination)
-		if (boss_name)
-			message_admins(sender, "[uppertext(boss_short)] FAX", rcvdcopy, "CentcommFaxReply", "#006100")
-		if ("Sol Government")
-			message_admins(sender, "SOL GOVERNMENT FAX", rcvdcopy, "CentcommFaxReply", "#1F66A0")
-			//message_admins(sender, "SOL GOVERNMENT FAX", rcvdcopy, "SolGovFaxReply", "#1F66A0")
-		if ("Supply")
-			message_admins(sender, "[uppertext(boss_short)] SUPPLY FAX", rcvdcopy, "CentcommFaxReply", "#5F4519")
+		if ("Elizarov and Co.")
+			message_admins(sender, "Elizarov and Co. FAX", rcvdcopy, "CentcommFaxReply", "#006100")
+	//	if ("Sol Government")
+	//		message_admins(sender, "SOL GOVERNMENT FAX", rcvdcopy, "CentcommFaxReply", "#1F66A0")
+	//		//message_admins(sender, "SOL GOVERNMENT FAX", rcvdcopy, "SolGovFaxReply", "#1F66A0")
+	//	if ("Supply")
+	//		message_admins(sender, "[uppertext(boss_short)] SUPPLY FAX", rcvdcopy, "CentcommFaxReply", "#5F4519")
 
 	sendcooldown = 1800
 	sleep(50)

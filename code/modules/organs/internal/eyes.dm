@@ -8,6 +8,7 @@
 	var/eyes_color = "#000000"
 	var/robo_color = "#000000"
 	var/cache_key = BP_EYES
+	var/are_closed = 0
 
 /obj/item/organ/internal/eyes/proc/get_icon()
 	var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', "eye_l")
@@ -18,13 +19,12 @@
 /obj/item/organ/internal/eyes/proc/get_cache_key()
 	return "[cache_key][BP_IS_ROBOTIC(src) ? robo_color : eyes_color]"
 
-/obj/item/organ/internal/eyes/replaced(var/mob/living/carbon/human/target)
-
-	// Apply our eye colour to the target.
-	if(istype(target) && eyes_color)
-		target.eyes_color = eyes_color
-		target.update_eyes()
+/obj/item/organ/internal/eyes/replaced_mob(mob/living/carbon/human/target)
 	..()
+	// Apply our eye colour to the target.
+	if(eyes_color)
+		owner.eyes_color = eyes_color
+		owner.update_eyes()
 
 /obj/item/organ/internal/eyes/proc/update_colour()
 	if(!owner)
@@ -45,8 +45,23 @@
 		owner.eye_blurry = 20
 	if(is_broken())
 		owner.eye_blind = 20
+	if(are_eyes_closed())
+		owner.eye_blind = 4
 
 
+/obj/item/organ/internal/eyes/proc/close_eyes()
+	if(is_broken() || owner.stat || owner.paralysis || owner.sleeping || owner.stunned)
+		are_closed = 0
+		return
+	are_closed = !are_closed
+	if(are_closed)
+		owner.eye_blind = 4
+	else
+		owner.eye_blind = 0
+	to_chat(usr, "<span class='notice'>You [are_closed ? "closed" : "opened"] your eyes.</span>")
+
+/obj/item/organ/internal/eyes/proc/are_eyes_closed()
+	return are_closed
 
 //Subtypes
 /obj/item/organ/internal/eyes/oneeye

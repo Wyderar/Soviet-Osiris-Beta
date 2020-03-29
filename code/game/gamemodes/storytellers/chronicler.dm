@@ -2,13 +2,13 @@
 /datum/storyteller/chronicler
 	config_tag = "chronicler"
 	name = "The Chronicler"
-	welcome = "Today will be a glorious day!"
-	description = "A storyteller with a focus on player vs player combat. Spawns lots of antagonists, but fewer random events."
+	welcome = "Сегодня будет славный день!"
+	description = "Акцент на PvP, повышенный шанс появления антагонистов, меньше случайных событий."
 
-	gain_mult_mundane = 0.8
-	gain_mult_moderate = 0.8
-	gain_mult_major = 0.8
-	gain_mult_roleset = 1.5
+	gain_mult_mundane = 0.4
+	gain_mult_moderate = 0.4
+	gain_mult_major = 0.4
+	gain_mult_roleset = 0.8
 
 	//Less combat-oriented events, so that we'll not be fighting NPC monsters much
 	tag_weight_mults = list(TAG_COMBAT = 0.5)

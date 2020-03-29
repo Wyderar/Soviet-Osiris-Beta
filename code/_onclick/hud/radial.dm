@@ -288,10 +288,13 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	if(!user || !anchor || !length(choices))
 		return
 	if(!uniqueid)
-		uniqueid = "defmenu_\ref[user]_\ref[anchor]"
+//		uniqueid = "defmenu_\ref[user]_\ref[anchor]"
+		uniqueid = "defmenu_\ref[user]"
 
 	if(GLOB.radial_menus[uniqueid])
-		return
+		qdel(GLOB.radial_menus[uniqueid])
+		GLOB.radial_menus -= uniqueid
+//		return
 
 	var/datum/radial_menu/menu = new
 	GLOB.radial_menus[uniqueid] = menu
@@ -304,7 +307,12 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	menu.set_choices(choices, tooltips)
 	menu.show_to(user)
 	menu.wait(user, anchor, require_near)
-	var/answer = menu.selected_choice
-	GLOB.radial_menus -= uniqueid
-	qdel(menu)
-	return answer
+	if(menu.selected_choice)
+		var/answer = menu.selected_choice
+		GLOB.radial_menus -= uniqueid
+		qdel(menu)
+		return answer
+	else
+		GLOB.radial_menus -= uniqueid
+		qdel(menu)
+		return

@@ -4,11 +4,13 @@
 /mob/verb/whisper()
 	set name = "Whisper"
 	set category = "IC"
+	set hidden = TRUE
 
 
 /mob/verb/say_wrapper()
 	set name = "Say verb"
 	set category = "IC"
+	set hidden = TRUE
 
 	set_typing_indicator(TRUE)
 	hud_typing = TRUE
@@ -32,6 +34,7 @@
 /mob/verb/me_wrapper()
 	set name = "Me verb"
 	set category = "IC"
+	set hidden = TRUE
 
 	set_typing_indicator(TRUE)
 	hud_typing = TRUE

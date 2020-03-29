@@ -54,15 +54,19 @@
 
 /mob/living/carbon/human/Destroy()
 	GLOB.human_mob_list -= src
+
+	// Prevent death from organ removal
+	status_flags |= REBUILDING_ORGANS
 	for(var/organ in organs)
 		qdel(organ)
+	organs.Cut()
 	return ..()
 
 /mob/living/carbon/human/Stat()
 	. = ..()
 	if(statpanel("Status"))
-		stat("Intent:", "[a_intent]")
-		stat("Move Mode:", "[move_intent.name]")
+//		stat("Intent:", "[a_intent]")
+//		stat("Move Mode:", "[move_intent.name]")
 		if(evacuation_controller)
 			var/eta_status = evacuation_controller.get_status_panel_eta()
 			if(eta_status)
@@ -121,7 +125,7 @@
 
 		if (2.0)
 			if (!shielded)
-				b_loss += 60
+				b_loss += 150
 
 			if (get_sound_volume_multiplier() >= 0.2)
 				ear_damage += 30
@@ -130,7 +134,7 @@
 				Paralyse(10)
 
 		if(3.0)
-			b_loss += 30
+			b_loss += 100
 			if (get_sound_volume_multiplier() >= 0.2)
 				ear_damage += 15
 				ear_deaf += 60
@@ -139,29 +143,13 @@
 	if (bomb_defense)
 		b_loss = max(b_loss - bomb_defense, 0)
 		f_loss = max(f_loss - bomb_defense, 0)
-	var/update = 0
 
-	// focus most of the blast on one organ
-	var/obj/item/organ/external/take_blast = pick(organs)
-	update |= take_blast.take_damage(b_loss * 0.9, f_loss * 0.9, used_weapon = "Explosive blast")
-
-	// distribute the remaining 10% on all limbs equally
-	b_loss *= 0.1
-	f_loss *= 0.1
-
-	var/weapon_message = "Explosive Blast"
-
-	for(var/obj/item/organ/external/temp in organs)
-		switch(temp.name)
-			if(BP_HEAD)
-				update |= temp.take_damage(b_loss * 0.2, f_loss * 0.2, used_weapon = weapon_message)
-			if(BP_CHEST)
-				update |= temp.take_damage(b_loss * 0.4, f_loss * 0.4, used_weapon = weapon_message)
-			else
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
-	if(update)
-		UpdateDamageIcon()
-
+	var/organ_hit = BP_CHEST //Chest is hit first
+	var/exp_damage
+	while (b_loss > 0)
+		b_loss -= exp_damage = rand(0, b_loss)
+		src.apply_damage(exp_damage, BRUTE, organ_hit)
+		organ_hit = pickweight(list(BP_HEAD = 0.2, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit 
 
 /mob/living/carbon/human/restrained()
 	if (handcuffed)
@@ -265,6 +253,7 @@ var/list/rank_prefix = list(\
 	"Ironhammer Gunnery Sergeant" = "Sergeant",\
 	"Ironhammer Commander" = "Lieutenant",\
 	"Captain" = "Captain",\
+	"Commissioner" = "Commissar",\
 	)
 
 /mob/living/carbon/human/proc/rank_prefix_name(name)
@@ -704,6 +693,7 @@ var/list/rank_prefix = list(\
 					location.add_vomit_floor(src, 1)
 
 				nutrition -= 40
+				thirst -= 40
 				adjustToxLoss(-3)
 				spawn(350)	//wait 35 seconds before next volley
 					lastpuke = 0
@@ -1014,33 +1004,21 @@ var/list/rank_prefix = list(\
 					if(organ.setBleeding())
 						src.adjustToxLoss(rand(1,3))
 
-/mob/living/carbon/human/verb/check_pulse()
-	set category = "Object"
-	set name = "Check pulse"
-	set desc = "Approximately count somebody's pulse. Requires you to stand still at least 6 seconds."
-	set src in view(1)
-	var/self = 0
+/mob/living/carbon/human/proc/check_pulse()
+	if(usr.stat || usr.restrained() || !isliving(usr) || usr == src) return
 
-	if(usr.stat || usr.restrained() || !isliving(usr)) return
-
-	if(usr == src)
-		self = 1
-	if(!self)
-		usr.visible_message(SPAN_NOTICE("[usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse."),\
+	usr.visible_message(SPAN_NOTICE("[usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse."),\
 		"You begin counting [src]'s pulse")
-	else
-		usr.visible_message(SPAN_NOTICE("[usr] begins counting their pulse."),\
-		"You begin counting your pulse.")
 
 	if(pulse())
-		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
+		to_chat(usr, "<span class='notice'>[src] has a pulse! Counting...</span>")
 	else
 		to_chat(usr, SPAN_DANGER("[src] has no pulse!")	) //it is REALLY UNLIKELY that a dead person would check his own pulse
 		return
 
-	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
+	to_chat(usr, "You must both remain still until counting is finished.")
 	if(do_mob(usr, src, 60))
-		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>")
+		to_chat(usr, "<span class='notice'>[src]'s pulse is [src.get_pulse(GETPULSE_HAND)].</span>")
 	else
 		to_chat(usr, SPAN_WARNING("You failed to check the pulse. Try again."))
 
@@ -1126,6 +1104,8 @@ var/list/rank_prefix = list(\
 	if(!species)
 		return 0
 
+	status_flags |= REBUILDING_ORGANS
+
 	for(var/obj/item/organ/organ in (organs|internal_organs))
 		qdel(organ)
 
@@ -1204,6 +1184,7 @@ var/list/rank_prefix = list(\
 				C.install_default_modules_by_job(mind.assigned_job)
 				C.access.Add(mind.assigned_job.cruciform_access)
 
+	status_flags &= ~REBUILDING_ORGANS
 	species.organs_spawned(src)
 
 	update_body()
@@ -1314,9 +1295,9 @@ var/list/rank_prefix = list(\
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(length(msg) <= 40)
-			return "<font color='blue'>[msg]</font>"
+			return "[msg]"
 		else
-			return "<font color='blue'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
+			return "[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
 	return ..()
 
 /mob/living/carbon/human/getDNA()
@@ -1461,6 +1442,7 @@ var/list/rank_prefix = list(\
 	set name = "Look up"
 	set desc = "If you want to know what's above."
 	set category = "IC"
+	set hidden = TRUE
 
 	if(!is_physically_disabled())
 		var/turf/above = GetAbove(src)
@@ -1550,3 +1532,58 @@ var/list/rank_prefix = list(\
 	. = ..()
 	for(var/obj/item/clothing/ears/C in list(l_ear, r_ear))
 		. = min(., C.volume_multiplier)
+
+/mob/living/carbon/human/proc/save_to_prefs()
+	if(!config.canonicity)
+		return 0
+
+	if(!mind)
+		return 0
+
+	if(stat == DEAD)
+		mind.prefs.bank_balance = 0
+		mind.prefs.reset_character()
+
+	if(stat == 1)
+		mind.prefs.bank_balance = 0
+
+	if(stat == 0)
+		if(!check_no_wage_positions(job))
+			save_bank_balance()
+		var/datum/computer_file/report/crew_record/CR = get_record_charid(character_id)
+		if(CR)
+			mind.prefs.med_record = CR.get_medRecord()
+			mind.prefs.sec_record = CR.get_secRecord()
+			mind.prefs.gen_record = CR.get_emplRecord()
+		mind.prefs.stat_mec = stats.getStat(STAT_MEC)
+		mind.prefs.stat_cog = stats.getStat(STAT_COG)
+		mind.prefs.stat_bio = stats.getStat(STAT_BIO)
+		mind.prefs.stat_rob = stats.getStat(STAT_ROB)
+		mind.prefs.stat_tgh = stats.getStat(STAT_TGH)
+		mind.prefs.stat_vig = stats.getStat(STAT_VIG)
+		mind.prefs.nutrition = nutrition
+		mind.prefs.thirst = thirst
+		mind.prefs.sanity_level = sanity.level
+		mind.prefs.char_exists = 1
+
+	mind.prefs.s_tone = s_tone
+	mind.prefs.h_style = h_style
+	mind.prefs.f_style = f_style
+	mind.prefs.b_type = b_type
+	mind.prefs.disabilities = disabilities
+	mind.prefs.eyes_color = eyes_color
+	mind.prefs.skin_color = skin_color
+	mind.prefs.hair_color = hair_color
+	mind.prefs.facial_color = facial_color
+
+	mind.prefs.save_preferences()
+	mind.prefs.save_character()
+
+	return 1
+
+/mob/living/carbon/human/proc/save_bank_balance()
+	mind.initial_account.money = CLAMP(mind.initial_account.money, -999999, 999999)
+	mind.prefs.bank_balance = mind.initial_account.money
+	mind.prefs.bank_pin = mind.initial_account.remote_access_pin
+
+	return 1

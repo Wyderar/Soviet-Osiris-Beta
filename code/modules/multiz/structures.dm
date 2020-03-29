@@ -135,6 +135,9 @@
 	if (tempMob)
 		to_chat(M, SPAN_NOTICE("\A [tempMob] is blocking \the [src], making it harder to climb."))
 		delay = delay * 1.5
+	
+	if(!M.Move(get_turf(src)))
+		return
 
 	//Robots are a quarter ton of steel and most of them lack legs or arms of any appreciable sorts.
 	//Even being able to climb ladders at all is a violation of newton'slaws. It shall at least be slow and communicated as such
@@ -168,6 +171,18 @@
 	if(do_after(M, delay, src))
 		M.forceMove(T)
 		try_resolve_mob_pulling(M, src)
+
+/obj/structure/multiz/ladder/MouseEntered(params)
+	if(istype(usr, /mob/living))
+		var/mob/living/M = usr
+		if(!M.client.mouse_pointer_icon)
+			if(M.Adjacent(src) && !M.get_active_hand())
+				M.client.mouse_pointer_icon = initial(M.client.mouse_pointer_icon)
+				M.client.mouse_pointer_icon = file(CURSOR_PICKUP)
+
+/obj/structure/multiz/ladder/MouseExited()
+	if(usr.client.mouse_pointer_icon == CURSOR_PICKUP)
+		usr.client.mouse_pointer_icon = initial(usr.client.mouse_pointer_icon)
 
 ////STAIRS////
 

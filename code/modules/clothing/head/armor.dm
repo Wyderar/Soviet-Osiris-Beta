@@ -266,7 +266,7 @@
 		rad = 0
 	)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
-	tint = TINT_MODERATE
+//	tint = TINT_MODERATE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "Flip Face Shield"
 	var/up = FALSE
@@ -281,25 +281,46 @@
 /obj/item/clothing/head/armor/riot/verb/toggle()
 	set category = "Object"
 	set name = "Adjust riot helmet"
+	set hidden = TRUE
 	set src in usr
 
 	if(!usr.incapacitated())
 		if(src.up)
 			src.up = !src.up
 			body_parts_covered |= (EYES|FACE)
-			tint = initial(tint)
+//			tint = initial(tint)
 			flash_protection = initial(flash_protection)
 			icon_state = base_state
 			armor = initial(armor)
 			to_chat(usr, "You flip the [src] down to protect your face.")
+			if(istype(usr, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = usr
+				H.head_covered = 1
+				if(H.HUDtech.Find("visioncone"))
+					var/obj/screen/visioncone/I = H.HUDtech["visioncone"]
+					if(!H.inzoom)
+						I.icon_state = "helmet"
+						I.update_icon()
+					else
+						I.last_state = "helmet"
 		else
 			src.up = !src.up
 			body_parts_covered &= ~(EYES|FACE)
-			tint = TINT_NONE
+//			tint = TINT_NONE
 			flash_protection = FLASH_PROTECTION_NONE
 			icon_state = "[base_state]_up"
 			armor = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
 			to_chat(usr, "You push the [src] up out of your face.")
+			if(istype(usr, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = usr
+				H.head_covered = 0
+				if(H.HUDtech.Find("visioncone"))
+					var/obj/screen/visioncone/I = H.HUDtech["visioncone"]
+					if(!H.inzoom)
+						I.icon_state = "combat"
+						I.update_icon()
+					else
+						I.last_state = "combat"
 		update_wear_icon()	//so our mob-overlays
 		usr.update_action_buttons()
 
@@ -422,6 +443,16 @@
 			icon_state = base_state
 			armor = initial(armor)
 			to_chat(usr, "You flip the [src] down to protect your face.")
+			if(istype(usr, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = usr
+				H.head_covered = 1
+				if(H.HUDtech.Find("visioncone"))
+					var/obj/screen/visioncone/I = H.HUDtech["visioncone"]
+					if(!H.inzoom)
+						I.icon_state = "helmet"
+						I.update_icon()
+					else
+						I.last_state = "helmet"
 		else
 			src.up = !src.up
 			body_parts_covered &= ~(EYES|FACE)
@@ -430,6 +461,16 @@
 			icon_state = "[base_state]_up"
 			armor = list(melee = 20, bullet = 15, energy = 0, bomb = 15, bio = 0, rad = 0)
 			to_chat(usr, "You push the [src] up out of your face.")
+			if(istype(usr, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = usr
+				H.head_covered = 0
+				if(H.HUDtech.Find("visioncone"))
+					var/obj/screen/visioncone/I = H.HUDtech["visioncone"]
+					if(!H.inzoom)
+						I.icon_state = "combat"
+						I.update_icon()
+					else
+						I.last_state = "combat"
 		update_wear_icon()	//so our mob-overlays
 		usr.update_action_buttons()
 

@@ -9,7 +9,8 @@
 #define CANPARALYSE 0x4
 #define CANPUSH     0x8
 #define LEAPING     0x10
-#define PASSEMOTES  0x32    // Mob has a cortical borer or holders inside of it that need to see emotes.
+#define REBUILDING_ORGANS     0x20
+#define PASSEMOTES  0x40    // Mob has a cortical borer or holders inside of it that need to see emotes.
 #define GODMODE     0x1000
 #define FAKEDEATH   0x2000  // Replaces stuff like changeling.changeling_fakedeath.
 #define DISFIGURED  0x4000  // Set but never checked. Remove this sometime and replace occurences with the appropriate organ code
@@ -182,14 +183,14 @@
 #define TASTE_NUMB 0.1 //anything below 150%
 
 //Health
-#define HEALTH_THRESHOLD_SOFTCRIT 0
-#define HEALTH_THRESHOLD_CRIT -50
-#define HEALTH_THRESHOLD_DEAD -100
+#define HEALTH_THRESHOLD_SOFTCRIT 25
+#define HEALTH_THRESHOLD_CRIT 0
+#define HEALTH_THRESHOLD_DEAD -50
 
 #define ORGAN_HEALTH_MULTIPLIER 1
-#define ORGAN_REGENERATION_MULTIPLIER 0.2
-#define WOUND_BLEED_MULTIPLIER 0.01 //Bleeding wounds drip damage*this units of blood per process tick
-#define OPEN_ORGAN_BLEED_AMOUNT 0.5 //Wounds with open, unclamped incisions bleed this many units of blood per process tick
+#define ORGAN_REGENERATION_MULTIPLIER 0.05
+#define WOUND_BLEED_MULTIPLIER 0.04 //Bleeding wounds drip damage*this units of blood per process tick
+#define OPEN_ORGAN_BLEED_AMOUNT 2 //Wounds with open, unclamped incisions bleed this many units of blood per process tick
 
 #define HEAT_MOBIGNITE_THRESHOLD 530 //minimum amount of heat an object needs to ignite a mob when it hits the mob
 

@@ -79,15 +79,15 @@ var/list/channel_to_radio_key = new
 	var/speech_problem_flag = 0
 
 	if((HULK in mutations) && health >= 25 && length(message))
-		message = "[uppertext(message)]!!!"
+		message = "[message]!!!"
 		verb = pick("yells", "roars", "hollers")
 		speech_problem_flag = 1
 	if(slurring)
-		message = slur(message)
+//		message = slur(message)
 		verb = pick("slobbers", "slurs")
 		speech_problem_flag = 1
 	if(stuttering)
-		message = stutter(message)
+//		message = stutter(message)
 		verb = pick("stammers", "stutters")
 		speech_problem_flag = 1
 
@@ -427,9 +427,9 @@ var/list/channel_to_radio_key = new
 			heardword = copytext(heardword, 2)
 		if(copytext(heardword, -1) in punctuation)
 			heardword = copytext(heardword, 1, length(heardword))
-		heard = "<span class = 'game_say'>...You hear something about...[heardword]</span>"
+		heard = "<span class = 'game_say'>...Вы слышите некоторые обрывки фраз...[heardword]</span>"
 
 	else
-		heard = "<span class = 'game_say'>...<i>You almost hear someone talking</i>...</span>"
+		heard = "<span class = 'game_say'>...<i>Вы слышите чью-то речь</i>...</span>"
 
 	to_chat(src, heard)

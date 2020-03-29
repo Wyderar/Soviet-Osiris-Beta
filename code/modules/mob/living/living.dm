@@ -2,6 +2,7 @@
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
 	set name = "Pull"
 	set category = "Object"
+	set hidden = TRUE
 
 	if(AM.Adjacent(src))
 		src.start_pulling(AM)
@@ -558,18 +559,22 @@ default behaviour is:
 		for(var/mob/living/carbon/slime/M in view(1,src))
 			M.UpdateFeed(src)
 
+	for(var/mob/M in oview(src))
+		M.update_vision_cone()
 
+	update_vision_cone()
 
 
 /mob/living/verb/lay_down()
 	set name = "Rest"
 	set category = "IC"
+	set hidden = TRUE
 
 	var/state_changed = FALSE
 	if(resting && can_stand_up())
-		resting = FALSE
-		state_changed = TRUE
-
+		if(do_after(src, 20))
+			resting = FALSE
+			state_changed = TRUE
 
 	else if (!resting)
 		if(ishuman(src))
@@ -697,10 +702,19 @@ default behaviour is:
 
 	set name = "Stop Pulling"
 	set category = "IC"
+	set hidden = TRUE
 
 	if(pulling)
 		pulling.pulledby = null
 		pulling = null
+		if(last_intent_was_run)
+			var/decl/move_intent/newintent = decls_repository.get_decl(/decl/move_intent/run)
+			if(newintent.can_enter(src, TRUE))
+				move_intent = newintent
+				last_intent_was_run = 0
+			if(HUDneed.Find("move intent"))
+				var/obj/screen/mov_intent/I = HUDneed["move intent"]
+				I.update_icon()
 /*		if(pullin)
 			pullin.icon_state = "pull0"*/
 		if (HUDneed.Find("pull"))
@@ -756,14 +770,23 @@ default behaviour is:
 	src.pulling = AM
 	AM.pulledby = src
 
+	if(istype(AM, /obj/structure) && !AM.has_wheels && (move_intent.type == /decl/move_intent/run))
+		var/decl/move_intent/newintent = decls_repository.get_decl(/decl/move_intent/walk)
+		if(newintent.can_enter(src, TRUE))
+			move_intent = newintent
+			last_intent_was_run = 1
+		if(HUDneed.Find("move intent"))
+			var/obj/screen/mov_intent/I = HUDneed["move intent"]
+			I.update_icon()
+
 	if (HUDneed.Find("pull"))
 		var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
 		HUD.update_icon()
 
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		if(H.pull_damage())
-			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
+//	if(ishuman(AM))
+//		var/mob/living/carbon/human/H = AM
+//		if(H.pull_damage())
+//			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -803,3 +826,95 @@ default behaviour is:
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/proc/drip_blood(var/amt as num)
 	blood_splatter(src,src)
+
+/mob/living/set_dir()
+	..()
+	update_vision_cone()
+
+/mob/living/Move(NewLoc, direct)
+	for(var/client/C in in_vision_cones)
+		if(src in C.hidden_mobs)
+			var/turf/T = get_turf(src)
+			var/image/I = image('icons/effects/footstepsound.dmi', loc = T, icon_state = "default", layer = 18)
+			C.images += I
+			spawn(4)
+				if(C)
+					C.images -= I
+		else
+			in_vision_cones.Remove(C)
+	. = ..()
+
+/mob/living/RightClick(mob/living/giver)
+	if(!giver || giver.incapacitated() || client == null)
+		return
+	
+	if(giver == src)
+		show_selfmob_menu(src)
+		return
+	
+	if(giver.a_intent != I_HELP)
+		return
+
+	var/obj/item/I = giver.get_active_hand()
+//	if(!I)
+//		I = giver.get_inactive_hand()
+	if(!I)
+		if(incapacitated() && istype(src, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = src
+			H.check_pulse()
+		return
+
+	if(I.item_flags & ABSTRACT)//No giving people offhands.
+		return
+
+	if(alert(src,"[giver] wants to give you \a [I]. Will you accept it?",,"Yes","No") == "No")
+		src.visible_message(SPAN_NOTICE("\The [giver] tried to hand \the [I] to \the [src], \
+		but \the [src] didn't want it."))
+		return
+
+	if(!I) return
+
+	if(!Adjacent(giver))
+		to_chat(giver, SPAN_WARNING("You need to stay in reaching distance while giving an object."))
+		to_chat(src, SPAN_WARNING("\The [src] moved too far away."))
+		return
+
+	if(I.loc != giver || (giver.l_hand != I && giver.r_hand != I))
+		to_chat(giver, SPAN_WARNING("You need to keep the item in your hands."))
+		to_chat(src, SPAN_WARNING("\The [giver] seems to have given up on passing \the [I] to you."))
+		return
+
+	if(src.r_hand != null && src.l_hand != null)
+		to_chat(src, SPAN_WARNING("Your hands are full."))
+		to_chat(giver, SPAN_WARNING("Their hands are full."))
+		return
+
+	if(giver.unEquip(I))
+		src.put_in_hands(I) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
+		src.visible_message(SPAN_NOTICE("\The [giver] handed \the [I] to \the [src]."))
+
+/mob/living/proc/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
+
+/mob/living/proc/show_selfmob_menu(mob/living/user)
+	if(!user) 
+		return
+	var/list/layer_list = list(
+			"Show Stats" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_stats"),
+			"Languages" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_lang"),
+			"Show Notes" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_notes")
+		)
+	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = FALSE)
+	if(!check_menu(user))
+		return
+	switch(layer_result)
+		if("Show Stats")
+			user.browse_mine_stats()
+		if("Languages")
+			user.check_languages()
+		if("Show Notes")
+			user.memory()

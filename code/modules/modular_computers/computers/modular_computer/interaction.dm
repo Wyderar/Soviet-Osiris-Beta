@@ -1,19 +1,3 @@
-/obj/item/modular_computer/proc/update_verbs()
-	verbs.Cut()
-	if(ai_slot)
-		verbs |= /obj/item/modular_computer/verb/eject_ai
-	if(portable_drive)
-		verbs |= /obj/item/modular_computer/verb/eject_usb
-	if(card_slot && card_slot.stored_card)
-		verbs |= /obj/item/modular_computer/verb/eject_id
-	if(stores_pen && istype(stored_pen))
-		verbs |= /obj/item/modular_computer/verb/remove_pen
-
-	verbs |= /obj/item/verb/verb_pickup
-	verbs |= /obj/item/verb/move_to_top
-
-	verbs |= /obj/item/modular_computer/verb/emergency_shutdown
-
 /obj/item/modular_computer/proc/can_interact(var/mob/user)
 	if(usr.incapacitated())
 		to_chat(user, "<span class='warning'>You can't do that.</span>")
@@ -25,74 +9,74 @@
 
 	return TRUE
 
+/obj/item/modular_computer/RightClick(mob/living/user)
+	if(user.Adjacent(src))
+		show_radial(user)
 
-// Forcibly shut down the device. To be used when something bugs out and the UI is nonfunctional.
-/obj/item/modular_computer/verb/emergency_shutdown()
-	set name = "Forced Shutdown"
-	set category = "Object"
-	set src in view(1)
+/obj/item/modular_computer/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
 
-	if(!can_interact(usr))
+/obj/item/modular_computer/show_radial(mob/living/user)
+	if(!user) 
 		return
-
+	var/list/layer_list = list()
+	if(!is_equipped())
+		if(!anchored)
+			layer_list += list(
+				"Pull" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pull"),
+				"Pickup" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pickup"),
+				)
+		layer_list += list("Examine" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_examine"))
 	if(enabled)
-		bsod = 1
-		update_icon()
-		shutdown_computer()
-		to_chat(usr, "You press a hard-reset button on \the [src]. It displays a brief debug screen before shutting down.")
-		spawn(2 SECONDS)
-			bsod = 0
-			update_icon()
-
-
-// Eject ID card from computer, if it has ID slot with card inside.
-/obj/item/modular_computer/verb/eject_id()
-	set name = "Remove ID"
-	set category = "Object"
-	set src in view(1)
-
-	if(!can_interact(usr))
+		layer_list += list("Forced Shutdown" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_shutdown"))
+	if(ai_slot)
+		layer_list += list("Eject AI" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_ejectai"))
+	if(portable_drive)
+		layer_list += list("Eject Portable Storage" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_ejectusb"))
+	if(card_slot && card_slot.stored_card)
+		layer_list += list("Remove ID" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_ejectid"))
+	if(stores_pen && istype(stored_pen))
+		layer_list += list("Remove Pen" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_removepen"))
+	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = FALSE)
+	if(!check_menu(user))
 		return
-
-	playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
-	proc_eject_id(usr)
-
-// Eject USB from computer
-/obj/item/modular_computer/verb/eject_usb()
-	set name = "Eject Portable Storage"
-	set category = "Object"
-	set src in view(1)
-
-	if(!can_interact(usr))
-		return
-
-	proc_eject_usb(usr)
-
-/obj/item/modular_computer/verb/eject_ai()
-	set name = "Eject AI"
-	set category = "Object"
-	set src in view(1)
-
-	if(!can_interact(usr))
-		return
-
-	proc_eject_ai(usr)
-
-/obj/item/modular_computer/verb/remove_pen()
-	set name = "Remove Pen"
-	set category = "Object"
-	set src in view(1)
-
-	if(!can_interact(usr))
-		return
-
-	if(istype(stored_pen))
-		to_chat(usr, SPAN_NOTICE("You remove [stored_pen] from [src]."))
-		stored_pen.forceMove(get_turf(src))
-		if(!issilicon(usr))
-			usr.put_in_hands(stored_pen)
-		stored_pen = null
-		update_verbs()
+	switch(layer_result)
+		if("Pull")
+			if(Adjacent(user))
+				user.start_pulling(src)
+		if("Pickup")
+			if(pre_pickup(user))
+				pickup(user)
+		if("Examine")
+			if(user.client && user.client.eye == user)
+				user.examinate(src)
+		if("Forced Shutdown")
+			if(enabled)
+				bsod = 1
+				update_icon()
+				shutdown_computer()
+				to_chat(user, "You press a hard-reset button on \the [src]. It displays a brief debug screen before shutting down.")
+				spawn(2 SECONDS)
+					bsod = 0
+					update_icon()
+		if("Eject AI")
+			proc_eject_ai(user)
+		if("Eject Portable Storage")
+			proc_eject_usb(user)
+		if("Remove ID")
+			playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
+			proc_eject_id(user)
+		if("Remove Pen")
+			if(istype(stored_pen))
+				to_chat(user, SPAN_NOTICE("You remove [stored_pen] from [src]."))
+				stored_pen.forceMove(get_turf(src))
+				if(!issilicon(user))
+					user.put_in_hands(stored_pen)
+				stored_pen = null
 
 /obj/item/modular_computer/proc/proc_eject_id(mob/user)
 	if(!user)
@@ -101,19 +85,16 @@
 	if(!can_interact(usr))
 		return
 
-	if(active_program)
-		active_program.event_idremoved(0)
-
-	for(var/datum/computer_file/program/P in idle_threads)
-		P.event_idremoved(1)
+	for(var/p in all_threads)
+		var/datum/computer_file/program/PRG = p
+		PRG.event_id_removed()
 
 	card_slot.stored_card.forceMove(get_turf(src))
 	if(!issilicon(user))
 		user.put_in_hands(card_slot.stored_card)
-	to_chat(user, "You remove [card_slot.stored_card] from [src].")
+	to_chat(user, SPAN_NOTICE("You remove [card_slot.stored_card] from [src]."))
 	card_slot.stored_card = null
 	update_uis()
-	update_verbs()
 	update_label()
 
 /obj/item/modular_computer/proc/proc_eject_usb(mob/user)
@@ -183,7 +164,6 @@
 		card_slot.stored_card = I
 		update_label()
 		update_uis()
-		update_verbs()
 		playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
 		to_chat(user, "You insert [I] into [src].")
 
@@ -195,7 +175,6 @@
 		if(!insert_item(W, user))
 			return
 		stored_pen = W
-		update_verbs()
 		return
 
 	if(scanner && scanner.do_on_attackby(user, W))

@@ -87,26 +87,26 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 			if(command && engineer)
 				return TRUE
 
-	var/tcol = "red"
-	if(GLOB.player_list.len <= 10)
-		tcol = "black"
+//	var/tcol = "red"
+//	if(GLOB.player_list.len <= 10)
+//		tcol = "black"
 
 	if(announce)
 		if(!engineer && !command)
-			to_chat(world, "<b><font color='[tcol]'>A command officer and technomancer are required to start round.</font></b>")
+			to_chat(world, "<b>Невозможно начать раунд, так как нет Техномансера и руководителя какого-либо отдела.</b>")
 		else if(!engineer)
-			to_chat(world, "<b><font color='[tcol]'>Technomancer is required to start round.</font></b>")
+			to_chat(world, "<b>Невозможно начать раунд, так как нет Техномансера.</b>")
 		else if(!command)
-			to_chat(world, "<b><font color='[tcol]'>A command officer is required to start round.</font></b>")
+			to_chat(world, "<b>Невозможно начать раунд, так как нет руководителя какого-либо отдела.</b>")
 
 	if(GLOB.player_list.len <= 10)
-		to_chat(world, "<i>But there's less than 10 players, so this requirement will be ignored.</i>")
+		to_chat(world, "<i>Однако на сервере сейчас менее 10 игроков, так что отбой.</i>")
 		return TRUE
 
 	return FALSE
 
 /datum/storyteller/proc/announce()
-	to_chat(world, "<b><font size=3>Storyteller is [name].</font> <br>[welcome]</b>")
+	to_chat(world, "<b><font size=3>Сегодняшний рассказчик - [name].</font> <br>[welcome]</b>")
 
 /datum/storyteller/proc/set_up()
 	build_event_pools()

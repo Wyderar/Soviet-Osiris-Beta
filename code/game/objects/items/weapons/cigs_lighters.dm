@@ -231,9 +231,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	attack_verb = list("burnt", "singed")
 	icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
 	icon_off = "cigoff"
-	type_butt = /obj/item//cigbutt
+	type_butt = /obj/item/trash/cigbutt
 	chem_volume = 15
-	smoketime = 300
+	smoketime = 60
 	preloaded_reagents = list("nicotine" = 6)
 	matchmes = "<span class='notice'>USER lights their NAME with their FLAME.</span>"
 	lightermes = "<span class='notice'>USER manages to light their NAME with FLAME.</span>"
@@ -283,7 +283,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	type_butt = /obj/item/trash/cigbutt/cigarbutt
 	throw_speed = 0.5
 	item_state = "cigaroff"
-	smoketime = 700
+	smoketime = 140
 	chem_volume = 20
 	preloaded_reagents = list("nicotine" = 14)
 	quality_multiplier = 2
@@ -306,7 +306,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "cigar2off"
 	icon_on = "cigar2on"
 	icon_off = "cigar2off"
-	smoketime = 1000
+	smoketime = 200
 	chem_volume = 30
 	preloaded_reagents = list("nicotine" = 20)
 	quality_multiplier = 3
@@ -396,7 +396,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if (smoketime)
 			to_chat(user, SPAN_NOTICE("[src] is already packed."))
 			return
-		smoketime = 1000
+		smoketime = 200
 		if(G.reagents)
 			G.reagents.trans_to_obj(src, G.reagents.total_volume)
 		name = "[G.name]-packed [initial(name)]"

@@ -190,13 +190,17 @@
 		msg += "<span class='warning'>[T.He] [T.is]n't responding to anything around [T.him] and seems to be asleep.</span>\n"
 		if((stat == DEAD || src.losebreath) && distance <= 3)
 			msg += "<span class='warning'>[T.He] [T.does] not appear to be breathing.</span>\n"
-		if(ishuman(usr) && !usr.stat && Adjacent(usr))
-			usr.visible_message("<b>[usr]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
-		if(distance<=1 && do_mob(usr,src,15,progress=0))
-			if(pulse() == PULSE_NONE)
-				to_chat(usr, "<span class='deadsay'>[T.He] [T.has] no pulse[src.client ? "" : " and [T.his] soul has departed"]...</span>")
-			else
-				to_chat(usr, "<span class='deadsay'>[T.He] [T.has] a pulse!</span>")
+//		if(ishuman(usr) && !usr.stat && Adjacent(usr))
+//			usr.visible_message("<b>[usr]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
+//		if(distance<=1 && do_mob(usr,src,15,progress=0))
+//			if(pulse() == PULSE_NONE)
+//				to_chat(usr, "<span class='deadsay'>[T.He] [T.has] no pulse[src.client ? "" : " and [T.his] soul has departed"]...</span>")
+//			else
+//				to_chat(usr, "<span class='deadsay'>[T.He] [T.has] a pulse!</span>")
+
+	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[BP_EYES]
+	if(eyes && eyes.are_closed)
+		msg += "<span class='warning'>[T.His] eyes seems to be are closed!</span>\n"
 
 	if(fire_stacks)
 		msg += "[T.He] [T.is] covered in some liquid.\n"

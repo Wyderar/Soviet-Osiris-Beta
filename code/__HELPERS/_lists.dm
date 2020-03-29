@@ -735,12 +735,12 @@ proc/dd_sortedTextList(list/incoming)
 Checks if a list has the same entries and values as an element of big.
 */
 /proc/in_as_list(list/little, list/big)
-	if(!LAZYLEN(big))
-		return FALSE
+	if(!islist(big))
+		return 0
 	for(var/element in big)
-		if(compare_list(little, big[element]))
-			return TRUE
-	return FALSE
+		if(compare_list(little, element))
+			return 1
+	return 0
 
 // Return the index using dichotomic search
 /proc/FindElementIndex(atom/A, list/L, cmp)
@@ -914,13 +914,17 @@ Checks if a list has the same entries and values as an element of big.
 
 /proc/compare_list(list/l,list/d)
 	if(!islist(l) || !islist(d))
-		return FALSE
+		return 0
 
 	if(l.len != d.len)
-		return FALSE
+		return 0
 
-	for(var/i in 1 to l.len)
-		if(l[i] != d[i])
-			return FALSE
+	for(var/e in l)
+		if(!(e in d) || (l[e] != d[e]))
+			return 0
 
-	return TRUE
+//	for(var/i in 1 to l.len)
+//		if(l[i] != d[i])
+//			return 0
+
+	return 1

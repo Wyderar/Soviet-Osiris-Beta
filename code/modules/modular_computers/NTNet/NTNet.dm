@@ -262,22 +262,18 @@ var/global/datum/ntnet/ntnet_global = new()
 		EA.password = GenerateKey()
 		EA.login = login
 		EA.ownerName = user.real_name
-		to_chat(user, "Your email account address is <b>[EA.login]</b> and the password is <b>[EA.password]</b>. This information has also been placed into your notes.")
+		to_chat(user, "Ваш адрес email: <b>[EA.login]</b> и пароль: <b>[EA.password]</b>")
 		if(user.mind)
 			user.mind.initial_email_login["login"] = EA.login
 			user.mind.initial_email_login["password"] = EA.password
-			user.mind.store_memory("Your email account address is [EA.login] and the password is [EA.password]<hr>.")
+			user.mind.store_memory("Ваш адрес email: [EA.login] и пароль: [EA.password]<hr>.")
 		if(ishuman(user))
-			var/obj/item/modular_computer/C = locate(/obj/item/modular_computer) in user.GetAllContents()
-			if(C)
-				var/datum/computer_file/program/P = C.getProgramByType(/datum/computer_file/program/email_client)
+			for(var/obj/item/modular_computer/C in user.GetAllContents())
+				var/datum/computer_file/program/email_client/P = C.getProgramByType(/datum/computer_file/program/email_client)
 				if(P)
-					P.run_program(user)
-					var/datum/nano_module/email_client/my_client = P.NM
-					if(my_client)
-						my_client.stored_login = EA.login
-						my_client.stored_password = EA.password
-						my_client.log_in()
+					P.stored_login = EA.login
+					P.stored_password = EA.password
+					P.update_email()
 		else if(issilicon(user))
 			var/mob/living/silicon/S = user
 			var/datum/nano_module/email_client/my_client = S.get_subsystem_from_path(/datum/nano_module/email_client)

@@ -332,11 +332,7 @@
 	update_icon()
 
 
-/obj/machinery/suit_storage_unit/verb/get_out()
-	set name = "Eject Suit Storage Unit"
-	set category = "Object"
-	set src in oview(1)
-
+/obj/machinery/suit_storage_unit/relaymove(mob/user as mob)
 	if(usr.stat)
 		return
 	eject_occupant(usr)
@@ -344,11 +340,7 @@
 	updateUsrDialog()
 
 
-/obj/machinery/suit_storage_unit/verb/move_inside()
-	set name = "Hide in Suit Storage Unit"
-	set category = "Object"
-	set src in oview(1)
-
+/obj/machinery/suit_storage_unit/MouseDrop_T(var/mob/target, var/mob/user)
 	if(usr.stat)
 		return
 	if(!isopen)

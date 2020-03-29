@@ -9,10 +9,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	var/obj/item/I = get_active_hand()
 	if(!I)
-		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
+//		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
 		return
-	if(!equip_to_appropriate_slot(I))
-		to_chat(src, SPAN_WARNING("You are unable to equip that."))
+	equip_to_appropriate_slot(I)
+//		to_chat(src, SPAN_WARNING("You are unable to equip that."))
 
 //Puts the item into our active hand if possible. returns 1 on success.
 /mob/living/carbon/human/put_in_active_hand(var/obj/item/W)
@@ -104,6 +104,15 @@ This saves us from having to call add_fingerprint() any time something is put in
 				update_hair(0)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
+			if(I.body_parts_covered & FACE)
+				head_covered = 0
+				if(HUDtech.Find("visioncone"))
+					var/obj/screen/visioncone/B = HUDtech["visioncone"]
+					if(!inzoom)
+						B.icon_state = "combat"
+						B.update_icon()
+					else
+						B.last_state = "combat"
 		update_inv_head()
 	else if (W == l_ear)
 		l_ear = null
@@ -268,6 +277,15 @@ This saves us from having to call add_fingerprint() any time something is put in
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
+			if(head.body_parts_covered & FACE)
+				head_covered = 1
+				if(HUDtech.Find("visioncone"))
+					var/obj/screen/visioncone/I = HUDtech["visioncone"]
+					if(!inzoom)
+						I.icon_state = "helmet"
+						I.update_icon()
+					else
+						I.last_state = "helmet"
 		if(slot_shoes)
 			src.shoes = W
 		if(slot_wear_suit)

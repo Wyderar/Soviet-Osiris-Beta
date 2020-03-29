@@ -26,10 +26,10 @@
 	. = ..()
 	update_icon(FALSE)
 
-/obj/structure/railing/New(loc)
-	..()
-	if(climbable)
-		verbs += /obj/structure/proc/climb_on
+///obj/structure/railing/New(loc)
+//	..()
+//	if(climbable)
+//		verbs += /obj/structure/proc/climb_on
 
 /obj/structure/railing/Created(var/mob/user)
 	anchored = FALSE

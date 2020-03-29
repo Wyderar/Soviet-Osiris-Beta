@@ -486,9 +486,9 @@
 		new /obj/item/weapon/material/shard/shrapnel(user.loc)
 	else
 		new /obj/item/weapon/material/shard/shrapnel(get_turf(src))
-	if(istype(loc, /obj/machinery/door/airlock))
-		var/obj/machinery/door/airlock/AD = loc
-		AD.take_out_wedged_item()
+//	if(istype(loc, /obj/machinery/door/airlock))
+//		var/obj/machinery/door/airlock/AD = loc
+//		AD.take_out_wedged_item()
 	playsound(get_turf(src), 'sound/effects/impacts/thud1.ogg', 50, 1 -3)
 	isBroken = TRUE
 	return
@@ -553,9 +553,9 @@
 				if(user)
 					to_chat(user, SPAN_DANGER("You drop [src] on the floor."))
 					user.drop_from_inventory(src)
-				else if(istype(loc, /obj/machinery/door/airlock))
-					var/obj/machinery/door/airlock/AD = loc
-					AD.take_out_wedged_item()
+//				else if(istype(loc, /obj/machinery/door/airlock))
+//					var/obj/machinery/door/airlock/AD = loc
+//					AD.take_out_wedged_item()
 				else
 					forceMove(get_turf(src))
 				return
@@ -592,9 +592,9 @@
 					H.unEquip(src)
 					throw_at(throw_target, src.throw_range, src.throw_speed, H)
 					return
-				if(istype(loc, /obj/machinery/door/airlock))
-					var/obj/machinery/door/airlock/AD = loc
-					AD.take_out_wedged_item()
+//				if(istype(loc, /obj/machinery/door/airlock))
+//					var/obj/machinery/door/airlock/AD = loc
+//					AD.take_out_wedged_item()
 				else
 					forceMove(get_turf(src))
 				var/throw_target = pick(trange(6, src))
@@ -1068,7 +1068,7 @@
 
 /obj/screen/item_action/top_bar/tool_info
 	icon = 'icons/mob/screen/gun_actions.dmi'
-	screen_loc = "8,1:13"
+	screen_loc = "7,2:13"
 	minloc = "7,2:13"
 	name = "Tool information"
 	icon_state = "info"

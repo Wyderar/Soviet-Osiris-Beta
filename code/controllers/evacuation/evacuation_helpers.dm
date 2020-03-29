@@ -17,7 +17,7 @@
 	return (!isnull(evac_launch_time) && world.time > evac_launch_time)
 
 /datum/evacuation_controller/proc/round_over()
-	return state == EVAC_COMPLETE
+	return (state == EVAC_COMPLETE)
 
 /datum/evacuation_controller/proc/is_on_cooldown()
 	return state == EVAC_COOLDOWN

@@ -1,5 +1,6 @@
 /datum/job/rd
 	title = "Moebius Expedition Overseer"
+	title_ru = "Заведующий экспедицией"
 	flag = MEO
 	head_position = 1
 	department = DEPARTMENT_SCIENCE
@@ -10,7 +11,7 @@
 	supervisors = "Moebius Corporation"
 	selection_color = "#b39aaf"
 	req_admin_notify = 1
-	wage = WAGE_COMMAND
+	wage = WAGE_NONE
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 
 	outfit_type = /decl/hierarchy/outfit/job/science/rd
@@ -33,6 +34,7 @@
 	// TODO: enable after baymed
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							///datum/computer_file/program/aidiag,
+							/datum/computer_file/program/signaller,
 							/datum/computer_file/program/camera_monitor,
 							/datum/computer_file/program/chem_catalog,
 							/datum/computer_file/program/reports)
@@ -56,6 +58,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 
 /datum/job/scientist
 	title = "Moebius Scientist"
+	title_ru = "Ученый"
 	flag = SCIENTIST
 	department = DEPARTMENT_SCIENCE
 	department_flag = SCIENCE
@@ -70,7 +73,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	//alt_titles = list("Moebius Xenobiologist")
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
 
-	software_on_spawn = list(/datum/computer_file/program/chem_catalog)
+	software_on_spawn = list(/datum/computer_file/program/signaller, /datum/computer_file/program/chem_catalog)
 
 	access = list(
 		access_robotics, access_tox, access_tox_storage, access_moebius, access_xenobiology, access_xenoarch, access_research_equipment,
@@ -114,6 +117,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 
 /datum/job/roboticist
 	title = "Moebius Roboticist"
+	title_ru = "Роботехник"
 	flag = ROBOTICIST
 	department = DEPARTMENT_SCIENCE
 	department_flag = SCIENCE

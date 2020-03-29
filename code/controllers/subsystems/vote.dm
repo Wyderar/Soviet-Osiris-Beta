@@ -14,12 +14,12 @@ SUBSYSTEM_DEF(vote)
 		var/datum/poll/P = new T
 		votes[T] = P
 
-/datum/controller/subsystem/vote/proc/update_voters()
-	for(var/client/C in voters)
-		interface_client(C)
+///datum/controller/subsystem/vote/proc/update_voters()
+//	for(var/client/C in voters)
+//		interface_client(C)
 
 /datum/controller/subsystem/vote/proc/interface_client(client/C)
-	var/datum/browser/panel = new(C.mob, "Vote","Vote", 500, 650)
+	var/datum/browser/panel = new(C.mob, "Голосование","Голосование", 500, 650)
 	panel.set_content(interface(C))
 	panel.open()
 
@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(vote)
 				active_vote.check_winners()
 				stop_vote()
 
-			update_voters()
+//			update_voters()
 
 /datum/controller/subsystem/vote/proc/autostoryteller()
 	start_vote(/datum/poll/storyteller)
@@ -55,12 +55,12 @@ SUBSYSTEM_DEF(vote)
 
 	vote_start_time = world.time
 
-	for(var/client/C in voters)
-		C << browse(interface(C),"window=vote")
+//	for(var/client/C in voters)
+//		C << browse(interface(C),"window=vote")
 
-	var/text = "[poll.name] vote started by [poll.initiator]."
+	var/text = "Новое голосование: \"[poll.name]\". Инициировано: [poll.initiator]."
 	log_vote(text)
-	to_chat(world, {"<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes. <br>You have [poll.time] seconds to vote.</font>"})
+	to_chat(world, {"<font color='purple'><b>[text]</b>\nНажмите <a href='?src=\ref[src]'>здесь</a> чтобы принять участие. <br>До окончания голосования осталось [poll.time] секунд.</font>"})
 	sound_to(world, sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = GLOB.vote_sound_channel))
 
 	return TRUE
@@ -81,35 +81,35 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/proc/interface(client/C)
 	if(!C)
 		return
-	var/data = "<html><head><title>Voting Panel</title></head><body>"
+	var/data = "<html><head><title>Панель голосования</title></head><body>"
 
 	var/admin = check_rights(R_ADMIN, FALSE, C)
 
 	voters |= C
 
 	if(active_vote)
-		data += "<h2>Vote: '[active_vote.question]'</h2>"
-		data += "Time Left: [active_vote.time - get_vote_time()] s<br>"
-		data += "Started by: <b>[active_vote.initiator]</b><hr>"
+		data += "<h2>Голосование: '[active_vote.question]'</h2>"
+//		data += "Осталось времени: [active_vote.time - get_vote_time()] секунд<br>"
+		data += "Начато: <b>[active_vote.initiator]</b><hr>"
 
 		if(active_vote.multiple_votes)
-			data += "You can vote multiple choices.<br>"
+			data += "Можно выбирать несколько вариантов.<br>"
 		else
-			data += "You can vote one choice.<br>"
+			data += "Можно выбрать только один вариант.<br>"
 
 		if(active_vote.can_revote)
 			if(active_vote.can_unvote)
-				data += "You can either change vote or remove it."
+				data += "Можно изменить свой голос или удалить его."
 			else
-				data += "You can change your vote."
+				data += "Можно изменить свой голос."
 		else
-			data += "You can't change your vote."
+			data += "Нельзя изменять свой голос."
 
 		if (active_vote.description)
 			data += "<br>[active_vote.description]<br>"
 
 		data += "<hr>"
-		data += "<table width = '100%'><tr><td align = 'center'><b>Choices</b></td><td align = 'center'><b>Votes</b></td>"
+		data += "<table width = '100%'><tr><td align = 'center'><b>Варианты</b></td><td align = 'center'><b>Голоса</b></td>"
 
 		for(var/datum/vote_choice/choice in active_vote.choices)
 			var/c_votes = (active_vote.see_votes || admin) ? choice.total_votes() : "*"
@@ -127,7 +127,7 @@ SUBSYSTEM_DEF(vote)
 			data += "(<a href='?src=\ref[src];cancel=1'>Cancel Vote</a>) "
 	else
 		var/any_votes = FALSE
-		data += "<h2>Start a vote:</h2><hr><ul>"
+		data += "<h2>Начать голосование за:</h2><hr><ul>"
 
 		for(var/P in votes)
 			var/datum/poll/poll = votes[P]
@@ -146,10 +146,10 @@ SUBSYSTEM_DEF(vote)
 			data += "</li>"
 
 		if(!any_votes)
-			data += "<li><i>There is no available votes here now.</i></li>"
+			data += "<li><i>Нет доступных голосований.</i></li>"
 
 		data += "</ul><hr>"
-	data += "<a href='?src=\ref[src];close=1' style='position:absolute;right:50px'>Close</a></body></html>"
+//	data += "<a href='?src=\ref[src];close=1' style='position:absolute;right:50px'>Close</a></body></html>"
 	return data
 
 
@@ -177,11 +177,11 @@ SUBSYSTEM_DEF(vote)
 	if(href_list["debug"])
 		usr.client.debug_variables(src)
 
-	if(href_list["close"])
-		if(usr && usr.client)
-			voters.Remove(usr.client)
-			usr.client << browse(null,"window=vote")
-			return
+//	if(href_list["close"])
+//		if(usr && usr.client)
+//			voters.Remove(usr.client)
+//			usr.client << browse(null,"window=vote")
+//			return
 
 	usr.vote()
 

@@ -92,8 +92,47 @@
 		qdel(P)
 		return TRUE
 
-	if(P.knockback)
+	if(P.knockback && hit_dir)
 		throw_at(get_edge_target_turf(src, hit_dir), P.knockback, P.knockback)
+
+	if(istype(src, /mob/living/carbon/human) && istype(P,/obj/item/projectile/bullet))
+		var/mob/living/carbon/human/H = src
+		if(P.check_armour == ARMOR_BULLET)
+			var/armor = getarmor(def_zone, P.check_armour)
+			if(!armor)
+				var/obj/item/organ/external/organ = H.get_organ(def_zone)
+				if(def_zone == BP_HEAD)
+					if(client)
+						shake_camera(src, rand(1,2), rand(1,2))
+					adjustBrainLoss(P.damage * rand(2, 3))
+					traumatic_shock += rand(50, 70)
+					organ.setBleeding()
+					AdjustSleeping(P.damage * rand(3, 4))
+				else if(def_zone == BP_CHEST)
+					traumatic_shock += rand(20, 40)
+					organ.setBleeding()
+					if(prob(rand(30, 60)))
+						for(var/obj/item/organ/internal/I in organ.internal_organs)
+							I.take_internal_damage(P.damage / rand(3, 5), prob(90))
+				else if(def_zone == BP_R_ARM)
+					traumatic_shock += rand(15, 25)
+					organ.fracture()
+					drop_r_hand()
+				else if(def_zone == BP_L_ARM)
+					traumatic_shock += rand(15, 25)
+					organ.fracture()
+					drop_l_hand()
+				else if(def_zone == BP_R_LEG || def_zone == BP_L_LEG)
+					Weaken(P.damage)
+					traumatic_shock += rand(10, 20)
+					organ.fracture()
+				flash_pain()
+
+//					if(client)
+//						shake_camera(src, rand(2,3), rand(2,3))
+//			else
+//				if(client)
+//					shake_camera(src, rand(2,3), rand(2,3))
 
 	//Armor and damage
 	if(!P.nodamage)

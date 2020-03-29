@@ -27,7 +27,29 @@ meteor_act
 	//Checking absorb for spawning shrapnel
 	.=..(P , def_zone)
 
+	var/turf/behind = get_step(src, P.firer_original_dir ? P.firer_original_dir : P.dir)
+	blood_splatter(behind,src,TRUE)
+	if(behind)
+		if(behind.density || locate(/obj/structure) in behind)
+			var/turf/slammed_into = behind
+			if(!slammed_into.density)
+				for(var/obj/structure/S in slammed_into.contents)
+					if(S.density)
+						slammed_into = S
+						break
+			if(slammed_into.density)
+				Weaken(P.damage / 2)
+				adjustBruteLoss(rand(20,30))
+		else if(locate(/obj/machinery/door) in behind)
+			log_world("[behind.density]")
+			Weaken(P.damage / 2)
+			adjustBruteLoss(rand(20,30))
+		else
+			forceMove(behind)
+			if(def_zone == BP_HEAD)
+				Weaken(P.damage * 1.5)
 	var/check_absorb = .
+
 	//Shrapnel
 	if(P.can_embed() && (check_absorb < 2))
 		var/armor = getarmor_organ(organ, ARMOR_BULLET)
@@ -37,7 +59,7 @@ meteor_act
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
 			SP.loc = organ
 			organ.embed(SP)
-
+			organ.setBleeding()
 
 /mob/living/carbon/human/hit_impact(damage, dir)
 	if(incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_BUCKLED_PARTIALLY))
@@ -46,13 +68,16 @@ meteor_act
 		..()
 		return
 
+	if(!dir) // Same turf as the source
+		return
+
 	var/r_dir = reverse_dir[dir]
 	var/hit_dirs = (r_dir in cardinal) ? r_dir : list(r_dir & NORTH|SOUTH, r_dir & EAST|WEST)
 
-	var/stumbled = FALSE
+//	var/stumbled = FALSE
 
 	if(prob(60 - stats.getStat(STAT_TGH)))
-		stumbled = TRUE
+//		stumbled = TRUE
 		step(src, pick(cardinal - hit_dirs))
 
 	for(var/atom/movable/A in oview(1))
@@ -81,10 +106,10 @@ meteor_act
 
 		else
 			continue
-		stumbled = TRUE
+//		stumbled = TRUE
 
-	if(stumbled)
-		visible_message(SPAN_WARNING("[src] stumbles around."))
+//	if(stumbled)
+//		visible_message(SPAN_WARNING("[src] stumbles around."))
 
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
@@ -94,6 +119,8 @@ meteor_act
 //	No siemens coefficient calculations now, it's all done with armor "Energy" protection stat
 
 	switch (def_zone)
+		if(BP_HEAD)
+			agony_amount *= 1.50
 		if(BP_L_ARM, BP_R_ARM)
 			var/c_hand
 			if (def_zone == BP_L_ARM)
@@ -338,7 +365,7 @@ meteor_act
 				return
 
 		if(!zone)
-			visible_message(SPAN_NOTICE("\The [O] misses [src] narrowly!"))
+//			visible_message(SPAN_NOTICE("\The [O] misses [src] narrowly!"))
 			return
 
 		O.throwing = 0		//it hit, so stop moving

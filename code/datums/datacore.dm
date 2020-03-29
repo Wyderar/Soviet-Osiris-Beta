@@ -184,6 +184,10 @@ var/global/ManifestJSON
 		G.fields["real_rank"]	= H.mind.assigned_role
 		G.fields["rank"]		= assignment
 		G.fields["age"]			= H.age
+		G.fields["birth_day"]	= H.mind.prefs.birth_day
+		G.fields["birth_month"]	= H.mind.prefs.birth_month
+		G.fields["birth_year"]	= H.mind.prefs.birth_year
+		G.fields["character_id"] = H.mind.prefs.character_id
 		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		G.fields["pay_account"]	= H.mind.initial_account.account_number
 		G.fields["email"]		= H.mind.initial_email_login["login"]
@@ -197,6 +201,7 @@ var/global/ManifestJSON
 		var/datum/data/record/M = CreateMedicalRecord(H.real_name, id)
 		M.fields["b_type"]		= H.b_type
 		M.fields["b_dna"]		= H.dna.unique_enzymes
+		M.fields["character_id"] = H.mind.prefs.character_id
 		//M.fields["id_gender"]	= gender2text(H.identifying_gender)
 		if(H.med_record && !jobban_isbanned(H, "Records"))
 			M.fields["notes"] = H.med_record
@@ -205,13 +210,18 @@ var/global/ManifestJSON
 		var/datum/data/record/S = CreateSecurityRecord(H.real_name, id)
 		if(H.sec_record && !jobban_isbanned(H, "Records"))
 			S.fields["notes"] = H.sec_record
+		S.fields["character_id"] = H.mind.prefs.character_id
 
 		//Locked Record
 		var/datum/data/record/L = new()
 		L.fields["id"]			= md5("[H.real_name][H.mind.assigned_role]")
 		L.fields["name"]		= H.real_name
+		L.fields["character_id"] = H.mind.prefs.character_id
 		L.fields["rank"] 		= H.mind.assigned_role
 		L.fields["age"]			= H.age
+		L.fields["birth_day"]	= H.mind.prefs.birth_day
+		L.fields["birth_month"]	= H.mind.prefs.birth_month
+		L.fields["birth_year"]	= H.mind.prefs.birth_year
 		L.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		L.fields["sex"]			= H.gender
 		///L.fields["id_gender"]	= gender2text(H.identifying_gender)
