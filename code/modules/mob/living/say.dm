@@ -427,9 +427,9 @@ var/list/channel_to_radio_key = new
 			heardword = copytext(heardword, 2)
 		if(copytext(heardword, -1) in punctuation)
 			heardword = copytext(heardword, 1, length(heardword))
-		heard = "<span class = 'game_say'>...You hear something about...[heardword]</span>"
+		heard = "<span class = 'game_say'>...Вы слышите некоторые обрывки фраз...[heardword]</span>"
 
 	else
-		heard = "<span class = 'game_say'>...<i>You almost hear someone talking</i>...</span>"
+		heard = "<span class = 'game_say'>...<i>Вы слышите чью-то речь</i>...</span>"
 
 	to_chat(src, heard)

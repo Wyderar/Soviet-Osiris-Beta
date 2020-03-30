@@ -9,10 +9,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	var/obj/item/I = get_active_hand()
 	if(!I)
-		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
+//		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
 		return
-	if(!equip_to_appropriate_slot(I))
-		to_chat(src, SPAN_WARNING("You are unable to equip that."))
+	equip_to_appropriate_slot(I)
+//		to_chat(src, SPAN_WARNING("You are unable to equip that."))
 
 //Puts the item into our active hand if possible. returns 1 on success.
 /mob/living/carbon/human/put_in_active_hand(var/obj/item/W)
