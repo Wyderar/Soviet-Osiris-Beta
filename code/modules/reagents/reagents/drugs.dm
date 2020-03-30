@@ -178,14 +178,16 @@
 // Reagents for another cigarettes:
 /datum/reagent/drug/nicotine/menthol
 	id = "menthol_nicotine"
-	taste_description = "smooth nicotine"
+	taste_description = "menthol"
+	nerve_system_accumulations = 7
 
 // In the name if Great Inspector Alex
 /datum/reagent/drug/nicotine/defective_alex
 	id = "defective_nicotine"
 	taste_description = "very strong nicotine"
-	overdose = REAGENTS_OVERDOSE / 3
-
+	addiction_chance = 2
+	overdose = REAGENTS_OVERDOSE/3
+	nerve_system_accumulations = 14
 
 /datum/reagent/drug/hyperzine
 	name = "Hyperzine"
