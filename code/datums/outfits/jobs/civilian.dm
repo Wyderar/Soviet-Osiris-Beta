@@ -47,3 +47,7 @@
 /decl/hierarchy/outfit/job/service/actor/clown/post_equip(var/mob/living/carbon/human/H)
 	..()
 	H.mutations.Add(CLUMSY)
+
+/decl/hierarchy/outfit/job/service/janitor
+	name = OUTFIT_JOB_NAME("Janitor")
+	uniform = /obj/item/clothing/under/rank/janitor
