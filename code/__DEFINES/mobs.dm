@@ -185,12 +185,12 @@
 //Health
 #define HEALTH_THRESHOLD_SOFTCRIT 25
 #define HEALTH_THRESHOLD_CRIT 0
-#define HEALTH_THRESHOLD_DEAD -50
+#define HEALTH_THRESHOLD_DEAD -100
 
 #define ORGAN_HEALTH_MULTIPLIER 1
-#define ORGAN_REGENERATION_MULTIPLIER 0.05
-#define WOUND_BLEED_MULTIPLIER 0.04 //Bleeding wounds drip damage*this units of blood per process tick
-#define OPEN_ORGAN_BLEED_AMOUNT 2 //Wounds with open, unclamped incisions bleed this many units of blood per process tick
+#define ORGAN_REGENERATION_MULTIPLIER 0.1
+#define WOUND_BLEED_MULTIPLIER 0.02 //Bleeding wounds drip damage*this units of blood per process tick
+#define OPEN_ORGAN_BLEED_AMOUNT 1 //Wounds with open, unclamped incisions bleed this many units of blood per process tick
 
 #define HEAT_MOBIGNITE_THRESHOLD 530 //minimum amount of heat an object needs to ignite a mob when it hits the mob
 
