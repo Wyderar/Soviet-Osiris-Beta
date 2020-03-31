@@ -1544,8 +1544,8 @@ var/list/rank_prefix = list(\
 		mind.prefs.bank_balance = 0
 		mind.prefs.reset_character()
 
-	if(stat == 1)
-		mind.prefs.bank_balance = 0
+//	if(stat == 1)
+//		mind.prefs.bank_balance = 0
 
 	if(stat == 0)
 		if(!check_no_wage_positions(job))
@@ -1555,15 +1555,8 @@ var/list/rank_prefix = list(\
 			mind.prefs.med_record = CR.get_medRecord()
 			mind.prefs.sec_record = CR.get_secRecord()
 			mind.prefs.gen_record = CR.get_emplRecord()
-		mind.prefs.stat_mec = stats.getStat(STAT_MEC)
-		mind.prefs.stat_cog = stats.getStat(STAT_COG)
-		mind.prefs.stat_bio = stats.getStat(STAT_BIO)
-		mind.prefs.stat_rob = stats.getStat(STAT_ROB)
-		mind.prefs.stat_tgh = stats.getStat(STAT_TGH)
-		mind.prefs.stat_vig = stats.getStat(STAT_VIG)
 		mind.prefs.nutrition = nutrition
 		mind.prefs.thirst = thirst
-		mind.prefs.sanity_level = sanity.level
 		mind.prefs.char_exists = 1
 
 	mind.prefs.s_tone = s_tone
