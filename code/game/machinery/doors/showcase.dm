@@ -10,6 +10,9 @@
 	var/have_glass = TRUE
 	hitsound = 'sound/effects/Glasshit.ogg'
 
+/obj/machinery/door/blast/shutters/glass/AltClick(mob/living/user)
+	return
+
 /obj/machinery/door/blast/shutters/glass/is_block_dir(target_dir, border_only, atom/target)
 	if((stat&BROKEN) || !have_glass)
 		return FALSE

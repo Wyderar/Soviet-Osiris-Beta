@@ -380,14 +380,12 @@
 	new_character.sync_organ_dna()
 
 	new_character.character_id = client.prefs.character_id
-	if(!client.prefs.nutrition || !client.prefs.thirst || !client.prefs.sanity_level)
+	if(!client.prefs.nutrition || !client.prefs.thirst)
 		new_character.nutrition = 400
 		new_character.thirst = 400
-		new_character.sanity.level = 100
 	else
 		new_character.nutrition = client.prefs.nutrition
 		new_character.thirst = client.prefs.thirst
-		new_character.sanity.level = client.prefs.sanity_level
 
 	if(client.prefs.disabilities)
 		// Set defer to 1 if you add more crap here so it only recalculates struc_enzymes once. - N3X

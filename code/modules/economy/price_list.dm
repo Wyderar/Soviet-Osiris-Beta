@@ -948,9 +948,6 @@
 /obj/item/weapon/storage/fancy/cigarettes/jerichos
 	price_tag = 220
 
-/obj/item/weapon/storage/fancy/cigarettes/menthols
-	price_tag = 180
-
 /obj/item/weapon/storage/fancy/cigar
 	price_tag = 270
 

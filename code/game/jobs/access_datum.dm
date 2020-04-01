@@ -163,7 +163,7 @@
 /var/const/access_janitor = 26
 /datum/access/janitor
 	id = access_janitor
-	desc = "Custodial Closet"
+	desc = "Janitorial Closet"
 	region = ACCESS_REGION_GENERAL
 
 /var/const/access_crematorium = 27
@@ -410,12 +410,6 @@
 /datum/access/nt_acolyte
 	id = access_nt_acolyte
 	desc = "NeoTheology Acolyte"
-	region = ACCESS_REGION_CHURCH
-
-/var/const/access_nt_custodian = 72
-/datum/access/nt_custodian
-	id = access_nt_custodian
-	desc = "NeoTheology Custodian"
 	region = ACCESS_REGION_CHURCH
 
 /var/const/access_nt_agrolyte = 73

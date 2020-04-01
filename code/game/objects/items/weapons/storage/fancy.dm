@@ -202,6 +202,29 @@
 	. = ..()
 	fill_cigarre_package(src, list("fuel" = 15))
 
+/obj/item/weapon/storage/fancy/cigarettes/menthols
+	name = "\improper Menthol SchiZCo packet"
+	desc = "A packet of six SchiZCo cigarettes, most popular cigarettes in all universe. Low price for poor quality. Looks like these are with menthol. A label on the packaging reads, \"Mother-hospital awaits!\""
+	icon_state = "ment_packet"
+	item_state = "ment_packet"
+
+/obj/item/weapon/storage/fancy/cigarettes/menthols/populate_contents()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/clothing/mask/smokable/cigarette/menthol(src)
+	create_reagents(15 * storage_slots)
+
+/obj/item/weapon/storage/fancy/cigarettes/alex_one_shot
+	name = "\improper Alex \"One Shot\" packet"
+	desc = "A blue packet of six Alex \"One Shot\" cigarettes. With love, from First Expedition Fleet hydroponics."
+	icon_state = "alex_packet"
+	item_state = "alex_packet"
+
+/obj/item/weapon/storage/fancy/cigarettes/alex_one_shot/populate_contents()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/clothing/mask/smokable/cigarette/alex_one_bullet(src)
+	create_reagents(15 * storage_slots)
+
+
 /obj/item/weapon/storage/fancy/cigar
 	name = "cigar case"
 	desc = "A case for holding your cigars when you are not smoking them."

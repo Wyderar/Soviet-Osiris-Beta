@@ -24,7 +24,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/list/bgstate_options = list("steel", "dark_steel", "white_tiles", "black_tiles", "wood", "carpet", "white", "black")
 
 	var/nutrition
-	var/sanity_level
 	var/thirst
 
 /datum/category_item/player_setup_item/physical/body
@@ -48,7 +47,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	from_file(S["facial_color"], pref.facial_color)
 	from_file(S["nutrition"], pref.nutrition)
 	from_file(S["thirst"], pref.thirst)
-	from_file(S["sanity_level"], pref.sanity_level)
 
 
 /datum/category_item/player_setup_item/physical/body/save_character(var/savefile/S)
@@ -66,11 +64,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	to_file(S["facial_color"], pref.facial_color)
 	to_file(S["nutrition"], pref.nutrition)
 	to_file(S["thirst"], pref.thirst)
-	to_file(S["sanity_level"], pref.sanity_level)
 
 /datum/category_item/player_setup_item/physical/body/reset_character(var/savefile/S)
 	pref.nutrition = null
-	pref.sanity_level = null
 	pref.thirst = null
 
 /datum/category_item/player_setup_item/physical/body/sanitize_character(var/savefile/S)
