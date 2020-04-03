@@ -76,7 +76,7 @@ Your second loyalty is to your command officers. The heads of each faction. List
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "капитаном"
+	supervisors = "Капитаном"
 	selection_color = "#ddddff"
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
@@ -140,9 +140,8 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "Капитаном"
 	selection_color = "#ddddff"
-	req_admin_notify = 1
 	wage = WAGE_COMMAND
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 20)
 	ideal_character_age = 40
