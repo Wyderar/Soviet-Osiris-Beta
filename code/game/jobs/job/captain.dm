@@ -162,7 +162,9 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 	outfit_type = /decl/hierarchy/outfit/job/commissioner
 
 	access = list(
-		access_co, access_heads
+		access_co, access_heads, access_security, access_moebius, access_medspec, access_engine,
+		access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels,
+		access_external_airlocks, access_mailsorting
 	)
 
 
