@@ -1,8 +1,8 @@
 ![](https://i.imgur.com/flRQCK2.png)
-# Osiris SS13 Hi-RP: CEV-Eris
+# Osiris SS13: CEV-Eris
 [![discord](https://discordapp.com/api/guilds/682614234122813455/widget.png)](https://discord.gg/PuraXWG)
 
-**Добро пожаловать на репозиторий проекта Osiris SS13 Hi-RP!**
+**Добро пожаловать на репозиторий проекта Osiris SS13!**
 
 *Мы используем сборку CEV Eris как основу для своих дальнейших наработок.*
 
