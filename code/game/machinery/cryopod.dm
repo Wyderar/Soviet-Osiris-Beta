@@ -335,9 +335,10 @@
 				to_chat(O.owner.current, "<span class='warning'>You get the feeling your target is no longer within your reach...</span>")
 			qdel(O)
 
-	for(var/c in GLOB.all_antag_contracts)
-		var/datum/antag_contract/contract = c
+	//Same for contract-based objectives.
+	for(var/datum/antag_contract/contract in GLOB.all_antag_contracts)
 		contract.on_mob_despawned(occupant.mind)
+
 
 	//Handle job slot/tater cleanup.
 	var/job = occupant.mind.assigned_role
