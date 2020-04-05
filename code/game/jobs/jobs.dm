@@ -85,14 +85,8 @@ var/list/nonhuman_positions = list(JOBS_NONHUMAN)
 var/list/no_wage_positions = list(JOBS_NO_WAGE)
 
 
-var/list/third_level_positions = list(JOBS_THIRD)
+var/list/second_level_positions = list(JOBS_SECOND)
 
-
-var/list/second_level_positions = list(JOBS_COMMAND, JOBS_ENGINEERING, JOBS_MEDICAL, JOBS_SCIENCE, JOBS_CARGO, JOBS_CHURCH, JOBS_CIVILIAN, JOBS_SECURITY)
-
-
-/proc/third_level_jobbans(var/job)
-	return ((job in third_level_positions) || (job in nonhuman_positions))
 
 /proc/second_level_jobbans(var/job)
 	return (job in second_level_positions)

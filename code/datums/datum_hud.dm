@@ -91,8 +91,8 @@
 	//Others for slot_orient_objs
 	MinStyleFlag = TRUE
 	StorageData = list(
-		"Xspace" = 4.5*32, //in pixels
-		"Yspace" = 1.5*32, //in pixels
+		"Xspace" = 3.5*32, //in pixels
+		"Yspace" = 2*32, //in pixels
 		"ColCount" = 7,
 	)
 

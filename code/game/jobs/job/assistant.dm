@@ -7,7 +7,7 @@
 	faction = "CEV Eris"
 	total_positions = -1
 	spawn_positions = -1
-	supervisors = "anyone who pays you"
+	supervisors = "любым, кто вам платит"
 	selection_color = "#dddddd"
 	initial_balance	= 800
 	wage = WAGE_NONE //Get a job ya lazy bum

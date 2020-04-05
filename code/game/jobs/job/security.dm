@@ -8,7 +8,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Captain"
+	supervisors = "Капитаном"
 	selection_color = "#97b0be"
 	req_admin_notify = 1
 	wage = WAGE_NONE
@@ -67,7 +67,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Ironhammer Commander"
+	supervisors = "Командором"
 	selection_color = "#a7bbc6"
 	department_account_access = FALSE
 	wage = WAGE_LABOUR_HAZARD
@@ -119,7 +119,7 @@
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Ironhammer Commander"
+	supervisors = "Командором"
 	selection_color = "#a7bbc6"
 	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 50, LANGUAGE_SERBIAN = 50)
@@ -174,7 +174,7 @@
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Ironhammer Commander"
+	supervisors = "Командором"
 	selection_color = "#a7bbc6"
 	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
@@ -225,7 +225,7 @@
 	faction = "CEV Eris"
 	total_positions = 6
 	spawn_positions = 6
-	supervisors = "the Ironhammer Commander"
+	supervisors = "Командором"
 	//alt_titles = list("Ironhammer Junior Operative")
 	selection_color = "#a7bbc6"
 	wage = WAGE_LABOUR_HAZARD

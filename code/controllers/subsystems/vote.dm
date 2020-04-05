@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(vote)
 //	for(var/client/C in voters)
 //		C << browse(interface(C),"window=vote")
 
-	var/text = "Новое голосование: \"[poll.name]\". Инициировано: [poll.initiator]."
+	var/text = "Новое голосование: \"[poll.name]\".<br>Инициировано: [poll.initiator]."
 	log_vote(text)
 	to_chat(world, {"<font color='purple'><b>[text]</b>\nНажмите <a href='?src=\ref[src]'>здесь</a> чтобы принять участие. <br>До окончания голосования осталось [poll.time] секунд.</font>"})
 	sound_to(world, sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = GLOB.vote_sound_channel))

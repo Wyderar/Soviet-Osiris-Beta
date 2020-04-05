@@ -9,7 +9,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "your greed"
+	supervisors = "собственной жадностью"
 	selection_color = "#b3a68c"
 	wage = WAGE_NONE	//Guild merchant draws a salary from the guild account
 	also_known_languages = list(LANGUAGE_CYRILLIC = 80, LANGUAGE_SERBIAN = 100, LANGUAGE_JIVE = 80)
@@ -72,7 +72,7 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Guild Merchant"
+	supervisors = "Торговцем"
 	selection_color = "#c3b9a6"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
 	wage = WAGE_LABOUR_DUMB
@@ -124,7 +124,7 @@ Your main duties are to keep the local guild branch operational and profitable. 
 	faction = "CEV Eris"
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "the Guild Merchant"
+	supervisors = "Торговцем"
 	selection_color = "#c3b9a6"
 	wage = WAGE_LABOUR_HAZARD //The miners union is stubborn
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)

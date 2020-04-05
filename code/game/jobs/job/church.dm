@@ -8,7 +8,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the NeoTheology Church"
+	supervisors = "церковью НеоТеологии"
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 
@@ -76,7 +76,7 @@
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the NeoTheology Preacher"
+	supervisors = "Проповедником"
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels, access_hydroponics)
@@ -120,7 +120,7 @@
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the NeoTheology Preacher"
+	supervisors = "Проповедником"
 	selection_color = "#ecd37d"
 	//alt_titles = list("Hydroponicist")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
