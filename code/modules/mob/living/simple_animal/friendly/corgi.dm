@@ -16,17 +16,63 @@
 	response_harm   = "kicks"
 	see_in_dark = 5
 	mob_size = MOB_SMALL
+	gender = MALE
 	max_nutrition = 250//Dogs are insatiable eating monsters. This scales with their mob size too
 	stomach_size_mult = 30
 	seek_speed = 6
 	possession_candidate = 1
 	holder_type = /obj/item/weapon/holder/corgi
+	var/puppies = 0
 	var/obj/item/inventory_head
 	var/obj/item/inventory_back
 
 /mob/living/simple_animal/corgi/New()
 	..()
+	if(real_name == "corgi")
+		gender = pick(MALE, FEMALE)
+		if(gender == MALE)
+			desc = "It's a male corgi."
+		else
+			desc = "It's a female corgi."
 	nutrition = max_nutrition * 0.3//Ian doesn't start with a full belly so will be hungry at roundstart
+
+/mob/living/simple_animal/corgi/Life()
+	..()
+	if(gender == FEMALE)
+		if(!stat && !resting && !buckled)
+			turns_since_scan++
+			if(turns_since_scan > 15)
+				turns_since_scan = 0
+				var/alone = 1
+				var/corgi = 0
+				for(var/mob/M in oviewers(7, src))
+					if(istype(M, /mob/living/simple_animal/corgi))
+						var/mob/living/simple_animal/corgi/C = M
+						if(C.gender == MALE)
+							if(C.client)
+								alone = 0
+								break
+							else
+								corgi = M
+						else
+							alone = 0
+							break
+					else
+						alone = 0
+						break
+				if(alone && corgi && puppies < 4)
+					if(near_camera(src) || near_camera(corgi))
+						return
+					new /mob/living/simple_animal/corgi/puppy(loc)
+
+
+			if(prob(1))
+				var/msg3 = (pick("dances around","chases her tail"))
+				src.visible_message("<span class='name'>[src]</span> [msg3].")
+				spawn(0)
+					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
+						set_dir(i)
+						sleep(1)
 
 //IAN! SQUEEEEEEEEE~
 /mob/living/simple_animal/corgi/Ian
@@ -120,7 +166,6 @@
 	response_help  = "pets"
 	response_disarm = "bops"
 	response_harm   = "kicks"
-	var/puppies = 0
 
 //Lisa already has a cute bow!
 /mob/living/simple_animal/corgi/Lisa/Topic(href, href_list)
@@ -129,35 +174,13 @@
 		return
 	..()
 
-/mob/living/simple_animal/corgi/Lisa/Life()
-	..()
-
-	if(!stat && !resting && !buckled)
-		turns_since_scan++
-		if(turns_since_scan > 15)
-			turns_since_scan = 0
-			var/alone = 1
-			var/ian = 0
-			for(var/mob/M in oviewers(7, src))
-				if(istype(M, /mob/living/simple_animal/corgi/Ian))
-					if(M.client)
-						alone = 0
-						break
-					else
-						ian = M
-				else
-					alone = 0
-					break
-			if(alone && ian && puppies < 4)
-				if(near_camera(src) || near_camera(ian))
-					return
-				new /mob/living/simple_animal/corgi/puppy(loc)
-
-
-		if(prob(1))
-			var/msg3 = (pick("dances around","chases her tail"))
-			src.visible_message("<span class='name'>[src]</span> [msg3].")
-			spawn(0)
-				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
-					set_dir(i)
-					sleep(1)
+/mob/living/simple_animal/corgi/sec
+	name = "Jonny"
+	real_name = "Jonny"	//Intended to hold the name without altering it.
+	gender = MALE
+	desc = "It's a ironhammer corgi."
+	icon_state = "corgi_security"
+	item_state = "corgi_security"
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
