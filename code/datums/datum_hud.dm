@@ -103,7 +103,6 @@
 		"shock_noise" = list("type" = /obj/screen/shock_noise,        "loc" = "WEST,SOUTH to EAST,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
 		"drugeffect" = list("type" = /obj/screen/drugoverlay,         "loc" = "WEST,SOUTH to EAST,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
 
-		"visioncone"     = list("type" = /obj/screen/visioncone,      "loc" = "1,1", "icon" =  'icons/mob/hide.dmi'),
 		"damageoverlay"  = list("type" = /obj/screen/damageoverlay,   "loc" = "1,1:-32", "icon" =  'icons/mob/screen1_full.dmi'),
 		"glassesoverlay" = list("type" = /obj/screen/glasses_overlay, "loc" = "1,1:-32", "icon_state" = "blank"),
 	)

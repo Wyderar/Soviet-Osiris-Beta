@@ -445,17 +445,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if (WEST)
 				usr.client.pixel_x = -viewoffset
 				usr.client.pixel_y = 0
-		
-		if(istype(usr, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = usr
-			H.set_dir(H.dir)
-			H.facing_dir = H.dir
-			H.inzoom = 1
-			if(H.HUDtech.Find("visioncone"))
-				var/obj/screen/visioncone/I = H.HUDtech["visioncone"]
-				I.last_state = I.icon_state
-				I.icon_state = "helmet"
-				I.update_icon()
 
 		usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
 
@@ -467,15 +456,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		usr.client.pixel_x = 0
 		usr.client.pixel_y = 0
-
-		if(istype(usr, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = usr
-			H.facing_dir = null
-			H.inzoom = 0
-			if(H.HUDtech.Find("visioncone"))
-				var/obj/screen/visioncone/I = H.HUDtech["visioncone"]
-				I.icon_state = I.last_state
-				I.update_icon()
 
 		if(!cannotzoom)
 			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [name]" : "[usr] lowers the [name]"].")
@@ -537,7 +517,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return TRUE
 
 /obj/item/show_radial(mob/living/user)
-	if(!user || anchored || is_equipped()) 
+	if(!user || anchored || is_equipped())
 		return
 	var/list/layer_list = list(
 			"Pull" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pull"),

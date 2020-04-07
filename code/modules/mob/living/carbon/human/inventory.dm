@@ -104,15 +104,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 				update_hair(0)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
-			if(I.body_parts_covered & FACE)
-				head_covered = 0
-				if(HUDtech.Find("visioncone"))
-					var/obj/screen/visioncone/B = HUDtech["visioncone"]
-					if(!inzoom)
-						B.icon_state = "combat"
-						B.update_icon()
-					else
-						B.last_state = "combat"
 		update_inv_head()
 	else if (W == l_ear)
 		l_ear = null
@@ -277,15 +268,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
-			if(head.body_parts_covered & FACE)
-				head_covered = 1
-				if(HUDtech.Find("visioncone"))
-					var/obj/screen/visioncone/I = HUDtech["visioncone"]
-					if(!inzoom)
-						I.icon_state = "helmet"
-						I.update_icon()
-					else
-						I.last_state = "helmet"
 		if(slot_shoes)
 			src.shoes = W
 		if(slot_wear_suit)

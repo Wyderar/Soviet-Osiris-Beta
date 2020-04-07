@@ -749,7 +749,6 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		regenerate_icons()
 	else if( lying != lying_prev )
 		update_icons()
-	update_vision_cone()
 
 /mob/proc/reset_layer()
 	if(lying)
@@ -1070,11 +1069,6 @@ mob/proc/yank_out_object()
 
 
 /mob/proc/face_direction()
-	if(istype(usr, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = usr
-		if(!H.inzoom)
-			set_face_dir()
-		return
 	set_face_dir()
 
 //	if(!facing_dir)

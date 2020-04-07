@@ -559,12 +559,6 @@ default behaviour is:
 		for(var/mob/living/carbon/slime/M in view(1,src))
 			M.UpdateFeed(src)
 
-	for(var/mob/M in oview(src))
-		M.update_vision_cone()
-
-	update_vision_cone()
-
-
 /mob/living/verb/lay_down()
 	set name = "Rest"
 	set category = "IC"
@@ -826,23 +820,6 @@ default behaviour is:
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/proc/drip_blood(var/amt as num)
 	blood_splatter(src,src)
-
-/mob/living/set_dir()
-	..()
-	update_vision_cone()
-
-/mob/living/Move(NewLoc, direct)
-	for(var/client/C in in_vision_cones)
-		if(src in C.hidden_mobs)
-			var/turf/T = get_turf(src)
-			var/image/I = image('icons/effects/footstepsound.dmi', loc = T, icon_state = "default", layer = 18)
-			C.images += I
-			spawn(4)
-				if(C)
-					C.images -= I
-		else
-			in_vision_cones.Remove(C)
-	. = ..()
 
 /mob/living/RightClick(mob/living/giver)
 	if(!giver || giver.incapacitated() || client == null)

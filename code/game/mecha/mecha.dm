@@ -1276,8 +1276,6 @@ assassination method if you time it right*/
 		src.log_append_to_last("[H] moved in as pilot.")
 		src.update_icon()
 		set_dir(dir_in)
-		H.usefov = 0
-		H.update_vision_cone()
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 		if(!hasInternalDamage())
 			src.occupant << sound('sound/mecha/nominal.ogg',volume=50)
@@ -1337,10 +1335,7 @@ assassination method if you time it right*/
 	if(!src.occupant) return
 	var/atom/movable/mob_container
 	if(ishuman(occupant) || isAI(occupant))
-		var/mob/living/carbon/human/H = occupant
-		mob_container = H
-		H.usefov = 1
-		H.update_vision_cone()
+		mob_container = src.occupant
 	else if(isbrain(occupant))
 		var/mob/living/carbon/brain/brain = occupant
 		mob_container = brain.container
