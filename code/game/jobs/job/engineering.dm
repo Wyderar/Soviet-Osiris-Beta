@@ -8,7 +8,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Captain"
+	supervisors = "Капитаном"
 	selection_color = "#c7b97b"
 	req_admin_notify = 1
 	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 25)
@@ -66,7 +66,7 @@ Your second loyalty is to your clan. Ensure they are paid, fed and safe. Don't r
 	faction = "CEV Eris"
 	total_positions = 5
 	spawn_positions = 5
-	supervisors = "the Technomancer Exultant"
+	supervisors = "Экзультантом"
 	selection_color = "#d5c88f"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 5)
 	wage = WAGE_PROFESSIONAL

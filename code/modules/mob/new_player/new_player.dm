@@ -67,7 +67,7 @@
 
 	output += "</div>"
 
-	panel = new(src, "Osiris SS13 Hi-RP","Osiris SS13 Hi-RP", 210, 280, src)
+	panel = new(src, "Osiris SS13","Osiris SS13", 210, 280, src)
 	panel.set_window_options("can_close=0;can_resize=0;window=welcome")
 	panel.set_content(output)
 	panel.open()
@@ -380,14 +380,12 @@
 	new_character.sync_organ_dna()
 
 	new_character.character_id = client.prefs.character_id
-	if(!client.prefs.nutrition || !client.prefs.thirst || !client.prefs.sanity_level)
+	if(!client.prefs.nutrition || !client.prefs.thirst)
 		new_character.nutrition = 400
 		new_character.thirst = 400
-		new_character.sanity.level = 100
 	else
 		new_character.nutrition = client.prefs.nutrition
 		new_character.thirst = client.prefs.thirst
-		new_character.sanity.level = client.prefs.sanity_level
 
 	if(client.prefs.disabilities)
 		// Set defer to 1 if you add more crap here so it only recalculates struc_enzymes once. - N3X

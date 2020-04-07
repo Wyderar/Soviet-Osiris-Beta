@@ -279,8 +279,15 @@
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
 /obj/machinery/cryopod/proc/despawn_occupant()
+	var/mob/living/carbon/human/H = occupant
+	var/list/occupant_organs = H.organs | H.internal_organs
+
 	//Drop all items into the pod.
 	for(var/obj/item/W in occupant)
+		// Don't delete the organs!
+		if(W in occupant_organs)
+			continue
+
 		occupant.drop_from_inventory(W)
 		W.forceMove(src)
 
@@ -327,6 +334,11 @@
 			if(O.owner && O.owner.current)
 				to_chat(O.owner.current, "<span class='warning'>You get the feeling your target is no longer within your reach...</span>")
 			qdel(O)
+
+	//Same for contract-based objectives.
+	for(var/datum/antag_contract/contract in GLOB.all_antag_contracts)
+		contract.on_mob_despawned(occupant.mind)
+
 
 	//Handle job slot/tater cleanup.
 	var/job = occupant.mind.assigned_role
@@ -401,7 +413,7 @@
 	return TRUE
 
 /obj/machinery/cryopod/MouseDrop_T(var/mob/living/L, mob/living/user)
-	if(istype(L) && istype(user) && L != user)
+	if(istype(L) && istype(user))
 		try_put_inside(L, user)
 
 /obj/machinery/cryopod/proc/try_put_inside(var/mob/living/affecting, var/mob/living/user)
@@ -468,18 +480,14 @@
 	if(!user) 
 		return
 	var/list/layer_list = list()
-	if(!occupant)
-		layer_list += list("Enter" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_enter"))
-	else if(occupant == user)
+	if(occupant == user)
 		layer_list += list("Ghost" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_ghost"))
-	else
+	if(occupant)
 		layer_list += list("Eject" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_eject"))
 	var/layer_result = show_radial_menu(user, src, layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE)
 	if(!check_menu(user))
 		return
 	switch(layer_result)
-		if("Enter")
-			move_inside()
 		if("Eject")
 			eject()
 		if("Ghost")

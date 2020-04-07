@@ -76,7 +76,7 @@ Your second loyalty is to your command officers. The heads of each faction. List
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "капитаном"
+	supervisors = "Капитаном"
 	selection_color = "#ddddff"
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
@@ -140,9 +140,8 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "Капитаном"
 	selection_color = "#ddddff"
-	req_admin_notify = 1
 	wage = WAGE_COMMAND
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 20)
 	ideal_character_age = 40
@@ -162,7 +161,9 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 	outfit_type = /decl/hierarchy/outfit/job/commissioner
 
 	access = list(
-		access_co, access_heads
+		access_co, access_heads, access_security, access_moebius, access_medspec, access_engine,
+		access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels,
+		access_external_airlocks, access_mailsorting
 	)
 
 

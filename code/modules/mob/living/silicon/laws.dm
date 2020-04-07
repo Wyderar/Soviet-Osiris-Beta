@@ -66,9 +66,9 @@
 			prefix = "[get_language_prefix()]b"
 		else
 			if((lawchannel in additional_law_channels))
-				prefix = ":" + additional_law_channels[lawchannel]
+				prefix = additional_law_channels[lawchannel]
 			else
-				prefix = ":" + get_radio_key_from_channel(lawchannel)
+				prefix = get_radio_key_from_channel(lawchannel)
 
 	dostatelaws(lawchannel, prefix, laws)
 
