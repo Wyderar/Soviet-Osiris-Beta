@@ -278,7 +278,7 @@
 	Энергоэффективность: [RM.power_efficiency*100]%\n\
 	Скорость передвижения: [RM.speed_factor*100]%",
 	"[modtype] module", "Да", "Нет"))
-		if("No")
+		if("Нет")
 			//They changed their mind, abort, abort!
 			if(module)
 				return
@@ -287,7 +287,7 @@
 			spawn()
 				pick_module() //Bring up the pick menu again
 			return //And abort out of this
-		if ("Yes")
+		if ("Да")
 			//This time spawn the real module
 			if(module)
 				return
