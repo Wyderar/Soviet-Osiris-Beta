@@ -20,7 +20,7 @@
 	if(istype(I,/obj/item/weapon/virusdish))
 		var/mob/living/carbon/c = user
 		if (dish)
-			to_chat(user, "\The [src] is already loaded.")
+			to_chat(user, "\The [src] уже загружен.")
 			return
 
 		dish = I
@@ -28,7 +28,7 @@
 		I.loc = src
 
 	if(istype(I,/obj/item/weapon/diseasedisk))
-		to_chat(user, "You upload the contents of the disk onto the buffer.")
+		to_chat(user, "Вы загружаете содержимое диска в буфер.")
 		memorybank = I:effect
 		species_buffer = I:species
 		analysed = I:analysed
@@ -48,16 +48,16 @@
 	data["affected_species"] = null
 
 	if (memorybank)
-		data["buffer"] = list("name" = (analysed ? memorybank.effect.name : "Unknown Symptom"), "stage" = memorybank.effect.stage)
+		data["buffer"] = list("name" = (analysed ? memorybank.effect.name : "Неизвестный симптом"), "stage" = memorybank.effect.stage)
 	if (species_buffer)
-		data["species_buffer"] = analysed ? jointext(species_buffer, ", ") : "Unknown Species"
+		data["species_buffer"] = analysed ? jointext(species_buffer, ", ") : "Неизвестный вид"
 
 	if (splicing)
-		data["busy"] = "Splicing..."
+		data["busy"] = "Сращивание..."
 	else if (scanning)
-		data["busy"] = "Scanning..."
+		data["busy"] = "Сканирование..."
 	else if (burning)
-		data["busy"] = "Copying data to disk..."
+		data["busy"] = "Загрузка копии данных на диск..."
 	else if (dish)
 		data["growth"] = min(dish.growth, 100)
 
@@ -68,14 +68,14 @@
 			if (dish.growth >= 50)
 				var/list/effects[0]
 				for (var/datum/disease2/effectholder/e in dish.virus2.effects)
-					effects.Add(list(list("name" = (dish.analysed ? e.effect.name : "Unknown"), "stage" = (e.stage), "reference" = "\ref[e]")))
+					effects.Add(list(list("name" = (dish.analysed ? e.effect.name : "Неизвестно"), "stage" = (e.stage), "reference" = "\ref[e]")))
 				data["effects"] = effects
 			else
-				data["info"] = "Insufficient cell growth for gene splicing."
+				data["info"] = "Недостаточный рост клеток для сращивания генов."
 		else
-			data["info"] = "No virus detected."
+			data["info"] = "Вирус не обнаружен."
 	else
-		data["info"] = "No dish loaded."
+		data["info"] = "Чаша не загружена."
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -90,12 +90,12 @@
 	if(scanning)
 		scanning -= 1
 		if(!scanning)
-			ping("\The [src] pings, \"Analysis complete.\"")
+			ping("\The [src] pings, \"Анализ завершен.\"")
 			SSnano.update_uis(src)
 	if(splicing)
 		splicing -= 1
 		if(!splicing)
-			ping("\The [src] pings, \"Splicing operation complete.\"")
+			ping("\The [src] pings, \"Операция сращивания завершена.\"")
 			SSnano.update_uis(src)
 	if(burning)
 		burning -= 1
@@ -104,20 +104,20 @@
 			d.analysed = analysed
 			if(analysed)
 				if (memorybank)
-					d.name = "[memorybank.effect.name] GNA disk (Stage: [memorybank.effect.stage])"
+					d.name = "[memorybank.effect.name] GNA disk (Стадия: [memorybank.effect.stage])"
 					d.effect = memorybank
 				else if (species_buffer)
 					d.name = "[jointext(species_buffer, ", ")] GNA disk"
 					d.species = species_buffer
 			else
 				if (memorybank)
-					d.name = "Unknown GNA disk (Stage: [memorybank.effect.stage])"
+					d.name = "Unknown GNA disk (Стадия: [memorybank.effect.stage])"
 					d.effect = memorybank
 				else if (species_buffer)
 					d.name = "Unknown Species GNA disk"
 					d.species = species_buffer
 
-			ping("\The [src] pings, \"Backup disk saved.\"")
+			ping("\The [src] pings, \"Резервный диск сохранен.\"")
 			SSnano.update_uis(src)
 
 /obj/machinery/computer/diseasesplicer/Topic(href, href_list)

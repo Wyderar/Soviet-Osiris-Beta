@@ -1,5 +1,5 @@
 <div class='item'>
-  <h2>Menu</h2>
+  <h2>Меню</h2>
 </div>
 <div class="item">
   {{if !data.isolating}}
@@ -8,50 +8,50 @@
     {{:helper.link('Pathogen', 'folder-open', {'entry' : 1}, data.state == 'entry' ? 'disabled' : null, 'fixedLeft')}}
   {{/if}}
   <br>
-  {{:helper.link('Close', 'gear', {'close' : 1}, null, 'fixedLeft')}}
-  {{:helper.link('Print', 'print', { 'print' : 1 }, data.can_print ? null : 'disabled', 'fixedLeft')}}
+  {{:helper.link('Закрыть', 'gear', {'close' : 1}, null, 'fixedLeft')}}
+  {{:helper.link('Печать', 'print', { 'print' : 1 }, data.can_print ? null : 'disabled', 'fixedLeft')}}
 </div>
 
 {{if data.isolating}}
-  <h5 class='average'>The Isolator is currently busy.</h5>
+  <h5 class='average'>Изолятор в настоящее время занят.</h5>
   <div class='notice'>
-    <center><span class='bad'>Isolating pathogens...</span></center>
+    <center><span class='bad'>Изолирование патогенов...</span></center>
   </div>
   <p>
-    Thank you for your patience!
+    Спасибо за ваше терпение!
   </p>
 {{else}}
   {{if data.state =="home"}}
     <div class="item">
-      <h2>Blood Sample</h2>
+      <h2>Образец крови</h2>
     </div>
     <div class='item'>
-      {{:helper.link('Eject Syringe', 'eject', { 'eject' : 1 }, data.syringe_inserted ? null : 'disabled')}}
+      {{:helper.link('Извлечь шприц', 'eject', { 'eject' : 1 }, data.syringe_inserted ? null : 'disabled')}}
     </div>
 
     {{if data.syringe_inserted}}
       <div class='statusDisplay'>
-        <span class='good'><b>Pathogens:</b></span>
+        <span class='good'><b>Патогены:</b></span>
           {{if data.pathogen_pool}}
             {{for data.pathogen_pool}}
               <div class='item'>
-                <span class='highlight'><b><u>{{:index + 1}}. #{{:value.unique_id}}</u> {{:value.is_in_database ? "(Analysed)" : ""}}</b></span><br>
+                <span class='highlight'><b><u>{{:index + 1}}. #{{:value.unique_id}}</u> {{:value.is_in_database ? "(Анализ)" : ""}}</b></span><br>
                 <span class='average'>{{:value.name}}:</span> {{:value.dna}}
               </div>
             {{/for}}
           {{else}}
-            No pathogens detected.
+            Патогенов не обнаружено.
           {{/if}}
       </div>
     {{else}}
       <div class='item'>
-        <span class='average'>No syringe loaded.</span>
+        <span class='average'>Шприц не вставлен</span>
       </div>
     {{/if}}
     {{if data.pathogen_pool}}
       <div class='item'>
         <div class='itemLabelWide'>
-          Isolate Pathogens:
+          Изолированые патогены:
         </div>
         <div class='itemContent'>
           {{for data.pathogen_pool}}
@@ -61,7 +61,7 @@
       </div>
       <div class='item'>
         <div class='itemLabelWide'>
-          Database Lookup:
+          Поиск по Базе Данных:
         </div>
         <div class='itemContent'>
           {{for data.pathogen_pool}}
@@ -75,18 +75,18 @@
   {{else}}
     {{if data.state == "list"}}
       <div class='item'>
-        <h2>View Database</h2>
+        <h2>Просмотр Базы Данных</h2>
       </div>
       <div class='item'>
       {{if data.database}}
         {{for data.database}}
           <div class='itemContent'>
             <div class='highlight fixedLeft'>{{:value.name}}</div>
-            {{:helper.link('Details', 'circle-arrow-s', { 'entry' : 1, 'view' : value.record }, null, 'fixedLeft')}}
+            {{:helper.link('Детали', 'circle-arrow-s', { 'entry' : 1, 'view' : value.record }, null, 'fixedLeft')}}
           </div>
         {{/for}}
       {{else}}
-        <span class='average'>The viral database is empty.</span>
+        <span class='average'>Вирусная База Данных пуста.</span>
       {{/if}}
       </div>
     {{else}}
@@ -99,7 +99,7 @@
             {{:data.entry.description}}
           </div>
         {{else}}
-          <span class='average'>No virus selected.</span>
+          <span class='average'>Вирус не выбран.</span>
         {{/if}}
       {{/if}}
     {{/if}}
