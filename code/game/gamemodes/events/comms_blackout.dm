@@ -8,12 +8,12 @@
 
 /////////////////////////////////////////////////
 /datum/event/communications_blackout/announce()
-	var/alert = pick(	"Обнаружены ионосферные аномалии. Временный сбой связи неизбежен. Пожалуйста, свяжитесь с ва*%fj00)`5vc-BZZT", \
-						"Обнаружены ионосферные аномалии. Временный сбой свя*3mga;b4;'1v¬-BZZZT", \
-						"Обнаружены ионосферные аномалии. Временный сбо#MCi46:5.;@63-BZZZZT", \
-						"Обнаружены ионосферные ано'fZ\\kg5_0-BZZZZZT", \
-						"Обнару:%Ј MCayj^j<.3-BZZZZZZT", \
-						"#4nd%;f4y6,>Ј%-BZZZZZZZT")
+	var/alert = pick(	"РћР±РЅР°СЂСѓР¶РµРЅС‹ РёРѕРЅРѕСЃС„РµСЂРЅС‹Рµ Р°РЅРѕРјР°Р»РёРё. Р’СЂРµРјРµРЅРЅС‹Р№ СЃР±РѕР№ СЃРІСЏР·Рё РЅРµРёР·Р±РµР¶РµРЅ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, СЃРІСЏР¶РёС‚РµСЃСЊ СЃ РІР°*%fj00)`5vc-BZZT", \
+						"РћР±РЅР°СЂСѓР¶РµРЅС‹ РёРѕРЅРѕСЃС„РµСЂРЅС‹Рµ Р°РЅРѕРјР°Р»РёРё. Р’СЂРµРјРµРЅРЅС‹Р№ СЃР±РѕР№ СЃРІСЏ*3mga;b4;'1vВ¬-BZZZT", \
+						"РћР±РЅР°СЂСѓР¶РµРЅС‹ РёРѕРЅРѕСЃС„РµСЂРЅС‹Рµ Р°РЅРѕРјР°Р»РёРё. Р’СЂРµРјРµРЅРЅС‹Р№ СЃР±Рѕ#MCi46:5.;@63-BZZZZT", \
+						"РћР±РЅР°СЂСѓР¶РµРЅС‹ РёРѕРЅРѕСЃС„РµСЂРЅС‹Рµ Р°РЅРѕ'fZ\\kg5_0-BZZZZZT", \
+						"РћР±РЅР°СЂСѓ:%Р€ MCayj^j<.3-BZZZZZZT", \
+						"#4nd%;f4y6,>Р€%-BZZZZZZZT")
 
 	for(var/mob/living/silicon/ai/A in GLOB.player_list)	//AIs are always aware of communication blackouts.
 		to_chat(A, "<br>")
@@ -33,11 +33,11 @@
 /proc/communications_blackout(var/silent = 1)
 
 	if(!silent)
-		command_announcement.Announce("Обнаружены ионосферные аномалии. Временный сбой связи неизбежен. Пожалуйста, свяжитесь с ваш-БЗЗЗ", new_sound = 'sound/misc/interference.ogg')
+		command_announcement.Announce("РћР±РЅР°СЂСѓР¶РµРЅС‹ РёРѕРЅРѕСЃС„РµСЂРЅС‹Рµ Р°РЅРѕРјР°Р»РёРё. Р’СЂРµРјРµРЅРЅС‹Р№ СЃР±РѕР№ СЃРІСЏР·Рё РЅРµРёР·Р±РµР¶РµРЅ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, СЃРІСЏР¶РёС‚РµСЃСЊ СЃ РІР°С€-Р‘Р—Р—Р—", new_sound = 'sound/misc/interference.ogg')
 	else // AIs will always know if there's a comm blackout, rogue AIs could then lie about comm blackouts in the future while they shutdown comms
 		for(var/mob/living/silicon/ai/A in GLOB.player_list)
 			to_chat(A, "<br>")
-			to_chat(A, SPAN_WARNING("<b>Обнаружены ионосферные аномалии. Временный сбой связи неизбежен. Пожалуйста, свяжитесь с ваши-БЗЗЗ</b>"))
+			to_chat(A, SPAN_WARNING("<b>РћР±РЅР°СЂСѓР¶РµРЅС‹ РёРѕРЅРѕСЃС„РµСЂРЅС‹Рµ Р°РЅРѕРјР°Р»РёРё. Р’СЂРµРјРµРЅРЅС‹Р№ СЃР±РѕР№ СЃРІСЏР·Рё РЅРµРёР·Р±РµР¶РµРЅ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, СЃРІСЏР¶РёС‚РµСЃСЊ СЃ РІР°С€Рё-Р‘Р—Р—Р—</b>"))
 			to_chat(A, "<br>")
 	for(var/obj/machinery/telecomms/T in telecomms_list)
 		T.emp_act(1)
