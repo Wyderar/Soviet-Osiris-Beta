@@ -263,7 +263,7 @@
 	if((crisis && security_state.current_security_level_is_same_or_higher_than(security_state.high_security_level)) || crisis_override) //Leaving this in until it's balanced appropriately.
 		to_chat(src, SPAN_DANGER("Crisis mode active. Combat module available."))
 		modules+="Combat"
-	modtype = input("Please, select a module!", "Robot", null, null) as null|anything in modules
+	modtype = input("Пожалуйста выберите модуль вашего ИИ", "Robot", null, null) as null|anything in modules
 
 	if(module)
 		return
@@ -274,11 +274,11 @@
 	var/obj/item/weapon/robot_module/RM = new module_type() //Spawn a dummy module to read values from
 
 	switch(alert(src, "[RM.desc] \n \n\
-	Health: [RM.health] \n\
-	Power Efficiency: [RM.power_efficiency*100]%\n\
-	Movement Speed: [RM.speed_factor*100]%",
-	"[modtype] module", "Yes", "No"))
-		if("No")
+	Здоровье: [RM.health] \n\
+	Энергоэффективность: [RM.power_efficiency*100]%\n\
+	Скорость передвижения: [RM.speed_factor*100]%",
+	"[modtype] module", "Да", "Нет"))
+		if("Нет")
 			//They changed their mind, abort, abort!
 			if(module)
 				return
@@ -287,7 +287,7 @@
 			spawn()
 				pick_module() //Bring up the pick menu again
 			return //And abort out of this
-		if ("Yes")
+		if ("Да")
 			//This time spawn the real module
 			if(module)
 				return
@@ -347,7 +347,7 @@
 
 	spawn(0)
 		var/newname
-		newname = sanitizeSafe(input(src,"You are a robot. Enter a name, or leave blank for the default name.", "Name change","") as text, MAX_NAME_LEN)
+		newname = sanitizeSafe(input(src,"Вы киборг. Введите имя или оставьте поле пустым, имя будет назначено по умолчанию.", "Name change","") as text, MAX_NAME_LEN)
 		if (newname)
 			custom_name = newname
 
@@ -364,15 +364,15 @@
 	if(!is_component_functioning("diagnosis unit"))
 		return null
 
-	var/dat = "<HEAD><TITLE>[src.name] Self-Diagnosis Report</TITLE></HEAD><BODY>\n"
+	var/dat = "<HEAD><meta charset=\"UTF-8\"><TITLE>Отчет О Самодиагностике [src.name]</TITLE></HEAD><BODY>\n"
 	for (var/V in components)
 		var/datum/robot_component/C = components[V]
 		dat += {"
 			<b>[C.name]</b><br><table>
-			<tr><td>Brute Damage:</td><td>[C.brute_damage]</td></tr>
-			<tr><td>Electronics Damage:</td><td>[C.electronics_damage]</td></tr>
-			<tr><td>Powered:</td><td>[(!C.idle_usage || C.is_powered()) ? "Yes" : "No"]</td></tr>
-			<tr><td>Toggled:</td><td>[ C.toggled ? "Yes" : "No"]</td>
+			<tr><td>Грубое повреждение:</td><td>[C.brute_damage]</td></tr>
+			<tr><td>Электронное повреждение:</td><td>[C.electronics_damage]</td></tr>
+			<tr><td>Питание:</td><td>[(!C.idle_usage || C.is_powered()) ? "Да" : "Нет"]</td></tr>
+			<tr><td>Toggled:</td><td>[ C.toggled ? "Да" : "Нет"]</td>
 			</table><br>
 		"}
 
@@ -381,9 +381,9 @@
 /mob/living/silicon/robot/verb/toggle_panel_lock()
 	set name = "Toggle Panel Lock"
 	set category = "Silicon Commands"
-	to_chat(src, "You begin [locked ? "" : "un"]locking your panel.")
+	to_chat(src, "Вы [locked ? "за" : "раз"]блокировали вашу панель.")
 	if(!opened && has_power && do_after(usr, 80) && !opened && has_power)
-		to_chat(src, "You [locked ? "un" : ""]locked your panel.")
+		to_chat(src, "Вы [locked ? "раз" : "за"]блокировали вашу панель.")
 		locked = !locked
 
 /mob/living/silicon/robot/verb/toggle_lights()
@@ -391,7 +391,7 @@
 	set name = "Toggle Lights"
 
 	lights_on = !lights_on
-	to_chat(usr, "You [lights_on ? "enable" : "disable"] your integrated light.")
+	to_chat(usr, "Ваше встроенное освещение [lights_on ? "включено" : "выключено"].")
 	if(lights_on)
 		set_light(5)
 	else
@@ -403,11 +403,11 @@
 	set name = "Self Diagnosis"
 
 	if(!is_component_functioning("diagnosis unit"))
-		to_chat(src, SPAN_DANGER("Your self-diagnosis component isn't functioning."))
+		to_chat(src, SPAN_DANGER("Ваш компонент самодиагностики не работает."))
 
 	var/datum/robot_component/CO = get_component("diagnosis unit")
 	if (!cell_use_power(CO.active_usage))
-		to_chat(src, SPAN_DANGER("Low Power."))
+		to_chat(src, SPAN_DANGER("Низкий заряд."))
 	var/dat = self_diagnosis()
 	src << browse(dat, "window=robotdiagnosis")
 
@@ -415,7 +415,7 @@
 /mob/living/silicon/robot/verb/toggle_component()
 	set category = "Silicon Commands"
 	set name = "Toggle Component"
-	set desc = "Toggle a component, conserving power."
+	set desc = "Переключить компонент, для экономии энергии."
 
 	var/list/installed_components = list()
 	for(var/V in components)
@@ -424,17 +424,17 @@
 		if(C.installed)
 			installed_components += V
 
-	var/toggle = input(src, "Which component do you want to toggle?", "Toggle Component") as null|anything in installed_components
+	var/toggle = input(src, "Какой компонент вы хотите переключить?", "Toggle Component") as null|anything in installed_components
 	if(!toggle)
 		return
 
 	var/datum/robot_component/C = components[toggle]
 	if(C.toggled)
 		C.toggled = 0
-		to_chat(src, SPAN_DANGER("You disable [C.name]."))
+		to_chat(src, SPAN_DANGER("Вы выключили [C.name]."))
 	else
 		C.toggled = 1
-		to_chat(src, SPAN_DANGER("You enable [C.name]."))
+		to_chat(src, SPAN_DANGER("Вы включили [C.name]."))
 
 /mob/living/silicon/robot/proc/update_robot_light()
 	if(lights_on)
@@ -456,9 +456,9 @@
 // this function displays the cyborgs current cell charge in the stat panel
 /mob/living/silicon/robot/proc/show_cell_power()
 	if(cell)
-		stat(null, text("Charge Left: [round(cell.percent())]%"))
-		stat(null, text("Cell Rating: [round(cell.maxcharge)]")) // Round just in case we somehow get crazy values
-		stat(null, text("Power Cell Load: [round(used_power_this_tick)]W"))
+		stat(null, text("Заряда осталось: [round(cell.percent())]%"))
+		stat(null, text("Вместимость ячейки: [round(cell.maxcharge)]")) // Round just in case we somehow get crazy values
+		stat(null, text("Потребление питания: [round(used_power_this_tick)]W"))
 	else
 		stat(null, text("No Cell Inserted!"))
 
@@ -469,7 +469,7 @@
 	if (statpanel("Status"))
 		show_cell_power()
 		show_jetpack_pressure()
-		stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
+		stat(null, text("Свет: [lights_on ? "ВКЛ" : "ВЫКЛ"]"))
 		if(module)
 			for(var/datum/matter_synth/ms in module.synths)
 				stat("[ms.name]: [ms.energy]/[ms.max_energy_multiplied]")
@@ -537,11 +537,11 @@
 
 		if(QUALITY_WELDING)
 			if (src == user)
-				to_chat(user, SPAN_WARNING("You lack the reach to be able to repair yourself."))
+				to_chat(user, SPAN_WARNING("У вас нет возможности починить себя."))
 				return
 
 			if (!getBruteLoss())
-				to_chat(user, SPAN_NOTICE("Nothing to fix here!"))
+				to_chat(user, SPAN_NOTICE("Здесь нечего чинить!"))
 				return
 
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
@@ -550,7 +550,7 @@
 				updatehealth()
 				add_fingerprint(user)
 				for(var/mob/O in viewers(user, null))
-					O.show_message(text(SPAN_DANGER("[user] has fixed some of the dents on [src]!")), 1)
+					O.show_message(text(SPAN_DANGER("[user] исправляет некоторые вмятины на [src]!")), 1)
 				return
 			return
 
@@ -565,7 +565,7 @@
 				else if(wiresexposed && wires.IsAllCut())
 					//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
 					if(!mmi)
-						to_chat(user, SPAN_NOTICE("\The [src] has no brain to remove."))
+						to_chat(user, SPAN_NOTICE("[src] не имеет мозга для извлечения."))
 						return
 
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
@@ -584,13 +584,13 @@
 						if(C.installed == 1 || C.installed == -1)
 							removable_components += V
 
-					var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
+					var/remove = input(user, "Какой компонент вы хотите извлечь?", "Remove Component") as null|anything in removable_components
 					if(!remove)
 						return
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						var/datum/robot_component/C = components[remove]
 						var/obj/item/robot_parts/robot_component/RC = C.wrapped
-						to_chat(user, SPAN_NOTICE("You remove \the [RC]."))
+						to_chat(user, SPAN_NOTICE("Вы извлекли [RC]."))
 						if(istype(RC))
 							RC.brute = C.brute_damage
 							RC.burn = C.electronics_damage

@@ -73,7 +73,7 @@ var/global/list/modifications_types = list(
 	name = "Unmodified organ"
 	id = "nothing"
 	short_name = "Nothing"
-	desc = "Normal organ."
+	desc = "Аугментация отсутствует."
 	allowed_species = null
 
 /datum/body_modification/none/create_organ(var/mob/living/carbon/holder, var/datum/organ_description/OD, var/color)
@@ -95,7 +95,7 @@ var/global/list/modifications_types = list(
 	name = "Amputated"
 	short_name = "Amputated"
 	id = "amputated"
-	desc = "Organ was removed."
+	desc = "Часть тела ампутирована."
 	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 	replace_limb = 1
 	nature = MODIFICATION_REMOVED
@@ -143,6 +143,11 @@ var/global/list/modifications_types = list(
 	id = "prosthesis_xion"
 	replace_limb = /obj/item/organ/external/robotic/xion
 	icon = 'icons/mob/human_races/cyberlimbs/xion.dmi'
+
+/datum/body_modification/limb/prosthesis/xion_econo
+	id = "prosthesis_xion_econo"
+	replace_limb = /obj/item/organ/external/robotic/xion_econo
+	icon = 'icons/mob/human_races/cyberlimbs/xion_econo.dmi'
 
 /datum/body_modification/limb/mutation/New()
 	short_name = "M: [name]"
