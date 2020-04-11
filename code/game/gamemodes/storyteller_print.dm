@@ -3,7 +3,7 @@
 	if(config.canonicity)
 		if(current_antags.len)
 			var/list/antags_by_ids = list()
-			text += "<br><font size=3><b>Round antagonists were:</b></font>"
+			text += "<br><font size=3><b>В этом раудне антагонистами были:</b></font>"
 			for(var/datum/antagonist/A in current_antags)
 				if(!A.faction)
 					if(!islist(antags_by_ids[A.id]))

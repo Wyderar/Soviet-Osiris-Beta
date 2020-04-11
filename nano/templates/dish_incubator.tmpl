@@ -16,14 +16,14 @@
   </div>
 </div>
 <div class='item'>
-  {{:helper.link('Добавить излучение', 'radiation', {'rad' : 1})}}
-  {{:helper.link('Система промывки', 'trash', {'flush' : 1}, data.system_in_use ? null : 'disabled')}}
+  {{:helper.link('Доб. излучение', 'radiation', {'rad' : 1})}}
+  {{:helper.link('Сист. промывки', 'trash', {'flush' : 1}, data.system_in_use ? null : 'disabled')}}
 </div>
 
 <div class="statusDisplay" style="height: 100px; overflow: auto;">
   <div class='item'>
     <div class="itemLabel">
-      <span class='good'>Питательная среда вируса:</span>
+      <span class='good'>Пит/Cреда вируса:</span>
     </div>
     <div class="itemContent">
       {{:helper.displayBar(data.food_supply, 0, 100, 'good', data.food_supply)}}
@@ -31,7 +31,7 @@
   </div>
   <div class='item'>
     <div class="itemLabel">
-      <span class='good'>Уровень излучения:</span>
+      <span class='good'>Ур. излучения:</span>
     </div>
     <div class="itemContent">
       {{:helper.displayBar(data.radiation, 0, 100, (data.radiation >= 50) ? 'bad' : (data.growth >= 25) ? 'average' : 'good')}}
