@@ -209,9 +209,6 @@ FIELD_SHORT("Department", department, null, access_change_ids)
 FIELD_SHORT("Job", job, null, access_change_ids)
 FIELD_LIST("Sex", sex, record_genders(), null, access_change_ids)
 FIELD_NUM("Age", age, null, access_change_ids)
-FIELD_NUM("Birth Day", birth_day, null, access_change_ids)
-FIELD_NUM("Birth Month", birth_month, null, access_change_ids)
-FIELD_NUM("Birth Year", birth_year, null, access_change_ids)
 FIELD_SHORT("Personal ID", charid, access_change_ids, null)
 FIELD_LIST_EDIT("Status", status, GLOB.physical_statuses, null, access_moebius)
 
@@ -231,8 +228,6 @@ FIELD_SHORT("Fingerprint", fingerprint, access_security, access_security)
 
 // EMPLOYMENT RECORDS
 FIELD_LONG("Employment Record", emplRecord, access_heads, access_heads)
-FIELD_SHORT("Home System", homeSystem, access_heads, access_change_ids)
-FIELD_SHORT("Faction", faction, access_heads, access_heads)
 FIELD_LONG("Qualifications", skillset, access_heads, access_heads)
 
 // ANTAG RECORDS

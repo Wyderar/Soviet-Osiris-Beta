@@ -244,7 +244,15 @@
 	unlocks_designs = list(	/datum/design/research/item/mechfab/modules/armor,
 							/datum/design/research/item/mechfab/modules/armblade,
 							/datum/design/research/item/mechfab/modules/runner,
+							/datum/design/research/item/mechfab/modules/power_muscle,
+							/datum/design/research/item/mechfab/modules/eyes_coordinators,
+							/datum/design/research/item/mechfab/modules/neuroimplant,
 							/datum/design/research/item/mechfab/modules/multitool/surgical,
 							/datum/design/research/item/mechfab/modules/multitool/engineer,
-							/datum/design/research/item/mechfab/modules/multitool/miner
+							/datum/design/research/item/mechfab/modules/multitool/miner,
+							/datum/design/research/item/mechfab/modules/hud/med,
+							/datum/design/research/item/mechfab/modules/hud/sec,
+							/datum/design/research/item/mechfab/modules/hud/night,
+							/datum/design/research/item/mechfab/modules/hud/thermal,
+							/datum/design/research/item/mechfab/modules/holster
 							)

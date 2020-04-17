@@ -1,12 +1,12 @@
 <div class='item'>
-  {{:helper.link('Close', 'gear', {'close' : 1}, null, 'fixedLeft')}}
+  {{:helper.link('Закрыть', 'gear', {'close' : 1}, null, 'fixedLeft')}}
 </div>
 
 <div class="item">
-  <h2>Storage</h2>
+  <h2>Хранилище</h2>
   {{if data.secure}}
     <span class='notice'>
-      {{:data.locked == -1 ? "Sec.re ACC_** //):securi_nt.diag=>##'or 1=1'%($..." : "Secure Access: Please have your identification ready."}}
+      {{:data.locked == -1 ? "Sec.re ACC_** //):securi_nt.diag=>##'or 1=1'%($..." : "Безопасность: пожалуйста, предъявите свое удостоверение личности."}}
     </span>
   {{/if}}
 </div>
@@ -31,6 +31,6 @@
       </div>
     {{/for}}
   {{else}}
-    <span class='average'>No products loaded.</span>
+    <span class='average'>На полках ничего нет.</span>
   {{/if}}
 </div>

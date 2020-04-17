@@ -1,6 +1,5 @@
 #define WHITELISTFILE "data/whitelist.txt"
 
-var/list/third_whitelist = file2list("config/whitelist/third_level.txt")
 var/list/second_whitelist = file2list("config/whitelist/second_level.txt")
 var/list/commissar_whitelist = file2list("config/whitelist/commissar.txt")
 
@@ -10,20 +9,12 @@ var/list/commissar_whitelist = file2list("config/whitelist/commissar.txt")
 	return 1
 
 /proc/load_whitelist()
-	third_whitelist = file2list("config/whitelist/third_level.txt")
 	second_whitelist = file2list("config/whitelist/second_level.txt")
 	commissar_whitelist = file2list("config/whitelist/commissar.txt")
-	if(!third_whitelist.len)
-		third_whitelist = null
 	if(!second_whitelist.len)
 		second_whitelist = null
 	if(!commissar_whitelist.len)
 		commissar_whitelist = null
-
-/proc/check_third_whitelist(key)
-	if(!third_whitelist)
-		return 0
-	return (key in third_whitelist)
 
 /proc/check_second_whitelist(key)
 	if(!second_whitelist)

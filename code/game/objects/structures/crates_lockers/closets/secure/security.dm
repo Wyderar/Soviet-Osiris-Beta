@@ -45,6 +45,26 @@
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
+/obj/structure/closet/secure_closet/reinforced/co
+	name = "Commissioner's locker"
+	req_access = list(access_co)
+	icon_state = "hop"
+
+/obj/structure/closet/secure_closet/reinforced/co/populate_contents()
+	new /obj/item/clothing/glasses/sunglasses(src)
+	new /obj/item/weapon/melee/telebaton(src)
+	new /obj/item/clothing/suit/storage/detective(src)
+	new /obj/item/weapon/gun/projectile/revolver/consul(src)
+	new /obj/item/clothing/accessory/holster/armpit(src)
+	new /obj/item/ammo_magazine/slmagnum(src)
+	new /obj/item/ammo_magazine/slmagnum(src)
+	new /obj/item/ammo_magazine/slmagnum(src)
+	new /obj/item/device/taperecorder(src)
+	new /obj/item/clothing/under/suit_jacket(src)
+	new /obj/item/clothing/shoes/reinforced(src)
+	new /obj/item/clothing/shoes/jackboots/ironhammer(src)
+	new /obj/item/device/radio/headset/heads/commissioner(src)
+
 /obj/structure/closet/secure_closet/reinforced/preacher
 	name = "Preacher's locker"
 

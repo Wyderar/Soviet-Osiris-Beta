@@ -22,7 +22,7 @@
 	endWhen = rand(30, 200) //1-6 minutes
 
 /datum/event/gravity/announce()
-	command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled whilst the system reinitializes.", "Gravity Failure")
+	command_announcement.Announce("Всплеск обратной связи обнаруживается в системах массового распределения. Искусственная гравитация была отключена во время повторной инициализации системы.", "Гравитационный сбой")
 
 /datum/event/gravity/start()
 	if (GLOB.active_gravity_generator)
@@ -32,4 +32,4 @@
 	if (GLOB.active_gravity_generator)
 		GLOB.active_gravity_generator.set_state(TRUE)
 
-	command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored")
+	command_announcement.Announce("Гравитационные генераторы снова работают в пределах нормы. Приносим извинения за доставленные неудобства.", "Гравитация восстановлена")

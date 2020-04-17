@@ -397,7 +397,7 @@
 	if(!Adjacent(user))
 		return
 
-	to_chat(usr, SPAN_NOTICE("You start washing your hands."))
+	to_chat(usr, SPAN_NOTICE("Вы начали мыть свои руки."))
 
 	playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)
 
@@ -408,7 +408,7 @@
 		if(ishuman(user))
 			user:update_inv_gloves()
 		for(var/mob/V in viewers(src, null))
-			V.show_message(SPAN_NOTICE("[user] washes their hands using \the [src]."))
+			V.show_message(SPAN_NOTICE("[user] моет руки используя [src]."))
 		var/mob/living/carbon/human/M = user
 		if(istype(M))
 			M.sanity.onSink()
@@ -450,7 +450,7 @@
 	var/obj/item/I = O
 	if(!I || !istype(I,/obj/item)) return
 
-	to_chat(usr, SPAN_NOTICE("You start washing \the [I]."))
+	to_chat(usr, SPAN_NOTICE("Вы начали мыть [I]."))
 
 	if(do_after(user, 60, src))
 
@@ -460,8 +460,8 @@
 
 		O.clean_blood()
 		user.visible_message( \
-			SPAN_NOTICE("[user] washes \a [I] using \the [src]."), \
-			SPAN_NOTICE("You wash \a [I] using \the [src]."))
+			SPAN_NOTICE("[user] моет [I] используя [src]."), \
+			SPAN_NOTICE("Вы моете [I] используя [src]."))
 
 /obj/structure/sink/AltClick(var/mob/living/user)
 	var/H = user.get_active_hand()

@@ -1,9 +1,9 @@
 <div class="item">
-	<h3>Control panel</h3>
+	<h3>Панель управления</h3>
 </div>
 {{if !data.minimal}}
 	<div class="item">
-		{{:helper.link(data.on ? 'Busy' : 'Start spin cycle', 'play', { 'power' : 1 }, data.on ? 'selected' : !data.mainBeaker ? 'disabled' : null)}}
+		{{:helper.link(data.on ? 'Busy' : 'Начать цикл отжима', 'play', { 'power' : 1 }, data.on ? 'selected' : !data.mainBeaker ? 'disabled' : null)}}
 	</div>
 {{/if}}
 <div class="itemLabel">
@@ -13,7 +13,7 @@
 	<div class="itemContent">
 		<div class="statusDisplay">
 			<span class="good">
-				Spinning...
+				Вращение...
 			</span>
 		</div>
 	</div>
@@ -29,7 +29,7 @@
 {{if !data.minimal}}
 	{{if data.on}}
 		<div class="itemLabel">
-			Time left: 
+			Времени осталось: 
 		</div>
 		<div class="itemContent">
 			{{:data.timeLeft}}
@@ -37,21 +37,21 @@
 	{{/if}}
 {{/if}}
 <div class="item">
-	<h4>Settings:</h4>
+	<h4>Настройки:</h4>
 </div>
 	<div class="itemLabel">
 		Mode: 
 	</div>
 	<div class="itemContent">
-		{{:helper.link('Separation', '', { 'setMode' : 0 }, data.mode == 0 ? 'selected' : data.on ? 'disabled' : null)}}
-		{{:helper.link('Synthesis',  '', { 'setMode' : 1 }, data.mode == 1 ? 'selected' : data.on ? 'disabled' : null)}}
+		{{:helper.link('Разделение', '', { 'setMode' : 0 }, data.mode == 0 ? 'selected' : data.on ? 'disabled' : null)}}
+		{{:helper.link('Синтезирование',  '', { 'setMode' : 1 }, data.mode == 1 ? 'selected' : data.on ? 'disabled' : null)}}
 		{{if !data.minimal}}
-			{{:helper.link('Isolation',  '', { 'setMode' : 2 }, data.mode == 2 ? 'selected' : data.on ? 'disabled' : null)}}
+			{{:helper.link('Изоляцмя',  '', { 'setMode' : 2 }, data.mode == 2 ? 'selected' : data.on ? 'disabled' : null)}}
 		{{/if}}
 	</div>
 {{if data.cycleTime}}
 	<div class="itemLabel">
-		Cycle time: 
+		Время цикла: 
 	</div>
 	<div class="itemContent">
 		{{:helper.link('5',  'clock', { 'setTime' : 5  }, data.cycleTime == 5  ? 'selected' : data.on || data.mode == 2 ? 'disabled' : null)}}
@@ -63,7 +63,7 @@
 {{/if}}
 
 <div class="item">
-	Supported up to {{:data.maxBeakers}} separation beakers.
+	Поддерживается до {{:data.maxBeakers}} разделительных пробирок.
 	{{if data.UPS}}
 		Separation rating is {{:data.UPS}}u per second.
 	{{/if}}
@@ -72,7 +72,7 @@
 
 <div class="item">
 	<div class="itemLabel">
-		<h3>Main Beaker</h3>
+		<h3>Основная пробирка</h3>
 	</div>
 </div>
 <div class="statusDisplay" style="min-height: 60px;">
@@ -84,20 +84,20 @@
 					<span class="highlight">{{:helper.fixed(value.volume)}} units of {{:value.name}}</span><br>
 				{{empty}}
 					<span class="bad">
-						Beaker is empty
+						Пробирка пуста
 					</span>
 				{{/for}}
 			{{else}}
 				<span class="average"><i>
-					No beaker loaded
+					Пробирка не вставлена
 				</i></span>
 			{{/if}}
-			{{:helper.link('Eject Beaker', 'eject', {'ejectBeaker' : 0}, data.mainBeaker ? null : 'disabled', 'floatRight')}}
+			{{:helper.link('Извлечь пробирку', 'eject', {'ejectBeaker' : 0}, data.mainBeaker ? null : 'disabled', 'floatRight')}}
 		</div>
 	</div>
 </div>
 <div class="item">
-	<h3>Separation beakers:</h3>
+	<h3>Разделительные пробирки:</h3>
 </div>
 <table style="width:100%">
 	<tr>
@@ -107,22 +107,22 @@
 					<div class="item">
 						<div class="itemContent">
 							{{if value.maximum_volume}}
-								Volume:&nbsp;{{:helper.fixed(value.total_volume)}}&nbsp;/&nbsp;{{:value.maximum_volume}}<br>
+								Объем:&nbsp;{{:helper.fixed(value.total_volume)}}&nbsp;/&nbsp;{{:value.maximum_volume}}<br>
 								{{for value.contents :content:content_i}}
 									<span class="highlight">{{:helper.fixed(content.volume)}} units of {{:content.name}}</span><br>
 								{{empty}}
 									<span class="bad">
-										Beaker is empty
+										Пробирка пуста
 									</span>
 								{{/for}}
 							{{else}}
 								<span class="average"><i>
-									No beaker loaded
+									Пробирка не вставлена
 								</i></span>
 							{{/if}}
 						</div>
 					</div>
-					{{:helper.link('Eject Beaker', 'eject', {'ejectBeaker' : value.slot}, value.maximum_volume ? null : 'disabled')}}
+					{{:helper.link('Извлечь пробирку', 'eject', {'ejectBeaker' : value.slot}, value.maximum_volume ? null : 'disabled')}}
 				</div>
 			</td>
 		{{/for}}

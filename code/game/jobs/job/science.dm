@@ -8,7 +8,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Moebius Corporation"
+	supervisors = "Корпорацией Moebius"
 	selection_color = "#b39aaf"
 	req_admin_notify = 1
 	wage = WAGE_NONE
@@ -65,7 +65,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	faction = "CEV Eris"
 	total_positions = 5
 	spawn_positions = 5
-	supervisors = "the Moebius Expedition Overseer"
+	supervisors = "Заведующим экспедицией"
 	selection_color = "#bdb1bb"
 	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
@@ -124,7 +124,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Moebius Expedition Overseer"
+	supervisors = "Заведующим экспедицией"
 	selection_color = "#bdb1bb"
 	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)

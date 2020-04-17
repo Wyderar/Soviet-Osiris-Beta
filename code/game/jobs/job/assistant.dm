@@ -7,7 +7,7 @@
 	faction = "CEV Eris"
 	total_positions = -1
 	spawn_positions = -1
-	supervisors = "anyone who pays you"
+	supervisors = "любым, кто вам платит"
 	selection_color = "#dddddd"
 	initial_balance	= 800
 	wage = WAGE_NONE //Get a job ya lazy bum
@@ -26,16 +26,16 @@
 		STAT_COG = 8
 	)
 
-	description = "You are a vagabond, journeying through the vast expanses of space upon the CEV Eris. You will not be paid a wage.<br>\
-Though this does not mean you have no home, as the Eris is your home. Whatever planet you may have came from a now distant memory.<br>\
+	description = "Вы ассистен, путешествующий по бескрайним пространствам космоса на CEV Eris. Вам не платят жалованье.<br>\
+Но это не значит, что у вас нет дома, так как CEV Eris ваш дом. С какой бы планеты вы ни прилетели, теперь это лишь воспоминание.<br>\
 
-You remember boarding the Eris sometime in your past, when it had a different purpose and a different captain.<br>\
-Over time you've become accustomed to the dangers of this ship.<br>\
-The ID you wear likely not even your own. At least as far as you can remember.<br>\
-But this chunk of plastic still can be a rare oddity, that can change your character.<br>\
-As an vagabond, you should strive to help out anyone you can. Or at least, anyone who offers you a paying job. Find a way to make money, stay out of trouble, and survive."
+Вы помните, как садились на CEV Eris когда-то в прошлом, когда у него была другая цель и другой капитан.<br>\
+Со временем вы привыкли к опасностям на этом корабле. <br>\
+ID карта, которую вы носите, скорее всего, даже не ваша. По крайней мере, вы помните это так.<br>\
+Но этот кусок пластика все ваш, и олицетворяет вас как личность.<br>\
+Как ассистен, Вы должны стремиться помочь всем, кому сможете. Или, по крайней мере, любому, кто предложит вам оплачиваемую работу. Найти способ заработать деньги, держитесь подальше от неприятностей и выживите."
 
-	loyalties = "Your loyalty is yours to decide"
+	loyalties = "Ваша лояльность - это ваше право решать."
 
 /obj/landmark/join/start/assistant
 	name = ASSISTANT_TITLE

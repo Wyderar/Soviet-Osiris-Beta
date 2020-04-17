@@ -97,8 +97,6 @@
 	for(var/atom/A in view(owner.client ? owner.client : owner))
 		if(A.sanity_damage)
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
-		if(A.blood_DNA && A.blood_color == "#A10808")
-			. += SANITY_DAMAGE_VIEW(1, vig, get_dist(owner, A))
 	for(var/obj/item/clothing/I in owner.contents)
 		if(I.loc == owner && I.blood_DNA && I.blood_color == "#A10808")
 			. += SANITY_DAMAGE_VIEW(1, vig, 1)
@@ -123,7 +121,8 @@
 		++resting
 		pick_desires()
 		insight -= 100
-	owner.HUDneed["sanity"]?.update_icon()
+	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
+	hud?.update_icon()
 
 /datum/sanity/proc/handle_level()
 	level_change = SANITY_CHANGE_FADEOFF(level_change)
@@ -172,7 +171,8 @@
 				var/desire_count = 0
 				while(desire_count < 5)
 					var/candidate = pick(ethanol_types)
-					if(subtypesof(candidate).len) //Exclude categories
+					var/list/categories = subtypesof(candidate)
+					if(categories.len) //Exclude categories
 						ethanol_types -= candidate
 						continue
 					desires += candidate
@@ -315,7 +315,8 @@
 	level = new_level
 	if(level == 0 && world.time >= breakdown_time)
 		breakdown()
-	owner.HUDneed["sanity"]?.update_icon()
+	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
+	hud?.update_icon()
 
 /datum/sanity/proc/breakdown()
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
