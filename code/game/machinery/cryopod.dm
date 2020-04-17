@@ -375,8 +375,6 @@
 		if(A.account_id == occupant.character_id)
 			A.suspended = 1
 
-	icon_state = base_icon_state
-
 	//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
 
 
@@ -482,7 +480,7 @@
 	return TRUE
 
 /obj/machinery/cryopod/show_radial(mob/living/user)
-	if(!user) 
+	if(!user)
 		return
 	var/list/layer_list = list()
 	if(occupant == user)
