@@ -185,7 +185,7 @@
 		if(GET_RANDOM_JOB)
 			. += "<u><a href='?src=\ref[src];job_alternative=1'>Получить случайную должность если недоступно</a></u>"
 		if(BE_ASSISTANT)
-			. += "<u><a href='?src=\ref[src];job_alternative=1'>Стать ассистентом если недоступно</a></u>"
+			. += "<u><a href='?src=\ref[src];job_alternative=1'>Стать бродягой если недоступно</a></u>"
 		if(RETURN_TO_LOBBY)
 			. += "<u><a href='?src=\ref[src];job_alternative=1'>Вернуться в лобби если недоступно</a></u>"
 
