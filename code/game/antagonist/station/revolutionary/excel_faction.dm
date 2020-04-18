@@ -69,6 +69,9 @@
 	if(!ishuman(usr))
 		return
 
+	if(usr.is_dead())
+		return
+
 	var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
 
 	if(!F)
