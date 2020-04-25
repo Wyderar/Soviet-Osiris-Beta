@@ -46,7 +46,7 @@
 /datum/event/carp_migration/announce()
 	var/announcement = ""
 	if(severity == EVENT_LEVEL_MAJOR)
-		announcement = "Massive migration of unknown biological entities has been detected near [station_name()], please stand-by."
+		announcement = "Массовая миграция неизвестных биологических объектов была обнаружена вблизи [station_name()]."
 	else
 		announcement = "Unknown biological [spawned_carp.len == 1 ? "entity has" : "entities have"] been detected near [station_name()], please stand-by."
 	command_announcement.Announce(announcement, "Lifesign Alert")

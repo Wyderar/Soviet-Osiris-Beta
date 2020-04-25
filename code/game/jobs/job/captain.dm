@@ -21,19 +21,19 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	ideal_character_age = 70 // Old geezer captains ftw
 	outfit_type = /decl/hierarchy/outfit/job/captain
 
-	description = "You are a privateeer. <br>\
-The owner of the vast rusting hulk that is the CEV Eris. At least, as long as you keep up repayments.<br>\
-This ship is your life's work, crewed by an alliance of corporations and factions that you've brokered uneasy treaties with.<br>\
+	description = "Вы Капитан. <br>\
+Владелец огромного ржавеющего судна, которым является CEV Eris. По крайней мере, до тех пор, пока вы продолжаете выплачивать за него деньги.<br>\
+Этот корабль - дело всей вашей жизни, в котором работает альянс корпораций и фракций, с которыми вы заключили непростые договоры.<br>\
 
-You are the supreme leader of this world, and your word is law. But only as long as you can enforce that law.<br>\
-The heads of the factions which make up your command staff, each have their own agendas. Their interests must be served too. If you make them unhappy, the loyalty of their faction goes with them, and you may have a mutiny on your hands.<br>\
-Treat your command officers with respect, and listen to their council. Try not to micromanage their departments or interfere in their affairs, and they should serve you well<br>\
+Вы верховный лидер этого мира, и ваше слово - закон. Но только до тех пор, пока вы можете обеспечить соблюдение этого закона.<br>\
+Главы фракций, которые составляют ваш командный состав, имеют свои собственные цели. Их интересы тоже должны быть соблюдены. Если вы сделаете их несчастными, верность их фракции уйдет вместе с ними, и вы непреднамеренно поднимите мятеж. <br>\
+Относитесь к своим офицерам с уважением и слушайте их советы. Старайтесь не вмешиваться в их дела и не вмешиваться в микроуправление их отделами, и будут верно служить вам<br>\
 
-You are a free agent, able to go where you will, and loyal to no particular government or nation. You are however, in quite a lot of debt. So wherever you go, you should be sure a profitable venture awaits."
+Вы свободный агент, который способен идти куда угодно, и не имеющий преданности никакому конкретному правительству или нации. Однако у вас много долгов. Поэтому, куда бы вы ни пошли, вы должны быть уверены, что вас ждет выгодное предприятие."
 
-	loyalties = "Your first loyalty is to Eris, your ship. It is the purpose of your life, and you are nothing without it. If it were to be destroyed, you and your descendants would be ruined for centuries. <br>\
+	loyalties = "Ваша первая верность это Eris, ваш корабль. Это цель вашей жизни, и без него вы ничто. Если он будет разрушен, вы и ваши потомки будут разорены на долгие века. <br>\
 
-Your second loyalty is to your command officers. The heads of each faction. Listen to their counsel, ensure their interests are served, and keep them happy"
+Ваша вторая верность это ваши офицеры. Главы каждой из фракций. Прислушивайтесь к их советам, следите за тем, чтобы их интересы были соблюдены, и делайте их счастливыми."
 
 	stat_modifiers = list(
 		STAT_ROB = 15,
@@ -76,7 +76,7 @@ Your second loyalty is to your command officers. The heads of each faction. List
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "капитаном"
+	supervisors = "Капитаном"
 	selection_color = "#ddddff"
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
@@ -140,20 +140,19 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "Капитаном"
 	selection_color = "#ddddff"
-	req_admin_notify = 1
 	wage = WAGE_COMMAND
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 20)
 	ideal_character_age = 40
 
-	description = "Незаметный человек в черном костюме выглядит посреди видавшего виды корабля капельку неуместно.<br>\
-Впрочем, не вам судить. Данный индивид является оком Капитана, которое облечено полномочиями посетить любой отсек на корабле и запросить любую информацию.<br>\
+	description = "Незаметный человек в черном костюме, который выглядит посреди не самого нового корабля, самую малость неуместно.<br>\
+Впрочем, не вам судить. Данный индивид является оком Капитана, которое обладает полномочиями посетить любой отсек на корабле и запросить любую информацию.<br>\
 <br>\
 Кто вы есть на самом деле?<br>\
 Вы - ожившая функция, бюрократический механизм, который занимается беспристрастным фиксированием всего происходящего, для дальнейшего протоколирования и занесения это в электронный журнал, дабы по окончании миссии Капитан и инвесторы могли разобраться с тем, что происходило с командой."
 
-	duties = "Задачи просты - вы обязаны посещать все отсеки корабля, имеете доступ к любому помещению или информации, а также облечены властью запрашивать любые отчеты у персонала, и более того - их получить.<br>\
+	duties = "Задачи просты - вы обязаны посещать все отсеки корабля, имеете доступ к любому помещению или информации, а также наделены властью запрашивать любые отчеты у персонала, и более того - их получить.<br>\
 На основании собранных данных, вы обязаны составить отчет о происходящем, особенно вас интересует компетентность персонала, в том числе и подверженность к заболеваниям ПТС и неадекватного буйства.<br>\
 Если сотрудник не может выполнять свои обязанности - по психологическим или умственным отклонениям, вы имеете право составить об этом исчерпывающий отчет согласно имеющейся формы и запросить отзыв лицензии данного сотрудника для данной должности, на определенный срок."
 
@@ -162,7 +161,9 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 	outfit_type = /decl/hierarchy/outfit/job/commissioner
 
 	access = list(
-		access_co, access_heads
+		access_co, access_heads, access_security, access_moebius, access_medspec, access_engine,
+		access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels,
+		access_external_airlocks, access_mailsorting
 	)
 
 

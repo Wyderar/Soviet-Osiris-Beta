@@ -8,7 +8,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the NeoTheology Church"
+	supervisors = "церковью НеоТеологии"
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
 
@@ -39,26 +39,26 @@
 		CRUCIFORM_REDLIGHT
 	)
 
-	description = "You are the head of a local branch of the Church of NeoTheology. You represent the church's interests aboard Eris, as well as the interests of the NT disciples among the crew, who can be identified by the Cruciform implant upon their breast. The church is a major contributor to the funding of Eris' mission, and demands respect<br>\
+	description = "Вы глава местного отделения Церкви Неотеологии. Вы представляете интересы церкви на борту CEV Eris, а также интересы учеников ЦН среди экипажа, которых можно идентифицировать по крестообразному импланту на груди. Церковь является главным инвестором миссии Eris и требует уважения<br>\
 	<br>\
-	Your duties aboard the ship may not seem so important to its mission, but they have greater significance in the galaxy as a whole. As well as a more immediate significance to the morale of the crew, especially the followers of NeoTheology.<br>\
+	Ваши обязанности на борту корабля могут показаться не столь важными для его миссии, но они имеют большее значение в галактике в целом. А также более непосредственное значение для морального состояния экипажа, особенно последователей Неотеологии.<br>\
 	<br>\
-	Sometimes the Church will deploy Inquisitors to remote outposts like this, to serve its interests. When one is on Eris, you will generally be their point of contact. Inquisitors outrank you and you should follow all of their instructions without question. Inquisitors work in secret, and so you should not discuss their presence with anyone unless they permit it.<br>\
+	Иногда Церковь посылает инквизиторов на отдаленные аванпосты вроде этого, чтобы они служили ее интересам. Когда один из них находится на CEV Eris, вы будете их контактером. Инквизиторы превосходят вас по рангу, и вы должны беспрекословно следовать их указаниям. Инквизиторы работают в тайне, и поэтому вы не должны обсуждать их присутствие с кем-либо, если они не позволят этого.<br>\
 	<br>\
-	First and foremost, you are a Man of the Cloth, and as such you must tend to the spiritual needs of the crew. Those looking to convert to NT should come to you for the rites, and the cruciform.<br>\
-	When the mood is dour, when all hope is lost, it falls to you to be a spiritual leader. Preach to the flock, inspire faith and strength in their hearts. The rituals in your book can also offer more tangible assistance in labour and combat.<br>\
-	Even when times are bright, do your best to keep it that way. Tour the ship, offering support to those in need. A prayer in the right ear, a helping hand, or a shoulder to cry on, can do wonders. And people are most vulnerable to conversion when they are at their weakest.<br>\
+	Прежде всего, вы человек из плоти и крови, и как таковой вы должны заботиться о духовных нуждах экипажа. Те, кто хочет обратиться в ЦН, должны прийти к вам для совершения обрядов и установки крестоформа.<br>\
+	Когда настроение мрачное, когда вся надежда потеряна, вы должны быть духовным лидером. Проповедуйте пастве, вселяйте веру и силу в их сердца. Ритуалы в вашей книге также могут предложить более ощутимую помощь в труде и борьбе.<br>\
+	Даже когда наступают светлые времена, делайте все возможное, чтобы так оно и оставалось. Совершайте экскурсию по кораблю, предлагая поддержку тем, кто в ней нуждается. Молитва в правом ухе, рука помощи или плечо, на котором можно поплакать, могут творить чудеса. И люди наиболее уязвимы для обращения, когда они находятся в отчаянном состоянии.<br>\
 	<br>\
-	When the living are tended to, your next duty is to the dead. <br>\
-	The church holds exclusive patents on cloning technology, utilising the Cruciform implanted in each of its disciples as a Cortical Stack, storing a backup of the host's memories and personality - their soul, if you will. When one of the faithful suffers an untimely demise, it is your sacred duty to grow a new vessel and transplant their soul into it, restoring them to life. Immortality is the reward of the faithful.<br>\
+	Когда за живыми ухаживают, ваш следующий долг перед мертвыми. <br>\
+	Церковь обладает исключительными правом на технологию клонирования, используя Крестоформ, имплантированный каждому ученику в качестве кортикального стэка, хранящего резервную копию памяти и личности носителя, их души, если хотите. Когда кто-то из верующих страдает от безвременной кончины, ваш священный долг вырастить новый сосуд и пересадить в него душу, возвращая ее к жизни. Бессмертие это награда верующих.<br>\
 	<br>\
-	For those who are not part of the fold, the next best thing you can offer is a dignified funeral. The chapel area contains coffins and machinery to commit the dead unto the void. Burial at space. Any player who is given a proper funeral will have their respawn time reduced, allowing them to rejoin the crew as a new character more quickly, after death."
+	Для тех, кто не является частью этой паствы, следующая лучшая вещь, которую вы можете предложить, это достойные похороны. В районе часовни находятся гробы и механизмы для предания мертвых пустоте. Похороны в космосе. Любой игрок, получивший надлежащие похороны, сократит время своего возрождения, что позволит ему быстрее присоединиться к команде в качестве нового персонажа после смерти."
 
 
-	duties = "Represent the interests of NT disciples aboard Eris. Protect them from persecution and speak for them.<br>\
-		Hold mass, give sermons, preach to the faithful, and lead group ritual sessions.<br>\
-		Recover and clone the faithful dead.<br>\
-		Hold funerals for the dead heathens."
+	duties = "Представлять интересы учеников ЦН на борту CEV Eris. Защитите их от преследований и говорите за них.<br>\
+		Проводите мессы, читайте проповеди, проповедуйте верующим и проводите групповые ритуальные сеансы.<br>\
+		Восстановите и клонируйте верных пастве мертвецов.<br>\
+		Устраивайте похороны для мертвых язычников."
 
 	setup_restricted = TRUE
 
@@ -76,7 +76,7 @@
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the NeoTheology Preacher"
+	supervisors = "Проповедником"
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels, access_hydroponics)
@@ -94,15 +94,15 @@
 		CRUCIFORM_PRIEST
 	)
 
-	description = "You serve the NeoTheology Preacher as a disciple of the Faith.<br>\
+	description = "Вы служите проповеднику Неотеологии как ученик Веры.<br>\
 	<br>\
-	The sacred duties of operating the bioreactor and managing biomass for the church's holy cloner falls to you.<br>\
+	Священные обязанности по эксплуатации биореактора и управлению биомассой для святого клонера церкви ложатся на вас.<br>\
 	<br>\
-	Though more may be required of you, should your Preacher so chose."
+	Хотя от вас может потребоваться и больше, если ваш проповедник так решит."
 
-	duties = "Operate the bioreactor to create power.<br>\
-	Manage the distribution of biomatter.<br>\
-	Serve the Preacher's will."
+	duties = "Управляйте биореактором для создания энергии.<br>\
+	Управляйте распределением биоматериала.<br>\
+	Служите воле проповедника."
 
 	setup_restricted = TRUE
 
@@ -120,7 +120,7 @@
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the NeoTheology Preacher"
+	supervisors = "Проповедником"
 	selection_color = "#ecd37d"
 	//alt_titles = list("Hydroponicist")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
@@ -134,15 +134,15 @@
 		STAT_ROB = 10,
 	)
 
-	description = "You are the holy cultivator of the church's plants, and assist in the production of biomatter. All duties of plant growth fall to you, making your role critical.<br>\
+	description = "Вы святой культиватор церковных растений и помогаете в производстве биоматериала. Все обязанности по выращиванию растений ложатся на вас, что делает вашу роль критически важной.<br>\
 	<br>\
-	Though the church is your primary concern, as you are a disciple of its faith, many others aboard the ship rely upon your work as well. The crew requires food, and the club manager seeks to provide. Though the manager cannot make food without fresh produce grown from the church's holy garden.<br>\
+	Хотя Церковь это ваша главная забота, поскольку вы являетесь последователем ее веры, многие другие на борту корабля также полагаются на вашу работу. Экипажу требуется еда, и Менеджер клуба стремится ее предоставить. Но управляющий не может готовить еду без свежих продуктов, выращенных в Священном саду церкви.<br>\
 	<br>\
-	Thus, out of good will, the Church provides produce to the manager, as well as the crew. And perhaps in time earn the favor of new converts."
+	Таким образом, по доброй воле Церковь предоставляет продукты управляющему, а также экипажу. И, возможно, со временем заслужит благосклонность новообращенных."
 
-	duties = "Grow plants for use as biomatter.<br>\
-	Provide fresh produce.<br>\
-	Serve the Faith."
+	duties = "Выращивайте растения для использования в качестве биоматериала.<br>\
+	Обеспечьте всех свежими продуктами. <br>\
+	Служите Вере."
 
 	setup_restricted = TRUE
 

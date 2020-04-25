@@ -11,7 +11,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the First Officer"
+	supervisors = "Старшим Помощником"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 15, LANGUAGE_JIVE = 80)
 	access = list(access_bar, access_kitchen)
@@ -47,7 +47,7 @@
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Club Manager"
+	supervisors = "Менеджером клуба"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_JIVE = 60)
 	access = list(access_bar, access_kitchen)
@@ -86,7 +86,7 @@
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the First Officer"
+	supervisors = "Старшим Помощником"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
 	access = list(access_maint_tunnels, access_theatre)
@@ -113,7 +113,7 @@
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the First Officer"
+	supervisors = "Старшим Помощником"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 60)
 	access = list(access_janitor, access_maint_tunnels)
@@ -128,9 +128,9 @@
 
 	software_on_spawn = list(/datum/computer_file/program/camera_monitor)
 
-	description = "Вы - уборщик. Берите в руки швабру и убирайте любой мусор, что видите на своих глазах. Не забудьте обругать каждого, кто смеет ходить с грязными ботинками."
+	description = "Вы уборщик. Берите в руки швабру и убирайте любой мусор, что видите на своих глазах. Не забудьте обругать каждого, кто смеет ходить с грязными ботинками."
 
-	duties = "Следите, чтобы корабль был чист от мусора, грязи и крови. Старайтесь не сойти с ума пока это пытаетесь это сделать."
+	duties = "Следите, чтобы корабль был чист от мусора, грязи и крови. Старайтесь не сойти с ума, пока пытаетесь сделать это ."
 
 	loyalties = LOYALTY_CIVILIAN
 

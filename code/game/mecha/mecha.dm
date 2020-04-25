@@ -242,7 +242,7 @@
 	pr_give_air = new /datum/global_iterator/mecha_tank_give_air(list(src))
 	pr_internal_damage = new /datum/global_iterator/mecha_internal_damage(list(src),0)
 
-/obj/mecha/proc/do_after(delay as num)
+/obj/mecha/proc/do_after_mech(delay as num)
 	sleep(delay)
 	if(src)
 		return 1
@@ -491,7 +491,7 @@
 
 
 
-		if(do_after(step_in))
+		if(do_after_mech(step_in))
 			can_move = 1
 		return 1
 	return 0
@@ -1262,7 +1262,7 @@ assassination method if you time it right*/
 	return
 
 /obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
-	if(H && H.client && H in range(1))
+	if(H && H.client && (H in range(1)))
 		H.reset_view(src)
 		/*
 		H.client.perspective = EYE_PERSPECTIVE
@@ -1276,8 +1276,6 @@ assassination method if you time it right*/
 		src.log_append_to_last("[H] moved in as pilot.")
 		src.update_icon()
 		set_dir(dir_in)
-		H.usefov = 0
-		H.update_vision_cone()
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 		if(!hasInternalDamage())
 			src.occupant << sound('sound/mecha/nominal.ogg',volume=50)
@@ -1337,10 +1335,7 @@ assassination method if you time it right*/
 	if(!src.occupant) return
 	var/atom/movable/mob_container
 	if(ishuman(occupant) || isAI(occupant))
-		var/mob/living/carbon/human/H = occupant
-		mob_container = H
-		H.usefov = 1
-		H.update_vision_cone()
+		mob_container = src.occupant
 	else if(isbrain(occupant))
 		var/mob/living/carbon/brain/brain = occupant
 		mob_container = brain.container
@@ -1850,7 +1845,7 @@ assassination method if you time it right*/
 		var/mob/occupant = P.occupant
 
 		user.visible_message(SPAN_NOTICE("\The [user] begins opening the hatch on \the [P]..."), SPAN_NOTICE("You begin opening the hatch on \the [P]..."))
-		if (!do_after(user, 40, needhand=0))
+		if (!do_after(user, 40, needhand = 0))
 			return
 
 		user.visible_message(SPAN_NOTICE("\The [user] opens the hatch on \the [P] and removes [occupant]!"), SPAN_NOTICE("You open the hatch on \the [P] and remove [occupant]!"))
@@ -1910,7 +1905,7 @@ assassination method if you time it right*/
 		src.log_message("Recalibration of coordination system started.")
 		usr << sound('sound/mecha/UI_SCI-FI_Compute_01_Wet_stereo.ogg',channel=4, volume=100)
 		var/T = src.loc
-		if(do_after(100))
+		if(do_after(10 SECONDS))
 			if(T == src.loc)
 				src.clearInternalDamage(MECHA_INT_CONTROL_LOST)
 				src.occupant_message("<font color='blue'>Recalibration successful.</font>")

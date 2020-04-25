@@ -358,7 +358,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		borgs[name] = A
 
 	if (borgs.len)
-		select = input("Unshackled borg signals detected:", "Borg selection", null, null) as null|anything in borgs
+		select = input("Обнаружен несвязанный сигнал Борга:", "Borg selection", null, null) as null|anything in borgs
 		return borgs[select]
 
 //When a borg is activated, it can choose which AI it wants to be slaved to
@@ -385,7 +385,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/select_active_ai(var/mob/user)
 	var/list/ais = active_ais()
 	if(ais.len)
-		if(user)	. = input(usr, "AI signals detected:", "AI selection") in ais
+		if(user)	. = input(usr, "Обнаружены сигналы ИИ:", "AI selection") in ais
 		else		. = pick(ais)
 	return .
 
@@ -1009,8 +1009,6 @@ proc/is_hot(obj/item/W as obj)
 			return 3500
 		else
 			return 0
-
-	return 0
 
 //Whether or not the given item counts as sharp in terms of dealing damage
 /proc/is_sharp(obj/O as obj)

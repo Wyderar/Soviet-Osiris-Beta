@@ -18,14 +18,14 @@
 	if(istype(O, /obj/item/weapon/reagent_containers/glass) || istype(O,/obj/item/weapon/reagent_containers/syringe))
 
 		if(beaker)
-			to_chat(user, "\The [src] is already loaded.")
+			to_chat(user, "\The [src] уже загружен.")
 			return
 
 		beaker = O
 		user.drop_item()
 		O.loc = src
 
-		user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
+		user.visible_message("[user] добавляет [O] в [src]!", "Вы добавили [O] в [src]!")
 		SSnano.update_uis(src)
 
 		src.attack_hand(user)
@@ -34,14 +34,14 @@
 	if(istype(O, /obj/item/weapon/virusdish))
 
 		if(dish)
-			to_chat(user, "The dish tray is aleady full!")
+			to_chat(user, "Поддон для чашы заполнен!")
 			return
 
 		dish = O
 		user.drop_item()
 		O.loc = src
 
-		user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
+		user.visible_message("[user] добавляет [O] в [src]!", "Вы добавили [O] в [src]!")
 		SSnano.update_uis(src)
 
 		src.attack_hand(user)
@@ -97,7 +97,7 @@
 
 		if(foodsupply)
 			if(dish.growth + 3 >= 100 && dish.growth < 100)
-				ping("\The [src] pings, \"Sufficient viral growth density achieved.\"")
+				ping("\The [src] pings, \"Достаточная плотность роста вируса достигнута.\"")
 
 			foodsupply -= 1
 			dish.growth += 3
@@ -107,10 +107,10 @@
 			if(radiation > 50 & prob(5))
 				dish.virus2.majormutate()
 				if(dish.info)
-					dish.info = "OUTDATED : [dish.info]"
-					dish.basic_info = "OUTDATED: [dish.basic_info]"
+					dish.info = "УСТАРЕЛО : [dish.info]"
+					dish.basic_info = "УСТАРЕЛО: [dish.basic_info]"
 					dish.analysed = 0
-				ping("\The [src] pings, \"Mutant viral strain detected.\"")
+				ping("\The [src] pings, \"Обнаружен мутантный вирусный штамм.\"")
 			else if(prob(5))
 				dish.virus2.minormutate()
 			radiation -= 1
@@ -198,7 +198,7 @@
 		var/list/virus = list("[dish.virus2.uniqueID]" = dish.virus2.getcopy())
 		B.data["virus2"] += virus
 
-		ping("\The [src] pings, \"Injection complete.\"")
+		ping("\The [src] pings, \"Инъекция завершена.\"")
 		return 1
 
 	return 0

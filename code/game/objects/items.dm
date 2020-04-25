@@ -416,7 +416,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(usr.stat || !(ishuman(usr)))
 		to_chat(usr, "You are unable to focus through the [devicename]")
 		cannotzoom = 1
-	else if(!zoom && global_hud.darkMask[1] in usr.client.screen)
+	else if(!zoom && (global_hud.darkMask[1] in usr.client.screen))
 		to_chat(usr, "Your visor gets in the way of looking through the [devicename]")
 		cannotzoom = 1
 	else if(!zoom && usr.get_active_hand() != src)
@@ -445,17 +445,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if (WEST)
 				usr.client.pixel_x = -viewoffset
 				usr.client.pixel_y = 0
-		
-		if(istype(usr, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = usr
-			H.set_dir(H.dir)
-			H.facing_dir = H.dir
-			H.inzoom = 1
-			if(H.HUDtech.Find("visioncone"))
-				var/obj/screen/visioncone/I = H.HUDtech["visioncone"]
-				I.last_state = I.icon_state
-				I.icon_state = "helmet"
-				I.update_icon()
 
 		usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
 
@@ -467,15 +456,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		usr.client.pixel_x = 0
 		usr.client.pixel_y = 0
-
-		if(istype(usr, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = usr
-			H.facing_dir = null
-			H.inzoom = 0
-			if(H.HUDtech.Find("visioncone"))
-				var/obj/screen/visioncone/I = H.HUDtech["visioncone"]
-				I.icon_state = I.last_state
-				I.update_icon()
 
 		if(!cannotzoom)
 			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [name]" : "[usr] lowers the [name]"].")
@@ -521,6 +501,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/refresh_upgrades()
 	return
 
+/obj/item/proc/on_embed(mob/user)
+	return
+
+/obj/item/proc/on_embed_removal(mob/living/user)
+	return
+
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
@@ -537,7 +523,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return TRUE
 
 /obj/item/show_radial(mob/living/user)
-	if(!user || anchored || is_equipped()) 
+	if(!user || anchored || is_equipped())
 		return
 	var/list/layer_list = list(
 			"Pull" = image(icon = 'icons/mob/radial/menu.dmi', icon_state = "radial_pull"),

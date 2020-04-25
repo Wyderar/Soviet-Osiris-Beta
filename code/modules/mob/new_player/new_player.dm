@@ -67,7 +67,7 @@
 
 	output += "</div>"
 
-	panel = new(src, "Osiris SS13 Hi-RP","Osiris SS13 Hi-RP", 210, 280, src)
+	panel = new(src, "Osiris SS13","Osiris SS13", 210, 280, src)
 	panel.set_window_options("can_close=0;can_resize=0;window=welcome")
 	panel.set_content(output)
 	panel.open()

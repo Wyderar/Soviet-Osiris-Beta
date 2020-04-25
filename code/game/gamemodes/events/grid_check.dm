@@ -32,13 +32,13 @@ So sometimes this event can result in people finding new and interesting things
 	power_failure(0, strength, maps_data.contact_levels)
 
 /datum/event/grid_check/announce()
-	command_announcement.Announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the ship's power will be shut off for an indeterminate duration.", "Automated Grid Check", new_sound = 'sound/AI/poweroff.ogg')
+	command_announcement.Announce("Обнаружена аномальная активность энергосети на борту [station_name()]. В качестве меры предосторожности питание корабля будет отключено на неопределенное время.", "Автоматическая проверка сети", new_sound = 'sound/AI/poweroff.ogg')
 
 
 
 /proc/power_failure(var/announce = 1, var/severity = 2, var/list/affected_z_levels)
 	if(announce)
-		command_announcement.Announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the ship's power will be shut off for an indeterminate duration.", "Critical Power Failure", new_sound = 'sound/AI/poweroff.ogg')
+		command_announcement.Announce("Обнаружена аномальная активность энергосети на борту [station_name()]. В качестве меры предосторожности питание корабля будет отключено на неопределенное время.", "Критический сбой питания", new_sound = 'sound/AI/poweroff.ogg')
 
 	for(var/obj/machinery/power/smes/buildable/S in SSmachines.machinery)
 		if (is_valid_smes(S))

@@ -359,7 +359,7 @@ default behaviour is:
 	return FALSE
 
 
-/mob/living/proc/can_inject()
+/mob/living/proc/can_inject(var/mob/user, var/error_msg, var/target_zone)
 	return TRUE
 
 /mob/living/is_injectable(allowmobs = TRUE)
@@ -452,6 +452,49 @@ default behaviour is:
 	failed_last_breath = 0 //So mobs that died of oxyloss don't revive and have perpetual out of breath.
 
 	return
+
+// The proc despawn() is called by /obj/machinery/cryopod/proc/despawn_occupant() for clean removal of a mob out of the round with the removal of objectives affecting it.
+// Not recommended to directly call this proc on a mob without a good reason. It kicks out the player from the game without turning him into a ghost.
+/mob/living/despawn()
+	//Update any existing objectives involving this mob.
+	for(var/datum/objective/O in all_objectives)
+		// We don't want revs to get objectives that aren't for heads of staff. Letting
+		// them win or lose based on cryo is silly so we remove the objective.
+		if(O.target == src.mind)
+			if(O.owner && O.owner.current)
+				to_chat(O.owner.current, SPAN_WARNING("You get the feeling your target is no longer within your reach..."))
+			qdel(O)
+
+	//Same for contract-based objectives.
+	for(var/datum/antag_contract/contract in GLOB.all_antag_contracts)
+		contract.on_mob_despawned(src.mind)
+
+	if(src.mind)
+		//Handle job slot/tater cleanup.
+		var/job = src.mind.assigned_role
+		SSjob.FreeRole(job)
+
+		clear_antagonist(src.mind)
+
+	// Delete them from datacore.
+
+	if(PDA_Manifest.len)
+		PDA_Manifest.Cut()
+	for(var/datum/data/record/R in data_core.medical)
+		if ((R.fields["name"] == src.real_name))
+			qdel(R)
+	for(var/datum/data/record/T in data_core.security)
+		if ((T.fields["name"] == src.real_name))
+			qdel(T)
+	for(var/datum/data/record/G in data_core.general)
+		if ((G.fields["name"] == src.real_name))
+			qdel(G)
+
+	//This should guarantee that ghosts don't spawn.
+	src.ckey = null
+
+	// Delete the mob.
+	qdel(src)
 
 /mob/living/proc/UpdateDamageIcon()
 	return
@@ -558,12 +601,6 @@ default behaviour is:
 	if(update_slimes)
 		for(var/mob/living/carbon/slime/M in view(1,src))
 			M.UpdateFeed(src)
-
-	for(var/mob/M in oview(src))
-		M.update_vision_cone()
-
-	update_vision_cone()
-
 
 /mob/living/verb/lay_down()
 	set name = "Rest"
@@ -826,23 +863,6 @@ default behaviour is:
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/proc/drip_blood(var/amt as num)
 	blood_splatter(src,src)
-
-/mob/living/set_dir()
-	..()
-	update_vision_cone()
-
-/mob/living/Move(NewLoc, direct)
-	for(var/client/C in in_vision_cones)
-		if(src in C.hidden_mobs)
-			var/turf/T = get_turf(src)
-			var/image/I = image('icons/effects/footstepsound.dmi', loc = T, icon_state = "default", layer = 18)
-			C.images += I
-			spawn(4)
-				if(C)
-					C.images -= I
-		else
-			in_vision_cones.Remove(C)
-	. = ..()
 
 /mob/living/RightClick(mob/living/giver)
 	if(!giver || giver.incapacitated() || client == null)

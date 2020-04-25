@@ -13,6 +13,9 @@
 	..()
 	return QDEL_HINT_HARDDEL
 
+/mob/proc/despawn()
+	return
+
 /mob/get_fall_damage(var/turf/from, var/turf/dest)
 	return 0
 
@@ -521,8 +524,8 @@
 				if(e && H.lying)
 					if(((e.status & ORGAN_BROKEN && !(e.status & ORGAN_SPLINTED)) || e.status & ORGAN_BLEEDING) && (H.getBruteLoss() + H.getFireLoss() >= 100))
 						return 1
-						break
-		return 0
+		else
+			return 0
 
 /mob/MouseDrop(mob/M as mob)
 	..()
@@ -749,7 +752,6 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		regenerate_icons()
 	else if( lying != lying_prev )
 		update_icons()
-	update_vision_cone()
 
 /mob/proc/reset_layer()
 	if(lying)
@@ -971,6 +973,7 @@ mob/proc/yank_out_object()
 
 		affected.implants -= selection
 		affected.embedded -= selection
+		selection.on_embed_removal(src)
 		H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
 
@@ -980,6 +983,7 @@ mob/proc/yank_out_object()
 
 	else
 		embedded -= selection
+		selection.on_embed_removal(src)
 		if(issilicon(src))
 			var/mob/living/silicon/robot/R = src
 			R.adjustBruteLoss(5)
@@ -1070,11 +1074,6 @@ mob/proc/yank_out_object()
 
 
 /mob/proc/face_direction()
-	if(istype(usr, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = usr
-		if(!H.inzoom)
-			set_face_dir()
-		return
 	set_face_dir()
 
 //	if(!facing_dir)
