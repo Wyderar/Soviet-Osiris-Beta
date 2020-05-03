@@ -2,7 +2,7 @@
 
 /obj/item/device/antibody_scanner
 	name = "antibody scanner"
-	desc = "Scans living beings for antibodies in their blood."
+	desc = "Сканирует живых существ на наличие антител в их крови."
 	icon_state = "health"
 	w_class = ITEM_SIZE_SMALL
 	item_state = "electronic"
@@ -11,28 +11,28 @@
 
 /obj/item/device/antibody_scanner/attack(mob/M as mob, mob/user as mob)
 	if(!istype(M,/mob/living/carbon/))
-		report("Scan aborted: Incompatible target.", user)
+		report("Сканирование прервано: несовместимая цель.", user)
 		return
 
 	var/mob/living/carbon/C = M
 	if (istype(C,/mob/living/carbon/human/))
 		var/mob/living/carbon/human/H = C
 		if(H.species.flags & NO_BLOOD)
-			report("Scan aborted: The target does not have blood.", user)
+			report("Сканирование прервано: у цели нет крови.", user)
 			return
 
 	if(!C.antibodies.len)
-		report("Scan Complete: No antibodies detected.", user)
+		report("Сканирование завершено: антител не обнаружено.", user)
 		return
 
 	if (CLUMSY in user.mutations && prob(50))
 		// I was tempted to be really evil and rot13 the output.
-		report("Antibodies detected: [reverse_text(antigens2string(C.antibodies))]", user)
+		report("Антитела обнаружены: [reverse_text(antigens2string(C.antibodies))]", user)
 	else
-		report("Antibodies detected: [antigens2string(C.antibodies)]", user)
+		report("Антитела обнаружены: [antigens2string(C.antibodies)]", user)
 
 /obj/item/device/antibody_scanner/proc/report(var/text, mob/user as mob)
-	to_chat(user, "\blue \icon[src] \The [src] beeps, \"[text]\"")
+	to_chat(user, "\blue \icon[src] \The [src] пищит, \"[text]\"")
 
 ///////////////VIRUS DISH///////////////
 
@@ -70,7 +70,7 @@
 /obj/item/weapon/virusdish/examine(mob/user)
 	..()
 	if(basic_info)
-		to_chat(user, "[basic_info] : <a href='?src=\ref[src];info=1'>More Information</a>")
+		to_chat(user, "[basic_info] : <a href='?src=\ref[src];info=1'>Больше информации</a>")
 
 /obj/item/weapon/virusdish/Topic(href, href_list)
 	. = ..()
@@ -84,14 +84,14 @@
 	name = "ruined virus sample"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-b"
-	desc = "The bacteria in the dish are completely dead."
+	desc = "Бактерии в чаше полностью мертвы."
 
 /obj/item/weapon/ruinedvirusdish/attackby(var/obj/item/weapon/W as obj,var/mob/living/carbon/user as mob)
 	if(istype(W,/obj/item/weapon/hand_labeler) || istype(W,/obj/item/weapon/reagent_containers/syringe))
 		return ..()
 
 	if(prob(50))
-		to_chat(user, "\The [src] shatters!")
+		to_chat(user, "[src] разбивается вдребезги!")
 		qdel(src)
 
 ///////////////GNA DISK///////////////

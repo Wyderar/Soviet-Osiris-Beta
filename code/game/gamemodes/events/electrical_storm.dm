@@ -17,7 +17,7 @@
 
 
 /datum/event/electrical_storm/announce()
-	command_announcement.Announce("An electrical storm has been detected in your area, please repair potential electronic overloads.", "Electrical Storm Alert")
+	command_announcement.Announce("В вашем районе был обнаружен электрический шторм, пожалуйста, устраните потенциальные электронные перегрузки.", "Предупреждение: Электрический Шторм")
 
 
 /datum/event/electrical_storm/start()
@@ -31,7 +31,7 @@
 
 /proc/lightsout(isEvent = 0, lightsoutAmount = 1,lightsoutRange = 24) //leave lightsoutAmount as 0 to break ALL lights
 	if(!isEvent)
-		command_announcement.Announce("An Electrical storm has been detected in your area, please repair potential electronic overloads.","Electrical Storm Alert")
+		command_announcement.Announce("В вашем районе был обнаружен электрический шторм, пожалуйста, устраните потенциальные электронные перегрузки.","редупреждение: Электрический Шторм")
 
 	if(lightsoutAmount)
 		var/list/apcs = list()
@@ -56,7 +56,7 @@
 			return
 
 		for(var/epicentre in epicentreList)
-			log_and_message_admins("Electrical overload triggered at [jumplink(epicentre)],")
+			log_and_message_admins("Электрическая перегрузка сработала на [jumplink(epicentre)],")
 			for(var/obj/machinery/power/apc/apc in range(epicentre,lightsoutRange))
 				if (prob(75))
 					apc.overload_lighting()
