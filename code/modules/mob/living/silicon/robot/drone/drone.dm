@@ -312,6 +312,9 @@ var/list/mob_hat_cache = list()
 		return
 	var/datum/ghosttrap/G = get_ghost_trap("maintenance drone")
 	G.request_player(src, "Someone is attempting to reboot a maintenance drone.", MINISYNTH, 30 SECONDS)
+	sleep(300)
+	if(ckey && (stat == 2))
+		stat = 1
 
 /mob/living/silicon/robot/drone/proc/transfer_personality(var/client/player)
 	if(!player) return

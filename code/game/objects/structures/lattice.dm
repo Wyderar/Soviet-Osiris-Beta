@@ -57,16 +57,17 @@
 			qdel(src)
 	if (istype(I, /obj/item/stack/rods) || istype(I, /obj/item/stack/rods/cyborg))
 		var/obj/item/stack/rods/R = I
-		if(R.amount <= 2 && !istype(R, /obj/item/stack/rods/cyborg))
+		if(R.amount < 2 && !istype(R, /obj/item/stack/rods/cyborg))
+			to_chat(user, SPAN_NOTICE("Not enoug rods to do this."))
 			return
 
 		else
 
 			to_chat(user, SPAN_NOTICE("You start connecting [R.name] to [src.name] ..."))
 			if(do_after(user,50, src))
+				new /obj/structure/catwalk(src.loc)
 				if(R.use(2))
 					src.alpha = 0
-				new /obj/structure/catwalk(src.loc)
 				qdel(src)
 			return
 	if (istype(I, /obj/item/stack))
