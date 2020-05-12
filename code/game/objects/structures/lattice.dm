@@ -58,7 +58,7 @@
 	if (istype(I, /obj/item/stack/rods) || istype(I, /obj/item/stack/rods/cyborg))
 		var/obj/item/stack/rods/R = I
 		if(R.amount < 2 && !istype(R, /obj/item/stack/rods/cyborg))
-			to_chat(user, SPAN_NOTICE("Not enoug rods to do this."))
+			to_chat(user, SPAN_NOTICE("Not enough rods to do this."))
 			return
 
 		else
