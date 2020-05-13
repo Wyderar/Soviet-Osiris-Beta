@@ -1,7 +1,7 @@
 /obj/item/organ_module/eyes_coordinators
 	name = "bionic eyes coordinators"
 	desc = "A bionic coordinators that attached to human eyes, increasing aiming of human eyes."
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_SILVER = 5, MATERIAL_GOLD = 1)
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_SILVER = 5)
 	allowed_organs = list(BP_HEAD)
 	icon_state = "eyes_coordinators"
 

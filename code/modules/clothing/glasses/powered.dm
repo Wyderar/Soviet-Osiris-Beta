@@ -5,6 +5,7 @@
 	action_button_name = "Toggle Optical Matrix"
 	toggleable = TRUE
 	prescription = TRUE
+	matter = list(MATERIAL_GLASS = 1, MATERIAL_SILVER = 1, MATERIAL_GOLD = 1)
 	active = FALSE
 	var/tick_cost = 1
 	var/obj/item/weapon/cell/cell = null

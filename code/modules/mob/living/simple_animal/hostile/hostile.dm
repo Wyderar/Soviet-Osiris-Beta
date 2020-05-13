@@ -38,6 +38,9 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 		if(A == src)
 			continue
 
+		if(see_invisible < A.invisibility)
+			continue
+
 		var/atom/F = Found(A)
 		if(F)
 			T = F
